@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/acpMenu.xsd">
+	<import>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets">
+			<parent>wcf.acp.menu.link.application</parent>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.category.list">
+			<controller>assets\acp\page\CategoryListPage</controller>
+			<parent>wcf.acp.menu.link.application.assets</parent>
+			<permissions>admin.assets.canManageCategories</permissions>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.category.add">
+			<controller>assets\acp\form\CategoryAddForm</controller>
+			<parent>wcf.acp.menu.link.application.assets.category.list</parent>
+			<permissions>admin.assets.canManageCategories</permissions>
+			<icon>plus</icon>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.location.list">
+			<controller>assets\acp\page\LocationListPage</controller>
+			<parent>wcf.acp.menu.link.application.assets</parent>
+			<permissions>admin.assets.canManageLocations</permissions>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.location.add">
+			<controller>assets\acp\form\LocationAddForm</controller>
+			<parent>wcf.acp.menu.link.application.assets.location.list</parent>
+			<permissions>admin.assets.canManageLocations</permissions>
+			<icon>plus</icon>
+		</acpmenuitem>
+	</import>
+</data>

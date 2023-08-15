@@ -1,0 +1,7 @@
+node_modules/
+files_wcf/
+
+package-lock.json
+
+*.tar
+*.tar.gz

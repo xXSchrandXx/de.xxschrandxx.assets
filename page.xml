@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/5.4/page.xsd">
+	<import>
+		<page identifier="de.xxschrandxx.assets.AssetList">
+			<pageType>system</pageType>
+			<controller>assets\page\AssetListPage</controller>
+			<name language="de">Vermögenswerte</name>
+			<name language="en">Assets</name>
+			<allowSpidersToIndex>1</allowSpidersToIndex>
+			<permissions>user.assets.canView</permissions>
+		</page>
+		<page identifier="de.xxschrandxx.assets.AssetAdd">
+			<pageType>system</pageType>
+			<controller>assets\form\AssetAddForm</controller>
+			<parent>de.xxschrandxx.assets.AssetList</parent>
+			<name language="de">Vermögenswert hinzufügen</name>
+			<name language="en">Add Assets</name>
+			<allowSpidersToIndex>1</allowSpidersToIndex>
+			<excludeFromLandingPage>1</excludeFromLandingPage>
+			<permissions>mod.assets.canAdd</permissions>
+		</page>
+		<page identifier="de.xxschrandxx.assets.AssetEdit">
+			<pageType>system</pageType>
+			<controller>assets\form\AssetEditForm</controller>
+			<parent>de.xxschrandxx.assets.AssetAdd</parent>
+			<name language="de">Vermögenswert bearbeiten</name>
+			<name language="en">Edit Assets</name>
+			<allowSpidersToIndex>0</allowSpidersToIndex>
+			<requireObjectID>1</requireObjectID>
+			<excludeFromLandingPage>1</excludeFromLandingPage>
+			<permissions>mod.assets.canModify</permissions>
+		</page>
+		<page identifier="de.xxschrandxx.assets.Asset">
+			<pageType>system</pageType>
+			<controller>assets\page\AssetPage</controller>
+			<parent>de.xxschrandxx.assets.AssetList</parent>
+			<name language="de">Vermögenswert</name>
+			<name language="en">Asset</name>
+			<allowSpidersToIndex>0</allowSpidersToIndex>
+			<requireObjectID>1</requireObjectID>
+			<permissions>user.assets.canView</permissions>
+		</page>
+	</import>
+</data>

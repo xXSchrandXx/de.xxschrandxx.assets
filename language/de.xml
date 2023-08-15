@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language languagecode="de"
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
+	<import>
+		<category name="wcf.acl.option">
+			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.user.assets.category"><![CDATA[Allgemeine Rechte]]></item>
+			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.mod.assets.category"><![CDATA[Moderative Rechte]]></item>
+			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.admin.assets.category"><![CDATA[Administrative Rechte]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.category.canViewCategory"><![CDATA[Kann Vermögenswerte sehen.]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.category.canAddCategory"><![CDATA[Kann Vermögenswerte hinzufügen.]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.category.canModifyCategory"><![CDATA[Kann Vermögenswerte bearbeiten.]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.category.canTrashCategory"><![CDATA[Kann Vermögenswerte entfernen.]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.category.canDeleteCategory"><![CDATA[Kann Vermögenswerte löschen.]]></item>
+			<item name="wcf.acl.option.category.de.xxschrandxx.assets.location.user.assets.location"><![CDATA[Allgemeine Rechte]]></item>
+			<item name="wcf.acl.option.category.de.xxschrandxx.assets.location.mod.assets.location"><![CDATA[Moderative Rechte]]></item>
+			<item name="wcf.acl.option.category.de.xxschrandxx.assets.location.admin.assets.location"><![CDATA[Administrative Rechte]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canViewLocation"><![CDATA[Kann Vermögenswerte sehen.]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canModifyLocation"><![CDATA[Kann Standortzugehörigkeit bearbeiten.]]></item>
+		</category>
+		<category name="wcf.acp.option">
+			<item name="wcf.acp.option.category.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.option.category.assets_general"><![CDATA[Allgemeine Einstellungen]]></item>
+			<item name="wcf.acp.option.assets_legacyid_enabled"><![CDATA[Benutze eigene ID]]></item>
+			<item name="wcf.acp.option.assets_legacyid_enabled.description"><![CDATA[Wenn aktiviert, werden eigene anstelle der Automatisch vergebenen IDs verwendet.]]></item>
+		</category>
+		<category name="wcf.acp.group">
+			<item name="wcf.acp.group.option.category.user.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.group.option.category.mod.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.group.option.category.admin.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.group.option.user.assets.canView"><![CDATA[Kann Vermögenswerte sehen.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canAdd"><![CDATA[Kann Vermögenswerte hinzufügen.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canModify"><![CDATA[Kann Vermögenswerte bearbeiten.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canTrash"><![CDATA[Kann Vermögenswerte entfernen.]]></item>
+			<item name="wcf.acp.group.option.admin.assets.canDelete"><![CDATA[Kann Vermögenswerte löschen.]]></item>
+			<item name="wcf.acp.group.option.admin.assets.canManageCategories"><![CDATA[Kann Kategorien verwalten.]]></item>
+			<item name="wcf.acp.group.option.admin.assets.canManageLocations"><![CDATA[Kann Standorte verwalten.]]></item>
+		</category>
+		<category name="wcf.acp.menu">
+			<item name="wcf.acp.menu.link.management.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.menu.link.application.assets"><![CDATA[Vermögenswerte]]></item>
+			<!-- Category-->
+			<item name="wcf.acp.menu.link.application.assets.category.list"><![CDATA[Kategorien]]></item>
+			<item name="wcf.acp.menu.link.application.assets.category.add"><![CDATA[Kategorie hinzufügen]]></item>
+			<!-- Location -->
+			<item name="wcf.acp.menu.link.application.assets.location.list"><![CDATA[Standorte]]></item>
+			<item name="wcf.acp.menu.link.application.assets.location.add"><![CDATA[Standort hinzufügen]]></item>
+		</category>
+		<category name="wcf.asset.action">
+			<item name="wcf.asset.action.delete"><![CDATA[Gelöscht]]></item>
+			<item name="wcf.asset.action.edit"><![CDATA[Bearbeitet]]></item>
+			<item name="wcf.asset.action.restore"><![CDATA[Wiederhergestellt]]></item>
+			<item name="wcf.asset.action.trash"><![CDATA[Entfernt]]></item>
+		</category>
+		<category name="wcf.page">
+			<!-- AssetList -->
+			<item name="wcf.page.assetList.title"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.page.assetList.category"><![CDATA[Kategorie]]></item>
+			<item name="wcf.page.assetList.amount"><![CDATA[Stückzahl]]></item>
+			<item name="wcf.page.assetList.location"><![CDATA[Standort]]></item>
+			<item name="wcf.page.assetList.lastTimeModified"><![CDATA[Zuletzt bearbeitet]]></item>
+			<item name="wcf.page.assetList.time"><![CDATA[Erstellt]]></item>
+			<item name="wcf.page.assetList.noCategories"><![CDATA[Keine Kategorien gefunden. <a href="{link controller='CategoryAdd' application='assets' isACP=1}{/link}">Füge eine neue Kategorie hinzu.</a>]]></item>
+			<item name="wcf.page.assetList.noLocations"><![CDATA[Keine Standorte gefunden. <a href="{link controller='LocationAdd' application='assets' isACP=1}{/link}">Füge einen neuen Standort hinzu.</a>]]></item>
+			<!-- Asset -->
+			<!-- General -->
+			<item name="wcf.page.asset.button.trash.confirmMessage"><![CDATA[Vermögenswert löschen.]]></item>
+			<item name="wcf.page.asset.button.restore.confirmMessage"><![CDATA[Vermögenswert wiederherstellen.]]></item>
+
+			<!-- Overview -->
+			<item name="wcf.page.asset.overview"><![CDATA[Übersicht]]></item>
+
+			<!-- Comments -->
+
+			<!-- History -->
+			<item name="wcf.page.asset.history"><![CDATA[Historie]]></item>
+		</category>
+		<category name="wcf.form">
+			<!-- AssetsAdd/-Edit -->
+			<item name="wcf.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
+			<item name="wcf.form.asset.title.edit"><![CDATA[Vermögenswert bearbeiten]]></item>
+			<item name="wcf.form.asset.view"><![CDATA[Vermögenswert anzeigen]]></item>
+			<item name="wcf.form.asset.field.legacyID"><![CDATA[ID]]></item>
+			<item name="wcf.form.asset.field.legacyID.description"><![CDATA[Identifikationswert des Vermögenswertes.]]></item>
+			<item name="wcf.form.asset.field.legacyID.error.duplicate"><![CDATA[Diese ID wird schon verwendet.]]></item>
+			<item name="wcf.form.asset.field.categoryID"><![CDATA[Kategorie]]></item>
+			<item name="wcf.form.asset.field.amount"><![CDATA[Stückzahl]]></item>
+			<item name="wcf.form.asset.field.locationID"><![CDATA[Standort]]></item>
+			<item name="wcf.form.asset.field.locationID.description"><![CDATA[Standort des Vermögenswertes, wenn er nicht ausgeliehen ist.]]></item>
+			<item name="wcf.form.asset.field.description"><![CDATA[Beschreibung]]></item>
+
+			<!-- AssetBorrow -->
+			<item name="wcf.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
+		</category>
+	</import>
+</language>

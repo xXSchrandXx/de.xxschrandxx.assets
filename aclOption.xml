@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com http://www.woltlab.com/XSD/5.4/aclOption.xsd">
+	<import>
+		<categories>
+			<category name="user.assets.category">
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</category>
+			<category name="mod.assets.category">
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</category>
+			<category name="admin.assets.category">
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</category>
+			<category name="user.assets.location">
+				<objecttype>de.xxschrandxx.assets.location</objecttype>
+			</category>
+			<category name="mod.assets.location">
+				<objecttype>de.xxschrandxx.assets.location</objecttype>
+			</category>
+			<category name="admin.assets.location">
+				<objecttype>de.xxschrandxx.assets.location</objecttype>
+			</category>
+		</categories>
+
+		<options>
+			<option name="canViewCategory">
+				<categoryname>user.assets.category</categoryname>
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</option>
+			<option name="canAddCategory">
+				<categoryname>mod.assets.category</categoryname>
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</option>
+			<option name="canModifyCategory">
+				<categoryname>mod.assets.category</categoryname>
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</option>
+			<option name="canTrashCategory">
+				<categoryname>mod.assets.category</categoryname>
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</option>
+			<option name="canDeleteCategory">
+				<categoryname>admin.assets.category</categoryname>
+				<objecttype>de.xxschrandxx.assets.category</objecttype>
+			</option>
+			<option name="canViewLocation">
+				<categoryname>user.assets.location</categoryname>
+				<objecttype>de.xxschrandxx.assets.location</objecttype>
+			</option>
+			<option name="canModifyLocation">
+				<categoryname>mod.assets.location</categoryname>
+				<objecttype>de.xxschrandxx.assets.location</objecttype>
+			</option>
+		</options>
+	</import>
+</data>

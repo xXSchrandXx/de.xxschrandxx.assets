@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="de.xxschrandxx.assets"
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/package.xsd">
+	<packageinformation>
+		<packagename><![CDATA[Assets]]></packagename>
+		<packagename language="de"><![CDATA[Vermögenswerte]]></packagename>
+		<packagedescription><![CDATA[Asset management plugin.]]></packagedescription>
+		<packagedescription language="de"><![CDATA[Plugin zum Managen von Vermögenswerten.]]></packagedescription>
+		<isapplication>1</isapplication>
+		<version>1.0.0</version>
+		<date>2023-06-15</date>
+	</packageinformation>
+
+	<authorinformation>
+		<author><![CDATA[xXSchrandXx]]></author>
+	</authorinformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="5.5.10">com.woltlab.wcf</requiredpackage>
+	</requiredpackages>
+
+	<excludedpackages>
+		<excludedpackage version="6.0.0 dev 1">com.woltlab.wcf</excludedpackage>
+	</excludedpackages>
+
+	<instructions type="install">
+<!--		<instruction type="acpTemplate"/>-->
+		<instruction type="template"/>
+		<instruction type="file"/>
+		<instruction type="file" application="wcf">files_wcf.tar</instruction>
+
+		<instruction type="database">acp/database/install_de.xxschrandxx.assets.php</instruction>
+
+		<instruction type="language"/>
+
+		<instruction type="objectType"/>
+		<instruction type="aclOption"/>
+		<instruction type="option"/>
+		<instruction type="userGroupOption"/>
+		<instruction type="acpMenu"/>
+		<instruction type="page" />
+		<instruction type="menuItem" />
+	</instructions>
+</package>
