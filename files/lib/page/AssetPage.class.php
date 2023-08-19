@@ -78,10 +78,12 @@ class AssetPage extends AbstractPage
      */
     public function assignVariables()
     {
+        $assetCommentManager = AssetCommentManager::getInstance();
+        $commentCanAdd = $assetCommentManager->canAdd($this->object->getObjectID());
         WCF::getTPL()->assign([
             'object' => $this->object,
-            'commentCanAdd' => true,
-            'commentManager' => AssetCommentManager::getInstance(),
+            'commentCanAdd' => $commentCanAdd,
+            'commentManager' => $assetCommentManager,
             'commentObjectTypeID' => $this->object->getCommentObjectTypeID(),
             'commentList' => $this->object->getReadCommentList(),
             'lastCommentTime' => $this->object->lastCommentTime,
