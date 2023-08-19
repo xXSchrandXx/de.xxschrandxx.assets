@@ -23,6 +23,8 @@ return [
             NotNullInt10DatabaseTableColumn::create('amount'),
             NotNullInt10DatabaseTableColumn::create('locationID'),
             DefaultFalseBooleanDatabaseTableColumn::create('isTrashed'),
+            NotNullInt10DatabaseTableColumn::create('comments'),
+            NotNullInt10DatabaseTableColumn::create('lastCommentTime'),
             NotNullInt10DatabaseTableColumn::create('lastTimeModified'),
             NotNullInt10DatabaseTableColumn::create('time')
         ])

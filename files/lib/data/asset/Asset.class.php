@@ -3,32 +3,31 @@
 namespace assets\data\asset;
 
 use assets\data\category\AssetCategory;
-use assets\data\lending\AssetLending;
 use assets\data\location\AssetLocation;
 use assets\page\AssetPage;
+use assets\system\comment\manager\AssetCommentManager;
 use DateTimeImmutable;
 use InvalidArgumentException;
+use wcf\data\comment\StructuredCommentList;
 use wcf\data\DatabaseObject;
 use wcf\data\IAccessibleObject;
 use wcf\data\ICategorizedObject;
 use wcf\data\ITitledLinkObject;
-use wcf\data\IUserContent;
-use wcf\data\user\User;
+use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\user\UserProfile;
-use wcf\system\cache\runtime\UserProfileRuntimeCache;
-use wcf\system\cache\runtime\UserRuntimeCache;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 
 /**
  * @property-read    int         $assetID
+ * @property-read    string|null $legacyID
  * @property-read    int         $categoryID
  * @property-read    string      $title
- * @property-read    string|null $legacyID
  * @property-read    int         $amount
  * @property-read    int|null    $locationID
- * @property-read    int|null    $userID
  * @property-read    int         $isTrashed
+ * @property-read    int         $comments
+ * @property-read    int         $lastCommentTime
  * @property-read    int         $lastTimeModified
  * @property-read    int         $time
  */
@@ -104,38 +103,6 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
-     * Returns userID
-     * @return ?int
-     * @throws InvalidArgumentException If the Asset is not borrowed
-     */
-    public function getUserID(): ?int
-    {
-        if (!$this->isBorrowed()) {
-            throw new InvalidArgumentException('Asset is borrowed.');
-        }
-
-        return $this->userID;
-    }
-
-    /**
-     * Returns User
-     * @return ?User
-     */
-    public function getUser(): ?User
-    {
-        return UserRuntimeCache::getInstance()->getObject($this->getUserID());
-    }
-
-    /**
-     * Returns user Profile
-     * @return ?UserProfile
-     */
-    public function getUserProfile(): ?UserProfile
-    {
-        return UserProfileRuntimeCache::getInstance()->getObject($this->getUserID());
-    }
-
-    /**
      * Weather this asset is thrashed
      * @return bool
      */
@@ -171,22 +138,73 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
-     * Returns lastTimeModified timestamp
+     * Returns comment count
      * @return int
      */
-    public function getLastTimeModifiedTimestamp(): int
+    public function getCommentCount(): int
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Returns the comment object type
+     * @return \wcf\data\object\type\ObjectType
+     */
+    public function getCommentObjectType()
+    {
+        return ObjectTypeCache::getInstance()->getObjectTypeByName('com.woltlab.wcf.comment.commentableContent', 'de.xxschrandxx.assets.asset.comment');
+    }
+
+    /**
+     * Returns the comment object type id
+     * @return int
+     */
+    public function getCommentObjectTypeID(): int
+    {
+        return $this->getCommentObjectType()->getObjectID();
+    }
+
+    /**
+     * Returns a unread comment list
+     * @return StructuredCommentList
+     */
+    public function getCommentList()
+    {
+        return new StructuredCommentList(
+            AssetCommentManager::getInstance(),
+            $this->getCommentObjectTypeID(),
+            $this->getObjectID()
+        );
+    }
+
+    /**
+     * Returns a list of comments
+     * @return \wcf\data\comment\StructuredComment[]
+     */
+    public function getComments()
+    {
+        $commentList = $this->getCommentList();
+        $commentList->readObjects();
+        return $commentList->getObjects();
+    }
+
+    /**
+     * Returns lastCommentTime timestamp
+     * @return int
+     */
+    public function getLastCommentTime(): int
     {
         return $this->lastTimeModified;
     }
 
 
     /**
-     * Returns last modification date
+     * Returns last comment date
      * @return DateTimeImmutable
      */
-    public function getLastTimeModifiedDate(): DateTimeImmutable
+    public function getLastCommentTimeDate(): DateTimeImmutable
     {
-        return new DateTimeImmutable($this->getLastTimeModifiedTimestamp());
+        return new DateTimeImmutable($this->getLastCommentTime());
     }
 
     /**
@@ -205,6 +223,25 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     public function getCreatedDate(): DateTimeImmutable
     {
         return new DateTimeImmutable($this->getCreatedTimestamp());
+    }
+
+    /**
+     * Returns lastTimeModified timestamp
+     * @return int
+     */
+    public function getLastTimeModifiedTimestamp(): int
+    {
+        return $this->lastTimeModified;
+    }
+
+
+    /**
+     * Returns last modification date
+     * @return DateTimeImmutable
+     */
+    public function getLastTimeModifiedDate(): DateTimeImmutable
+    {
+        return new DateTimeImmutable($this->getLastTimeModifiedTimestamp());
     }
 
     /**

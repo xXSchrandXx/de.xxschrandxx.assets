@@ -21,6 +21,8 @@ class AssetEditor extends DatabaseObjectEditor
      */
     public static function create(array $parameters = [])
     {
+        $parameters['comments'] = 0;
+        $parameters['lastCommentTime'] = 0;
         $parameters['time'] = TIME_NOW;
         $parameters['lastTimeModified'] = TIME_NOW;
         return parent::create($parameters);

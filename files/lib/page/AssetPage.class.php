@@ -5,8 +5,13 @@ namespace assets\page;
 use assets\data\asset\Asset;
 use assets\data\asset\modification\AssetModificationLogList;
 use assets\data\asset\modification\ViewableAssetModificationLog;
+use assets\system\comment\manager\AssetCommentManager;
+use Symfony\Component\CssSelector\Parser\Handler\CommentHandler;
+use wcf\data\comment\CommentList;
 use wcf\data\comment\StructuredCommentList;
+use wcf\data\object\type\ObjectTypeCache;
 use wcf\page\AbstractPage;
+use wcf\system\cache\runtime\ViewableCommentRuntimeCache;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\WCF;
@@ -27,12 +32,6 @@ class AssetPage extends AbstractPage
      * @var ViewableAssetModificationLog[]
      */
     public $modificationLogs;
-
-    /**
-     * list of comments
-     * @var StructuredCommentList
-     */
-    public $commentList;
 
     /**
      * @inheritDoc
@@ -81,7 +80,13 @@ class AssetPage extends AbstractPage
     {
         WCF::getTPL()->assign([
             'object' => $this->object,
-            'commendList' => [],//$this->commentList,  TODO
+            'commentCanAdd' => true,
+            'commentManager' => AssetCommentManager::getInstance(),
+            'commentObjectTypeID' => $this->object->getCommentObjectTypeID(),
+            'commentList' => $this->object->getComments(),
+            'lastCommentTime' => $this->object->lastCommentTime,
+            'commentObjectID' => $this->object->getObjectID(),
+            'commentContainerID' => 'assetComments',
             'modificationLogs' => $this->modificationLogs
         ]);
     }

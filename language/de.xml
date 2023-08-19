@@ -71,6 +71,8 @@
 			<item name="wcf.page.asset.overview"><![CDATA[Übersicht]]></item>
 
 			<!-- Comments -->
+			<item name="wcf.page.asset.comment"><![CDATA[Kommentar]]></item>
+			<item name="wcf.page.asset.comment.response"><![CDATA[Antwort]]></item>
 
 			<!-- History -->
 			<item name="wcf.page.asset.history"><![CDATA[Historie]]></item>

@@ -43,6 +43,13 @@
 			<classname>assets\system\log\modification\AssetModificationLogHandler</classname>
 		</type>
 		<!-- /Modification Log -->
+		<!-- Comments -->
+		<type>
+			<name>de.xxschrandxx.assets.asset.comment</name>
+			<definitionname>com.woltlab.wcf.comment.commentableContent</definitionname>
+			<classname>assets\system\comment\manager\AssetCommentManager</classname>
+		</type>
+		<!-- /Comments -->
 		<!-- /de.xxschrandxx.assets.asset -->
 	</import>
 </data>

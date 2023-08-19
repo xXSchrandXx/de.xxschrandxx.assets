@@ -67,10 +67,9 @@
 	<nav class="tabMenu">
 		<ul>
 			<li><a href="#overview">{lang}wcf.page.asset.overview{/lang}</a></li>
-			{if $commendList|count}
-				<li><a href="#comments">{lang}wcf.global.comments{/lang}</a></li>
-			{/if}
+			<li><a href="#comments">{lang}wcf.global.comments{/lang}</a></li>
 			<li><a href="#history">{lang}wcf.page.asset.history{/lang}</a></li>
+
 			{event name='tabMenuTabs'}
 		</ul>
 	</nav>
@@ -79,11 +78,12 @@
 		{include file='__overview' application='assets'}
 	</div>
 	<div id="comments" class="tabMenuContent">
-		{include file='__comments' application='assets'}
+		{include file='comments'}
 	</div>
 	<div id="history" class="tabMenuContent">
 		{include file='__history' application='assets'}
 	</div>
+
 	{event name='tabMenuContents'}
 </div>
 
