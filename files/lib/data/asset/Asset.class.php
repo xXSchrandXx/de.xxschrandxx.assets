@@ -184,6 +184,7 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     public function getReadCommentList()
     {
         $commentList = $this->getCommentList();
+        $commentList->readObjects();
         return $commentList;
     }
 
