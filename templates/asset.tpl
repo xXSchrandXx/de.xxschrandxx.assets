@@ -95,7 +95,6 @@
 			'wcf.page.asset.button.delete.confirmMessage': '{jslang objectTitle=$object->getTitle()}wcf.button.delete.confirmMessage{/jslang}',
 			'wcf.page.asset.button.restore.confirmMessage': '{jslang}wcf.page.asset.button.restore.confirmMessage{/jslang}',
 			'wcf.page.asset.button.trash.confirmMessage': '{jslang}wcf.page.asset.button.trash.confirmMessage{/jslang}',
-			'wcf.page.asset.button.return.confirmMessage': '{jslang}wcf.page.asset.button.return.confirmMessage{/jslang}',
 			'wcf.page.asset.button.delete.redirect': '{link controller="AssetList" application="assets"}{/link}'
 		});
     	Editor.init();
