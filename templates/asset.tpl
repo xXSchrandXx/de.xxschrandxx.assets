@@ -67,9 +67,9 @@
 	<nav class="tabMenu">
 		<ul>
 			<li><a href="#overview">{lang}wcf.page.asset.overview{/lang}</a></li>
-			<li><a href="#comments">{lang}wcf.global.comments{/lang}</a></li>
-			<li><a href="#history">{lang}wcf.page.asset.history{/lang}</a></li>
-
+			<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
+			<li><a href="#history">{lang}wcf.page.asset.history{/lang} <span class="badge">{#$modificationLogs|count}</span></a></li>
+	
 			{event name='tabMenuTabs'}
 		</ul>
 	</nav>
