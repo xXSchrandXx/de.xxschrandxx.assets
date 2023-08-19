@@ -57,13 +57,25 @@ class AssetCommentManager extends AbstractCommentManager
      * @inheritDoc
      */
     public function isAccessible($objectID, $validateWritePermission = false) {
-        // check object id
         $asset = new Asset($objectID);
         if ($asset === null || !$asset->canView()) {
             return false;
         }
 
         return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function canAdd($objectID)
+    {
+        $asset = new Asset($objectID);
+        if ($asset === null || $asset->isTrashed()) {
+            return false;
+        }
+
+        return parent::canAdd($objectID);
     }
 
     /**
