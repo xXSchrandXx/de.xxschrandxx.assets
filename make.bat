@@ -1,5 +1,7 @@
 set PACKAGE_NAME=de.xxschrandxx.wsc.assets
-set PACKAGE_TYPES=(acptemplates files templates)
+set PACKAGE_TYPES=(acptemplates files files_wcf templates)
+
+call tsc
 
 for %%i in %PACKAGE_TYPES% do (
     del .\%%i.tar
