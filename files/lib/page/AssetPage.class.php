@@ -83,7 +83,7 @@ class AssetPage extends AbstractPage
             'commentCanAdd' => true,
             'commentManager' => AssetCommentManager::getInstance(),
             'commentObjectTypeID' => $this->object->getCommentObjectTypeID(),
-            'commentList' => $this->object->getComments(),
+            'commentList' => $this->object->getReadCommentList(),
             'lastCommentTime' => $this->object->lastCommentTime,
             'commentObjectID' => $this->object->getObjectID(),
             'commentContainerID' => 'assetComments',

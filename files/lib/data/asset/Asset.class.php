@@ -178,14 +178,13 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
-     * Returns a list of comments
-     * @return \wcf\data\comment\StructuredComment[]
+     * Returns a read comment list
+     * @return StructuredCommentList
      */
-    public function getComments()
+    public function getReadCommentList()
     {
         $commentList = $this->getCommentList();
-        $commentList->readObjects();
-        return $commentList->getObjects();
+        return $commentList;
     }
 
     /**
