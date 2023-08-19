@@ -37,6 +37,20 @@ class AssetAction extends AbstractDatabaseObjectAction
     /**
      * @inheritDoc
      */
+    public function create()
+    {
+        if (array_key_exists('description_htmlInputProcessor', $this->parameters)) {
+            /** @var \wcf\system\html\input\HtmlInputProcessor */
+            $htmlInputProcessor = $this->parameters['description_htmlInputProcessor'];
+            $this->parameters['data']['description'] = $htmlInputProcessor->getHtml();
+        }
+
+        return parent::create();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function validateUpdate()
     {
         $this->readString('reason', true, 'data');

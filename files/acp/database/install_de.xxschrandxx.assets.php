@@ -4,6 +4,7 @@ use wcf\system\database\table\column\DefaultFalseBooleanDatabaseTableColumn;
 use wcf\system\database\table\column\IntDatabaseTableColumn;
 use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
 use wcf\system\database\table\column\ObjectIdDatabaseTableColumn;
+use wcf\system\database\table\column\TextDatabaseTableColumn;
 use wcf\system\database\table\column\VarcharDatabaseTableColumn;
 use wcf\system\database\table\DatabaseTable;
 use wcf\system\database\table\index\DatabaseTableForeignKey;
@@ -22,6 +23,7 @@ return [
                 ->notNull(),
             NotNullInt10DatabaseTableColumn::create('amount'),
             NotNullInt10DatabaseTableColumn::create('locationID'),
+            TextDatabaseTableColumn::create('description'),
             DefaultFalseBooleanDatabaseTableColumn::create('isTrashed'),
             NotNullInt10DatabaseTableColumn::create('comments'),
             NotNullInt10DatabaseTableColumn::create('lastCommentTime'),

@@ -5,9 +5,12 @@ namespace assets\data\asset;
 use assets\data\category\AssetCategory;
 use assets\data\location\AssetLocation;
 use assets\page\AssetPage;
+use assets\system\attachment\AssetAttachmentObjectType;
 use assets\system\comment\manager\AssetCommentManager;
 use DateTimeImmutable;
 use InvalidArgumentException;
+use wcf\data\attachment\AttachmentList;
+use wcf\data\attachment\GroupedAttachmentList;
 use wcf\data\comment\StructuredCommentList;
 use wcf\data\DatabaseObject;
 use wcf\data\IAccessibleObject;
@@ -15,6 +18,8 @@ use wcf\data\ICategorizedObject;
 use wcf\data\ITitledLinkObject;
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\user\UserProfile;
+use wcf\system\attachment\AttachmentHandler;
+use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 
@@ -25,6 +30,7 @@ use wcf\system\WCF;
  * @property-read    string      $title
  * @property-read    int         $amount
  * @property-read    int|null    $locationID
+ * @property-read    string|null $description
  * @property-read    int         $isTrashed
  * @property-read    int         $comments
  * @property-read    int         $lastCommentTime
@@ -135,6 +141,70 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
 
         return $this->category;
+    }
+
+    /**
+     * Returns the message object type
+     * @return \wcf\data\object\type\ObjectType
+     */
+    public function getDescriptionObjectType()
+    {
+        return ObjectTypeCache::getInstance()->getObjectTypeByName('com.woltlab.wcf.message', 'de.xxschrandxx.assets.asset');
+    }
+
+    /**
+     * Returns raw description
+     * @return string
+     */
+    public function getRawDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Returns parsed description
+     * @return string
+     */
+    public function getDescription()
+    {
+        $htmlProcessor = new HtmlOutputProcessor();
+        $htmlProcessor->process(
+            $this->getRawDescription(),
+            'de.xxschrandxx.assets.asset',
+            $this->getObjectID()
+        );
+        return $htmlProcessor->getHtml();
+    }
+
+    /**
+     * Returns the attachment object type
+     * @return \wcf\data\object\type\ObjectType
+     */
+    public function getAttachmentObjectType()
+    {
+        return ObjectTypeCache::getInstance()->getObjectTypeByName('com.woltlab.wcf.attachment.objectType', 'de.xxschrandxx.assets.asset.attachment');
+    }
+
+    /**
+     * Returns a unread attachment list
+     * @return GroupedAttachmentList
+     */
+    public function getAttachmentList()
+    {
+        $attachmentList = new GroupedAttachmentList('de.xxschrandxx.assets.asset.attachment');
+        $attachmentList->getConditionBuilder()->add('objectID = ?', [$this->getObjectID()]);
+        return $attachmentList;
+    }
+
+    /**
+     * Returns a read attachment list
+     * @return GroupedAttachmentList
+     */
+    public function getReadAttachmentList()
+    {
+        $attachmentList = $this->getAttachmentList();
+        $attachmentList->readObjects();
+        return $attachmentList;
     }
 
     /**

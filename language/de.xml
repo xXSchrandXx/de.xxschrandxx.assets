@@ -69,6 +69,12 @@
 
 			<!-- Overview -->
 			<item name="wcf.page.asset.overview"><![CDATA[Übersicht]]></item>
+			<item name="wcf.page.asset.overview.id"><![CDATA[ID]]></item>
+			<item name="wcf.page.asset.overview.amount"><![CDATA[Anzahl]]></item>
+			<item name="wcf.page.asset.overview.category"><![CDATA[Kategorie]]></item>
+			<item name="wcf.page.asset.overview.location"><![CDATA[Standort]]></item>
+			<item name="wcf.page.asset.overview.created"><![CDATA[Erstellt]]></item>
+			<item name="wcf.page.asset.overview.description"><![CDATA[{lang}wcf.global.description{/lang}]]></item>
 
 			<!-- Comments -->
 			<item name="wcf.page.asset.comment"><![CDATA[Kommentar]]></item>
@@ -76,6 +82,7 @@
 
 			<!-- History -->
 			<item name="wcf.page.asset.history"><![CDATA[Historie]]></item>
+			<item name="wcf.page.asset.history.action"><![CDATA[Aktion]]></item>
 		</category>
 		<category name="wcf.form">
 			<!-- AssetsAdd/-Edit -->
