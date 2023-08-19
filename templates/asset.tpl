@@ -3,7 +3,7 @@
 		class="contentHeader"
 		data-object-id="{$object->getObjectID()}"
 	>
-		<div class="contentHeaderTitle">
+		<div class="contentHeaderTitle {if $object->isTrashed()} trashed{/if}">
 			<h1 class="contentTitle">
 				{$object->getTitle()}
 			</h1>
@@ -69,7 +69,7 @@
 			<li><a href="#overview">{lang}wcf.page.asset.overview{/lang}</a></li>
 			<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
 			<li><a href="#history">{lang}wcf.page.asset.history{/lang} <span class="badge">{#$modificationLogs|count}</span></a></li>
-	
+
 			{event name='tabMenuTabs'}
 		</ul>
 	</nav>
