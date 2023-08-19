@@ -6,6 +6,7 @@ use assets\data\asset\AssetList;
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocationNodeTree;
 use wcf\page\SortablePage;
+use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 
@@ -164,7 +165,8 @@ class AssetListPage extends SortablePage
             'assetCategoryNodeTreeIDs' => $this->assetCategoryNodeTreeIDs,
             'forbiddenCategoryIDs' => $this->forbiddenCategoryIDs,
             'assetLocationNodeTreeIDs' => $this->assetLocationNodeTreeIDs,
-            'forbiddenLocationIDs' => $this->forbiddenLocationIDs
+            'forbiddenLocationIDs' => $this->forbiddenLocationIDs,
+            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset')),
         ]);
     }
 }

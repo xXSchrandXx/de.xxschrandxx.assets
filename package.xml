@@ -41,5 +41,6 @@
 		<instruction type="acpMenu"/>
 		<instruction type="page" />
 		<instruction type="menuItem" />
+		<instruction type="clipboardAction" />
 	</instructions>
 </package>

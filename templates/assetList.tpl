@@ -25,6 +25,14 @@
 {/capture}
 
 {include file='header' contentHeader=$__contentHeader}
+<script data-relocate="true">
+	require(['WoltLabSuite/Core/Controller/Clipboard'], (ControllerClipboard) => {
+		ControllerClipboard.setup({
+			pageClassName: 'assets\\page\\AssetListPage',
+			hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
+		});
+	});
+</script>
 
 {hascontent}
 	<div class="paginationTop">
@@ -36,9 +44,10 @@
 
 {hascontent}
 	<div class="section sectionContainerList">
-		<table class="table jsObjectActionContainer" data-object-action-class-name="assets\data\asset\AssetAction">
+		<table data-type="de.xxschrandxx.assets.asset" class="table jsClipboardContainer jsObjectActionContainer" data-object-action-class-name="assets\data\asset\AssetAction">
 			<thead>
 				<tr>
+					<th class="columnMark"><label><input type="checkbox" class="jsClipboardMarkAll"></label></th>
 					<th></th>
 					{if ASSETS_LEGACYID_ENABLED}
 						<th class="columnID{if $sortField == 'legacyID'} active {@$sortOrder}{/if}">
@@ -82,7 +91,8 @@
 			<tbody class="jsReloadPageWhenEmpty">
 				{content}
 					{foreach from=$objects item=object}
-						<tr class="jsObjectRow jsObjectActionObject{if $object->isTrashed()} trashed{/if}" data-object-id="{@$object->getObjectID()}" data-name="{$object->getTitle()}">
+						<tr class="jsObjectRow jsClipboardObject jsObjectActionObject{if $object->isTrashed()} trashed{/if}" data-object-id="{@$object->getObjectID()}" data-name="{$object->getTitle()}">
+							<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{@$object->getObjectID()}"></td>
 							<td class="columnIcon">
 								{if $object->canView()}
 									<a href="{link controller='Asset' application='assets' id=$object->getObjectID()}{/link}" title="{lang}wcf.form.asset.view{/lang}" class="jsTooltip">

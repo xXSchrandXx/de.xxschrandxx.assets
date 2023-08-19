@@ -52,6 +52,15 @@
 			<item name="wcf.asset.action.restore"><![CDATA[Wiederhergestellt]]></item>
 			<item name="wcf.asset.action.trash"><![CDATA[Entfernt]]></item>
 		</category>
+		<category name="wcf.clipboard">
+			<item name="wcf.clipboard.label.de.xxschrandxx.assets.asset.marked"><![CDATA[{if $count == 1}Ein Vermögenswert{else}{#$count} Vermögenswerte{/if}]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.trash"><![CDATA[Entfernen ({#$count}]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.trash.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte löschen?]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.restore"><![CDATA[Wiederherstellen ({#$count})]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.restore.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte wiederherstellen?]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete"><![CDATA[Endgültig löschen ({#$count})]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte löschen?]]></item>
+		</category>
 		<category name="wcf.page">
 			<!-- AssetList -->
 			<item name="wcf.page.assetList.title"><![CDATA[Vermögenswerte]]></item>
@@ -62,6 +71,8 @@
 			<item name="wcf.page.assetList.time"><![CDATA[Erstellt]]></item>
 			<item name="wcf.page.assetList.noCategories"><![CDATA[Keine Kategorien gefunden. <a href="{link controller='CategoryAdd' application='assets' isACP=1}{/link}">Füge eine neue Kategorie hinzu.</a>]]></item>
 			<item name="wcf.page.assetList.noLocations"><![CDATA[Keine Standorte gefunden. <a href="{link controller='LocationAdd' application='assets' isACP=1}{/link}">Füge einen neuen Standort hinzu.</a>]]></item>
+
+
 			<!-- Asset -->
 			<!-- General -->
 			<item name="wcf.page.asset.button.trash.confirmMessage"><![CDATA[Vermögenswert löschen.]]></item>

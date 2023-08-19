@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/clipboardAction.xsd">
+	<import>
+		<action name="trash">
+			<actionclassname>assets\system\clipboard\action\AssetClipboardAction</actionclassname>
+			<showorder>1</showorder>
+			<pages>
+				<page>assets\page\AssetListPage</page>
+			</pages>
+		</action>
+		<action name="restore">
+			<actionclassname>assets\system\clipboard\action\AssetClipboardAction</actionclassname>
+			<showorder>2</showorder>
+			<pages>
+				<page>assets\page\AssetListPage</page>
+			</pages>
+		</action>
+		<action name="delete">
+			<actionclassname>assets\system\clipboard\action\AssetClipboardAction</actionclassname>
+			<showorder>3</showorder>
+			<pages>
+				<page>assets\page\AssetListPage</page>
+			</pages>
+		</action>
+	</import>
+</data>

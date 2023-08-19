@@ -25,6 +25,13 @@
 		</type>
 		<!-- /de.xxschrandxx.assets.location -->
 		<!-- de.xxschrandxx.assets.asset -->
+		<!-- List -->
+		<type>
+			<name>de.xxschrandxx.assets.asset</name>
+			<definitionname>com.woltlab.wcf.clipboardItem</definitionname>
+			<listclassname>assets\data\asset\AssetList</listclassname>
+		</type>
+		<!-- /List -->
 		<!-- Description -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>
