@@ -52,6 +52,14 @@
 			<item name="wcf.asset.action.restore"><![CDATA[Wiederhergestellt]]></item>
 			<item name="wcf.asset.action.trash"><![CDATA[Entfernt]]></item>
 		</category>
+		<category name="wcf.box">
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.category"><![CDATA[Kategorien]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.location"><![CDATA[Standorte]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash"><![CDATA[Entfernt]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both"><![CDATA[Alle]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes"><![CDATA[Entfernt]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.no"><![CDATA[Nicht entfernt]]></item>
+		</category>
 		<category name="wcf.clipboard">
 			<item name="wcf.clipboard.label.de.xxschrandxx.assets.asset.marked"><![CDATA[{if $count == 1}Ein Vermögenswert{else}{#$count} Vermögenswerte{/if}]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.trash"><![CDATA[Entfernen ({#$count}]]></item>
@@ -64,6 +72,8 @@
 		<category name="wcf.page">
 			<!-- AssetList -->
 			<item name="wcf.page.assetList.title"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.page.assetList.subtitle.category"><![CDATA[Kategorie: {@$categoryName}]]></item>
+			<item name="wcf.page.assetList.subtitle.location"><![CDATA[Standort: {@$locationName}]]></item>
 			<item name="wcf.page.assetList.category"><![CDATA[Kategorie]]></item>
 			<item name="wcf.page.assetList.amount"><![CDATA[Stückzahl]]></item>
 			<item name="wcf.page.assetList.location"><![CDATA[Standort]]></item>

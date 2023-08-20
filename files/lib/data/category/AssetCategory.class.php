@@ -2,12 +2,16 @@
 
 namespace assets\data\category;
 
+use assets\page\AssetListPage;
 use InvalidArgumentException;
 use wcf\data\category\AbstractDecoratedCategory;
+use wcf\data\ILinkableObject;
 use wcf\system\category\CategoryPermissionHandler;
+use wcf\system\request\LinkHandler;
+use wcf\system\request\RequestHandler;
 use wcf\system\WCF;
 
-class AssetCategory extends AbstractDecoratedCategory
+class AssetCategory extends AbstractDecoratedCategory implements ILinkableObject
 {
     protected $perms = [];
 
@@ -71,5 +75,23 @@ class AssetCategory extends AbstractDecoratedCategory
         }
 
         return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLink(): string
+    {
+        $parameters = [];
+        $activeRequest = RequestHandler::getInstance()->getActiveRequest();
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->canonicalURLParameters !== null) {
+                    $parameters = $activeRequest->getRequestObject()->canonicalURLParameters;
+                }
+            }
+        }
+        $parameters['categoryID'] = $this->getObjectID();
+        return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
     }
 }

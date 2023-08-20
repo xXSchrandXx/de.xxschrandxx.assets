@@ -3,7 +3,9 @@
 namespace assets\page;
 
 use assets\data\asset\AssetList;
+use assets\data\category\AssetCategory;
 use assets\data\category\AssetCategoryNodeTree;
+use assets\data\location\AssetLocation;
 use assets\data\location\AssetLocationNodeTree;
 use wcf\page\SortablePage;
 use wcf\system\clipboard\ClipboardHandler;
@@ -47,12 +49,24 @@ class AssetListPage extends SortablePage
     /**
      * @inheritDoc
      */
-    public $defaultSortField = ASSETS_LEGACYID_ENABLED ? 'assetID' : 'legacyID';
+    public $defaultSortField = ASSETS_LEGACYID_ENABLED ? 'legacyID' : 'assetID';
 
     /**
      * @inheritDoc
      */
     public $forceCanonicalURL = true;
+
+    /**
+     * parameter list for canonical url
+     * @var array
+     */
+    public $canonicalURLParameters = [];
+
+    /**
+     * Active category
+     * @var AssetCategory
+     */
+    public $category;
 
     /**
      * available categories
@@ -61,34 +75,65 @@ class AssetListPage extends SortablePage
     public array $availableCategories = [];
 
     /**
+     * List of available category ids
+     * @var array
+     */
+    public $assetCategoryNodeTreeIDs = [];
+
+    /**
+     * List of forbidden category ids
+     * @var array
+     */
+    public $forbiddenCategoryIDs = [];
+
+    /**
+     * Active location
+     * @var AssetLocation
+     */
+    public $location;
+
+    /**
      * available location
      * @var array
      */
     public array $availableLocations = [];
 
     /**
-     * List of available category ids
-     * @var array;
-     */
-    protected $assetCategoryNodeTreeIDs = [];
-
-    /**
-     * List of forbidden category ids
-     * @var array;
-     */
-    protected $forbiddenCategoryIDs = [];
-
-    /**
      * List of available location ids
-     * @var array;
+     * @var array
      */
-    protected $assetLocationNodeTreeIDs = [];
+    public $assetLocationNodeTreeIDs = [];
 
     /**
      * List of forbidden location ids
-     * @var array;
+     * @var array
      */
-    protected $forbiddenLocationIDs = [];
+    public $forbiddenLocationIDs = [];
+
+    /**
+     * intval to show both
+     */
+    const FILTER_TRASH_BOTH = 0;
+
+    /**
+     * intval to show only trashed
+     */
+    const FILTER_TRASH_Y = 1;
+
+    /**
+     * intval to don't show trashed
+     */
+    const FILTER_TRASH_N = 2;
+
+    /**
+     * active trash filter
+     */
+    public $filterTrash = 0;
+
+    /**
+     * weather the user can see trashed assets
+     */
+    public $canSeeTrashed = false;
 
     /**
      * @inheritDoc
@@ -97,11 +142,42 @@ class AssetListPage extends SortablePage
     {
         parent::readParameters();
 
-        $parameters = [];
+        // read category
+        $categoryID = 0;
+        if (isset($_REQUEST['categoryID'])) {
+            $categoryID = \intval($_REQUEST['categoryID']);
+        }
+        $this->category = AssetCategory::getCategory($categoryID);
+        if (isset($this->category)) {
+            $this->canonicalURLParameters['categoryID'] = $this->category->getObjectID();
+        }
 
-        // TODO
+        // read location
+        $locationID = 0;
+        if (isset($_REQUEST['locationID'])) {
+            $locationID = \intval($_REQUEST['locationID']);
+        }
+        $this->location = AssetLocation::getCategory($locationID);
+        if (isset($this->location)) {
+            $this->canonicalURLParameters['locationID'] = $this->location->getObjectID();
+        }
 
-        $this->canonicalURL = LinkHandler::getInstance()->getControllerLink($this::class, $parameters);
+        // filter trashed
+        $this->canSeeTrashed = WCF::getSession()->getPermission('admin.assets.canDelete');
+
+        if (isset($_REQUEST['trash'])) {
+            $tmpFilterTrash = \intval($_REQUEST['trash']);
+            if (
+                $tmpFilterTrash == self::FILTER_TRASH_BOTH && $this->canSeeTrashed ||
+                $tmpFilterTrash == self::FILTER_TRASH_Y && $this->canSeeTrashed ||
+                $tmpFilterTrash == self::FILTER_TRASH_N
+            ) {
+                $this->filterTrash = $tmpFilterTrash;
+            }
+        }
+        $this->canonicalURLParameters['trash'] = $this->filterTrash;
+
+        $this->canonicalURL = LinkHandler::getInstance()->getControllerLink($this::class, $this->canonicalURLParameters);
     }
 
     /**
@@ -111,10 +187,17 @@ class AssetListPage extends SortablePage
     {
         parent::initObjectList();
 
-        // can see deleted
-        $canSeeDeleted = WCF::getSession()->getPermission('admin.assets.canDelete');
-        if (!$canSeeDeleted) {
-            $this->objectList->getConditionBuilder()->add('isThrashed != 1');
+        if ($this->canSeeTrashed) {
+            switch ($this->filterTrash) {
+                case self::FILTER_TRASH_Y:
+                    $this->objectList->getConditionBuilder()->add('isTrashed = 1');
+                    break;
+                case self::FILTER_TRASH_N:
+                    $this->objectList->getConditionBuilder()->add('isTrashed != 1');
+                    break;
+            }
+        } else {
+            $this->objectList->getConditionBuilder()->add('isTrashed != 1');
         }
 
         // get forbidden categories
@@ -126,13 +209,25 @@ class AssetListPage extends SortablePage
             $this->assetCategoryNodeTreeIDs[] = $assetCategory->getObjectID();
             if ($assetCategory->canView()) {
                 continue;
-            } else if ($canSeeDeleted && $assetCategory->canDelete()) {
+            } else if ($this->canSeeTrashed && $assetCategory->canDelete()) {
                 continue;
             }
             $this->forbiddenCategoryIDs[] = $assetCategory->getObjectID();
         }
         if (!empty($this->forbiddenCategoryIDs)) {
             $this->objectList->getConditionBuilder()->add('categoryID NOT IN (?)', [$this->forbiddenCategoryIDs]);
+        }
+        if ($this->category !== null && !in_array($this->category->getObjectID(), $this->forbiddenCategoryIDs)) {
+            $categorIDs = [];
+            array_push($categorIDs, $this->category->getObjectID());
+            /** @var AssetCategory $category */
+            foreach ($this->category->getAllChildCategories() as $category) {
+                if (in_array($category->getObjectID(), $this->forbiddenCategoryIDs)) {
+                    continue;
+                }
+                array_push($categorIDs, $category->getObjectID());
+            }
+            $this->objectList->getConditionBuilder()->add('categoryID IN (?)', [$categorIDs]);
         }
 
         // get forbidden locations
@@ -144,7 +239,7 @@ class AssetListPage extends SortablePage
             $this->assetLocationNodeTreeIDs[] = $assetLocation->getObjectID();
             if ($assetLocation->canView()) {
                 continue;
-            } else if ($canSeeDeleted && $assetLocation->canDelete()) {
+            } else if ($this->canSeeTrashed && $assetLocation->canDelete()) {
                 continue;
             }
             $this->forbiddenLocationIDs[] = $assetLocation->getObjectID();
@@ -152,6 +247,19 @@ class AssetListPage extends SortablePage
         if (!empty($this->forbiddenLocationIDs)) {
             $this->objectList->getConditionBuilder()->add('locationID NOT IN (?)', [$this->forbiddenLocationIDs]);
         }
+        if (isset($this->location) && !in_array($this->location->getObjectID(), $this->forbiddenLocationIDs)) {
+            $locatioNIDs = [];
+            array_push($locatioNIDs, $this->location->getObjectID());
+            /** @var AssetLocation $location */
+            foreach ($this->location->getAllChildCategories() as $location) {
+                if (in_array($location->getObjectID(), $this->forbiddenLocationIDs)) {
+                    continue;
+                }
+                array_push($locatioNIDs, $location->getObjectID());
+            }
+            $this->objectList->getConditionBuilder()->add('locationID IN (?)', [$locatioNIDs]);
+        }
+
     }
 
     /**
@@ -162,11 +270,15 @@ class AssetListPage extends SortablePage
         parent::assignVariables();
 
         WCF::getTPL()->assign([
+            'categoryID' => isset($this->category) ? $this->category->getObjectID() : 0,
+            'categoryName' => isset($this->category) ? $this->category->getTitle() : null,
+            'locationID' => isset($this->location) ? $this->location->getObjectID() : 0,
+            'locationName' => isset($this->location) ? $this->location->getTitle() : null,
+            'trash' => $this->filterTrash,
             'assetCategoryNodeTreeIDs' => $this->assetCategoryNodeTreeIDs,
-            'forbiddenCategoryIDs' => $this->forbiddenCategoryIDs,
             'assetLocationNodeTreeIDs' => $this->assetLocationNodeTreeIDs,
-            'forbiddenLocationIDs' => $this->forbiddenLocationIDs,
-            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset')),
+            'canSeeTrashed' => $this->canSeeTrashed,
+            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset'))
         ]);
     }
 }

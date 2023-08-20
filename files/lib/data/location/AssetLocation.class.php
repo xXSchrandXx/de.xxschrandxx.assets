@@ -2,15 +2,19 @@
 
 namespace assets\data\location;
 
+use assets\page\AssetListPage;
 use InvalidArgumentException;
 use wcf\data\category\AbstractDecoratedCategory;
+use wcf\data\ILinkableObject;
 use wcf\system\category\CategoryPermissionHandler;
+use wcf\system\request\LinkHandler;
+use wcf\system\request\RequestHandler;
 use wcf\system\WCF;
 
 /**
  * @property    string  $address
  */
-class AssetLocation extends AbstractDecoratedCategory
+class AssetLocation extends AbstractDecoratedCategory implements ILinkableObject
 {
     protected $perms = [];
 
@@ -59,5 +63,23 @@ class AssetLocation extends AbstractDecoratedCategory
         }
 
         return true;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getLink(): string
+    {
+        $parameters = [];
+        $activeRequest = RequestHandler::getInstance()->getActiveRequest();
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->canonicalURLParameters !== null) {
+                    $parameters = $activeRequest->getRequestObject()->canonicalURLParameters;
+                }
+            }
+        }
+        $parameters['locationID'] = $this->getObjectID();
+        return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
     }
 }

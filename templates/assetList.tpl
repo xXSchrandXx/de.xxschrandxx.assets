@@ -4,27 +4,39 @@
 			<h1 class="contentTitle">
 				{lang}wcf.page.assetList.title{/lang}
 			</h1>
+			{hascontent}
+				<h2 class="contentSubTitle">
+					<ul>
+						{content}
+							{if $categoryName|isset}
+								<li>{lang}wcf.page.assetList.subtitle.category{/lang}</li>
+							{/if}
+							{if $locationName|isset}
+								<li>{lang}wcf.page.assetList.subtitle.location{/lang}</li>
+							{/if}
+						{/content}
+					</ul>
+				</h2>
+			{/hascontent}
 		</div>
 
-		{hascontent}
-			<nav class="contentHeaderNavigation">
-				<ul>
-					{content}
-						<li>
-							<a href="{link controller='AssetAdd' application='assets'}{/link}" class="button">
-								<fa-icon size="16" name="plus"></fa-icon>
-								<span>{lang}wcf.form.asset.title.add{/lang}</span>
-							</a>
-						</li>
-						{event name='contentHeaderNavigation'}
-					{/content}
-				</ul>
-			</nav>
-		{/hascontent}
+		<nav class="contentHeaderNavigation">
+			<ul>
+				<li>
+					<a href="{link controller='AssetAdd' application='assets'}{/link}" class="button">
+						<fa-icon size="16" name="plus"></fa-icon>
+						<span>{lang}wcf.form.asset.title.add{/lang}</span>
+					</a>
+				</li>
+
+				{event name='contentHeaderNavigation'}
+			</ul>
+		</nav>
 	</header>
 {/capture}
 
 {include file='header' contentHeader=$__contentHeader}
+
 <script data-relocate="true">
 	require(['WoltLabSuite/Core/Controller/Clipboard'], (ControllerClipboard) => {
 		ControllerClipboard.setup({
@@ -37,7 +49,7 @@
 {hascontent}
 	<div class="paginationTop">
 		{content}
-			{pages print=true assign=pagesLinks controller="AssetList" application="assets" link="pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
+			{pages print=true assign=pagesLinks controller="AssetList" application="assets" link="categoryID=$categoryID&locationID=$locationID&trash=$trash&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
 		{/content}
 	</div>
 {/hascontent}
@@ -51,36 +63,36 @@
 					<th></th>
 					{if ASSETS_LEGACYID_ENABLED}
 						<th class="columnID{if $sortField == 'legacyID'} active {@$sortOrder}{/if}">
-							<a href="{link controller='AssetList' application="assets"}&pageNo={@$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'legacyID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+							<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 								{lang}wcf.global.objectID{/lang}
 							</a>
 						</th>
 					{else}
 						<th class="columnID{if $sortField == 'assetID'} active {@$sortOrder}{/if}">
-							<a href="{link controller='AssetList' application="assets"}&pageNo={@$pageNo}&sortField=assetID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+							<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=assetID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 								{lang}wcf.global.objectID{/lang}
 							</a>
 						</th>
 					{/if}
 					<th class="columnTitle{if $sortField == 'title'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&pageNo={@$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.global.title{/lang}
 						</a>
 					</th>
 					<th>{lang}wcf.page.assetList.category{/lang}</th>
 					<th class="columnInt{if $sortField == 'amount'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&pageNo={@$pageNo}&sortField=amount&sortOrder={if $sortField == 'amount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=amount&sortOrder={if $sortField == 'amount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.page.assetList.amount{/lang}
 						</a>
 					</th>
 					<th>{lang}wcf.page.assetList.location{/lang}</th>
 					<th class="columnDate{if $sortField == 'lastTimeModified'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&pageNo={@$pageNo}&sortField=lastTimeModified&sortOrder={if $sortField == 'lastTimeModified' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=lastTimeModified&sortOrder={if $sortField == 'lastTimeModified' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.page.assetList.lastTimeModified{/lang}
 						</a>
 					</th>
 					<th class="columnDate{if $sortField == 'time'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.page.assetList.time{/lang}
 						</a>
 					</th>

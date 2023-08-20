@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/box.xsd">
+	<import>
+		<box identifier="de.xxschrandxx.assets.AssetListFilter">
+			<name language="de">Vermögenswerte filtern</name>
+			<name language="en">Filter Assets</name>
+			<boxType>system</boxType>
+			<objectType>de.xxschrandxx.assets.assetListFilter</objectType>
+			<position>sidebarRight</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<visibilityExceptions>
+				<page>de.xxschrandxx.assets.AssetList</page>
+			</visibilityExceptions>
+			<limit>10</limit>
+
+			<content language="de">
+				<title>Filter</title>
+			</content>
+			<content language="en">
+				<title>Filter</title>
+			</content>
+		</box>
+	</import>
+</data>
