@@ -1,5 +1,5 @@
 # ToDo
 - Lending (Extra plugin)
-- AssetList-Filter
 - Add Statistics
 - Add Audit
+- Add Dashboard info
