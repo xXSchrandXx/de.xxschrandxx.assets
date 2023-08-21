@@ -122,5 +122,10 @@
 			<!-- AssetBorrow -->
 			<item name="wcf.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
 		</category>
+		<category nam="wcf.search">
+			<item name="wcf.search.type.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
+			<item name="wcf.search.object.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
+			<item name="wcf.search.searchInLocations"><![CDATA[Folgende Standorte durchsuchen]]></item>
+		</category>
 	</import>
 </language>

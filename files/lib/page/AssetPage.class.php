@@ -6,12 +6,7 @@ use assets\data\asset\Asset;
 use assets\data\asset\modification\AssetModificationLogList;
 use assets\data\asset\modification\ViewableAssetModificationLog;
 use assets\system\comment\manager\AssetCommentManager;
-use Symfony\Component\CssSelector\Parser\Handler\CommentHandler;
-use wcf\data\comment\CommentList;
-use wcf\data\comment\StructuredCommentList;
-use wcf\data\object\type\ObjectTypeCache;
 use wcf\page\AbstractPage;
-use wcf\system\cache\runtime\ViewableCommentRuntimeCache;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\WCF;
@@ -27,6 +22,11 @@ class AssetPage extends AbstractPage
      * @var Asset
      */
     public $object;
+
+    /**
+     * @var string
+     */
+    public $highlightTitle = false;
 
     /**
      * @var ViewableAssetModificationLog[]
@@ -46,6 +46,10 @@ class AssetPage extends AbstractPage
 
         if (!$this->object->getObjectID()) {
             throw new IllegalLinkException();
+        }
+
+        if (isset($_REQUEST['highlight']) && $_REQUEST['highlight'] == $this->object->getTitle()) {
+            $this->highlightTitle = true;
         }
     }
 
@@ -89,7 +93,8 @@ class AssetPage extends AbstractPage
             'lastCommentTime' => $this->object->lastCommentTime,
             'commentObjectID' => $this->object->getObjectID(),
             'commentContainerID' => 'assetComments',
-            'modificationLogs' => $this->modificationLogs
+            'modificationLogs' => $this->modificationLogs,
+            'highlightTitle' => $this->highlightTitle
         ]);
     }
 }

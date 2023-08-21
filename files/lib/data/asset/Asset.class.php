@@ -17,6 +17,7 @@ use wcf\data\IAccessibleObject;
 use wcf\data\ICategorizedObject;
 use wcf\data\ITitledLinkObject;
 use wcf\data\object\type\ObjectTypeCache;
+use wcf\data\search\ISearchResultObject;
 use wcf\data\user\UserProfile;
 use wcf\system\attachment\AttachmentHandler;
 use wcf\system\html\output\HtmlOutputProcessor;
@@ -37,7 +38,7 @@ use wcf\system\WCF;
  * @property-read    int         $lastTimeModified
  * @property-read    int         $time
  */
-class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObject, ICategorizedObject
+class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObject, ICategorizedObject, ISearchResultObject
 {
     protected ?AssetLocation $location;
 
@@ -54,9 +55,18 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     /**
      * @inheritDoc
      */
-    public function getLink(): string
+    public function getLink($query = ''): string
     {
-        return LinkHandler::getInstance()->getControllerLink(AssetPage::class, ['id' => $this->getObjectID()]);
+        $parameters = [
+            'id' => $this->getObjectID(),
+            'object' => $this,
+            'forceFrontend' => true
+        ];
+
+        if ($query) {
+            $parameters['highlight'] = \urlencode($query);
+        }
+        return LinkHandler::getInstance()->getControllerLink(AssetPage::class, $parameters);
     }
 
     /**
@@ -84,10 +94,6 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
      */
     public function getLocationID(): ?int
     {
-        if ($this->isBorrowed()) {
-            throw new InvalidArgumentException('Asset is borrowed.');
-        }
-
         return $this->locationID;
     }
 
@@ -312,6 +318,62 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     public function getLastTimeModifiedDate(): DateTimeImmutable
     {
         return new DateTimeImmutable($this->getLastTimeModifiedTimestamp());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUserProfile()
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSubject()
+    {
+        return $this->getTitle();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTime()
+    {
+        return $this->getCreatedTimestamp();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getObjectTypeName()
+    {
+        return 'de.xxschrandxx.assets.asset';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFormattedMessage()
+    {
+        return $this->getDescription();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContainerTitle()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContainerLink()
+    {
+        return '';
     }
 
     /**

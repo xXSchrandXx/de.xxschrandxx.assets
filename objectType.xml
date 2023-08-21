@@ -25,7 +25,7 @@
 		</type>
 		<!-- /de.xxschrandxx.assets.location -->
 		<!-- de.xxschrandxx.assets.asset -->
-		<!-- List -->
+		<!-- ListPage -->
 		<!-- ClipboardAction -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>
@@ -38,7 +38,8 @@
 			<definitionname>com.woltlab.wcf.boxController</definitionname>
 			<classname>assets\system\box\AssetListFilterBoxController</classname>
 		</type>
-		<!-- /List -->
+		<!-- /ListPage -->
+		<!-- AssetPage -->
 		<!-- Description -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>
@@ -64,6 +65,15 @@
 			<classname>assets\system\comment\manager\AssetCommentManager</classname>
 		</type>
 		<!-- /Comments -->
+		<!-- Search -->
+		<type>
+			<name>de.xxschrandxx.assets.asset</name>
+			<definitionname>com.woltlab.wcf.searchableObjectType</definitionname>
+			<classname>assets\system\search\AssetSearch</classname>
+			<searchindex>assets1_asset_search_index</searchindex>
+		</type>
+		<!-- /Search -->
+		<!-- /AssetPage-->
 		<!-- /de.xxschrandxx.assets.asset -->
 	</import>
 </data>

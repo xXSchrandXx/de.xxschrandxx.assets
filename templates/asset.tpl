@@ -3,9 +3,15 @@
 		class="contentHeader"
 		data-object-id="{$object->getObjectID()}"
 	>
-		<div class="contentHeaderTitle {if $object->isTrashed()} trashed{/if}">
+		<div class="contentHeaderTitle{if $object->isTrashed()} trashed{/if}">
 			<h1 class="contentTitle">
+				{if $highlightTitle}
+					<span class="highlight">
+				{/if}
 				{$object->getTitle()}
+				{if $highlightTitle}
+					</span>
+				{/if}
 			</h1>
 		</div>
 

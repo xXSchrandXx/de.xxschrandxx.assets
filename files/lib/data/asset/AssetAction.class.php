@@ -6,6 +6,7 @@ use assets\system\log\modification\AssetModificationLogHandler;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
+use wcf\system\search\SearchIndexManager;
 
 /**
  * @property    AssetEditor[]   $objects
@@ -45,7 +46,20 @@ class AssetAction extends AbstractDatabaseObjectAction
             $this->parameters['data']['description'] = $htmlInputProcessor->getHtml();
         }
 
-        return parent::create();
+        /** @var \assets\data\asset\Asset */
+        $asset = parent::create();
+        // update search index
+        SearchIndexManager::getInstance()->set(
+            'de.xxschrandxx.assets.asset',
+            $asset->getObjectID(),
+            $asset->getDescription(),
+            $asset->getTitle(),
+            $asset->getTime(),
+            0,
+            ''
+        );
+
+        return $asset;
     }
 
     /**
@@ -75,7 +89,26 @@ class AssetAction extends AbstractDatabaseObjectAction
         }
         unset($this->parameters['data']['reason']);
 
+        if (array_key_exists('description_htmlInputProcessor', $this->parameters)) {
+            /** @var \wcf\system\html\input\HtmlInputProcessor */
+            $htmlInputProcessor = $this->parameters['description_htmlInputProcessor'];
+            $this->parameters['data']['description'] = $htmlInputProcessor->getHtml();
+        }
+
         parent::update();
+
+        /** @var \assets\data\asset\Asset $asset */
+        foreach ($this->getObjects() as $asset) {
+            SearchIndexManager::getInstance()->set(
+                'de.xxschrandxx.assets.asset',
+                $asset->getObjectID(),
+                $this->parameters['data']['description'] ?? $asset->getDescription(),
+                $this->parameters['data']['title'] ?? $asset->getTitle(),
+                $this->parameters['data']['time'] ?? $asset->getTime(),
+                0,
+                ''
+           );
+        }
     }
 
     public function validateTrash()
@@ -144,5 +177,25 @@ class AssetAction extends AbstractDatabaseObjectAction
 
             AssetModificationLogHandler::getInstance()->restore($asset->getDecoratedObject());
         }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function delete()
+    {
+        if (empty($this->objects)) {
+            $this->readObjects();
+        }
+
+        $objectIDs = $this->getObjectIDs();
+
+        parent::delete();
+
+        if (empty($objectIDs)) {
+            return;
+        }
+
+        SearchIndexManager::getInstance()->delete('de.xxschrandxx.assets.asset', $objectIDs);
     }
 }
