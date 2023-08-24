@@ -60,7 +60,6 @@
 			<thead>
 				<tr>
 					<th class="columnMark"><label><input type="checkbox" class="jsClipboardMarkAll"></label></th>
-					<th></th>
 					{if ASSETS_LEGACYID_ENABLED}
 						<th class="columnID{if $sortField == 'legacyID'} active {@$sortOrder}{/if}">
 							<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
@@ -74,6 +73,7 @@
 							</a>
 						</th>
 					{/if}
+					<th></th>
 					<th class="columnTitle{if $sortField == 'title'} active {@$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.global.title{/lang}
@@ -105,6 +105,11 @@
 					{foreach from=$objects item=object}
 						<tr class="jsObjectRow jsClipboardObject jsObjectActionObject{if $object->isTrashed()} trashed{/if}" data-object-id="{@$object->getObjectID()}" data-name="{$object->getTitle()}">
 							<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{@$object->getObjectID()}"></td>
+							{if ASSETS_LEGACYID_ENABLED}
+								<td class="columnID">{$object->getLegacyID()}</td>
+							{else}
+								<td class="columnID">{#$object->getObjectID()}</td>
+							{/if}
 							<td class="columnIcon">
 								{if $object->canView()}
 									<a href="{link controller='Asset' application='assets' id=$object->getObjectID()}{/link}" title="{lang}wcf.form.asset.view{/lang}" class="jsTooltip">
@@ -122,11 +127,6 @@
 
 								{event name='rowButtons'}
 							</td>
-							{if ASSETS_LEGACYID_ENABLED}
-								<td class="columnID">{$object->getLegacyID()}</td>
-							{else}
-								<td class="columnID">{#$object->getObjectID()}</td>
-							{/if}
 							<td class="columnTitle">
 								{if $object->canView()}
 									<a href="{link controller='Asset' application='assets' id=$object->getObjectID()}{/link}">
