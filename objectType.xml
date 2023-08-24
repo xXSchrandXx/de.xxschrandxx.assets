@@ -24,8 +24,8 @@
 			<classname>assets\system\category\AssetLocationType</classname>
 		</type>
 		<!-- /de.xxschrandxx.assets.location -->
-		<!-- de.xxschrandxx.assets.asset -->
 
+		<!-- de.xxschrandxx.assets.asset -->
 		<!-- Description -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>
@@ -37,6 +37,20 @@
 			<classname>assets\system\attachment\AssetAttachmentObjectType</classname>
 		</type>
 		<!-- /Description -->
+		<!-- Stat Handler-->
+		<type>
+			<name>de.xxschrandxx.assets.asset</name>
+			<definitionname>com.woltlab.wcf.statDailyHandler</definitionname>
+			<classname>assets\system\stat\AssetStatDailyHandler</classname>
+			<categoryname>de.xxschrandxx.assets</categoryname>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.comment</name>
+			<definitionname>com.woltlab.wcf.statDailyHandler</definitionname>
+			<classname>assets\system\stat\AssetCommentStatDailyHandler</classname>
+			<categoryname>de.xxschrandxx.assets</categoryname>
+		</type>
+		<!-- /Stat Handler-->
 		<!-- Bulk Processing -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>

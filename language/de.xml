@@ -143,5 +143,11 @@
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.location"><![CDATA[Standort]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.trashed"><![CDATA[Ist entfernt]]></item>
 		</category>
+		<category name="wcf.acp.stat">
+			<item name="wcf.acp.stat.category.de.xxschrandxx.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.stat.category.de.xxschrandxx.assets"><![CDATA[Vermögenswerte]]></item>
+			<item name="wcf.acp.stat.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
+			<item name="wcf.acp.stat.de.xxschrandxx.assets.asset.comment"><![CDATA[Vermögenswert-Kommentare]]></item>
+		</category>
 	</import>
 </language>
