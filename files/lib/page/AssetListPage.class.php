@@ -32,11 +32,6 @@ class AssetListPage extends SortablePage
     /**
      * @inheritDoc
      */
-    public $itemsPerPage = 100;
-
-    /**
-     * @inheritDoc
-     */
     public $validSortFields = [
         'assetID',
         'legacyID',
