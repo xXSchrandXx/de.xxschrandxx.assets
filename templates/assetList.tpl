@@ -160,7 +160,7 @@
 {/hascontent}
 
 {hascontent}
-	<div class="paginationButtom">
+	<div class="paginationBottom">
 		{content}
 			{@$pagesLinks}
 		{/content}
