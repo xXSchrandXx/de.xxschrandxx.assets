@@ -80,7 +80,7 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
 
     /**
      * Returns amount
-     * @return ?int
+     * @return int
      */
     public function getAmount(): int
     {

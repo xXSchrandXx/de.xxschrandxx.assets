@@ -27,5 +27,10 @@
 			<permissions>admin.assets.canManageLocations</permissions>
 			<icon>plus</icon>
 		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.bulkprocess">
+			<controller>assets\acp\form\BulkProcessForm</controller>
+			<parent>wcf.acp.menu.link.application.assets</parent>
+			<permissions>admin.assets.canBulkProcess</permissions>
+		</acpmenuitem>
 	</import>
 </data>

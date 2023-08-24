@@ -84,10 +84,15 @@ class AssetAction extends AbstractDatabaseObjectAction
     public function update()
     {
         $logHandler = AssetModificationLogHandler::getInstance();
-        foreach ($this->getObjects() as $object) {
-            $logHandler->edit($object->getDecoratedObject(), $this->parameters['data']['reason']);
+        $reason = '';
+        if (!empty($this->parameters) && array_key_exists('data', $this->parameters) && array_key_exists('reason', $this->parameters['data'])) {
+            $reason = $this->parameters['data']['reason'];
+            unset($this->parameters['data']['reason']);
+            foreach ($this->getObjects() as $object) {
+                $logHandler->edit($object->getDecoratedObject(), $reason);
+            }
         }
-        unset($this->parameters['data']['reason']);
+
 
         if (array_key_exists('description_htmlInputProcessor', $this->parameters)) {
             /** @var \wcf\system\html\input\HtmlInputProcessor */
@@ -142,12 +147,19 @@ class AssetAction extends AbstractDatabaseObjectAction
                 'isTrashed' => 1
             ]);
 
-            AssetModificationLogHandler::getInstance()->trash($asset->getDecoratedObject(), $this->parameters['data']['reason']);
+            $reason = '';
+            if (!empty($this->parameters) && array_key_exists('data', $this->parameters) && array_key_exists('reason', $this->parameters['data'])) {
+                $reason = $this->parameters['data']['reason'];
+                unset($this->parameters['data']['reason']);
+            }
+            AssetModificationLogHandler::getInstance()->trash($asset->getDecoratedObject(), $reason);
         }
     }
 
     public function validateRestore()
     {
+        $this->readString('reason', true, 'data');
+
         // read objects
         if (empty($this->objects)) {
             $this->readObjects();
@@ -175,7 +187,12 @@ class AssetAction extends AbstractDatabaseObjectAction
                 'isTrashed' => 0,
             ]);
 
-            AssetModificationLogHandler::getInstance()->restore($asset->getDecoratedObject());
+            $reason = '';
+            if (!empty($this->parameters) && array_key_exists('data', $this->parameters) && array_key_exists('reason', $this->parameters['data'])) {
+                $reason = $this->parameters['data']['reason'];
+                unset($this->parameters['data']['reason']);
+            }
+            AssetModificationLogHandler::getInstance()->restore($asset->getDecoratedObject(), $reason);
         }
     }
 

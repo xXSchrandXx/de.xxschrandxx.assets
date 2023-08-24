@@ -218,16 +218,16 @@ class AssetListPage extends SortablePage
             $this->objectList->getConditionBuilder()->add('categoryID NOT IN (?)', [$this->forbiddenCategoryIDs]);
         }
         if ($this->category !== null && !in_array($this->category->getObjectID(), $this->forbiddenCategoryIDs)) {
-            $categorIDs = [];
-            array_push($categorIDs, $this->category->getObjectID());
+            $categoryIDs = [];
+            array_push($categoryIDs, $this->category->getObjectID());
             /** @var AssetCategory $category */
             foreach ($this->category->getAllChildCategories() as $category) {
                 if (in_array($category->getObjectID(), $this->forbiddenCategoryIDs)) {
                     continue;
                 }
-                array_push($categorIDs, $category->getObjectID());
+                array_push($categoryIDs, $category->getObjectID());
             }
-            $this->objectList->getConditionBuilder()->add('categoryID IN (?)', [$categorIDs]);
+            $this->objectList->getConditionBuilder()->add('categoryID IN (?)', [$categoryIDs]);
         }
 
         // get forbidden locations

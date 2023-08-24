@@ -25,6 +25,65 @@
 		</type>
 		<!-- /de.xxschrandxx.assets.location -->
 		<!-- de.xxschrandxx.assets.asset -->
+
+		<!-- Description -->
+		<type>
+			<name>de.xxschrandxx.assets.asset</name>
+			<definitionname>com.woltlab.wcf.message</definitionname>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.attachment</name>
+			<definitionname>com.woltlab.wcf.attachment.objectType</definitionname>
+			<classname>assets\system\attachment\AssetAttachmentObjectType</classname>
+		</type>
+		<!-- /Description -->
+		<!-- Bulk Processing -->
+		<type>
+			<name>de.xxschrandxx.assets.asset</name>
+			<definitionname>com.woltlab.wcf.bulkProcessableObject</definitionname>
+			<classname>assets\system\bulk\processing\AssetProcessableObjectType</classname>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.categoryID</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\CategoryCondition</classname>
+			<conditiongroup>general</conditiongroup>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.locationID</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\LocationCondition</classname>
+			<conditiongroup>general</conditiongroup>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.trashed</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\TrashedCondition</classname>
+			<conditiongroup>general</conditiongroup>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.delete</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\DeleteAssetBulkProcessingAction</classname>
+			<action>delete</action>
+			<permissions>admin.assets.canDelete</permissions>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.trash</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\TrashAssetBulkProcessingAction</classname>
+			<action>trash</action>
+			<permissions>mod.assets.canTrash</permissions>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.restore</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\RestoreAssetBulkProcessingAction</classname>
+			<action>restore</action>
+			<permissions>admin.assets.canDelete</permissions>
+		</type>
+		<!-- /Bulk Processing -->
+
 		<!-- ListPage -->
 		<!-- ClipboardAction -->
 		<type>
@@ -39,18 +98,8 @@
 			<classname>assets\system\box\AssetListFilterBoxController</classname>
 		</type>
 		<!-- /ListPage -->
+
 		<!-- AssetPage -->
-		<!-- Description -->
-		<type>
-			<name>de.xxschrandxx.assets.asset</name>
-			<definitionname>com.woltlab.wcf.message</definitionname>
-		</type>
-		<type>
-			<name>de.xxschrandxx.assets.asset.attachment</name>
-			<definitionname>com.woltlab.wcf.attachment.objectType</definitionname>
-			<classname>assets\system\attachment\AssetAttachmentObjectType</classname>
-		</type>
-		<!-- /Description -->
 		<!-- Modification Log -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>
@@ -65,6 +114,8 @@
 			<classname>assets\system\comment\manager\AssetCommentManager</classname>
 		</type>
 		<!-- /Comments -->
+		<!-- /AssetPage-->
+
 		<!-- Search -->
 		<type>
 			<name>de.xxschrandxx.assets.asset</name>
@@ -73,7 +124,6 @@
 			<searchindex>assets1_asset_search_index</searchindex>
 		</type>
 		<!-- /Search -->
-		<!-- /AssetPage-->
 		<!-- /de.xxschrandxx.assets.asset -->
 	</import>
 </data>

@@ -45,6 +45,8 @@
 			<!-- Location -->
 			<item name="wcf.acp.menu.link.application.assets.location.list"><![CDATA[Standorte]]></item>
 			<item name="wcf.acp.menu.link.application.assets.location.add"><![CDATA[Standort hinzufügen]]></item>
+			<!-- Bulk Edit -->
+			<item name="wcf.acp.menu.link.application.assets.bulkprocess"><![CDATA[Massenbearbeitung]]></item>
 		</category>
 		<category name="wcf.asset.action">
 			<item name="wcf.asset.action.delete"><![CDATA[Gelöscht]]></item>
@@ -122,10 +124,24 @@
 			<!-- AssetBorrow -->
 			<item name="wcf.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
 		</category>
-		<category nam="wcf.search">
+		<category name="wcf.search">
 			<item name="wcf.search.type.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.search.object.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.search.searchInLocations"><![CDATA[Folgende Standorte durchsuchen]]></item>
+		</category>
+		<category name="assets.acp.asset">
+			<item name="assets.acp.asset.bulkProcessing"><![CDATA[Vermögenswert-Massenbearbeitung]]></item>
+			<!-- Actions -->
+			<item name="assets.acp.asset.bulkProcessing.action"><![CDATA[Aktionen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
+			<!-- Conditions -->
+			<item name="assets.acp.asset.bulkProcessing.conditions"><![CDATA[Bedingungen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general"><![CDATA[Allgemein]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.category"><![CDATA[Kategorie]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.location"><![CDATA[Standort]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.trashed"><![CDATA[Ist entfernt]]></item>
 		</category>
 	</import>
 </language>

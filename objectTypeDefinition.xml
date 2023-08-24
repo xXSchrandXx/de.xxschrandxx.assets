@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/objectTypeDefinition.xsd">
+	<import>
+		<definition>
+			<name>de.xxschrandxx.assets.asset.condition</name>
+			<interfacename>wcf\system\condition\IObjectListCondition</interfacename>
+		</definition>
+		<definition>
+			<name>de.xxschrandxx.assets.asset.action</name>
+			<interfacename>wcf\system\bulk\processing\IBulkProcessingAction</interfacename>
+		</definition>
+	</import>
+</data>

@@ -25,7 +25,7 @@
 	</excludedpackages>
 
 	<instructions type="install">
-<!--		<instruction type="acpTemplate"/>-->
+		<instruction type="acpTemplate"/>
 		<instruction type="template"/>
 		<instruction type="file"/>
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
@@ -34,6 +34,7 @@
 
 		<instruction type="language"/>
 
+		<instruction type="objectTypeDefinition"/>
 		<instruction type="objectType"/>
 		<instruction type="aclOption"/>
 		<instruction type="option"/>

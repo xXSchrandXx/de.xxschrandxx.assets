@@ -43,6 +43,11 @@ return [
                 ->columns(['categoryID'])
                 ->onDelete('CASCADE')
                 ->referencedColumns(['categoryID'])
+                ->referencedTable('wcf1_category'),
+            DatabaseTableForeignKey::create()
+                ->columns(['locationID'])
+                ->onDelete('CASCADE')
+                ->referencedColumns(['categoryID'])
                 ->referencedTable('wcf1_category')
         ])
 ];

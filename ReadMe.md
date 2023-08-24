@@ -3,4 +3,3 @@
 - Add Statistics
 - Add Audit
 - Add Dashboard info
-- Add Search
