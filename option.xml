@@ -7,12 +7,41 @@
 			<category name="assets_general">
 				<parent>assets</parent>
 			</category>
+			<category name="assets_audit">
+				<parent>assets</parent>
+			</category>
 		</categories>
 		<options>
 			<option name="assets_legacyid_enabled">
 				<categoryname>assets_general</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
+			</option>
+			<option name="assets_audit_interval">
+				<categoryname>assets_audit</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+				<enableoptions>assets_audit_date</enableoptions>
+			</option>
+			<option name="assets_auditinterval_amount">
+				<categoryname>assets_audit</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			<option name="assets_auditinterval_unit">
+				<categoryname>assets_audit</categoryname>
+				<optiontype>select</optiontype>
+				<defaultvalue>Y</defaultvalue>
+				<selectoptions>
+					Y:wcf.acp.option.assets_auditinterval_unit.year
+					M:wcf.acp.option.assets_auditinterval_unit.month
+					W:wcf.acp.option.assets_auditinterval_unit.week
+					D:wcf.acp.option.assets_auditinterval_unit.day
+				</selectoptions>
+			</option>
+			<option name="assets_audit_date">
+				<categoryname>assets_audit</categoryname>
+				<optiontype>date</optiontype>
 			</option>
 		</options>
 	</import>

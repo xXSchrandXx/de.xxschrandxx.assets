@@ -37,43 +37,75 @@
 {/capture}
 
 {capture assign='contentInteractionButtons'}
-	{if $object->canDelete()}
-		<button
-			type="button"
-			class="contentInteractionButton button small jsButtonAssetRestore"
-			{if !$object->isTrashed()} style="display: none"{/if}
-		>
-			<fa-icon size="16" name="rotate-left"></fa-icon>
-			<span>{lang}wcf.global.button.restore{/lang}</span>
-		</button>
-		<button
-			type="button"
-			class="contentInteractionButton button small jsButtonAssetDelete"
-			{if !$object->isTrashed()} style="display: none"{/if}
-		>
-			<fa-icon size="16" name="xmark"></fa-icon>
-			<span>{lang}wcf.global.button.delete{/lang}</span>
-		</button>
-	{/if}
-	{if $object->canTrash()}
-		<button
-			type="button"
-			class="contentInteractionButton button small jsButtonAssetTrash"
-			{if $object->isTrashed()} style="display: none"{/if}
-		>
-			<fa-icon size="16" name="trash-can"></fa-icon>
-			<span>{lang}wcf.global.button.trash{/lang}</span>
-		</button>
-	{/if}
+	<button 
+		type="button" 
+		class="button small contentInteractionButton jsAudit" 
+		{if !$object->canAudit() || $object->isTrashed()}hidden{/if}
+	>
+		{icon name='rotate-left'}
+		<span>{lang}assets.asset.audit{/lang}</span>
+	</button>
+	<button 
+		type="button" 
+		class="button small contentInteractionButton jsTrash" 
+		{if !$object->canTrash() || $object->isTrashed()}hidden{/if}
+	>
+		{icon name='trash-can'}
+		{lang}assets.asset.trash{/lang}
+	</button>
+	<button 
+		type="button" 
+		class="button small contentInteractionButton jsRestore" 
+		{if !$object->canRestore() || !$object->isTrashed()}hidden{/if}
+	>
+		{icon name='trash-arrow-up'}
+		{lang}assets.asset.restore{/lang}
+	</button>
+	<button 
+		type="button" 
+		class="button small contentInteractionButton jsDelete" 
+		data-confirm-message="{lang __encode=true objectTitle=$object->getTitle()}wcf.button.delete.confirmMessage{/lang}" 
+		{if !$object->canDelete() || !$object->isTrashed()}hidden{/if}
+	>
+		{icon name='x'}
+		{lang}wcf.global.button.delete{/lang}
+	</button>
+
+	{event name='contentInteractionButtons'}
 {/capture}
 
 {include file='header' contentHeader=$__contentHeader contentInteraction=$contentInteractionButtons}
 
-<div class="section tabMenuContainer">
+<script>
+	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
+		Language.addObject({
+			'assets.asset.audit': '{jslang}assets.asset.audit{/jslang}',
+			'assets.asset.audit.comment.optional': '{jslang}assets.asset.audit.comment.optional{/jslang}',
+			'assets.asset.trash': '{jslang}assets.asset.trash{/jslang}',
+			'assets.asset.restore': '{jslang}assets.asset.restore{/jslang}'
+		});
+		new UiAssetEditor();
+	});
+
+	{event name='javascriptInit'}
+</script>
+
+<div 
+	class="section tabMenuContainer jsAsset"
+	data-object-id="{@$object->getObjectID()}" 
+	data-name="{@$object->getTitle()}" 
+	data-trashed="{if $object->isTrashed()}true{else}false{/if}" 
+	data-can-audit="{if $object->canAudit()}true{else}false{/if}" 
+	data-can-trash="{if $object->canTrash()}true{else}false{/if}" 
+	data-can-restore="{if $object->canRestore()}true{else}false{/if}" 
+	data-can-delete="{if $object->canDelete()}true{else}false{/if}" 
+	data-can-modify="{if $object->canModify()}true{else}false{/if}"
+>
 	<nav class="tabMenu">
 		<ul>
 			<li><a href="#overview">{lang}wcf.page.asset.overview{/lang}</a></li>
 			<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
+			<li><a href="#audits">{lang}wcf.page.asset.audits{/lang} <span class="badge">{#$auditLogs|count}</span></a></li>
 			<li><a href="#history">{lang}wcf.page.asset.history{/lang} <span class="badge">{#$modificationLogs|count}</span></a></li>
 
 			{event name='tabMenuTabs'}
@@ -86,6 +118,9 @@
 	<div id="comments" class="tabMenuContent">
 		{include file='comments'}
 	</div>
+	<div id="audits" class="tabMenuContent">
+		{include file='__audits' application='assets'}
+	</div>
 	<div id="history" class="tabMenuContent">
 		{include file='__history' application='assets'}
 	</div>
@@ -94,15 +129,3 @@
 </div>
 
 {include file='footer'}
-
-<script data-relocate="true">
-	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, Editor) {
-		Language.addObject({
-			'wcf.page.asset.button.delete.confirmMessage': '{jslang objectTitle=$object->getTitle()}wcf.button.delete.confirmMessage{/jslang}',
-			'wcf.page.asset.button.restore.confirmMessage': '{jslang}wcf.page.asset.button.restore.confirmMessage{/jslang}',
-			'wcf.page.asset.button.trash.confirmMessage': '{jslang}wcf.page.asset.button.trash.confirmMessage{/jslang}',
-			'wcf.page.asset.button.delete.redirect': '{link controller="AssetList" application="assets"}{/link}'
-		});
-    	Editor.init();
-	});
-</script>

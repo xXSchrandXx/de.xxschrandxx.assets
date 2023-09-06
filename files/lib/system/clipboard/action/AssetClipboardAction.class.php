@@ -12,17 +12,17 @@ class AssetClipboardAction extends AbstractClipboardAction
     /**
      * @inheritDoc
      */
-    protected $actionClassActions = ['trash', 'restore', 'delete'];
+    protected $actionClassActions = ['trash', 'restore', 'delete', 'audit'];
 
     /**
      * @inheritDoc
      */
-    protected $supportedActions = ['trash', 'restore', 'delete'];
+    protected $supportedActions = ['trash', 'restore', 'delete', 'audit'];
 
     /**
      * @inheritDoc
      */
-    protected $reloadPageOnSuccess = ['trash', 'restore', 'delete'];
+    protected $reloadPageOnSuccess = ['trash', 'restore', 'delete', 'audit'];
 
     /**
      * @inheritDoc
@@ -59,7 +59,7 @@ class AssetClipboardAction extends AbstractClipboardAction
                     WCF::getLanguage()->getDynamicVariable(
                         'wcf.clipboard.item.de.xxschrandxx.assets.asset.trash.confirmMessage',
                         [
-                            'count' => $item->getCount(),
+                            'count' => $item->getCount()
                         ]
                     )
                 );
@@ -70,7 +70,7 @@ class AssetClipboardAction extends AbstractClipboardAction
                     WCF::getLanguage()->getDynamicVariable(
                         'wcf.clipboard.item.de.xxschrandxx.assets.asset.restore.confirmMessage',
                         [
-                            'count' => $item->getCount(),
+                            'count' => $item->getCount()
                         ]
                     )
                 );
@@ -81,7 +81,18 @@ class AssetClipboardAction extends AbstractClipboardAction
                     WCF::getLanguage()->getDynamicVariable(
                         'wcf.clipboard.item.de.xxschrandxx.assets.asset.delete.confirmMessage',
                         [
-                            'count' => $item->getCount(),
+                            'count' => $item->getCount()
+                        ]
+                    )
+                );
+                break;
+            case 'audit':
+                $item->addInternalData(
+                    'confirmMessage',
+                    WCF::getLanguage()->getDynamicVariable(
+                        'wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage',
+                        [
+                            'count' => $item->getCount()
                         ]
                     )
                 );
@@ -115,7 +126,16 @@ class AssetClipboardAction extends AbstractClipboardAction
      */
     public function validateRestore()
     {
-        return $this->validateDelete();
+        $objectIDs = [];
+
+        /** @var \assets\data\asset\Asset $asset */
+        foreach ($this->objects as $asset) {
+            if ($asset->isTrashed() && $asset->canAudit()) {
+                $objectIDs[] = $asset->getObjectID();
+            }
+        }
+
+        return $objectIDs;
     }
 
     /**
@@ -129,6 +149,24 @@ class AssetClipboardAction extends AbstractClipboardAction
         /** @var \assets\data\asset\Asset $asset */
         foreach ($this->objects as $asset) {
             if ($asset->isTrashed() && $asset->canDelete()) {
+                $objectIDs[] = $asset->getObjectID();
+            }
+        }
+
+        return $objectIDs;
+    }
+
+    /**
+     * Returns the ids of the assets that can be audit.
+     * @return  int[]
+     */
+    public function validateAudit()
+    {
+        $objectIDs = [];
+
+        /** @var \assets\data\asset\Asset $asset */
+        foreach ($this->objects as $asset) {
+            if ($asset->canAudit()) {
                 $objectIDs[] = $asset->getObjectID();
             }
         }

@@ -2,6 +2,9 @@
 
 namespace assets\data\asset;
 
+use assets\util\AssetUtil;
+use DateTime;
+use DateTimeImmutable;
 use wcf\data\DatabaseObjectEditor;
 
 /**
@@ -21,10 +24,16 @@ class AssetEditor extends DatabaseObjectEditor
      */
     public static function create(array $parameters = [])
     {
-        $parameters['comments'] = 0;
-        $parameters['lastCommentTime'] = 0;
-        $parameters['time'] = TIME_NOW;
-        $parameters['lastTimeModified'] = TIME_NOW;
+        // Set default dates
+        $now = new DateTimeImmutable('now', AssetUtil::getDateTimeZone());
+        $parameters['lastModification'] = $now->format(AssetUtil::LAST_MODIFICATION_FORMAT);
+        $parameters['lastAudit'] = $now->format(AssetUtil::LAST_AUDIT_FORMAT);
+        $parameters['time'] = $now->format(AssetUtil::TIME_FORMAT);
+
+        // Set nextAudit
+        $nextAuditDateTime = AssetUtil::calculateNextAuditDateTime();
+        $parameters['nextAudit'] = $nextAuditDateTime->format(AssetUtil::NEXT_AUDIT_FORMAT);
+
         return parent::create($parameters);
     }
 
@@ -33,7 +42,8 @@ class AssetEditor extends DatabaseObjectEditor
      */
     public function update(array $parameters = [])
     {
-        $parameters['lastTimeModified'] = TIME_NOW;
+        $parameters['lastModification'] = (new DateTime())->format(AssetUtil::LAST_MODIFICATION_FORMAT);
+
         parent::update($parameters);
     }
 }

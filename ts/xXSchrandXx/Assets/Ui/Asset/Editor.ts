@@ -1,163 +1,106 @@
-import * as Ajax from "WoltLabSuite/Core/Ajax";
-import { AjaxCallbackObject, AjaxCallbackSetup } from "WoltLabSuite/Core/Ajax/Data";
 import * as Core from "WoltLabSuite/Core/Core";
-import { DialogCallbackObject, DialogCallbackSetup } from "WoltLabSuite/Core/Ui/Dialog/Data";
-import DomUtil from "WoltLabSuite/Core/Dom/Util";
-import * as Language from "WoltLabSuite/Core/Language";
-import * as StringUtil from "WoltLabSuite/Core/StringUtil";
-import * as UiConfirmation from "WoltLabSuite/Core/Ui/Confirmation";
-import UiDialog from "WoltLabSuite/Core/Ui/Dialog";
-import * as UiNotification from "WoltLabSuite/Core/Ui/Notification";
+import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
+import AuditAction from "./Action/AuditAction";
+import TrashAction from "./Action/TrashAction";
+import RestoreAction from "./Action/RestoreAction";
+import DeleteAction from "./Action/DeleteAction";
 
-class Editor implements AjaxCallbackObject, DialogCallbackObject {
-  private actions = ["trash", "restore", "delete", "return"];
-  private actionName = "";
-  private readonly header: HTMLElement;
-
-  constructor() {
-    this.header = document.querySelector(".contentHeader") as HTMLElement;
-
-    this.actions.forEach((action) => {
-      const button = document.querySelector(".contentInteractionButtons .jsButtonAsset" + StringUtil.ucfirst(action)) as HTMLElement;
-
-      // The button is missing if the current user lacks the permission.
-      if (!button) {
-        return;
-      }
-      button.dataset.action = action;
-      button.addEventListener("click", (ev) => this._click(ev));
-    });
-  }
-
-  _click(event: MouseEvent): void {
-    event.preventDefault();
-
-    const target = event.currentTarget as HTMLElement;
-    this.actionName = target.dataset.action || "";
-
-    this.actions.forEach((action) => {
-      const button = document.querySelector(".contentInteractionButtons .jsButtonAsset" + StringUtil.ucfirst(action)) as HTMLElement;
-
-      // The button is missing if the current user lacks the permission.
-      if (!button) {
-        return;
-      }
-      button.classList.add("disabled");
-    });
-
-    if (this.actionName == "delete") {
-      UiConfirmation.show({
-        confirm: () => {
-          Ajax.api(this, {
-            actionName: this.actionName
-          });
-        },
-        cancel: () => {
-          this.close();
-        },
-        message: Language.get("wcf.page.asset.button.delete.confirmMessage"),
-        messageIsHtml: true
-      });
-    } else {
-      UiDialog.open(this);
-    }
-  }
-
-  _dialogSetup(): ReturnType<DialogCallbackSetup> {
-    return {
-      id: "wcfUiAssetEditor",
-      options: {
-        title: Language.get("wcf.page.asset.button." + this.actionName + ".confirmMessage"),
-        onSetup: (content) => {
-          const submitButton = content.querySelector("button.buttonPrimary") as HTMLButtonElement;
-          submitButton.addEventListener("click", this._submit.bind(this));
-        },
-        onShow: (content) => {
-          const reason = document.getElementById("wcfUiAssetEditorReason") as HTMLElement;
-          let label = reason.nextElementSibling as HTMLElement;
-          const phrase = "wcf.page.asset." + this.actionName + ".reason.description";
-          label.textContent = Language.get(phrase);
-          if (label.textContent === phrase) {
-            DomUtil.hide(label);
-          } else {
-            DomUtil.show(label);
-          }
-        },
-        onBeforeClose: (content) => {
-          this.close();
-          UiDialog.close("wcfUiAssetEditor");
-        }
-      },
-      source: `<div class="section">
-        <dl>
-          <dt><label for="wcfUiAssetEditorReason">${Language.get("wcf.global.reason.optional")}</label></dt>
-          <dd><textarea id="wcfUiAssetEditorReason" cols="40" rows="3"></textarea><small></small></dd>
-        </dl>
-      </div>
-      <div class="formSubmit">
-        <button type="button" class="button buttonPrimary">${Language.get("wcf.global.button.submit")}</button>
-      </div>`,
-    };
-  }
-
-  _submit(event: Event): void {
-    event.preventDefault();
-
-    const parameters = {};
-    const reason = document.getElementById("wcfUiAssetEditorReason") as HTMLTextAreaElement;
-    parameters["data"] = {
-        "reason": reason.value.trim()
-    };
-
-    Ajax.api(this, {
-      actionName: this.actionName,
-      parameters: parameters,
-    });
-
-    UiDialog.close("wcfUiAssetEditor");
-  }
-
-  _ajaxSuccess(data): void {
-    UiNotification.show();
-
-    switch (data.actionName) {
-      case "trash":
-      case "restore": {
-        window.location.reload();
-        break;
-      }
-
-      case "delete":
-        window.location.href = Language.get("wcf.page.asset.button.delete.redirect");
-        break;
-    }
-  }
-
-  _ajaxSetup(): ReturnType<AjaxCallbackSetup> {
-    return {
-      data: {
-        className: "assets\\data\\asset\\AssetAction",
-        objectIDs: [+this.header.dataset.objectId!],
-      },
-    };
-  }
-
-  private close(): void {
-    this.actions.forEach((action) => {
-        const button = document.querySelector(".contentInteractionButtons .jsButtonAsset" + StringUtil.ucfirst(action)) as HTMLElement;
-
-        // The button is missing if the current user lacks the permission.
-        if (!button) {
-          return;
-        }
-        button.classList.remove("disabled");
-      });
-  }
+interface RefreshAssetData {
+    assetId: number;
 }
 
-/**
- * Initializes the editor.
- */
-export function init(): void {
-  new Editor();
+class UiAssetEditor {
+    /**
+     * Initializes the edit dropdown for each asset.
+     */
+    constructor() {
+        const asset = document.querySelector(".jsAsset") as HTMLElement;
+        if (asset === null) {
+            return;
+        }
+        this.initAsset(asset);
+
+        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: RefreshAssetData) => this.refreshAsset(data));
+    }
+
+    /**
+     * Initializes the edit dropdown for a asset.
+     */
+    private initAsset(asset: HTMLElement): void {
+        const assetId = ~~asset.dataset.objectId!;
+
+        const auditAsset = document.querySelector(".contentInteractionButton .jsAudit");
+        if (auditAsset !== null) {
+            new AuditAction(auditAsset as HTMLAnchorElement, assetId, asset);
+        }
+
+        const trashAsset = document.querySelector(".contentInteractionButton .jsTrash");
+        if (trashAsset !== null) {
+            new TrashAction(trashAsset as HTMLAnchorElement, assetId, asset);
+        }
+
+        const restoreAsset = document.querySelector(".contentInteractionButton .jsRestore");
+        if (restoreAsset !== null) {
+            new RestoreAction(restoreAsset as HTMLAnchorElement, assetId, asset);
+        }
+
+        const deleteAsset = document.querySelector(".contentInteractionButton .jsDelete");
+        if (deleteAsset !== null) {
+            new DeleteAction(deleteAsset as HTMLAnchorElement, assetId, asset);
+        }
+    }
+
+    private refreshAsset(data: RefreshAssetData): void {
+        const asset = document.querySelector(".jsAsset") as HTMLElement;
+        if (asset === null) {
+            return;
+        }
+        const assetId = ~~asset.dataset.objectId!;
+        if (data.assetId != assetId) {
+            return;
+        }
+
+        const auditAsset = document.querySelector(".contentInteractionButton .jsAudit") as HTMLElement;
+        const trashAsset = document.querySelector(".contentInteractionButton .jsTrash") as HTMLElement;
+        const restoreAsset = document.querySelector(".contentInteractionButton .jsRestore") as HTMLElement;
+        const deleteAsset = document.querySelector(".contentInteractionButton .jsDelete") as HTMLElement;
+
+        const isTrashed = Core.stringToBool(asset.dataset.trashed!);
+
+        if (isTrashed) {
+            // Remove buttons
+            if (auditAsset !== null) {
+                auditAsset.hidden = true;
+            }
+            if (trashAsset !== null) {
+                trashAsset.hidden = true;
+            }
+
+            // Add buttons
+            if (restoreAsset !== null && asset.dataset.canRestore) {
+                restoreAsset.hidden = false;
+            }
+            if (deleteAsset !== null && asset.dataset.canDelete) {
+                deleteAsset.hidden = false;
+            }
+        } else {
+            // Remove buttons
+            if (restoreAsset !== null) {
+                restoreAsset.hidden = true;
+            }
+            if (deleteAsset !== null) {
+                deleteAsset.hidden = true;
+            }
+
+            // Add buttons
+            if (auditAsset !== null && asset.dataset.canAudit) {
+                auditAsset.hidden = false;
+            }
+            if (trashAsset !== null && asset.dataset.canTrash) {
+                trashAsset.hidden = false;
+            }
+        }
+    }
 }
+
+export = UiAssetEditor;

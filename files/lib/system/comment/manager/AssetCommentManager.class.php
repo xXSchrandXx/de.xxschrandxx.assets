@@ -3,6 +3,7 @@ namespace assets\system\comment\manager;
 
 use assets\data\asset\Asset;
 use assets\data\asset\AssetEditor;
+use DateTime;
 use wcf\system\comment\manager\AbstractCommentManager;
 use wcf\system\WCF;
 
@@ -110,7 +111,7 @@ class AssetCommentManager extends AbstractCommentManager
             'comments' => $value
         ]);
         $editor->update([
-            'lastCommentTime' => TIME_NOW
+            'lastComment' => (new DateTime())->format(DateTime::ATOM)
         ]);
     }
 }

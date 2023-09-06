@@ -7,17 +7,18 @@ use assets\data\asset\AssetAction;
 use assets\data\asset\AssetList;
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocationNodeTree;
-use wcf\form\AbstractForm;
+use assets\util\AssetUtil;
+use DateTime;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
+use wcf\system\form\builder\field\DateFormField;
 use wcf\system\form\builder\field\IntegerFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
 use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
-use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
 
 /**
@@ -196,6 +197,12 @@ class AssetAddForm extends AbstractFormBuilderForm
                             )
                         )
                         ->required(),
+                    DateFormField::create('nextAudit')
+                        ->label('wcf.form.asset.field.nextAudit')
+                        ->available($this->formAction === 'edit')
+                        ->saveValueFormat(AssetUtil::NEXT_AUDIT_FORMAT)
+                        ->earliestDate((new DateTime("now", isset($this->formObject) ? $this->formObject->getDateTimeZone() : null))->format(AssetUtil::NEXT_AUDIT_FORMAT))
+                        ->required()
                 ]),
             WysiwygFormContainer::create('description')
                 ->label('wcf.form.asset.field.description')
@@ -212,47 +219,5 @@ class AssetAddForm extends AbstractFormBuilderForm
                 )
                 ->available($this->formAction === 'edit')
         ]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function save()
-    {
-        AbstractForm::save();
-
-        $action = $this->formAction;
-        if ($this->objectActionName) {
-            $action = $this->objectActionName;
-        } elseif ($this->formAction === 'edit') {
-            $action = 'update';
-        }
-
-        $formData = $this->form->getData();
-        if (!isset($formData['data'])) {
-            $formData['data'] = [];
-        }
-        $formData['data'] = \array_merge($this->additionalFields, $formData['data']);
-
-        $this->objectAction = new $this->objectActionClass(
-            \array_filter([$this->formObject]),
-            $action,
-            $formData
-        );
-        $returnValues = $this->objectAction->executeAction();
-
-        $this->saved();
-
-        WCF::getTPL()->assign('success', true);
-
-        if ($this->formAction === 'create' && $this->objectEditLinkController) {
-            WCF::getTPL()->assign(
-                'objectEditLink',
-                LinkHandler::getInstance()->getControllerLink($this->objectEditLinkController, [
-                    'application' => $this->objectEditLinkApplication,
-                    'id' => $returnValues['returnValues']->getObjectID()
-                ])
-            );
-        }
     }
 }

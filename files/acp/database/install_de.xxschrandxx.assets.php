@@ -1,7 +1,8 @@
 <?php
 
+use wcf\system\database\table\column\DateDatabaseTableColumn;
+use wcf\system\database\table\column\DatetimeDatabaseTableColumn;
 use wcf\system\database\table\column\DefaultFalseBooleanDatabaseTableColumn;
-use wcf\system\database\table\column\IntDatabaseTableColumn;
 use wcf\system\database\table\column\NotNullInt10DatabaseTableColumn;
 use wcf\system\database\table\column\ObjectIdDatabaseTableColumn;
 use wcf\system\database\table\column\TextDatabaseTableColumn;
@@ -26,10 +27,20 @@ return [
             TextDatabaseTableColumn::create('description')
                 ->notNull(),
             DefaultFalseBooleanDatabaseTableColumn::create('isTrashed'),
-            NotNullInt10DatabaseTableColumn::create('comments'),
-            NotNullInt10DatabaseTableColumn::create('lastCommentTime'),
-            NotNullInt10DatabaseTableColumn::create('lastTimeModified'),
-            NotNullInt10DatabaseTableColumn::create('time')
+            NotNullInt10DatabaseTableColumn::create('comments')
+                ->defaultValue(0),
+            DatetimeDatabaseTableColumn::create('lastComment'),
+            DatetimeDatabaseTableColumn::create('lastModification')
+                ->notNull(),
+            DatetimeDatabaseTableColumn::create('lastAudit')
+                ->notNull(),
+            DateDatabaseTableColumn::create('nextAudit')
+                ->notNull(),
+            DatetimeDatabaseTableColumn::create('time')
+                ->notNull(),
+            NotNullInt10DatabaseTableColumn::create('attachments')
+                ->defaultValue(0),
+            DefaultFalseBooleanDatabaseTableColumn::create('hasEmbeddedObjects')
         ])
         ->indices([
             DatabaseTablePrimaryIndex::create()

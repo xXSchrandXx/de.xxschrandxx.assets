@@ -5,11 +5,12 @@ namespace assets\data\asset;
 use assets\data\category\AssetCategory;
 use assets\data\location\AssetLocation;
 use assets\page\AssetPage;
-use assets\system\attachment\AssetAttachmentObjectType;
 use assets\system\comment\manager\AssetCommentManager;
+use assets\util\AssetUtil;
 use DateTimeImmutable;
+use DateTimeZone;
+use Exception;
 use InvalidArgumentException;
-use wcf\data\attachment\AttachmentList;
 use wcf\data\attachment\GroupedAttachmentList;
 use wcf\data\comment\StructuredCommentList;
 use wcf\data\DatabaseObject;
@@ -19,10 +20,11 @@ use wcf\data\ITitledLinkObject;
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\search\ISearchResultObject;
 use wcf\data\user\UserProfile;
-use wcf\system\attachment\AttachmentHandler;
 use wcf\system\html\output\HtmlOutputProcessor;
+use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
+use wcf\util\StringUtil;
 
 /**
  * @property-read    int         $assetID
@@ -34,9 +36,13 @@ use wcf\system\WCF;
  * @property-read    string|null $description
  * @property-read    int         $isTrashed
  * @property-read    int         $comments
- * @property-read    int         $lastCommentTime
- * @property-read    int         $lastTimeModified
- * @property-read    int         $time
+ * @property-read    string|null $lastComment
+ * @property         string|null $nextAudit
+ * @property-read    string      $lastAudit
+ * @property-read    string      $lastModification
+ * @property-read    string      $time
+ * @property-read    int         $attachments
+ * @property-read    int         $hasEmbeddedObjects
  */
 class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObject, ICategorizedObject, ISearchResultObject
 {
@@ -44,6 +50,7 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
 
     protected ?AssetCategory $category;
 
+    /* ITitledLinkObject */
     /**
      * @inheritDoc
      */
@@ -68,6 +75,121 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
         return LinkHandler::getInstance()->getControllerLink(AssetPage::class, $parameters);
     }
+    /* /ITitledLinkObject */
+
+    /* IAccessibleObject */
+    /**
+     * @inheritDoc
+     */
+    public function isAccessible($user = null)
+    {
+        return $this->canView($user);
+    }
+    /* /IAccessibleObject */
+
+    /* ICategorizedObject */
+    /**
+     * Returns categoryID
+     * @return int
+     */
+    public function getCategoryID(): int
+    {
+        return $this->categoryID;
+    }
+
+    /**
+     * Returns AssetCategory
+     * @return ?AssetCategory
+     */
+    public function getCategory(): AssetCategory
+    {
+        if (!isset($this->category)) {
+            if ($this->categoryID) {
+                $this->category = AssetCategory::getCategory($this->categoryID);
+            } else {
+                $this->category = null;
+            }
+        }
+
+        return $this->category;
+    }
+    /* /ICategorizedObject */
+
+    /* ISearchResultObject getLink() -> ITitledLinkObject */
+    /**
+     * @inheritDoc
+     */
+    public function getUserProfile()
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSubject()
+    {
+        return $this->getTitle();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getTime()
+    {
+        return $this->getCreatedDateTime()->getTimestamp();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getObjectTypeName()
+    {
+        return 'de.xxschrandxx.assets.asset';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getFormattedMessage()
+    {
+        return $this->getDescription();
+    }
+
+    /**
+     * Returns a simplified version of the formatted message.
+     *
+     * @return  string
+     */
+    public function getSimplifiedFormattedMessage()
+    {
+        $processor = new HtmlOutputProcessor();
+        $processor->setOutputType('text/simplified-html');
+        $processor->process(
+            $this->getRawDescription(),
+            'de.xxschrandxx.assets.asset',
+            $this->getObjectID()
+        );
+
+        return $processor->getHtml();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContainerTitle()
+    {
+        return '';
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContainerLink()
+    {
+        return '';
+    }
+    /* /ISearchResultObject */
 
     /**
      * Returns legacyID
@@ -124,32 +246,6 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
-     * Returns categoryID
-     * @return int
-     */
-    public function getCategoryID(): int
-    {
-        return $this->categoryID;
-    }
-
-    /**
-     * Returns AssetCategory
-     * @return ?AssetCategory
-     */
-    public function getCategory(): AssetCategory
-    {
-        if (!isset($this->category)) {
-            if ($this->categoryID) {
-                $this->category = AssetCategory::getCategory($this->categoryID);
-            } else {
-                $this->category = null;
-            }
-        }
-
-        return $this->category;
-    }
-
-    /**
      * Returns the message object type
      * @return \wcf\data\object\type\ObjectType
      */
@@ -168,11 +264,30 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
+     * true if embedded objects have already been loaded
+     * @var bool
+     */
+    protected $embeddedObjectsLoaded = false;
+
+    /**
+     * Loads the embedded objects.
+     */
+    public function loadEmbeddedObjects()
+    {
+        if ($this->hasEmbeddedObjects && !$this->embeddedObjectsLoaded) {
+            MessageEmbeddedObjectManager::getInstance()->loadObjects('de.xxschrandxx.assets.asset', [$this->getObjectID()]);
+            $this->embeddedObjectsLoaded = true;
+        }
+    }
+
+    /**
      * Returns parsed description
      * @return string
      */
     public function getDescription()
     {
+        $this->loadEmbeddedObjects();
+
         $htmlProcessor = new HtmlOutputProcessor();
         $htmlProcessor->process(
             $this->getRawDescription(),
@@ -265,125 +380,118 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
-     * Returns lastCommentTime timestamp
-     * @return int
+     * @inheritDoc
      */
-    public function getLastCommentTime(): int
+    public function __toString()
     {
-        return $this->lastTimeModified;
+        return $this->getFormattedMessage();
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getExcerpt($maxLength = 255)
+    {
+        return StringUtil::truncateHTML($this->getSimplifiedFormattedMessage(), $maxLength);
+    }
+
+    protected ?DateTimeImmutable $lastCommentDateTime = null;
 
     /**
      * Returns last comment date
-     * @return DateTimeImmutable
+     * @return ?DateTimeImmutable
      */
-    public function getLastCommentTimeDate(): DateTimeImmutable
+    public function getLastCommentDateTime(): ?DateTimeImmutable
     {
-        return new DateTimeImmutable($this->getLastCommentTime());
+        if (!isset($this->lastCommentDateTime) && isset($this->lastComment)) {
+            $this->lastCommentDateTime = new DateTimeImmutable($this->lastComment, $this->getDateTimeZone());
+        }
+        return $this->lastCommentDateTime;
     }
 
-    /**
-     * Returns createdTimestamp
-     * @return int
-     */
-    public function getCreatedTimestamp(): int
-    {
-        return $this->time;
-    }
+    protected DateTimeImmutable $createdDateTime;
 
     /**
      * Returns creation date
      * @return DateTimeImmutable
      */
-    public function getCreatedDate(): DateTimeImmutable
+    public function getCreatedDateTime(): DateTimeImmutable
     {
-        return new DateTimeImmutable($this->getCreatedTimestamp());
+        if (!isset($this->createdDateTime)) {
+            $this->createdDateTime = new DateTimeImmutable($this->time, $this->getDateTimeZone());
+        }
+        return $this->createdDateTime;
     }
 
-    /**
-     * Returns lastTimeModified timestamp
-     * @return int
-     */
-    public function getLastTimeModifiedTimestamp(): int
-    {
-        return $this->lastTimeModified;
-    }
-
+    protected DateTimeImmutable $lastModificationDateTime;
 
     /**
      * Returns last modification date
      * @return DateTimeImmutable
      */
-    public function getLastTimeModifiedDate(): DateTimeImmutable
+    public function getLastModificationDateTime(): DateTimeImmutable
     {
-        return new DateTimeImmutable($this->getLastTimeModifiedTimestamp());
+        if (!isset($this->lastModificationDateTime)) {
+            $this->lastModificationDateTime = new DateTimeImmutable($this->lastModification, $this->getDateTimeZone());
+        }
+        return $this->lastModificationDateTime;
+    }
+
+    protected DateTimeImmutable $lastAuditDateTime;
+
+    /**
+     * Returns last audit date
+     * @return DateTimeImmutable
+     */
+    public function getLastAuditDateTime(): DateTimeImmutable
+    {
+        if (!isset($this->lastAuditDateTime) && isset($this->lastAudit)) {
+            $this->lastAuditDateTime = new DateTimeImmutable($this->lastAudit, $this->getDateTimeZone());
+        }
+        return $this->lastAuditDateTime;
+    }
+
+    protected ?DateTimeImmutable $nextAuditDateTime = null;
+
+    /**
+     * Returns next audit date
+     * @return ?DateTimeImmutable
+     */
+    public function getNextAuditDateTime(): ?DateTimeImmutable
+    {
+        if (!isset($this->nextAuditDateTime)) {
+            $this->nextAuditDateTime = new DateTimeImmutable($this->nextAudit, $this->getDateTimeZone());
+        }
+        return $this->nextAuditDateTime;
     }
 
     /**
-     * @inheritDoc
+     * Calculates the current datetime for next audit.
+     * This does not modify data in database
+     * @return DateTimeImmutable
+     * @throws Exception @link(DateTime::__construct()), @link(DateInterval::__construct())
      */
-    public function getUserProfile()
+    public function calculateNextAuditDateTime(): DateTimeImmutable
     {
-        return null;
+        return AssetUtil::calculateNextAuditDateTime($this->getLastAuditDateTime());
     }
 
+    protected DateTimeZone $zone;
+
+    public function getDateTimeZone(): DateTimeZone
+    {
+        if (!isset($this->zone)) {
+            $this->zone = AssetUtil::getDateTimeZone();
+        }
+        return $this->zone;
+    }
+
+    /* Permissions */
     /**
-     * @inheritDoc
+     * checks weather user can view
+     * @param User $user
+     * @return bool
      */
-    public function getSubject()
-    {
-        return $this->getTitle();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getTime()
-    {
-        return $this->getCreatedTimestamp();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getObjectTypeName()
-    {
-        return 'de.xxschrandxx.assets.asset';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getFormattedMessage()
-    {
-        return $this->getDescription();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getContainerTitle()
-    {
-        return '';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getContainerLink()
-    {
-        return '';
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function isAccessible($user = null)
-    {
-        return $this->canView($user);
-    }
-
     public function canView($user = null)
     {
         if (!$this->checkPermission('canView', 'user', $user)) {
@@ -401,6 +509,11 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
     }
 
+    /**
+     * checks weather user can add
+     * @param User $user
+     * @return bool
+     */
     public function canAdd($user = null)
     {
         if (!$this->checkPermission('canAdd', 'mod', $user)) {
@@ -414,6 +527,11 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
     }
 
+    /**
+     * checks weather user can modify
+     * @param User $user
+     * @return bool
+     */
     public function canModify($user = null)
     {
         if (!$this->checkPermission('canModify', 'mod', $user)) {
@@ -427,6 +545,29 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
     }
 
+    /**
+     * checks weather user can audit
+     * @param User $user
+     * @return bool
+     */
+    public function canAudit($user = null) {
+        return $this->canModify($user);
+    }
+
+    /**
+     * checks weather user can restore
+     * @param User $user
+     * @return bool
+     */
+    public function canRestore($user = null) {
+        return $this->canDelete($user);
+    }
+
+    /**
+     * checks weather user can trash
+     * @param User $user
+     * @return bool
+     */
     public function canTrash($user = null)
     {
         if (!$this->checkPermission('canTrash', 'mod', $user)) {
@@ -440,6 +581,11 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
     }
 
+    /**
+     * checks weather user can delete
+     * @param User $user
+     * @return bool
+     */
     public function canDelete($user = null)
     {
         if (!$this->checkPermission('canDelete', 'admin', $user)) {
@@ -453,6 +599,14 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
     }
 
+    /**
+     * helper method for permission check
+     * @param $perm
+     * @param $group ['user', 'mod', 'admin]
+     * @param $user
+     * @return bool
+     * @throws InvalidArgumentException
+     */
     protected function checkPermission($perm, $group = 'user', $user = null)
     {
         if (!in_array($group, ['user', 'mod', 'admin'])) {
@@ -471,4 +625,5 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
             return $userProfile->getPermission($group . 'assets.' . $perm);
         }
     }
+    /* /Permissions */
 }

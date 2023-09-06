@@ -76,6 +76,18 @@
 			<conditiongroup>general</conditiongroup>
 		</type>
 		<type>
+			<name>de.xxschrandxx.assets.asset.needsAudit</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\NeedsAuditCondition</classname>
+			<conditiongroup>audit</conditiongroup>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.lastAuditBefore</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\LastAuditBeforeCondition</classname>
+			<conditiongroup>audit</conditiongroup>
+		</type>
+		<type>
 			<name>de.xxschrandxx.assets.asset.delete</name>
 			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
 			<classname>assets\system\bulk\processing\actions\DeleteAssetBulkProcessingAction</classname>
@@ -95,6 +107,13 @@
 			<classname>assets\system\bulk\processing\actions\RestoreAssetBulkProcessingAction</classname>
 			<action>restore</action>
 			<permissions>admin.assets.canDelete</permissions>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.audit</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\AuditAssetBulkProcessingAction</classname>
+			<action>audit</action>
+			<permissions>mod.assets.canModify</permissions>
 		</type>
 		<!-- /Bulk Processing -->
 

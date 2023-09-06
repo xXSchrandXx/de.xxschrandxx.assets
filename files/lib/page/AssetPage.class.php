@@ -9,7 +9,9 @@ use assets\system\comment\manager\AssetCommentManager;
 use wcf\page\AbstractPage;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
+use wcf\system\MetaTagHandler;
 use wcf\system\WCF;
+use wcf\util\StringUtil;
 
 class AssetPage extends AbstractPage
 {
@@ -32,6 +34,11 @@ class AssetPage extends AbstractPage
      * @var ViewableAssetModificationLog[]
      */
     public $modificationLogs;
+
+    /**
+     * @var ViewableAssetModificationLog[]
+     */
+    public $auditLogs;
 
     /**
      * @inheritDoc
@@ -73,8 +80,40 @@ class AssetPage extends AbstractPage
         parent::readData();
 
         $assetModificationLogList = new AssetModificationLogList([$this->object->getObjectID()]);
+        $assetModificationLogList->getConditionBuilder()->add("action != 'audit'");
         $assetModificationLogList->readObjects();
         $this->modificationLogs = $assetModificationLogList->getObjects();
+
+        $assetAuditLogList = new AssetModificationLogList([$this->object->getObjectID()]);
+        $assetAuditLogList->getConditionBuilder()->add("action = 'audit'");
+        $assetAuditLogList->readObjects();
+        $this->auditLogs = $assetAuditLogList->getObjects();
+
+        // add meta tags
+        MetaTagHandler::getInstance()->addTag(
+            'og:title',
+            'og:title',
+            $this->object->getSubject() . ' - ' . WCF::getLanguage()->get(PAGE_TITLE),
+            true
+        );
+        MetaTagHandler::getInstance()->addTag(
+            'og:url',
+            'og:url',
+            $this->object->getLink(),
+            true
+        );
+        MetaTagHandler::getInstance()->addTag(
+            'og:type',
+            'og:type',
+            'article',
+            true
+        );
+        MetaTagHandler::getInstance()->addTag(
+            'og:description',
+            'og:description',
+            StringUtil::decodeHTML(StringUtil::stripHTML($this->object->getExcerpt())),
+            true
+        );
     }
 
     /**
@@ -90,10 +129,11 @@ class AssetPage extends AbstractPage
             'commentManager' => $assetCommentManager,
             'commentObjectTypeID' => $this->object->getCommentObjectTypeID(),
             'commentList' => $this->object->getReadCommentList(),
-            'lastCommentTime' => $this->object->lastCommentTime,
+            'lastCommentTime' => $this->object->getLastCommentDateTime() !== null ? $this->object->getLastCommentDateTime() : 0,
             'commentObjectID' => $this->object->getObjectID(),
             'commentContainerID' => 'assetComments',
             'modificationLogs' => $this->modificationLogs,
+            'auditLogs' => $this->auditLogs,
             'highlightTitle' => $this->highlightTitle
         ]);
     }

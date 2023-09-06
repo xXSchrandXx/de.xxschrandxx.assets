@@ -7,7 +7,7 @@
 			<name language="en">Filter Assets</name>
 			<boxType>system</boxType>
 			<objectType>de.xxschrandxx.assets.assetListFilter</objectType>
-			<position>sidebarRight</position>
+			<position>contentTop</position>
 			<showHeader>1</showHeader>
 			<visibleEverywhere>0</visibleEverywhere>
 			<visibilityExceptions>

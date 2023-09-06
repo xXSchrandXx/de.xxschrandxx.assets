@@ -17,10 +17,8 @@ class AssetListFilterBoxController extends AbstractBoxController
      * @inheritDoc
      */
     protected static $supportedPositions = [
-        'sidebarLeft',
-        'sidebarRight',
         'contentTop',
-        'contentBottom',
+        'contentBottom'
     ];
 
     /**

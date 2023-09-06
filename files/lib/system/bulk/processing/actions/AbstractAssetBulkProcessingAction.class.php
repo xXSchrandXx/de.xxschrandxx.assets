@@ -40,7 +40,7 @@ abstract class AbstractAssetBulkProcessingAction extends AbstractBulkProcessingA
             $this->actionName, 
             [
                 'data' => [
-                    'reason' => WCF::getLanguage()->get('assets.acp.bulkProcessing.bulkProcessing')
+                    $this->actionName == 'audit' ? 'comment' : 'reason' => WCF::getLanguage()->get('assets.acp.asset.bulkProcessing.log')
                 ]
             ]
         );

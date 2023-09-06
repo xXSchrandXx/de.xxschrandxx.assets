@@ -23,5 +23,12 @@
 				<page>assets\page\AssetListPage</page>
 			</pages>
 		</action>
+		<action name="audit">
+			<actionclassname>assets\system\clipboard\action\AssetClipboardAction</actionclassname>
+			<showorder>4</showorder>
+			<pages>
+				<page>assets\page\AssetListPage</page>
+			</pages>
+		</action>
 	</import>
 </data>

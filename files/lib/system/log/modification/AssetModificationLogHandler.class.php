@@ -66,10 +66,11 @@ class AssetModificationLogHandler extends AbstractExtendedModificationLogHandler
 
     /**
      * @param Asset $asset
+     * @param string $reason
      */
-    public function restore(Asset $asset)
+    public function restore(Asset $asset, $reason = '')
     {
-        $this->add($asset, 'restore');
+        $this->add($asset, 'restore', ['reason' => $reason]);
     }
 
     /**
@@ -79,6 +80,15 @@ class AssetModificationLogHandler extends AbstractExtendedModificationLogHandler
     public function trash(Asset $asset, $reason = '')
     {
         $this->add($asset, 'trash', ['reason' => $reason]);
+    }
+
+    /**
+     * @param Asset $asset
+     * @param string $comment
+     */
+    public function audit(Asset $asset, $comment = '')
+    {
+        $this->add($asset, 'audit', ['comment' => $comment]);
     }
 
     /**
