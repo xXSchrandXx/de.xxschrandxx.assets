@@ -88,6 +88,24 @@
 			<conditiongroup>audit</conditiongroup>
 		</type>
 		<type>
+			<name>de.xxschrandxx.assets.asset.lastAuditAfter</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\LastAuditAfterCondition</classname>
+			<conditiongroup>audit</conditiongroup>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.nextAuditBefore</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\NextAuditBeforeCondition</classname>
+			<conditiongroup>audit</conditiongroup>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.nextAuditAfter</name>
+			<definitionname>de.xxschrandxx.assets.asset.condition</definitionname>
+			<classname>assets\system\condition\NextAuditAfterCondition</classname>
+			<conditiongroup>audit</conditiongroup>
+		</type>
+		<type>
 			<name>de.xxschrandxx.assets.asset.delete</name>
 			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
 			<classname>assets\system\bulk\processing\actions\DeleteAssetBulkProcessingAction</classname>
@@ -114,6 +132,13 @@
 			<classname>assets\system\bulk\processing\actions\AuditAssetBulkProcessingAction</classname>
 			<action>audit</action>
 			<permissions>mod.assets.canModify</permissions>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.pdfexport</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\PDFExportAssetBulkProcessingAction</classname>
+			<action>pdfexport</action>
+			<permissions>user.assets.canView</permissions>
 		</type>
 		<!-- /Bulk Processing -->
 

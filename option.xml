@@ -7,6 +7,9 @@
 			<category name="assets_general">
 				<parent>assets</parent>
 			</category>
+			<category name="assets_pdf_export">
+				<parent>assets</parent>
+			</category>
 			<category name="assets_audit">
 				<parent>assets</parent>
 			</category>
@@ -16,6 +19,19 @@
 				<categoryname>assets_general</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
+			</option>
+			<option name="assets_export_format">
+				<categoryname>assets_pdf_export</categoryname>
+				<optiontype>AssetsExportPaperSize</optiontype>
+				<defautlvalue>a4</defautlvalue>
+			</option>
+			<option name="assets_export_orientation">
+				<categoryname>assets_pdf_export</categoryname>
+				<optiontype>select</optiontype>
+				<defautlvalue>landscape</defautlvalue>
+				<selectoptions>landscape:wcf.acp.option.assets_export_orientation.landscape
+portrait:wcf.acp.option.assets_export_orientation.portrait
+				</selectoptions>
 			</option>
 			<option name="assets_audit_interval">
 				<categoryname>assets_audit</categoryname>

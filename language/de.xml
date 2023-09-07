@@ -40,6 +40,12 @@
 			<item name="wcf.acp.option.assets_auditinterval_unit.week"><![CDATA[Woche(n)]]></item>
 			<item name="wcf.acp.option.assets_auditinterval_unit.day"><![CDATA[Tag(e)]]></item>
 			<item name="wcf.acp.option.assets_audit_date"><![CDATA[Start Datum]]></item>
+			<!-- pdf export -->
+			<item name="wcf.acp.option.category.assets_pdf_export"><![CDATA[PDF export]]></item>
+			<item name="wcf.acp.option.assets_export_format"><![CDATA[Format]]></item>
+			<item name="wcf.acp.option.assets_export_orientation"><![CDATA[Ausrichtung]]></item>
+			<item name="wcf.acp.option.assets_export_orientation.landscape"><![CDATA[Querformat]]></item>
+			<item name="wcf.acp.option.assets_export_orientation.portrait"><![CDATA[Hochformat]]></item>
 		</category>
 		<category name="wcf.acp.group">
 			<item name="wcf.acp.group.option.category.user.assets"><![CDATA[Vermögenswerte]]></item>
@@ -167,6 +173,8 @@
 			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Audit]]></item>
+			<item name="assets.acp.asset.bulkProcessing.pdfexport"><![CDATA[PDF Export]]></item>
+			<item name="assets.acp.asset.bulkProcessing.pdfexport.footer"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
 			<!-- Conditions -->
 			<item name="assets.acp.asset.bulkProcessing.conditions"><![CDATA[Bedingungen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general"><![CDATA[Allgemein]]></item>
@@ -176,6 +184,9 @@
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit"><![CDATA[Audit]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.needsAudit"><![CDATA[Audit überfällig]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditBefore"><![CDATA[Letzte Audit vor Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditAfter"><![CDATA[Letzte Audit nach Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditBefore"><![CDATA[Nächste Audit vor Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditAfter"><![CDATA[Nächste Audit nach Datum]]></item>
 		</category>
 		<category name="wcf.acp.stat">
 			<item name="wcf.acp.stat.category.de.xxschrandxx.assets"><![CDATA[Vermögenswerte]]></item>

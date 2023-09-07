@@ -6,18 +6,18 @@ use assets\data\asset\AssetList;
 use wcf\data\DatabaseObjectList;
 use wcf\system\exception\InvalidObjectArgument;
 
-class LastAuditBeforeCondition extends AbstractDateCondition
+class NextAuditBeforeCondition extends AbstractDateCondition
 {
     /**
      * name of the checkbox
      * @var string
      */
-    protected $fieldName = 'lastAuditBefore';
+    protected $fieldName = 'nextAuditBefore';
 
     /**
      * @inheritDoc
      */
-    protected $label = 'assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditBefore';
+    protected $label = 'assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditBefore';
 
     /**
      * @inheritDoc
@@ -29,7 +29,7 @@ class LastAuditBeforeCondition extends AbstractDateCondition
         }
 
         if (isset($conditionData[$this->fieldName])) {
-            $objectList->getConditionBuilder()->add("asset.lastAudit <= '" . $conditionData[$this->fieldName] . "'");
+            $objectList->getConditionBuilder()->add("asset.nextAudit <= '" . $conditionData[$this->fieldName] . "'");
         }
     }
 }

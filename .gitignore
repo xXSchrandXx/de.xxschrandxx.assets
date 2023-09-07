@@ -1,6 +1,8 @@
 node_modules/
-files_wcf/
+files_wcf/js/
+files/lib/system/api/
 
+composer.lock
 package-lock.json
 
 *.tar
