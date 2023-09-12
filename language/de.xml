@@ -79,12 +79,20 @@
 			<item name="wcf.asset.action.audit"><![CDATA[Audit]]></item>
 		</category>
 		<category name="wcf.box">
+			<!-- Filter box -->
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.category"><![CDATA[Kategorien]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.location"><![CDATA[Standorte]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash"><![CDATA[Entfernt]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both"><![CDATA[Alle]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes"><![CDATA[Entfernt]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.no"><![CDATA[Nicht entfernt]]></item>
+			<!-- Statistic box -->
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.categories"><![CDATA[{plural value=$categoryCount 1='Kategorie' other='Kategorien'}]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.locations"><![CDATA[{plural value=$locationCount 1='Standort' other='Standorte'}]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.assets"><![CDATA[{plural value=$assetCount 1='Vermögenswert' other='Vermögenswerte'}]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.audits"><![CDATA[{plural value=$auditCount 1='Audit' other='Audits'}]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.modifications"><![CDATA[{plural value=$modificationCount 1='Modifikation' other='Modifikationen'}]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.perDay"><![CDATA[pro Tag]]></item>
 		</category>
 		<category name="wcf.clipboard">
 			<item name="wcf.clipboard.label.de.xxschrandxx.assets.asset.marked"><![CDATA[{if $count == 1}Ein Vermögenswert{else}{#$count} Vermögenswerte{/if}]]></item>

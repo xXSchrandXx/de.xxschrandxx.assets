@@ -23,14 +23,16 @@ class AssetModificationLogList extends ModificationLogList
      * @param int[] $assetIDs
      * @param string $action
      */
-    public function __construct(array $assetIDs, $action = '')
+    public function __construct(array $assetIDs = [], $action = '')
     {
         parent::__construct();
         $this->getConditionBuilder()->add(
             "objectTypeID = ?",
             [AssetModificationLogHandler::getInstance()->getObjectType()->objectTypeID]
         );
-        $this->getConditionBuilder()->add("objectID IN (?)", [$assetIDs]);
+        if ($assetIDs !== null && !empty($assetIDs)) {
+            $this->getConditionBuilder()->add("objectID IN (?)", [$assetIDs]);
+        }
         if (!empty($action)) {
             $this->getConditionBuilder()->add("action = ?", [$action]);
         }

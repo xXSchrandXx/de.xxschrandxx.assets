@@ -44,5 +44,6 @@
 		<instruction type="menuItem" />
 		<instruction type="clipboardAction" />
 		<instruction type="box" />
+		<instruction type="script">acp/install_de.xxschrandxx.assets.php</instruction>
 	</instructions>
 </package>

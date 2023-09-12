@@ -15,6 +15,11 @@
 			</category>
 		</categories>
 		<options>
+			<option name="assets_install_time">
+				<categoryname>assets_general</categoryname>
+				<optiontype>integer</optiontype>
+				<hidden>1</hidden>
+			</option>
 			<option name="assets_legacyid_enabled">
 				<categoryname>assets_general</categoryname>
 				<optiontype>boolean</optiontype>

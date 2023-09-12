@@ -155,6 +155,12 @@
 			<definitionname>com.woltlab.wcf.boxController</definitionname>
 			<classname>assets\system\box\AssetListFilterBoxController</classname>
 		</type>
+		<!-- Statisticbox -->
+		<type>
+			<name>de.xxschrandxx.assets.assetStatistics</name>
+			<definitionname>com.woltlab.wcf.boxController</definitionname>
+			<classname>assets\system\box\AssetStatisticBoxController</classname>
+		</type>
 		<!-- /ListPage -->
 
 		<!-- AssetPage -->

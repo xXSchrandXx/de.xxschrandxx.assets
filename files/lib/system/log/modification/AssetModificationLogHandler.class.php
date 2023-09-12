@@ -19,7 +19,7 @@ class AssetModificationLogHandler extends AbstractExtendedModificationLogHandler
      */
     public function getAvailableActions()
     {
-        return ['delete', 'edit', 'restore', 'trash'];
+        return ['delete', 'edit', 'restore', 'trash', 'audit'];
     }
 
     /**

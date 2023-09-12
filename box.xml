@@ -22,5 +22,25 @@
 				<title>Filter</title>
 			</content>
 		</box>
+		<box identifier="de.xxschrandxx.assets.AssetStatistics">
+			<name language="de">Vermögenswerte filtern</name>
+			<name language="en">Filter Assets</name>
+			<boxType>system</boxType>
+			<objectType>de.xxschrandxx.assets.assetStatistics</objectType>
+			<position>contentBottom</position>
+			<showHeader>1</showHeader>
+			<visibleEverywhere>0</visibleEverywhere>
+			<visibilityExceptions>
+				<page>de.xxschrandxx.assets.AssetList</page>
+			</visibilityExceptions>
+			<limit>10</limit>
+
+			<content language="de">
+				<title>Statistik</title>
+			</content>
+			<content language="en">
+				<title>Statistic</title>
+			</content>
+		</box>
 	</import>
 </data>

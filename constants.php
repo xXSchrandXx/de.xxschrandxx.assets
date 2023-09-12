@@ -1,5 +1,6 @@
 <?php
 
+const ASSETS_INSTALL_TIME = TIME_NOW;
 const ASSETS_LEGACYID_ENABLED = true;
 const ASSETS_EXPORT_FORMAT = 'A4';
 const ASSETS_EXPORT_ORIENTATION = 'portrait';
