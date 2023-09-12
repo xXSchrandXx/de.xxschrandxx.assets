@@ -7,6 +7,8 @@ use assets\data\location\AssetLocation;
 use assets\page\AssetPage;
 use assets\system\comment\manager\AssetCommentManager;
 use assets\util\AssetUtil;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use DateTimeImmutable;
 use DateTimeZone;
 use Exception;
@@ -484,6 +486,27 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
             $this->zone = AssetUtil::getDateTimeZone();
         }
         return $this->zone;
+    }
+
+    /**
+     * @param string $color
+     * @param string $backgroundColor
+     * @return string
+     */
+    public function getQRCode($color = '#000000', $backgroundColor = '#FFFFFF')
+    {
+
+        // load php-qrcode library
+        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+
+        $options = new QROptions([
+            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
+            'eccLevel'   => QRCode::ECC_L,
+            'markupDark' => $color,
+            'markupLight' => $backgroundColor,
+        ]);
+
+        return '<img src="' . (new QRCode($options))->render($this->getLink()) . '" class="tableOfContentsWrapper" title="QRCode" width="150" height="150">';
     }
 
     /* Permissions */

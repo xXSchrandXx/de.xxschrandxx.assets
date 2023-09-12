@@ -4,6 +4,10 @@ namespace assets\data\asset;
 
 use assets\system\log\modification\AssetModificationLogHandler;
 use assets\util\AssetUtil;
+use chillerlan\QRCode\Data\QRMatrix;
+use chillerlan\QRCode\Output\QROutputInterface;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use DateTimeImmutable;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\attachment\AttachmentHandler;

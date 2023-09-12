@@ -7,6 +7,7 @@
     },
     "require": {
         "dompdf/dompdf": "^2.0",
-        "phpoffice/phpspreadsheet": "^1.28"
+        "phpoffice/phpspreadsheet": "^1.28",
+        "chillerlan/php-qrcode": "^4.3"
     }
 }

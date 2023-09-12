@@ -34,7 +34,13 @@ class AssetEditor extends DatabaseObjectEditor
         $nextAuditDateTime = AssetUtil::calculateNextAuditDateTime();
         $parameters['nextAudit'] = $nextAuditDateTime->format(AssetUtil::NEXT_AUDIT_FORMAT);
 
-        return parent::create($parameters);
+        /** @var Asset */
+        $asset = parent::create($parameters);
+
+        // Generate QR code
+        (new AssetAction([$asset], 'updateQRCode'))->executeAction();
+
+        return $asset;
     }
 
     /**

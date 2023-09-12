@@ -1,4 +1,5 @@
 <section class="section general">
+	{@$object->getQRCode()}
 	<dl>
 		<dt>{lang}wcf.page.asset.overview.id{/lang}</dt>
 		<dd>
