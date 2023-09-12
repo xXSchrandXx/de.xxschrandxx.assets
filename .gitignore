@@ -1,6 +1,6 @@
 node_modules/
 files_wcf/js/
-files/lib/system/api/
+files_api/
 
 composer.lock
 package-lock.json
