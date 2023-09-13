@@ -28,7 +28,6 @@
 		<instruction type="acpTemplate"/>
 		<instruction type="template"/>
 		<instruction type="file"/>
-		<instruction type="file" application="assets">files_api.tar</instruction>
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
 
 		<instruction type="database">acp/database/install_de.xxschrandxx.assets.php</instruction>
