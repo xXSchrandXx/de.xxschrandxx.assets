@@ -6,10 +6,6 @@ import TrashAction from "./Action/TrashAction";
 import RestoreAction from "./Action/RestoreAction";
 import DeleteAction from "./Action/DeleteAction";
 
-interface RefreshAssetsData {
-    assetIds: number[];
-}
-
 class UiAssetListEditor {
     /**
      * Initializes the edit dropdown for each asset.

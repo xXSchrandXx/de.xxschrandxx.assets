@@ -37,27 +37,6 @@
 
 {include file='header' contentHeader=$__contentHeader}
 
-<script data-relocate="true">
-	require(['WoltLabSuite/Core/Controller/Clipboard'], (ControllerClipboard) => {
-		ControllerClipboard.setup({
-			pageClassName: 'assets\\page\\AssetListPage',
-			hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
-		});
-	});
-
-	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(Language, UiAssetListEditor) {
-		Language.addObject({
-			'assets.asset.audit': '{jslang}assets.asset.audit{/jslang}',
-			'assets.asset.audit.comment.optional': '{jslang}assets.asset.audit.comment.optional{/jslang}',
-			'assets.asset.trash': '{jslang}assets.asset.trash{/jslang}',
-			'assets.asset.restore': '{jslang}assets.asset.restore{/jslang}'
-		});
-		new UiAssetListEditor();
-	});
-
-	{event name='javascriptInit'}
-</script>
-
 {hascontent}
 	<div class="paginationTop">
 		{content}
@@ -241,5 +220,26 @@
 		{/content}
 	</div>
 {/hascontent}
+
+<script data-relocate="true">
+	require(['WoltLabSuite/Core/Controller/Clipboard'], (ControllerClipboard) => {
+		ControllerClipboard.setup({
+			pageClassName: 'assets\\page\\AssetListPage',
+			hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
+		});
+	});
+
+	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(Language, UiAssetListEditor) {
+		Language.addObject({
+			'assets.asset.audit': '{jslang}assets.asset.audit{/jslang}',
+			'assets.asset.audit.comment.optional': '{jslang}assets.asset.audit.comment.optional{/jslang}',
+			'assets.asset.trash': '{jslang}assets.asset.trash{/jslang}',
+			'assets.asset.restore': '{jslang}assets.asset.restore{/jslang}'
+		});
+		new UiAssetListEditor();
+	});
+
+	{event name='javascriptInit'}
+</script>
 
 {include file='footer'}

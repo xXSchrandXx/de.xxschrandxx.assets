@@ -5,10 +5,6 @@ import TrashAction from "./Action/TrashAction";
 import RestoreAction from "./Action/RestoreAction";
 import DeleteAction from "./Action/DeleteAction";
 
-interface RefreshAssetData {
-    assetId: number;
-}
-
 class UiAssetEditor {
     /**
      * Initializes the edit dropdown for each asset.
@@ -20,7 +16,7 @@ class UiAssetEditor {
         }
         this.initAsset(asset);
 
-        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: RefreshAssetData) => this.refreshAsset(data));
+        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: RefreshAssetsData) => this.refreshAsset(data));
     }
 
     /**
@@ -29,45 +25,50 @@ class UiAssetEditor {
     private initAsset(asset: HTMLElement): void {
         const assetId = ~~asset.dataset.objectId!;
 
-        const auditAsset = document.querySelector(".contentInteractionButton .jsAudit");
+        const auditAsset = document.querySelector(".jsAudit");
         if (auditAsset !== null) {
             new AuditAction(auditAsset as HTMLAnchorElement, assetId, asset);
         }
 
-        const trashAsset = document.querySelector(".contentInteractionButton .jsTrash");
+        const trashAsset = document.querySelector(".jsTrash");
         if (trashAsset !== null) {
             new TrashAction(trashAsset as HTMLAnchorElement, assetId, asset);
         }
 
-        const restoreAsset = document.querySelector(".contentInteractionButton .jsRestore");
+        const restoreAsset = document.querySelector(".jsRestore");
         if (restoreAsset !== null) {
             new RestoreAction(restoreAsset as HTMLAnchorElement, assetId, asset);
         }
 
-        const deleteAsset = document.querySelector(".contentInteractionButton .jsDelete");
+        const deleteAsset = document.querySelector(".jsDelete");
         if (deleteAsset !== null) {
             new DeleteAction(deleteAsset as HTMLAnchorElement, assetId, asset);
         }
     }
 
-    private refreshAsset(data: RefreshAssetData): void {
+    private refreshAsset(data: RefreshAssetsData): void {
         const asset = document.querySelector(".jsAsset") as HTMLElement;
         if (asset === null) {
             return;
         }
         const assetId = ~~asset.dataset.objectId!;
-        if (data.assetId != assetId) {
+        if (!data.assetIds.includes(assetId)) {
             return;
         }
 
-        const auditAsset = document.querySelector(".contentInteractionButton .jsAudit") as HTMLElement;
-        const trashAsset = document.querySelector(".contentInteractionButton .jsTrash") as HTMLElement;
-        const restoreAsset = document.querySelector(".contentInteractionButton .jsRestore") as HTMLElement;
-        const deleteAsset = document.querySelector(".contentInteractionButton .jsDelete") as HTMLElement;
+        const contentHeaderTitle = document.querySelector(".contentHeaderTitle") as HTMLElement;
+
+        const auditAsset = document.querySelector(".jsAudit") as HTMLElement;
+        const trashAsset = document.querySelector(".jsTrash") as HTMLElement;
+        const restoreAsset = document.querySelector(".jsRestore") as HTMLElement;
+        const deleteAsset = document.querySelector(".jsDelete") as HTMLElement;
 
         const isTrashed = Core.stringToBool(asset.dataset.trashed!);
 
         if (isTrashed) {
+            // Modify contentHeaderTitle
+            contentHeaderTitle.classList.add("trashed");
+
             // Remove buttons
             if (auditAsset !== null) {
                 auditAsset.hidden = true;
@@ -84,6 +85,9 @@ class UiAssetEditor {
                 deleteAsset.hidden = false;
             }
         } else {
+            // Modify contentHeaderTitle
+            contentHeaderTitle.classList.remove("trashed");
+
             // Remove buttons
             if (restoreAsset !== null) {
                 restoreAsset.hidden = true;

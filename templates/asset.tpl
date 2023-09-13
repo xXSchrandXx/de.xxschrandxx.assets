@@ -76,20 +76,6 @@
 
 {include file='header' contentHeader=$__contentHeader contentInteraction=$contentInteractionButtons}
 
-<script>
-	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
-		Language.addObject({
-			'assets.asset.audit': '{jslang}assets.asset.audit{/jslang}',
-			'assets.asset.audit.comment.optional': '{jslang}assets.asset.audit.comment.optional{/jslang}',
-			'assets.asset.trash': '{jslang}assets.asset.trash{/jslang}',
-			'assets.asset.restore': '{jslang}assets.asset.restore{/jslang}'
-		});
-		new UiAssetEditor();
-	});
-
-	{event name='javascriptInit'}
-</script>
-
 <div 
 	class="section tabMenuContainer jsAsset"
 	data-object-id="{@$object->getObjectID()}" 
@@ -127,5 +113,19 @@
 
 	{event name='tabMenuContents'}
 </div>
+
+<script data-relocate="true">
+	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
+		Language.addObject({
+			'assets.asset.audit': '{jslang}assets.asset.audit{/jslang}',
+			'assets.asset.audit.comment.optional': '{jslang}assets.asset.audit.comment.optional{/jslang}',
+			'assets.asset.trash': '{jslang}assets.asset.trash{/jslang}',
+			'assets.asset.restore': '{jslang}assets.asset.restore{/jslang}'
+		});
+		new UiAssetEditor();
+	});
+
+	{event name='javascriptInit'}
+</script>
 
 {include file='footer'}
