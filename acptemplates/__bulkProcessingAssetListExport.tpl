@@ -1,18 +1,11 @@
-{@$style}
 {hascontent}
 	<div class="section sectionContainerList">
 		<table class="table">
 			<thead>
 				<tr>
-					{if ASSETS_LEGACYID_ENABLED}
-						<th class="columnID">
-							{lang}wcf.global.objectID{/lang}
-						</th>
-					{else}
-						<th class="columnID">
-							{lang}wcf.global.objectID{/lang}
-						</th>
-					{/if}
+					<th class="columnID">
+						{lang}wcf.global.objectID{/lang}
+					</th>
 					<th class="columnTitle">
 						{lang}wcf.global.title{/lang}
 					</th>
