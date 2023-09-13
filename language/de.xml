@@ -184,6 +184,8 @@
 			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.right"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportxlsx"><![CDATA[XLSX (Excel) Export]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportxlsx.header"><![CDATA[Stand: {$now}]]></item>
 			<!-- Conditions -->
 			<item name="assets.acp.asset.bulkProcessing.conditions"><![CDATA[Bedingungen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general"><![CDATA[Allgemein]]></item>
