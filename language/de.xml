@@ -181,8 +181,9 @@
 			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Audit]]></item>
-			<item name="assets.acp.asset.bulkProcessing.pdfexport"><![CDATA[PDF Export]]></item>
-			<item name="assets.acp.asset.bulkProcessing.pdfexport.footer"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.right"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
 			<!-- Conditions -->
 			<item name="assets.acp.asset.bulkProcessing.conditions"><![CDATA[Bedingungen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general"><![CDATA[Allgemein]]></item>

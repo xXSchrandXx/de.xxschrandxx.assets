@@ -134,10 +134,17 @@
 			<permissions>mod.assets.canModify</permissions>
 		</type>
 		<type>
-			<name>de.xxschrandxx.assets.asset.pdfexport</name>
+			<name>de.xxschrandxx.assets.asset.exportpdf</name>
 			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
-			<classname>assets\system\bulk\processing\actions\PDFExportAssetBulkProcessingAction</classname>
-			<action>pdfexport</action>
+			<classname>assets\system\bulk\processing\actions\ExportPDFAssetBulkProcessingAction</classname>
+			<action>exportpdf</action>
+			<permissions>user.assets.canView</permissions>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.exportxlsx</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\ExportXLSXAssetBulkProcessingAction</classname>
+			<action>exportxlsx</action>
 			<permissions>user.assets.canView</permissions>
 		</type>
 		<!-- /Bulk Processing -->
