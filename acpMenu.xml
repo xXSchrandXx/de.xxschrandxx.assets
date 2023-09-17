@@ -32,5 +32,10 @@
 			<parent>wcf.acp.menu.link.application.assets</parent>
 			<permissions>admin.assets.canBulkProcess</permissions>
 		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.import">
+			<controller>assets\acp\form\ImportForm</controller>
+			<parent>wcf.acp.menu.link.application.assets</parent>
+			<permissions>mod.assets.canAdd</permissions>
+		</acpmenuitem>
 	</import>
 </data>
