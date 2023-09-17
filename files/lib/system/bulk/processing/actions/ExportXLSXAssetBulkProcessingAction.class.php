@@ -26,7 +26,7 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
 
         $objectList->readObjects();
 
-        // load dompdf library
+        // load phpoffice library
         require_once(ASSETS_DIR.'lib/system/api/autoload.php');
 
         $spreadsheet = new Spreadsheet();
