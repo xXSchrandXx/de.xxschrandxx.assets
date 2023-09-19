@@ -8,3 +8,4 @@
 - Add Dashboard info
 - Use caching
 - Label generation
+- Asset import

@@ -40,25 +40,31 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
 
         $activeWorksheet->setCellValue('A2', $lang->get('wcf.global.objectID'));
         $activeWorksheet->setCellValue('B2', $lang->get('wcf.global.title'));
-        $activeWorksheet->setCellValue('C2', $lang->get('wcf.page.assetList.category'));
-        $activeWorksheet->setCellValue('D2', $lang->get('wcf.page.assetList.amount'));
-        $activeWorksheet->setCellValue('E2', $lang->get('wcf.page.assetList.location'));
-        $activeWorksheet->setCellValue('F2', $lang->get('wcf.page.assetList.nextAudit'));
-        $activeWorksheet->setCellValue('G2', $lang->get('wcf.page.assetList.lastAudit'));
-        $activeWorksheet->setCellValue('H2', $lang->get('wcf.page.assetList.lastModification'));
-        $activeWorksheet->setCellValue('I2', $lang->get('wcf.page.assetList.time'));
+        $activeWorksheet->setCellValue('C2', $lang->get('wcf.acp.export.categoryID'));
+        $activeWorksheet->setCellValue('D2', $lang->get('wcf.acp.export.category'));
+        $activeWorksheet->setCellValue('E2', $lang->get('wcf.acp.export.amount'));
+        $activeWorksheet->setCellValue('F2', $lang->get('wcf.acp.export.locationID'));
+        $activeWorksheet->setCellValue('G2', $lang->get('wcf.acp.export.location'));
+        $activeWorksheet->setCellValue('H2', $lang->get('wcf.acp.export.nextAudit'));
+        $activeWorksheet->setCellValue('I2', $lang->get('wcf.acp.export.lastAudit'));
+        $activeWorksheet->setCellValue('J2', $lang->get('wcf.acp.export.lastModification'));
+        $activeWorksheet->setCellValue('K2', $lang->get('wcf.acp.export.time'));
+        $activeWorksheet->setCellValue('L2', $lang->get('wcf.global.description'));
 
         $row = 3;
         foreach ($objectList->getObjects() as $object) {
             $activeWorksheet->setCellValue('A'.$row, ASSETS_LEGACYID_ENABLED ? $object->getLegacyID() : $object->getObjectID());
             $activeWorksheet->setCellValue('B'.$row, $object->getTitle());
-            $activeWorksheet->setCellValue('C'.$row, $object->getCategory()->getTitle());
-            $activeWorksheet->setCellValue('D'.$row, $object->getAmount());
-            $activeWorksheet->setCellValue('E'.$row, $object->getLocation()->getTitle());
-            $activeWorksheet->setCellValue('F'.$row, $object->getNextAuditDateTime()->format(AssetUtil::NEXT_AUDIT_FORMAT));
-            $activeWorksheet->setCellValue('G'.$row, $object->getLastAuditDateTime()->format(AssetUtil::LAST_AUDIT_FORMAT));
-            $activeWorksheet->setCellValue('H'.$row, $object->getLastModificationDateTime()->format(AssetUtil::LAST_MODIFICATION_FORMAT));
-            $activeWorksheet->setCellValue('I'.$row, $object->getCreatedDateTime()->format(AssetUtil::TIME_FORMAT));
+            $activeWorksheet->setCellValue('C'.$row, $object->getCategoryID());
+            $activeWorksheet->setCellValue('D'.$row, $object->getCategory()->getTitle());
+            $activeWorksheet->setCellValue('E'.$row, $object->getAmount());
+            $activeWorksheet->setCellValue('F'.$row, $object->getLocationID());
+            $activeWorksheet->setCellValue('G'.$row, $object->getLocation()->getTitle());
+            $activeWorksheet->setCellValue('H'.$row, $object->getNextAuditDateTime()->format(AssetUtil::NEXT_AUDIT_FORMAT));
+            $activeWorksheet->setCellValue('I'.$row, $object->getLastAuditDateTime()->format(AssetUtil::LAST_AUDIT_FORMAT));
+            $activeWorksheet->setCellValue('J'.$row, $object->getLastModificationDateTime()->format(AssetUtil::LAST_MODIFICATION_FORMAT));
+            $activeWorksheet->setCellValue('K'.$row, $object->getCreatedDateTime()->format(AssetUtil::TIME_FORMAT));
+            $activeWorksheet->setCellValue('L'.$row, $object->getRawDescription());
 
             $row++;
         }

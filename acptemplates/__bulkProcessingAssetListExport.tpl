@@ -9,22 +9,26 @@
 					<th class="columnTitle">
 						{lang}wcf.global.title{/lang}
 					</th>
-					<th>{lang}wcf.page.assetList.category{/lang}</th>
+					<th>
+						{lang}wcf.acp.export.category{/lang}
+					</th>
 					<th class="columnInt">
-						{lang}wcf.page.assetList.amount{/lang}
+						{lang}wcf.acp.export.amount{/lang}
 					</th>
-					<th>{lang}wcf.page.assetList.location{/lang}</th>
-					<th class="columnDate">
-						{lang}wcf.page.assetList.nextAudit{/lang}
-					</th>
-					<th class="columnDate">
-						{lang}wcf.page.assetList.lastAudit{/lang}
+					<th>
+						{lang}wcf.acp.export.location{/lang}
 					</th>
 					<th class="columnDate">
-						{lang}wcf.page.assetList.lastModification{/lang}
+						{lang}wcf.acp.export.nextAudit{/lang}
 					</th>
 					<th class="columnDate">
-						{lang}wcf.page.assetList.time{/lang}
+						{lang}wcf.acp.export.lastAudit{/lang}
+					</th>
+					<th class="columnDate">
+						{lang}wcf.acp.export.lastModification{/lang}
+					</th>
+					<th class="columnDate">
+						{lang}wcf.acp.export.time{/lang}
 					</th>
 
 					{event name='columnHeads'}

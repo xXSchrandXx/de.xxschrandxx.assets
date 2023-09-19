@@ -26,13 +26,21 @@ class AssetEditor extends DatabaseObjectEditor
     {
         // Set default dates
         $now = new DateTimeImmutable('now', AssetUtil::getDateTimeZone());
-        $parameters['lastModification'] = $now->format(AssetUtil::LAST_MODIFICATION_FORMAT);
-        $parameters['lastAudit'] = $now->format(AssetUtil::LAST_AUDIT_FORMAT);
-        $parameters['time'] = $now->format(AssetUtil::TIME_FORMAT);
+        if (!array_key_exists('lastModification', $parameters)) {
+            $parameters['lastModification'] = $now->format(AssetUtil::LAST_MODIFICATION_FORMAT);
+        }
+        if (!array_key_exists('lastAudit', $parameters)) {
+            $parameters['lastAudit'] = $now->format(AssetUtil::LAST_AUDIT_FORMAT);
+        }
+        if (!array_key_exists('time', $parameters)) {
+            $parameters['time'] = $now->format(AssetUtil::TIME_FORMAT);
+        }
 
         // Set nextAudit
-        $nextAuditDateTime = AssetUtil::calculateNextAuditDateTime();
-        $parameters['nextAudit'] = $nextAuditDateTime->format(AssetUtil::NEXT_AUDIT_FORMAT);
+        if (!array_key_exists('nextAudit', $parameters)) {
+            $nextAuditDateTime = AssetUtil::calculateNextAuditDateTime();
+            $parameters['nextAudit'] = $nextAuditDateTime->format(AssetUtil::NEXT_AUDIT_FORMAT);
+        }
 
         return parent::create($parameters);
     }

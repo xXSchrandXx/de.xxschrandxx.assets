@@ -24,6 +24,36 @@
 			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canViewLocation"><![CDATA[Kann Vermögenswerte sehen.]]></item>
 			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canModifyLocation"><![CDATA[Kann Standortzugehörigkeit bearbeiten.]]></item>
 		</category>
+		<category name="wcf.acp.export">
+			<item name="wcf.acp.export.categoryID"><![CDATA[Kategorie ID]]></item>
+			<item name="wcf.acp.export.category"><![CDATA[Kategorie]]></item>
+			<item name="wcf.acp.export.amount"><![CDATA[Stückzahl]]></item>
+			<item name="wcf.acp.export.locationID"><![CDATA[Standort ID]]></item>
+			<item name="wcf.acp.export.location"><![CDATA[Standort]]></item>
+			<item name="wcf.acp.export.nextAudit"><![CDATA[Nächste Audit]]></item>
+			<item name="wcf.acp.export.lastAudit"><![CDATA[Letzte Audit]]></item>
+			<item name="wcf.acp.export.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
+			<item name="wcf.acp.export.time"><![CDATA[Erstellt]]></item>
+		</category>
+		<category name="wcf.acp.form">
+			<item name="wcf.acp.form.import.field.file"><![CDATA[Datei]]></item>
+			<item name="wcf.acp.form.import.field.file.description"><![CDATA[Es sind nur Dateien mit der Endung <kbd>.xlsx</kbd> erlaubt.]]></item>
+			<item name="wcf.acp.form.import.example.header"><![CDATA[Tabellen-Aufbau]]></item>
+			<item name="wcf.acp.form.import.example.required"><![CDATA[Benötigte Angabe]]></item>
+			<item name="wcf.acp.form.import.example.optional"><![CDATA[Optionale Angabe]]></item>
+			<item name="wcf.acp.form.import.example.optionalID"><![CDATA[Optionale Angabe, wenn ID gegeben]]></item>
+			<item name="wcf.acp.form.import.file.error.columnID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.global.objectID{/lang}</kbd> gefunden.]]></item>
+			<item name="wcf.acp.form.import.file.error.columnTitle"><![CDATA[Keine Spalte für <kbd>{lang}wcf.global.title{/lang}</kbd> gefunden.]]></item>
+			<item name="wcf.acp.form.import.file.error.columnCategoryID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.acp.export.categoryID{/lang}</kbd> oder <kbd>{lang}wcf.acp.export.category{/lang}</kbd> gefunden.]]></item>
+			<item name="wcf.acp.form.import.file.error.columnLocationID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.acp.export.locationID{/lang}</kbd> oder <kbd>{lang}wcf.acp.export.location{/lang}</kbd> gefunden.]]></item>
+			<item name="wcf.acp.form.import.skip.error.noTitle"><![CDATA[Kein Titel angegeben.]]></item>
+			<item name="wcf.acp.form.import.skip.error.unknownCategory"><![CDATA[Keine Kategorie gefunden.]]></item>
+			<item name="wcf.acp.form.import.skip.error.unknownLocation"><![CDATA[Keinen Standort gefunden.]]></item>
+			<item name="wcf.acp.form.import.skip.header"><![CDATA[Übersprungene Vermögenswerte]]></item>
+			<item name="wcf.acp.form.import.skip.rowID"><![CDATA[Zeile]]></item>
+			<item name="wcf.acp.form.import.skip.reason"><![CDATA[Begründung]]></item>
+			<item name="wcf.acp.form.import.skip.noSkip"><![CDATA[Keine Vermögenswerte übersprungen.]]></item>
+		</category>
 		<category name="wcf.acp.option">
 			<item name="wcf.acp.option.category.assets"><![CDATA[Vermögenswerte]]></item>
 			<!-- general -->
@@ -70,6 +100,8 @@
 			<item name="wcf.acp.menu.link.application.assets.location.add"><![CDATA[Standort hinzufügen]]></item>
 			<!-- Bulk Edit -->
 			<item name="wcf.acp.menu.link.application.assets.bulkprocess"><![CDATA[Massenbearbeitung]]></item>
+			<!-- Import -->
+			<item name="wcf.acp.menu.link.application.assets.import"><![CDATA[Import]]></item>
 		</category>
 		<category name="wcf.asset.action">
 			<item name="wcf.asset.action.delete"><![CDATA[Gelöscht]]></item>
