@@ -127,6 +127,13 @@
 			<permissions>admin.assets.canDelete</permissions>
 		</type>
 		<type>
+			<name>de.xxschrandxx.assets.asset.getlabel</name>
+			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
+			<classname>assets\system\bulk\processing\actions\GetLabelBulkProcessingAction</classname>
+			<action>getlabel</action>
+			<permissions>user.assets.canView</permissions>
+		</type>
+		<type>
 			<name>de.xxschrandxx.assets.asset.audit</name>
 			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
 			<classname>assets\system\bulk\processing\actions\AuditAssetBulkProcessingAction</classname>

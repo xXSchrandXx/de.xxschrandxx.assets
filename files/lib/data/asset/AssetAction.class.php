@@ -14,8 +14,6 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
-use wcf\system\style\FontManager;
-use wcf\system\style\StyleHandler;
 use wcf\system\template\TemplateEngine;
 use wcf\system\WCF;
 
@@ -338,9 +336,6 @@ class AssetAction extends AbstractDatabaseObjectAction
      */
     public function validateGetLabel()
     {
-        // load dompdf library
-        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
-
         $this->readInteger('skipFields', true,);
 
         // read objects
@@ -365,6 +360,9 @@ class AssetAction extends AbstractDatabaseObjectAction
      */
     public function getLabel()
     {
+        // load dompdf library
+        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+
         $size = CPDF::$PAPER_SIZES[ASSETS_LABEL_FORMAT];
         if (ASSETS_LABEL_ORIENTATION == 'landscape') {
             $pageWidth = $size[2] - $size[0];
@@ -380,7 +378,12 @@ class AssetAction extends AbstractDatabaseObjectAction
                 $skipFields =+ '<div class="label" />';
             }
         }
-        $tpl = TemplateEngine::getInstance()->fetch('__label', 'assets', [
+        $tplEngine = TemplateEngine::getInstance();
+        // support acp bulk processing
+        if (\class_exists(\wcf\system\WCFACP::class, false) || !PACKAGE_ID) {
+            $tplEngine->addApplication('assets', ASSETS_DIR.'templates/');
+        }
+        $tpl = $tplEngine->fetch('__label', 'assets', [
             'skipFields' => $skipFields,
             'objects' => $this->getObjects(),
             'pageWidth' => $pageWidth,
