@@ -495,7 +495,6 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
      */
     public function getQRCode($color = '#000000', $backgroundColor = '#FFFFFF')
     {
-
         // load php-qrcode library
         require_once(ASSETS_DIR.'lib/system/api/autoload.php');
 
@@ -506,7 +505,7 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
             'markupLight' => $backgroundColor,
         ]);
 
-        return '<img src="' . (new QRCode($options))->render($this->getLink()) . '" class="tableOfContentsWrapper" title="QRCode" width="150" height="150">';
+        return '<img src="' . (new QRCode($options))->render($this->getLink()) . '" class="AssetQRCode" title="QRCode">';
     }
 
     /* Permissions */

@@ -30,5 +30,12 @@
 				<page>assets\page\AssetListPage</page>
 			</pages>
 		</action>
+		<action name="getLabel">
+			<actionclassname>assets\system\clipboard\action\AssetClipboardAction</actionclassname>
+			<showorder>5</showorder>
+			<pages>
+				<page>assets\page\AssetListPage</page>
+			</pages>
+		</action>
 	</import>
 </data>

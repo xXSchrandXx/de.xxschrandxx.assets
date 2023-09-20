@@ -12,17 +12,17 @@ class AssetClipboardAction extends AbstractClipboardAction
     /**
      * @inheritDoc
      */
-    protected $actionClassActions = ['trash', 'restore', 'delete', 'audit'];
+    protected $actionClassActions = ['trash', 'restore', 'delete', 'audit', 'getLabel'];
 
     /**
      * @inheritDoc
      */
-    protected $supportedActions = ['trash', 'restore', 'delete', 'audit'];
+    protected $supportedActions = ['trash', 'restore', 'delete', 'audit', 'getLabel'];
 
     /**
      * @inheritDoc
      */
-    protected $reloadPageOnSuccess = ['trash', 'restore', 'delete', 'audit'];
+    protected $reloadPageOnSuccess = ['trash', 'restore', 'delete', 'audit', 'getLabel'];
 
     /**
      * @inheritDoc
@@ -91,6 +91,17 @@ class AssetClipboardAction extends AbstractClipboardAction
                     'confirmMessage',
                     WCF::getLanguage()->getDynamicVariable(
                         'wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage',
+                        [
+                            'count' => $item->getCount()
+                        ]
+                    )
+                );
+                break;
+            case 'getLabel':
+                $item->addInternalData(
+                    'confirmMessage',
+                    WCF::getLanguage()->getDynamicVariable(
+                        'wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage',
                         [
                             'count' => $item->getCount()
                         ]
@@ -167,6 +178,24 @@ class AssetClipboardAction extends AbstractClipboardAction
         /** @var \assets\data\asset\Asset $asset */
         foreach ($this->objects as $asset) {
             if ($asset->canAudit()) {
+                $objectIDs[] = $asset->getObjectID();
+            }
+        }
+
+        return $objectIDs;
+    }
+
+    /**
+     * Returns the ids of the assets that can be audit.
+     * @return  int[]
+     */
+    public function validateGetLabel()
+    {
+        $objectIDs = [];
+
+        /** @var \assets\data\asset\Asset $asset */
+        foreach ($this->objects as $asset) {
+            if ($asset->canView()) {
                 $objectIDs[] = $asset->getObjectID();
             }
         }

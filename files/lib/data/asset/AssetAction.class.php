@@ -5,6 +5,8 @@ namespace assets\data\asset;
 use assets\system\log\modification\AssetModificationLogHandler;
 use assets\util\AssetUtil;
 use DateTimeImmutable;
+use Dompdf\Adapter\CPDF;
+use Laminas\Diactoros\Response\HtmlResponse;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\attachment\AttachmentHandler;
 use wcf\system\comment\CommentHandler;
@@ -12,6 +14,10 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
+use wcf\system\style\FontManager;
+use wcf\system\style\StyleHandler;
+use wcf\system\template\TemplateEngine;
+use wcf\system\WCF;
 
 /**
  * @property    AssetEditor[]   $objects
@@ -325,5 +331,63 @@ class AssetAction extends AbstractDatabaseObjectAction
 
         // delete attachments
         AttachmentHandler::removeAttachments('de.xxschrandxx.assets.asset.attachment', $objectIDs);
+    }
+
+    /**
+     * Validates permissions and parameters
+     */
+    public function validateGetLabel()
+    {
+        // load dompdf library
+        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+
+        $this->readInteger('skipFields', true,);
+
+        // read objects
+        if (empty($this->objects)) {
+            $this->readObjects();
+
+            if (empty($this->objects)) {
+                throw new UserInputException('objectIDs');
+            }
+        }
+
+        foreach ($this->getObjects() as $asset) {
+            if (!$asset->getDecoratedObject()->canView()) {
+                throw new PermissionDeniedException();
+            }
+        }
+    }
+
+    /**
+     * Returns pdf
+     * @return string
+     */
+    public function getLabel()
+    {
+        $size = CPDF::$PAPER_SIZES[ASSETS_LABEL_FORMAT];
+        if (ASSETS_LABEL_ORIENTATION == 'landscape') {
+            $pageWidth = $size[2] - $size[0];
+            $pageHeight = $size[3] - $size[1];
+        } else {
+            $pageHeight = $size[2] - $size[0];
+            $pageWidth = $size[3] - $size[1];
+        }
+        $skipFields = null;
+        if (isset($this->parameters['skipFields']) && is_numeric($this->parameters['skipFields']) && $this->parameters['skipFields'] > 0) {
+            $skipFields = '';
+            for ($i = 0; $i > $this->parameters['skipFields']; $i++) {
+                $skipFields =+ '<div class="label" />';
+            }
+        }
+        $tpl = TemplateEngine::getInstance()->fetch('__label', 'assets', [
+            'skipFields' => $skipFields,
+            'objects' => $this->getObjects(),
+            'pageWidth' => $pageWidth,
+            'pageHeight' => $pageHeight,
+            'fontFamily' => ''
+        ], true);
+
+        return new HtmlResponse($tpl);
     }
 }

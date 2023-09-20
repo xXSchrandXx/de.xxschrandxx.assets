@@ -10,6 +10,9 @@
 			<category name="assets_pdf_export">
 				<parent>assets</parent>
 			</category>
+			<category name="assets_label">
+				<parent>assets</parent>
+			</category>
 			<category name="assets_audit">
 				<parent>assets</parent>
 			</category>
@@ -28,15 +31,154 @@
 			<option name="assets_export_format">
 				<categoryname>assets_pdf_export</categoryname>
 				<optiontype>AssetsExportPaperSize</optiontype>
-				<defautlvalue>a4</defautlvalue>
+				<defaultvalue>a4</defaultvalue>
 			</option>
 			<option name="assets_export_orientation">
 				<categoryname>assets_pdf_export</categoryname>
 				<optiontype>select</optiontype>
-				<defautlvalue>landscape</defautlvalue>
+				<defaultvalue>landscape</defaultvalue>
 				<selectoptions>landscape:wcf.acp.option.assets_export_orientation.landscape
 portrait:wcf.acp.option.assets_export_orientation.portrait
 				</selectoptions>
+			</option>
+			<option name="assets_label_format">
+				<categoryname>assets_label</categoryname>
+				<optiontype>AssetsExportPaperSize</optiontype>
+				<defaultvalue>a4</defaultvalue>
+			</option>
+			<option name="assets_label_orientation">
+				<categoryname>assets_label</categoryname>
+				<optiontype>select</optiontype>
+				<defaultvalue>landscape</defaultvalue>
+				<selectoptions>landscape:wcf.acp.option.assets_export_orientation.landscape
+portrait:wcf.acp.option.assets_export_orientation.portrait
+				</selectoptions>
+			</option>
+			<option name="assets_label_page_margin_top">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.5</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_page_margin_right">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_page_margin_bottom">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.5</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_page_margin_left">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_font_size">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.05</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_width">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>5.75</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_height">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>2.5</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_padding">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_margin_right">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>1.2</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_margin_bottom">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>1.2</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_qr_width">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>2.4</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_qr_height">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>2.4</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_qr_padding_right">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_qr_padding_top">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_logo_height">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>1.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_text_padding_top">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.5</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_text_padding_right">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.5</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_outline">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.01</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
 			</option>
 			<option name="assets_audit_interval">
 				<categoryname>assets_audit</categoryname>
