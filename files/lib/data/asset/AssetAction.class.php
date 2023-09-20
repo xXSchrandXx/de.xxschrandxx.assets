@@ -388,10 +388,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         $chunks = array_chunk($this->getObjects(), ASSETS_LABEL_PER_PAGE);
         // add dummys
         foreach ($chunks as &$chunk) {
-            if (count($chunk) >= ASSETS_LABEL_PER_PAGE) {
-                continue;
-            }
-            for ($i = count($chunk); $i <= ASSETS_LABEL_PER_PAGE; $i++) {
+            for ($i = count($chunk); $i < ASSETS_LABEL_PER_PAGE; $i++) {
                 array_push($chunk, 'dummy');
             }
         }

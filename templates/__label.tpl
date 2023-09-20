@@ -63,13 +63,6 @@ div.label-logo {
     .noprint {
         display: none !important;
     }
-    .next-padding {
-		margin-top: {ASSETS_LABEL_PAGE_MARGIN_TOP}cm;
-        margin-right: {ASSETS_LABEL_PAGE_MARGIN_RIGHT}cm;
-        margin-bottom: {ASSETS_LABEL_PAGE_MARGIN_BOTTOM}cm;
-        margin-left: {ASSETS_LABEL_PAGE_MARGIN_LEFT}cm;
-        font-size: 0;
-    }
 }
 @media  screen {
     .label {
