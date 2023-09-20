@@ -46,6 +46,11 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<optiontype>text</optiontype>
 				<defaultvalue>Assets</defaultvalue>
 			</option>
+			<option name="assets_label_per_page">
+				<categoryname>assets_label</categoryname>
+				<optiontype>integer</optiontype>
+				<defaultvalue>24</defaultvalue>
+			</option>
 			<option name="assets_label_format">
 				<categoryname>assets_label</categoryname>
 				<optiontype>AssetsExportPaperSize</optiontype>

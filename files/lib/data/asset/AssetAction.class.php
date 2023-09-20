@@ -385,9 +385,19 @@ class AssetAction extends AbstractDatabaseObjectAction
         if (\class_exists(\wcf\system\WCFACP::class, false) || !PACKAGE_ID) {
             $tplEngine->addApplication('assets', ASSETS_DIR.'templates/');
         }
+        $chunks = array_chunk($this->getObjects(), ASSETS_LABEL_PER_PAGE);
+        // add dummys
+        foreach ($chunks as &$chunk) {
+            if (count($chunk) >= ASSETS_LABEL_PER_PAGE) {
+                continue;
+            }
+            for ($i = count($chunk); $i <= ASSETS_LABEL_PER_PAGE; $i++) {
+                array_push($chunk, 'dummy');
+            }
+        }
         $tpl = $tplEngine->fetch('__label', 'assets', [
             'skipFields' => $skipFields,
-            'objects' => $this->getObjects(),
+            'chunks' => $chunks,
             'pageWidth' => $pageWidth,
             'pageHeight' => $pageHeight,
             'fontFamily' => ''

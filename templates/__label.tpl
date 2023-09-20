@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>{lang}wcf.label.title{/lang}</title>
 		<style>
-body {
+.page {
     font-family: arial, helvetica, sans-serif;
     width: {@$pageWidth}pt;
     height: {@$pageHeight}pt;
@@ -83,22 +83,29 @@ div.label-logo {
 		</style>
 	</head>
 	<body>
-		{if $skipFields|isset}
-			{@$skipFields}
-		{/if}
-		{foreach from=$objects item=object}
-			<div class="label">
-				<div class="rq_img">
-					{@$object->getQRCode()}
-				</div>
-				<div class="qr_text">
-					<p><strong>{ASSETS_LABEL_HEADER}</strong></p>
-					<p>{lang}wcf.label.asset.title{/lang}</p>
-					<p>{lang}wcf.label.asset.category{/lang}</p>
-					<p>{lang}wcf.label.asset.location{/lang}</p>
-					<p>{lang}wcf.label.asset.objectID{/lang}</p>
-				</div>
+		{foreach from=$chunks item=chunk}
+			<div class="page">
+				{if $skipFields|isset}
+					{@$skipFields}
+				{/if}
+				{foreach from=$chunk item=object}
+					<div class="label">
+						{if !$object|is_string}
+							<div class="rq_img">
+								{@$object->getQRCode()}
+							</div>
+							<div class="qr_text">
+								<p><strong>{ASSETS_LABEL_HEADER}</strong></p>
+								<p>{lang}wcf.label.asset.title{/lang}</p>
+								<p>{lang}wcf.label.asset.category{/lang}</p>
+								<p>{lang}wcf.label.asset.location{/lang}</p>
+								<p>{lang}wcf.label.asset.objectID{/lang}</p>
+							</div>
+						{/if}
+					</div>
+				{/foreach}
 			</div>
+			<br />
 		{/foreach}
 	</body>
 </html>
