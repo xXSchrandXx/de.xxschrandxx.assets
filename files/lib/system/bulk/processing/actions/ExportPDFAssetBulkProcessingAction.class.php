@@ -78,7 +78,7 @@ class ExportPDFAssetBulkProcessingAction extends AbstractAssetBulkProcessingActi
         $tempFile = FileUtil::getTemporaryFilename();
         file_put_contents($tempFile, $dompdf->output());
 
-        $fileReader = new FileReader($tempFile, array(
+        $fileReader = new FileReader($tempFile, [
             'filename' => "file.pdf",
             'mimeType' => 'application/pdf',
             'filesize' => filesize($tempFile),
@@ -86,7 +86,7 @@ class ExportPDFAssetBulkProcessingAction extends AbstractAssetBulkProcessingActi
             'enableRangeSupport' => false,
             'expirationDate' => TIME_NOW,
             'maxAge' => 0
-        ));
+        ]);
 
         // send file to client
         $fileReader->send();

@@ -6,21 +6,25 @@
 		<style>
 body {
     font-family: arial, helvetica, sans-serif;
-    width: {@$pageWidth}cm;
-    height: {@$pageHeight}cm;
+    width: {@$pageWidth}pt;
+    height: {@$pageHeight}pt;
     margin-top: {ASSETS_LABEL_PAGE_MARGIN_TOP}cm;
     margin-right: {ASSETS_LABEL_PAGE_MARGIN_RIGHT}cm;
     margin-bottom: {ASSETS_LABEL_PAGE_MARGIN_BOTTOM}cm;
     margin-left: {ASSETS_LABEL_PAGE_MARGIN_LEFT}cm;
     font-family: {$fontFamily};
     font-size: {ASSETS_LABEL_FONT_SIZE}cm;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row-gap: {ASSETS_LABEL_ROW_GAP}cm;
+    grid-column-gap: {ASSETS_LABEL_COLUMN_GAP}cm;
+    align-items: center;
+    justify-items: center;
 }
 .label {
     width: {ASSETS_LABEL_WIDTH}cm;
     height: {ASSETS_LABEL_HEIGHT}cm;
     padding: {ASSETS_LABEL_PADDING}cm;
-    margin-right: {ASSETS_LABEL_MARGIN_RIGHT}cm; /* the gutter */
-    margin-bottom: {ASSETS_LABEL_MARGIN_BOTTOM}cm;
     display: inline-block;
     overflow: hidden;
 }
@@ -88,10 +92,11 @@ div.label-logo {
 					{@$object->getQRCode()}
 				</div>
 				<div class="qr_text">
-					<p>{$object->getTitle()}</p>
-					<p>{$object->getCategory()->getTitle()}</p>
-					<p>{$object->getLocation()->getTitle()}</p>
-					<p>{$object->getObjectID()}</p>
+					<p><strong>{ASSETS_LABEL_HEADER}</strong></p>
+					<p>{lang}wcf.label.asset.title{/lang}</p>
+					<p>{lang}wcf.label.asset.category{/lang}</p>
+					<p>{lang}wcf.label.asset.location{/lang}</p>
+					<p>{lang}wcf.label.asset.objectID{/lang}</p>
 				</div>
 			</div>
 		{/foreach}

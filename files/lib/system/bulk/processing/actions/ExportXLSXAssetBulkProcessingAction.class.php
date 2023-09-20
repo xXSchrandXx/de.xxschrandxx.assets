@@ -73,13 +73,13 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
         $tempFile = FileUtil::getTemporaryFilename();
         $writer->save($tempFile);
 
-        $fileReader = new FileReader($tempFile, array(
+        $fileReader = new FileReader($tempFile, [
             'filename' => "file.xlsx",
             'mimeType' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             'filesize' => filesize($tempFile),
             'expirationDate' => TIME_NOW,
             'maxAge' => 0
-        ));
+        ]);
 
         // send file to client
         $fileReader->send();

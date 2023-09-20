@@ -41,6 +41,11 @@
 portrait:wcf.acp.option.assets_export_orientation.portrait
 				</selectoptions>
 			</option>
+			<option name="assets_label_header">
+				<categoryname>assets_label</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>Assets</defaultvalue>
+			</option>
 			<option name="assets_label_format">
 				<categoryname>assets_label</categoryname>
 				<optiontype>AssetsExportPaperSize</optiontype>
@@ -85,7 +90,7 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 			<option name="assets_label_font_size">
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
-				<defaultvalue>0.05</defaultvalue>
+				<defaultvalue>0.2</defaultvalue>
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>
@@ -110,14 +115,14 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>
-			<option name="assets_label_margin_right">
+			<option name="assets_label_row_gap">
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
 				<defaultvalue>1.2</defaultvalue>
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>
-			<option name="assets_label_margin_bottom">
+			<option name="assets_label_column_gap">
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
 				<defaultvalue>1.2</defaultvalue>

@@ -16,6 +16,8 @@ use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\template\TemplateEngine;
 use wcf\system\WCF;
+use wcf\util\FileReader;
+use wcf\util\FileUtil;
 
 /**
  * @property    AssetEditor[]   $objects
@@ -365,11 +367,11 @@ class AssetAction extends AbstractDatabaseObjectAction
 
         $size = CPDF::$PAPER_SIZES[ASSETS_LABEL_FORMAT];
         if (ASSETS_LABEL_ORIENTATION == 'landscape') {
-            $pageWidth = $size[2] - $size[0];
-            $pageHeight = $size[3] - $size[1];
-        } else {
             $pageHeight = $size[2] - $size[0];
             $pageWidth = $size[3] - $size[1];
+        } else {
+            $pageWidth = $size[2] - $size[0];
+            $pageHeight = $size[3] - $size[1];
         }
         $skipFields = null;
         if (isset($this->parameters['skipFields']) && is_numeric($this->parameters['skipFields']) && $this->parameters['skipFields'] > 0) {
@@ -391,6 +393,22 @@ class AssetAction extends AbstractDatabaseObjectAction
             'fontFamily' => ''
         ], true);
 
-        return new HtmlResponse($tpl);
+        $tempFile = FileUtil::getTemporaryFilename();
+        file_put_contents($tempFile, $tpl);
+
+        $fileReader = new FileReader($tempFile, [
+            'filename' => "file.hmtl",
+            'mimeType' => 'text/html',
+            'filesize' => filesize($tempFile),
+            'showInline' => true,
+            'enableRangeSupport' => false,
+            'expirationDate' => TIME_NOW,
+            'maxAge' => 0
+        ]);
+
+        // send file to client
+        $fileReader->send();
+
+        @unlink($tempFile);
     }
 }

@@ -204,6 +204,13 @@
 			<item name="wcf.search.object.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.search.searchInLocations"><![CDATA[Folgende Standorte durchsuchen]]></item>
 		</category>
+		<category name="wcf.label">
+			<item name="wcf.label.title"><![CDATA[Label]]></item>
+			<item name="wcf.label.asset.title"><![CDATA[T: {$object->getTitle()}]]></item>
+			<item name="wcf.label.asset.category"><![CDATA[K: {$object->getCategory()->getTitle()}]]></item>
+			<item name="wcf.label.asset.location"><![CDATA[S: {$object->getLocation()->getTitle()}]]></item>
+			<item name="wcf.label.asset.objectID"><![CDATA[ID: {#$object->getObjectID()}]]></item>
+		</category>
 		<category name="assets.acp.asset">
 			<item name="assets.acp.asset.bulkProcessing"><![CDATA[Vermögenswert-Massenbearbeitung]]></item>
 			<item name="assets.acp.asset.bulkProcessing.log"><![CDATA[Administrative Massenbearbeitung.]]></item>
