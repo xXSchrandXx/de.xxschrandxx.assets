@@ -76,6 +76,28 @@
 			<item name="wcf.acp.option.assets_export_orientation"><![CDATA[Ausrichtung]]></item>
 			<item name="wcf.acp.option.assets_export_orientation.landscape"><![CDATA[Querformat]]></item>
 			<item name="wcf.acp.option.assets_export_orientation.portrait"><![CDATA[Hochformat]]></item>
+			<!-- label -->
+			<item name="wcf.acp.option.category.assets_label"><![CDATA[Label export]]></item>
+			<item name="wcf.acp.option.assets_label_header"><![CDATA[Firma]]></item>
+			<item name="wcf.acp.option.assets_label_per_page"><![CDATA[Label je Seite]]></item>
+			<item name="wcf.acp.option.assets_label_format"><![CDATA[Seitenformat]]></item>
+			<item name="wcf.acp.option.assets_label_orientation"><![CDATA[Seitenausrichtung]]></item>
+			<item name="wcf.acp.option.assets_label_page_margin_top"><![CDATA[Obere Seitenrand]]></item>
+			<item name="wcf.acp.option.assets_label_page_margin_right"><![CDATA[Rechte Seitenrand]]></item>
+			<item name="wcf.acp.option.assets_label_page_margin_bottom"><![CDATA[Untere Seitenrand]]></item>
+			<item name="wcf.acp.option.assets_label_page_margin_left"><![CDATA[Linke Seitenrand]]></item>
+			<item name="wcf.acp.option.assets_label_font_size"><![CDATA[Schriftgröße]]></item>
+			<item name="wcf.acp.option.assets_label_width"><![CDATA[Breite]]></item>
+			<item name="wcf.acp.option.assets_label_height"><![CDATA[Höhe]]></item>
+			<item name="wcf.acp.option.assets_label_row_gap"><![CDATA[Reihenabstand]]></item>
+			<item name="wcf.acp.option.assets_label_column_gap"><![CDATA[Spaltenabstand]]></item>
+			<item name="wcf.acp.option.assets_label_qr_width"><![CDATA[QR-Code breite]]></item>
+			<item name="wcf.acp.option.assets_label_qr_height"><![CDATA[QR-Code höhe]]></item>
+			<item name="wcf.acp.option.assets_label_qr_padding_right"><![CDATA[QR-Code Abstand rechts]]></item>
+			<item name="wcf.acp.option.assets_label_qr_padding_top"><![CDATA[QR-Code Abstand oben]]></item>
+			<item name="wcf.acp.option.assets_label_logo_height"><![CDATA[Logo größe]]></item>
+			<item name="wcf.acp.option.assets_label_text_padding_top"><![CDATA[Text Abstand oben]]></item>
+			<item name="wcf.acp.option.assets_label_text_padding_right"><![CDATA[Text Abstand unten]]></item>
 		</category>
 		<category name="wcf.acp.group">
 			<item name="wcf.acp.group.option.category.user.assets"><![CDATA[Vermögenswerte]]></item>

@@ -46,6 +46,10 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<optiontype>text</optiontype>
 				<defaultvalue>Assets</defaultvalue>
 			</option>
+			<option name="assets_label_logo">
+				<categoryname>assets_general</categoryname>
+				<optiontype>file</optiontype>
+			</option>
 			<option name="assets_label_per_page">
 				<categoryname>assets_label</categoryname>
 				<optiontype>integer</optiontype>
@@ -180,13 +184,6 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
 				<defaultvalue>0.5</defaultvalue>
-				<minvalue>0</minvalue>
-				<suffix>cm</suffix>
-			</option>
-			<option name="assets_label_outline">
-				<categoryname>assets_label</categoryname>
-				<optiontype>float</optiontype>
-				<defaultvalue>0.01</defaultvalue>
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>

@@ -40,7 +40,7 @@ div.qr_img, img.AssetQRCode {
     padding-right: {ASSETS_LABEL_QR_PADDING_RIGHT}cm;
     padding-top: {ASSETS_LABEL_QR_PADDING_TOP}cm;
 }
-div.label-logo {
+img.label-logo {
     float: right;
     display: inline-block;
     height: {ASSETS_LABEL_LOGO_HEIGHT}cm;
@@ -66,7 +66,7 @@ div.label-logo {
 }
 @media  screen {
     .label {
-        outline: {ASSETS_LABEL_OUTLINE}cm black solid; /* outline doesn't occupy space like border does */
+        outline: 0,01cm black solid; /* outline doesn't occupy space like border does */
     }
     .noprint {
         font-size: 13px;
@@ -94,6 +94,7 @@ div.label-logo {
 								<p>{lang}wcf.label.asset.location{/lang}</p>
 								<p>{lang}wcf.label.asset.objectID{/lang}</p>
 							</div>
+							<img class="label-logo" src="{ASSETS_LABEL_LOGO}"/>
 						{/if}
 					</div>
 				{/foreach}

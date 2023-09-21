@@ -13,6 +13,7 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
+use wcf\system\style\StyleHandler;
 use wcf\system\template\TemplateEngine;
 use wcf\system\WCF;
 
@@ -362,6 +363,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         // load dompdf library
         require_once(ASSETS_DIR.'lib/system/api/autoload.php');
 
+        // generate page size
         $size = CPDF::$PAPER_SIZES[ASSETS_LABEL_FORMAT];
         if (ASSETS_LABEL_ORIENTATION == 'landscape') {
             $pageHeight = $size[2] - $size[0];
@@ -370,6 +372,8 @@ class AssetAction extends AbstractDatabaseObjectAction
             $pageWidth = $size[2] - $size[0];
             $pageHeight = $size[3] - $size[1];
         }
+
+        // calculate label spaces to skip
         $skipFields = null;
         if (isset($this->parameters['skipFields']) && is_numeric($this->parameters['skipFields']) && $this->parameters['skipFields'] > 0) {
             $skipFields = '';
@@ -377,18 +381,24 @@ class AssetAction extends AbstractDatabaseObjectAction
                 $skipFields =+ '<div class="label" />';
             }
         }
+
+        // load template engine
         $tplEngine = TemplateEngine::getInstance();
         // support acp bulk processing
         if (\class_exists(\wcf\system\WCFACP::class, false) || !PACKAGE_ID) {
             $tplEngine->addApplication('assets', ASSETS_DIR.'templates/');
         }
         $chunks = array_chunk($this->getObjects(), ASSETS_LABEL_PER_PAGE);
+
         // add dummys
         foreach ($chunks as &$chunk) {
             for ($i = count($chunk); $i < ASSETS_LABEL_PER_PAGE; $i++) {
                 array_push($chunk, 'dummy');
             }
         }
+
+        wcfDebug(ASSETS_LABEL_LOGO);
+
         return $tplEngine->fetch('__label', 'assets', [
             'skipFields' => $skipFields,
             'chunks' => $chunks,
