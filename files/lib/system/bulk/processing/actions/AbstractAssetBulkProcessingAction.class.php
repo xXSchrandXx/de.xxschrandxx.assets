@@ -18,6 +18,12 @@ abstract class AbstractAssetBulkProcessingAction extends AbstractBulkProcessingA
     public $actionName = '';
 
     /**
+     * AssetAction set after executeAction
+     * @var AssetAction
+     */
+    protected $assetAction;
+
+    /**
      * @inheritDoc
      */
     public function executeAction(DatabaseObjectList $objectList)
@@ -35,7 +41,7 @@ abstract class AbstractAssetBulkProcessingAction extends AbstractBulkProcessingA
         if (empty($assets)) {
             return;
         }
-        $assetAction = new AssetAction(
+        $this->assetAction = new AssetAction(
             $assets,
             $this->actionName, 
             [
@@ -44,7 +50,7 @@ abstract class AbstractAssetBulkProcessingAction extends AbstractBulkProcessingA
                 ]
             ]
         );
-        $assetAction->executeAction();
+        $this->assetAction->executeAction();
     }
 
     /**

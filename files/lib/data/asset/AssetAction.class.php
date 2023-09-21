@@ -6,7 +6,6 @@ use assets\system\log\modification\AssetModificationLogHandler;
 use assets\util\AssetUtil;
 use DateTimeImmutable;
 use Dompdf\Adapter\CPDF;
-use Laminas\Diactoros\Response\HtmlResponse;
 use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\attachment\AttachmentHandler;
 use wcf\system\comment\CommentHandler;
@@ -16,8 +15,6 @@ use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
 use wcf\system\template\TemplateEngine;
 use wcf\system\WCF;
-use wcf\util\FileReader;
-use wcf\util\FileUtil;
 
 /**
  * @property    AssetEditor[]   $objects
@@ -392,30 +389,12 @@ class AssetAction extends AbstractDatabaseObjectAction
                 array_push($chunk, 'dummy');
             }
         }
-        $tpl = $tplEngine->fetch('__label', 'assets', [
+        return $tplEngine->fetch('__label', 'assets', [
             'skipFields' => $skipFields,
             'chunks' => $chunks,
             'pageWidth' => $pageWidth,
             'pageHeight' => $pageHeight,
             'fontFamily' => ''
         ], true);
-
-        $tempFile = FileUtil::getTemporaryFilename();
-        file_put_contents($tempFile, $tpl);
-
-        $fileReader = new FileReader($tempFile, [
-            'filename' => "file.hmtl",
-            'mimeType' => 'text/html',
-            'filesize' => filesize($tempFile),
-            'showInline' => true,
-            'enableRangeSupport' => false,
-            'expirationDate' => TIME_NOW,
-            'maxAge' => 0
-        ]);
-
-        // send file to client
-        $fileReader->send();
-
-        @unlink($tempFile);
     }
 }

@@ -22,7 +22,7 @@ class AssetClipboardAction extends AbstractClipboardAction
     /**
      * @inheritDoc
      */
-    protected $reloadPageOnSuccess = ['trash', 'restore', 'delete', 'audit', 'getLabel'];
+    protected $reloadPageOnSuccess = ['trash', 'restore', 'delete', 'audit'];
 
     /**
      * @inheritDoc
