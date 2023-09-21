@@ -46,7 +46,7 @@
 {/hascontent}
 
 {hascontent}
-	<div class="section sectionContainerList">
+	<div class="section tabularBox">
 		<table data-type="de.xxschrandxx.assets.asset" class="table jsClipboardContainer jsObjectActionContainer" data-object-action-class-name="assets\data\asset\AssetAction">
 			<thead>
 				<tr>
