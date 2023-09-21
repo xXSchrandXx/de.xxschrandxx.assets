@@ -24,6 +24,10 @@
 			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canViewLocation"><![CDATA[Kann Vermögenswerte sehen.]]></item>
 			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canModifyLocation"><![CDATA[Kann Standortzugehörigkeit bearbeiten.]]></item>
 		</category>
+		<category name="wcf.acp.box">
+			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetListFilter"><![CDATA[Vermögenswerte-Filter]]></item>
+			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetStatistics"><![CDATA[Vermögenswerte-Stitistiken]]></item>
+		</category>
 		<category name="wcf.acp.export">
 			<item name="wcf.acp.export.categoryID"><![CDATA[Kategorie ID]]></item>
 			<item name="wcf.acp.export.category"><![CDATA[Kategorie]]></item>
