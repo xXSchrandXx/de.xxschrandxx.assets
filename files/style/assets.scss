@@ -1,5 +1,5 @@
 .trashed > :not(.columnIcon), tr[data-trashed='true'] > :not(.columnIcon) {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }
 .boxesContentTop .box .boxMenu .boxMenuItemDepth1 .boxMenuLink, .boxesContentBottom .box .boxMenu .boxMenuItemDepth1 .boxMenuLink {
   padding-left: 20px;
@@ -12,4 +12,15 @@
 }
 .boxesContentTop .box .boxMenu .boxMenuItemDepth4 .boxMenuLink, .boxesContentBottom .box .boxMenu .boxMenuItemDepth4 .boxMenuLink {
   padding-left: 80px;
+}
+.AssetQRCode {
+    float: right;
+    width: 150px;
+    height: 150px;
+}
+
+@include screen-sm-down {
+    .AssetQRCode {
+        display: none;
+    }
 }
