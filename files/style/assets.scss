@@ -1,17 +1,17 @@
 .trashed > :not(.columnIcon), tr[data-trashed='true'] > :not(.columnIcon) {
-  text-decoration: line-through;
+    text-decoration: line-through;
 }
 .boxesContentTop .box .boxMenu .boxMenuItemDepth1 .boxMenuLink, .boxesContentBottom .box .boxMenu .boxMenuItemDepth1 .boxMenuLink {
   padding-left: 20px;
 }
 .boxesContentTop .box .boxMenu .boxMenuItemDepth2 .boxMenuLink, .boxesContentBottom .box .boxMenu .boxMenuItemDepth2 .boxMenuLink {
-  padding-left: 40px;
+    padding-left: 40px;
 }
 .boxesContentTop .box .boxMenu .boxMenuItemDepth3 .boxMenuLink, .boxesContentBottom .box .boxMenu .boxMenuItemDepth3 .boxMenuLink {
-  padding-left: 60px;
+    padding-left: 60px;
 }
 .boxesContentTop .box .boxMenu .boxMenuItemDepth4 .boxMenuLink, .boxesContentBottom .box .boxMenu .boxMenuItemDepth4 .boxMenuLink {
-  padding-left: 80px;
+    padding-left: 80px;
 }
 .AssetQRCode {
     float: right;
