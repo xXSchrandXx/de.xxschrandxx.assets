@@ -16,8 +16,8 @@
 			<item name="assets.asset.reventActivity.trash"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> entfernt.]]></item>
 			<item name="assets.asset.reventActivity.restore"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> wiederhergestellt.]]></item>
 
-			<item name="assets.asset.reventActivity.comment"><![CDATA[Hat einen Kommentar zum Vermögenswert <a href="{$asset->getLink()}#comment{$commentID}">{$asset->getTitle()}</a> geschrieben.]]></item>
-			<item name="assets.asset.reventActivity.commentResponse"><![CDATA[Hat auf einen Kommentar von <a href="{link controller='User' object=$commentAuthor}{/link}">{$commentAuthor->username}</a> zum Vermögenswert <a href="{$asset->getLink()}#comment{@$commentID}/response{@$responseID}">{$asset->getTitle()}</a> geantwortet.]]></item>
+			<item name="assets.asset.reventActivity.comment"><![CDATA[Hat einen Kommentar zum Vermögenswert <a href="{$asset->getLink()}#comments/comment{$commentID}">{$asset->getTitle()}</a> geschrieben.]]></item>
+			<item name="assets.asset.reventActivity.commentResponse"><![CDATA[Hat auf einen Kommentar von <a href="{link controller='User' object=$commentAuthor}{/link}">{$commentAuthor->username}</a> zum Vermögenswert <a href="{$asset->getLink()}#comments/comment{@$commentID}/response{@$responseID}">{$asset->getTitle()}</a> geantwortet.]]></item>
 		</category>
 		<category name="wcf.acl.option">
 			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.user.assets.category"><![CDATA[Allgemeine Rechte]]></item>
