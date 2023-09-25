@@ -222,11 +222,12 @@
 {/hascontent}
 
 <script data-relocate="true">
-	require(['WoltLabSuite/Core/Controller/Clipboard'], (ControllerClipboard) => {
+	require(['WoltLabSuite/Core/Controller/Clipboard', 'xXSchrandXx/Assets/Ui/Asset/ClipboardListener'], (ControllerClipboard, ClipboardListener) => {
 		ControllerClipboard.setup({
 			pageClassName: 'assets\\page\\AssetListPage',
 			hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
 		});
+		new ClipboardListener();
 	});
 
 	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(Language, UiAssetListEditor) {

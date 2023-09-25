@@ -47,8 +47,29 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<defaultvalue>Assets</defaultvalue>
 			</option>
 			<option name="assets_label_logo">
-				<categoryname>assets_general</categoryname>
+				<categoryname>assets_label</categoryname>
 				<optiontype>file</optiontype>
+			</option>
+			<option name="assets_label_logo_height">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>1.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_logo_margin_top">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.05</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_logo_margin_right">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.05</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
 			</option>
 			<option name="assets_label_per_page">
 				<categoryname>assets_label</categoryname>
@@ -166,24 +187,31 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>
-			<option name="assets_label_logo_height">
-				<categoryname>assets_label</categoryname>
-				<optiontype>float</optiontype>
-				<defaultvalue>1.0</defaultvalue>
-				<minvalue>0</minvalue>
-				<suffix>cm</suffix>
-			</option>
 			<option name="assets_label_text_padding_top">
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
-				<defaultvalue>0.5</defaultvalue>
+				<defaultvalue>0</defaultvalue>
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>
 			<option name="assets_label_text_padding_right">
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
-				<defaultvalue>0.5</defaultvalue>
+				<defaultvalue>0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_text_padding_bottom">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_text_padding_left">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0</defaultvalue>
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>

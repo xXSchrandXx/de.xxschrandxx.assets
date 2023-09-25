@@ -27,53 +27,41 @@
     padding: {ASSETS_LABEL_PADDING}cm;
     display: inline-block;
     overflow: hidden;
+    position: relative;
 }
-.page-break  {
-    page-break-after:always;
-}
-div.qr_img, img.AssetQRCode {
+img.AssetQRCode {
     width: {ASSETS_LABEL_QR_WIDTH}cm;
     height: {ASSETS_LABEL_QR_HEIGHT}cm;
 
-	float: left;
+    float: left;
     display: inline-flex;
     padding-right: {ASSETS_LABEL_QR_PADDING_RIGHT}cm;
     padding-top: {ASSETS_LABEL_QR_PADDING_TOP}cm;
 }
-img.label-logo {
-    float: right;
-    display: inline-block;
-    height: {ASSETS_LABEL_LOGO_HEIGHT}cm;
-}
 .qr_text {
     padding-top: {ASSETS_LABEL_TEXT_PADDING_TOP}cm;
     padding-right: {ASSETS_LABEL_TEXT_PADDING_RIGHT}cm;
+    padding-bottom: {ASSETS_LABEL_TEXT_PADDING_BOTTOM}cm;
+    padding-left: {ASSETS_LABEL_TEXT_PADDING_LEFT}cm;
     overflow: hidden !important;
-    display: inline;
-	word-wrap: break-word;
+    word-wrap: break-word;
     word-break: break-all;
 }
-.next-padding {
-    margin-top: {ASSETS_LABEL_PAGE_MARGIN_TOP}cm;
-    margin-right: {ASSETS_LABEL_PAGE_MARGIN_RIGHT}cm;
-    margin-bottom: {ASSETS_LABEL_PAGE_MARGIN_BOTTOM}cm;
-    margin-left: {ASSETS_LABEL_PAGE_MARGIN_LEFT}cm;
+img.label_logo {
+    height: {ASSETS_LABEL_LOGO_HEIGHT}cm;
+
+    margin-top: {ASSETS_LABEL_LOGO_MARGIN_TOP}cm;
+    margin-right: {ASSETS_LABEL_LOGO_MARGIN_RIGHT}cm;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
-@media  print {
-    .noprint {
-        display: none !important;
-    }
-}
+
 @media  screen {
     .label {
-        outline: 0,01cm black solid; /* outline doesn't occupy space like border does */
+        outline: 0.01cm black solid; /* outline doesn't occupy space like border does */
     }
-    .noprint {
-        font-size: 13px;
-        padding-bottom: 15px;
-    }
-}
-		</style>
+}</style>
 	</head>
 	<body>
 		{foreach from=$chunks item=chunk}
@@ -84,9 +72,7 @@ img.label-logo {
 				{foreach from=$chunk item=object}
 					<div class="label">
 						{if !$object|is_string}
-							<div class="rq_img">
-								{@$object->getQRCode()}
-							</div>
+							{@$object->getQRCode()}
 							<div class="qr_text">
 								<p><strong>{ASSETS_LABEL_HEADER}</strong></p>
 								<p>{lang}wcf.label.asset.title{/lang}</p>
@@ -94,7 +80,7 @@ img.label-logo {
 								<p>{lang}wcf.label.asset.location{/lang}</p>
 								<p>{lang}wcf.label.asset.objectID{/lang}</p>
 							</div>
-							<img class="label-logo" src="{ASSETS_LABEL_LOGO}"/>
+							<img class="label_logo" src="{ASSETS_LABEL_LOGO}"/>
 						{/if}
 					</div>
 				{/foreach}

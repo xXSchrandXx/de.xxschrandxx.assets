@@ -83,6 +83,11 @@
 			<!-- label -->
 			<item name="wcf.acp.option.category.assets_label"><![CDATA[Label export]]></item>
 			<item name="wcf.acp.option.assets_label_header"><![CDATA[Firma]]></item>
+			<item name="wcf.acp.option.assets_label_logo"><![CDATA[Logo]]></item>
+			<item name="wcf.acp.option.assets_label_logo.removeFile"><![CDATA[Bild entfernen]]></item>
+			<item name="wcf.acp.option.assets_label_logo_height"><![CDATA[Logo größe]]></item>
+			<item name="wcf.acp.option.assets_label_logo_margin_top"><![CDATA[Obere Abstand]]></item>
+			<item name="wcf.acp.option.assets_label_logo_margin_right"><![CDATA[Rechte Abstand]]></item>
 			<item name="wcf.acp.option.assets_label_per_page"><![CDATA[Label je Seite]]></item>
 			<item name="wcf.acp.option.assets_label_format"><![CDATA[Seitenformat]]></item>
 			<item name="wcf.acp.option.assets_label_orientation"><![CDATA[Seitenausrichtung]]></item>
@@ -99,9 +104,10 @@
 			<item name="wcf.acp.option.assets_label_qr_height"><![CDATA[QR-Code höhe]]></item>
 			<item name="wcf.acp.option.assets_label_qr_padding_right"><![CDATA[QR-Code Abstand rechts]]></item>
 			<item name="wcf.acp.option.assets_label_qr_padding_top"><![CDATA[QR-Code Abstand oben]]></item>
-			<item name="wcf.acp.option.assets_label_logo_height"><![CDATA[Logo größe]]></item>
 			<item name="wcf.acp.option.assets_label_text_padding_top"><![CDATA[Text Abstand oben]]></item>
-			<item name="wcf.acp.option.assets_label_text_padding_right"><![CDATA[Text Abstand unten]]></item>
+			<item name="wcf.acp.option.assets_label_text_padding_right"><![CDATA[Text Abstand rechts]]></item>
+			<item name="wcf.acp.option.assets_label_text_padding_bottom"><![CDATA[Text Abstand links]]></item>
+			<item name="wcf.acp.option.assets_label_text_padding_left"><![CDATA[Text Abstand unten]]></item>
 		</category>
 		<category name="wcf.acp.group">
 			<item name="wcf.acp.group.option.category.user.assets"><![CDATA[Vermögenswerte]]></item>
@@ -162,6 +168,8 @@
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte löschen?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit"><![CDATA[Audit ({#$count})]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich den Auditstatus von {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} aktuallisieren?]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel"><![CDATA[Label generieren ({#$count})]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich die Label für {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} erstellen?]]></item>
 		</category>
 		<category name="wcf.edit">
 			<item name="wcf.edit.comment"><![CDATA[Kommentar]]></item>

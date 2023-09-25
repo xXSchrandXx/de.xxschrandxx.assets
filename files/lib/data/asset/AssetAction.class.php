@@ -397,8 +397,6 @@ class AssetAction extends AbstractDatabaseObjectAction
             }
         }
 
-        wcfDebug(ASSETS_LABEL_LOGO);
-
         return $tplEngine->fetch('__label', 'assets', [
             'skipFields' => $skipFields,
             'chunks' => $chunks,
