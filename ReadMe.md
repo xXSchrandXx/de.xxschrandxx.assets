@@ -5,6 +5,5 @@
 # ToDo
 - Lending (Extra plugin)
 - Rename variables etc. (wcf to assets)
-- Add Dashboard info
 - Use caching
 - Label generation

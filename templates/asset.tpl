@@ -102,7 +102,7 @@
 		{include file='__overview' application='assets'}
 	</div>
 	<div id="comments" class="tabMenuContent">
-		{include file='comments'}
+		{include file='comments' lastCommentTime=$object->getLastCommentDateTime()->format('U')}
 	</div>
 	<div id="audits" class="tabMenuContent">
 		{include file='__audits' application='assets'}

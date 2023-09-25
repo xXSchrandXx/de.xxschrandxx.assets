@@ -155,6 +155,23 @@
 			<permissions>user.assets.canView</permissions>
 		</type>
 		<!-- /Bulk Processing -->
+		<!-- Revent Activity (Dashboard) -->
+		<type>
+			<name>de.xxschrandxx.assets.asset.recentActivityEvent</name>
+			<definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
+			<classname>assets\system\user\activity\event\AssetUserActivityEvent</classname>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.comment.recentActivityEvent</name>
+			<definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
+			<classname>assets\system\user\activity\event\AssetCommentUserActivityEvent</classname>
+		</type>
+		<type>
+			<name>de.xxschrandxx.assets.asset.comment.response.recentActivityEvent</name>
+			<definitionname>com.woltlab.wcf.user.recentActivityEvent</definitionname>
+			<classname>assets\system\user\activity\event\AssetCommentResponseUserActivityEvent</classname>
+		</type>
+		<!-- /Revent Activity -->
 
 		<!-- ListPage -->
 		<!-- ClipboardAction -->

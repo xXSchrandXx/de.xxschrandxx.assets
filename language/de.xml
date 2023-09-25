@@ -4,10 +4,20 @@
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
 	<import>
 		<category name="assets.asset">
-			<item name="assets.asset.audit"><![CDATA[Audit]]></item>
+			<item name="assets.asset.audit"><![CDATA[Prüfung]]></item>
 			<item name="assets.asset.audit.comment.optional"><![CDATA[Kommentar (Optional)]]></item>
 			<item name="assets.asset.trash"><![CDATA[Vermögenswert entfernen]]></item>
 			<item name="assets.asset.restore"><![CDATA[Vermögenswert wiederherstellen]]></item>
+		</category>
+		<category name="assets.asset.reventActivity">
+			<item name="assets.asset.reventActivity.create"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> erstellt.]]></item>
+			<item name="assets.asset.reventActivity.update"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> bearbeitet.]]></item>
+			<item name="assets.asset.reventActivity.audit"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> geprüft.]]></item>
+			<item name="assets.asset.reventActivity.trash"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> entfernt.]]></item>
+			<item name="assets.asset.reventActivity.restore"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> wiederhergestellt.]]></item>
+
+			<item name="assets.asset.reventActivity.comment"><![CDATA[Hat einen Kommentar zum Vermögenswert <a href="{$asset->getLink()}#comment{$commentID}">{$asset->getTitle()}</a> geschrieben.]]></item>
+			<item name="assets.asset.reventActivity.commentResponse"><![CDATA[Hat auf einen Kommentar von <a href="{link controller='User' object=$commentAuthor}{/link}">{$commentAuthor->username}</a> zum Vermögenswert <a href="{$asset->getLink()}#comment{@$commentID}/response{@$responseID}">{$asset->getTitle()}</a> geantwortet.]]></item>
 		</category>
 		<category name="wcf.acl.option">
 			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.user.assets.category"><![CDATA[Allgemeine Rechte]]></item>
@@ -34,8 +44,8 @@
 			<item name="wcf.acp.export.amount"><![CDATA[Stückzahl]]></item>
 			<item name="wcf.acp.export.locationID"><![CDATA[Standort ID]]></item>
 			<item name="wcf.acp.export.location"><![CDATA[Standort]]></item>
-			<item name="wcf.acp.export.nextAudit"><![CDATA[Nächste Audit]]></item>
-			<item name="wcf.acp.export.lastAudit"><![CDATA[Letzte Audit]]></item>
+			<item name="wcf.acp.export.nextAudit"><![CDATA[Nächste Prüfung]]></item>
+			<item name="wcf.acp.export.lastAudit"><![CDATA[Letzte Prüfung]]></item>
 			<item name="wcf.acp.export.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
 			<item name="wcf.acp.export.time"><![CDATA[Erstellt]]></item>
 		</category>
@@ -65,7 +75,7 @@
 			<item name="wcf.acp.option.assets_legacyid_enabled"><![CDATA[Benutze eigene ID]]></item>
 			<item name="wcf.acp.option.assets_legacyid_enabled.description"><![CDATA[Wenn aktiviert, werden eigene anstelle der Automatisch vergebenen IDs verwendet.]]></item>
 			<!-- audit -->
-			<item name="wcf.acp.option.category.assets_audit"><![CDATA[Audits]]></item>
+			<item name="wcf.acp.option.category.assets_audit"><![CDATA[Prüfungen]]></item>
 			<item name="wcf.acp.option.assets_audit_interval"><![CDATA[Festen Tag verwenden]]></item>
 			<item name="wcf.acp.option.assets_auditinterval_amount"><![CDATA[Anzahl an Einheiten]]></item>
 			<item name="wcf.acp.option.assets_auditinterval_unit"><![CDATA[Einheit]]></item>
@@ -140,7 +150,7 @@
 			<item name="wcf.asset.action.edit"><![CDATA[Bearbeitet]]></item>
 			<item name="wcf.asset.action.restore"><![CDATA[Wiederhergestellt]]></item>
 			<item name="wcf.asset.action.trash"><![CDATA[Entfernt]]></item>
-			<item name="wcf.asset.action.audit"><![CDATA[Audit]]></item>
+			<item name="wcf.asset.action.audit"><![CDATA[Prüfung]]></item>
 		</category>
 		<category name="wcf.box">
 			<!-- Filter box -->
@@ -154,7 +164,7 @@
 			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.categories"><![CDATA[{plural value=$categoryCount 1='Kategorie' other='Kategorien'}]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.locations"><![CDATA[{plural value=$locationCount 1='Standort' other='Standorte'}]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.assets"><![CDATA[{plural value=$assetCount 1='Vermögenswert' other='Vermögenswerte'}]]></item>
-			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.audits"><![CDATA[{plural value=$auditCount 1='Audit' other='Audits'}]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.audits"><![CDATA[{plural value=$auditCount 1='Prüfung' other='Prüfungen'}]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.modifications"><![CDATA[{plural value=$modificationCount 1='Modifikation' other='Modifikationen'}]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.AssetStatistics.perDay"><![CDATA[pro Tag]]></item>
 		</category>
@@ -166,8 +176,8 @@
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.restore.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte wiederherstellen?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete"><![CDATA[Endgültig löschen ({#$count})]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte löschen?]]></item>
-			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit"><![CDATA[Audit ({#$count})]]></item>
-			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich den Auditstatus von {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} aktuallisieren?]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit"><![CDATA[Prüfen ({#$count})]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich den Prüfstatus von {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} aktuallisieren?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel"><![CDATA[Label generieren ({#$count})]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich die Label für {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} erstellen?]]></item>
 		</category>
@@ -182,8 +192,8 @@
 			<item name="wcf.page.assetList.category"><![CDATA[Kategorie]]></item>
 			<item name="wcf.page.assetList.amount"><![CDATA[Stückzahl]]></item>
 			<item name="wcf.page.assetList.location"><![CDATA[Standort]]></item>
-			<item name="wcf.page.assetList.lastAudit"><![CDATA[Letzte Audit]]></item>
-			<item name="wcf.page.assetList.nextAudit"><![CDATA[Nächste Audit]]></item>
+			<item name="wcf.page.assetList.lastAudit"><![CDATA[Letzte Prüfung]]></item>
+			<item name="wcf.page.assetList.nextAudit"><![CDATA[Nächste Prüfung]]></item>
 			<item name="wcf.page.assetList.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
 			<item name="wcf.page.assetList.time"><![CDATA[Erstellt]]></item>
 			<item name="wcf.page.assetList.noCategories"><![CDATA[Keine Kategorien gefunden. <a href="{link controller='CategoryAdd' application='assets' isACP=1}{/link}">Füge eine neue Kategorie hinzu.</a>]]></item>
@@ -199,8 +209,8 @@
 			<item name="wcf.page.asset.overview.amount"><![CDATA[Anzahl]]></item>
 			<item name="wcf.page.asset.overview.category"><![CDATA[Kategorie]]></item>
 			<item name="wcf.page.asset.overview.location"><![CDATA[Standort]]></item>
-			<item name="wcf.page.asset.overview.nextAudit"><![CDATA[Nächste Audit]]></item>
-			<item name="wcf.page.asset.overview.lastAudit"><![CDATA[Letzte Audit]]></item>
+			<item name="wcf.page.asset.overview.nextAudit"><![CDATA[Nächste Prüfung]]></item>
+			<item name="wcf.page.asset.overview.lastAudit"><![CDATA[Letzte Prüfung]]></item>
 			<item name="wcf.page.asset.overview.created"><![CDATA[Erstellt]]></item>
 			<item name="wcf.page.asset.overview.description"><![CDATA[{lang}wcf.global.description{/lang}]]></item>
 
@@ -209,7 +219,7 @@
 			<item name="wcf.page.asset.comment.response"><![CDATA[Antwort]]></item>
 
 			<!-- Audits -->
-			<item name="wcf.page.asset.audits"><![CDATA[Audits]]></item>
+			<item name="wcf.page.asset.audits"><![CDATA[Prüfungen]]></item>
 
 			<!-- History -->
 			<item name="wcf.page.asset.history"><![CDATA[Historie]]></item>
@@ -227,7 +237,7 @@
 			<item name="wcf.form.asset.field.amount"><![CDATA[Stückzahl]]></item>
 			<item name="wcf.form.asset.field.locationID"><![CDATA[Standort]]></item>
 			<item name="wcf.form.asset.field.locationID.description"><![CDATA[Standort des Vermögenswertes, wenn er nicht ausgeliehen ist.]]></item>
-			<item name="wcf.form.asset.field.nextAudit"><![CDATA[Nächste Audit]]></item>
+			<item name="wcf.form.asset.field.nextAudit"><![CDATA[Nächste Prüfung]]></item>
 			<item name="wcf.form.asset.field.description"><![CDATA[Beschreibung]]></item>
 
 			<!-- AssetBorrow -->
@@ -245,6 +255,11 @@
 			<item name="wcf.label.asset.location"><![CDATA[S: {$object->getLocation()->getTitle()}]]></item>
 			<item name="wcf.label.asset.objectID"><![CDATA[ID: {#$object->getObjectID()}]]></item>
 		</category>
+		<category name="wcf.user.recentActivity">
+			<item name="wcf.user.recentActivity.de.xxschrandxx.assets.asset.recentActivityEvent"><![CDATA[Vermögenswert]]></item>
+			<item name="wcf.user.recentActivity.de.xxschrandxx.assets.asset.comment.recentActivityEvent"><![CDATA[Kommentar (Vermögenswert)]]></item>
+			<item name="wcf.user.recentActivity.de.xxschrandxx.assets.asset.comment.response.recentActivityEvent"><![CDATA[Antwort (Vermögenswert)]]></item>
+		</category>
 		<category name="assets.acp.asset">
 			<item name="assets.acp.asset.bulkProcessing"><![CDATA[Vermögenswert-Massenbearbeitung]]></item>
 			<item name="assets.acp.asset.bulkProcessing.log"><![CDATA[Administrative Massenbearbeitung.]]></item>
@@ -253,7 +268,7 @@
 			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Audit]]></item>
+			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Prüfung]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.right"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
@@ -265,12 +280,12 @@
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.category"><![CDATA[Kategorie]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.location"><![CDATA[Standort]]></item>
 			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.trashed"><![CDATA[Ist entfernt]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit"><![CDATA[Audit]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.needsAudit"><![CDATA[Audit überfällig]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditBefore"><![CDATA[Letzte Audit vor Datum]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditAfter"><![CDATA[Letzte Audit nach Datum]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditBefore"><![CDATA[Nächste Audit vor Datum]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditAfter"><![CDATA[Nächste Audit nach Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit"><![CDATA[Prüfung]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.needsAudit"><![CDATA[Prüfung überfällig]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditBefore"><![CDATA[Letzte Prüfung vor Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditAfter"><![CDATA[Letzte Prüfung nach Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditBefore"><![CDATA[Nächste Prüfung vor Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditAfter"><![CDATA[Nächste Prüfung nach Datum]]></item>
 		</category>
 		<category name="wcf.acp.stat">
 			<item name="wcf.acp.stat.category.de.xxschrandxx.assets"><![CDATA[Vermögenswerte]]></item>

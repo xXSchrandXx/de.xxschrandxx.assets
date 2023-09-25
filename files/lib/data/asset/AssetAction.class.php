@@ -13,8 +13,8 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
-use wcf\system\style\StyleHandler;
 use wcf\system\template\TemplateEngine;
+use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\WCF;
 
 /**
@@ -78,6 +78,18 @@ class AssetAction extends AbstractDatabaseObjectAction
             }
         }
 
+        // add user activity
+        UserActivityEventHandler::getInstance()->fireEvent(
+            'de.xxschrandxx.assets.asset.recentActivityEvent',
+            $asset->getObjectID(),
+            null,
+            null,
+            TIME_NOW,
+            [
+                'action' => 'create'
+            ]
+        );
+
         // update search index
         SearchIndexManager::getInstance()->set(
             'de.xxschrandxx.assets.asset',
@@ -137,6 +149,18 @@ class AssetAction extends AbstractDatabaseObjectAction
         parent::update();
 
         foreach ($this->getObjects() as $asset) {
+            // add user activity
+            UserActivityEventHandler::getInstance()->fireEvent(
+                'de.xxschrandxx.assets.asset.recentActivityEvent',
+                $asset->getObjectID(),
+                $this->parameters['data']['userID'] ?? $asset->userID,
+                $this->parameters['data']['time'] ?? $asset->time,
+                TIME_NOW,
+                [
+                    'action' => 'update'
+                ]
+            );
+
             // update search index
             SearchIndexManager::getInstance()->set(
                 'de.xxschrandxx.assets.asset',
@@ -205,7 +229,19 @@ class AssetAction extends AbstractDatabaseObjectAction
                 $comment = $this->parameters['data']['comment'];
                 unset($this->parameters['data']['comment']);
             }
+            // add log
             AssetModificationLogHandler::getInstance()->audit($asset->getDecoratedObject(), $comment);
+            // add user activity
+            UserActivityEventHandler::getInstance()->fireEvent(
+                'de.xxschrandxx.assets.asset.recentActivityEvent',
+                $asset->getObjectID(),
+                null,
+                null,
+                TIME_NOW,
+                [
+                    'action' => 'audit'
+                ]
+            );
         }
     }
 
@@ -251,7 +287,19 @@ class AssetAction extends AbstractDatabaseObjectAction
                 $reason = $this->parameters['data']['reason'];
                 unset($this->parameters['data']['reason']);
             }
+            // add log
             AssetModificationLogHandler::getInstance()->trash($asset->getDecoratedObject(), $reason);
+            // add user activity
+            UserActivityEventHandler::getInstance()->fireEvent(
+                'de.xxschrandxx.assets.asset.recentActivityEvent',
+                $asset->getObjectID(),
+                null,
+                null,
+                TIME_NOW,
+                [
+                    'action' => 'trash'
+                ]
+            );
         }
     }
 
@@ -297,7 +345,19 @@ class AssetAction extends AbstractDatabaseObjectAction
                 $reason = $this->parameters['data']['reason'];
                 unset($this->parameters['data']['reason']);
             }
+            // add log
             AssetModificationLogHandler::getInstance()->restore($asset->getDecoratedObject(), $reason);
+            // add user activity
+            UserActivityEventHandler::getInstance()->fireEvent(
+                'de.xxschrandxx.assets.asset.recentActivityEvent',
+                $asset->getObjectID(),
+                null,
+                null,
+                TIME_NOW,
+                [
+                    'action' => 'restore'
+                ]
+            );
         }
     }
 
@@ -329,6 +389,12 @@ class AssetAction extends AbstractDatabaseObjectAction
 
         // delete attachments
         AttachmentHandler::removeAttachments('de.xxschrandxx.assets.asset.attachment', $objectIDs);
+
+        // delete user activity
+        UserActivityEventHandler::getInstance()->removeEvents(
+            'de.xxschrandxx.assets.asset.recentActivityEvent',
+            $objectIDs
+        );
     }
 
     /**
