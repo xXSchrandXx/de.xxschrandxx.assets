@@ -63,6 +63,10 @@ class AssetClipboardAction extends AbstractClipboardAction
                         ]
                     )
                 );
+                $item->addInternalData(
+                    'template',
+                    WCF::getTPL()->fetch('__clipboardReasonField', 'assets')
+                );
                 break;
             case 'restore':
                 $item->addInternalData(
@@ -73,6 +77,10 @@ class AssetClipboardAction extends AbstractClipboardAction
                             'count' => $item->getCount()
                         ]
                     )
+                );
+                $item->addInternalData(
+                    'template',
+                    WCF::getTPL()->fetch('__clipboardReasonField', 'assets')
                 );
                 break;
             case 'delete':
@@ -96,6 +104,10 @@ class AssetClipboardAction extends AbstractClipboardAction
                         ]
                     )
                 );
+                $item->addInternalData(
+                    'template',
+                    WCF::getTPL()->fetch('__clipboardCommentField', 'assets')
+                );
                 break;
             case 'getLabel':
                 $item->addInternalData(
@@ -106,6 +118,10 @@ class AssetClipboardAction extends AbstractClipboardAction
                             'count' => $item->getCount()
                         ]
                     )
+                );
+                $item->addInternalData(
+                    'template',
+                    WCF::getTPL()->fetch('__clipboardSkipFieldsField', 'assets')
                 );
                 break;
         }

@@ -402,7 +402,7 @@ class AssetAction extends AbstractDatabaseObjectAction
      */
     public function validateGetLabel()
     {
-        $this->readInteger('skipFields', true,);
+        $this->readInteger('skipFields', true, 'data');
 
         // read objects
         if (empty($this->objects)) {
@@ -440,11 +440,10 @@ class AssetAction extends AbstractDatabaseObjectAction
         }
 
         // calculate label spaces to skip
-        $skipFields = null;
-        if (isset($this->parameters['skipFields']) && is_numeric($this->parameters['skipFields']) && $this->parameters['skipFields'] > 0) {
-            $skipFields = '';
-            for ($i = 0; $i > $this->parameters['skipFields']; $i++) {
-                $skipFields =+ '<div class="label" />';
+        $dummys = [];
+        if (isset($this->parameters['data']['skipFields']) && is_numeric($this->parameters['data']['skipFields']) && $this->parameters['data']['skipFields'] > 0) {
+            for ($i = 0; $i < $this->parameters['data']['skipFields']; $i++) {
+                $dummys[] = 'dummy' . $i;
             }
         }
 
@@ -454,7 +453,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         if (\class_exists(\wcf\system\WCFACP::class, false) || !PACKAGE_ID) {
             $tplEngine->addApplication('assets', ASSETS_DIR.'templates/');
         }
-        $chunks = array_chunk($this->getObjects(), ASSETS_LABEL_PER_PAGE);
+        $chunks = array_chunk(array_merge($dummys, $this->getObjects()), ASSETS_LABEL_PER_PAGE);
 
         // add dummys
         foreach ($chunks as &$chunk) {
@@ -464,7 +463,6 @@ class AssetAction extends AbstractDatabaseObjectAction
         }
 
         return $tplEngine->fetch('__label', 'assets', [
-            'skipFields' => $skipFields,
             'chunks' => $chunks,
             'pageWidth' => $pageWidth,
             'pageHeight' => $pageHeight,

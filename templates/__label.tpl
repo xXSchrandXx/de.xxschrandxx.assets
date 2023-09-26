@@ -80,9 +80,6 @@ img.label_logo {
 	<body>
 		{foreach from=$chunks item=chunk}
 			<div class="page">
-				{if $skipFields|isset}
-					{@$skipFields}
-				{/if}
 				{foreach from=$chunk item=object}
 					<div class="label">
 						{if !$object|is_string}

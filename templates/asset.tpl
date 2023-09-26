@@ -102,7 +102,10 @@
 		{include file='__overview' application='assets'}
 	</div>
 	<div id="comments" class="tabMenuContent">
-		{include file='comments' lastCommentTime=$object->getLastCommentDateTime()->format('U')}
+		{if $object->getLastCommentDateTime() !== null}
+			{assign var=lastCommentTime value=$object->getLastCommentDateTime()->format('U')}
+		{/if}
+		{include file='comments'}
 	</div>
 	<div id="audits" class="tabMenuContent">
 		{include file='__audits' application='assets'}
