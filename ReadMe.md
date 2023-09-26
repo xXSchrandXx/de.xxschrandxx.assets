@@ -6,4 +6,4 @@
 - Lending (Extra plugin)
 - Rename variables etc. (wcf to assets)
 - Use caching
-- Label generation
+- Add per category label logo

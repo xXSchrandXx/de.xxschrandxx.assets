@@ -49,6 +49,11 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 			<option name="assets_label_logo">
 				<categoryname>assets_label</categoryname>
 				<optiontype>file</optiontype>
+				<filelocation>images/label_logo</filelocation>
+				<fileExtensions>jpeg
+jpg
+png
+webp</fileExtensions>
 			</option>
 			<option name="assets_label_logo_height">
 				<categoryname>assets_label</categoryname>
