@@ -1,13 +1,52 @@
 {
     "config": {
+        "vendor-dir": "files/lib/system/api/",
+        "prepend-autoloader": false,
+        "optimize-autoloader": true,
+        "sort-packages": true,
         "platform": {
-            "php": "8.0"
-        },
-        "vendor-dir": "files/lib/system/api/"
+            "php": "8.1.2",
+            "ext-gd": "0"
+        }
     },
     "require": {
-        "dompdf/dompdf": "^2.0",
+        "dompdf/dompdf": "^2.0.3",
         "phpoffice/phpspreadsheet": "^1.28",
         "chillerlan/php-qrcode": "^4.3"
-    }
+    },
+    "replace": {
+        "cuyz/valinor": "1.6.0",
+        "dragonmantank/cron-expression": "v3.3.3",
+        "erusev/parsedown": "1.7.4",
+        "ezyang/htmlpurifier": "v4.16.0",
+        "guzzlehttp/guzzle": "7.8.0",
+        "guzzlehttp/promises": "2.0.1",
+        "guzzlehttp/psr7": "2.6.1",
+        "laminas/laminas-diactoros": "3.2.0",
+        "laminas/laminas-httphandlerrunner": "2.9.0",
+        "laminas/laminas-progressbar": "2.12.0",
+        "laminas/laminas-stdlib": "3.17.0",
+        "paragonie/constant_time_encoding": "v2.6.3",
+        "pelago/emogrifier": "v7.0.0",
+        "psr/clock": "1.0.0",
+        "psr/event-dispatcher": "1.0.0",
+        "psr/http-client": "1.0.2",
+        "psr/http-factory": "1.0.2",
+        "psr/http-message": "2.0",
+        "psr/http-server-handler": "1.0.2",
+        "psr/http-server-middleware": "1.0.2",
+        "psr/log": "3.0.0",
+        "psr/simple-cache": "3.0.0",
+        "ralouphie/getallheaders": "3.0.3",
+        "sabberworm/php-css-parser": "8.4.0",
+        "scssphp/scssphp": "v1.11.0",
+        "sebastian/diff": "5.0.3",
+        "symfony/css-selector": "v6.3.2",
+        "symfony/deprecation-contracts": "v3.3.0",
+        "symfony/polyfill-php82": "v1.28.0",
+        "symfony/polyfill-php83": "v1.28.0",
+        "webmozart/assert": "1.11.0",
+        "willdurand/negotiation": "3.1.0"
+    },
+    "type": "project"
 }
