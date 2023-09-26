@@ -232,7 +232,7 @@ class ImportForm extends AbstractFormBuilderForm
             }
 
             $action = new AssetAction([], 'create', ['data' => $parameters]);
-//            $action->executeAction();
+            $action->executeAction();
         }
 
         $this->saved();
