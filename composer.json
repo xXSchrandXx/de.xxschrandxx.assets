@@ -3,7 +3,7 @@
         "platform": {
             "php": "8.0"
         },
-        "vendor-dir": "files_api/lib/system/api/"
+        "vendor-dir": "files/lib/system/api/"
     },
     "require": {
         "dompdf/dompdf": "^2.0",
