@@ -114,6 +114,10 @@
 			<item name="wcf.acp.option.assets_label_qr_height"><![CDATA[QR-Code höhe]]></item>
 			<item name="wcf.acp.option.assets_label_qr_padding_right"><![CDATA[QR-Code Abstand rechts]]></item>
 			<item name="wcf.acp.option.assets_label_qr_padding_top"><![CDATA[QR-Code Abstand oben]]></item>
+			<item name="wcf.acp.option.assets_label_title_margin_start"><![CDATA[Titel Zeilenabstand oben]]></item>
+			<item name="wcf.acp.option.assets_label_title_margin_end"><![CDATA[Titel Zeilenabstand unten]]></item>
+			<item name="wcf.acp.option.assets_label_text_margin_start"><![CDATA[Text Zeilenabstand oben]]></item>
+			<item name="wcf.acp.option.assets_label_text_margin_end"><![CDATA[Text Zeilenabstand unten]]></item>
 			<item name="wcf.acp.option.assets_label_text_padding_top"><![CDATA[Text Abstand oben]]></item>
 			<item name="wcf.acp.option.assets_label_text_padding_right"><![CDATA[Text Abstand rechts]]></item>
 			<item name="wcf.acp.option.assets_label_text_padding_bottom"><![CDATA[Text Abstand links]]></item>

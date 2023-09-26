@@ -36,7 +36,7 @@
 			<option name="assets_export_orientation">
 				<categoryname>assets_pdf_export</categoryname>
 				<optiontype>select</optiontype>
-				<defaultvalue>landscape</defaultvalue>
+				<defaultvalue>portrait</defaultvalue>
 				<selectoptions>landscape:wcf.acp.option.assets_export_orientation.landscape
 portrait:wcf.acp.option.assets_export_orientation.portrait
 				</selectoptions>
@@ -143,13 +143,6 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>
-			<option name="assets_label_padding">
-				<categoryname>assets_label</categoryname>
-				<optiontype>float</optiontype>
-				<defaultvalue>0.0</defaultvalue>
-				<minvalue>0</minvalue>
-				<suffix>cm</suffix>
-			</option>
 			<option name="assets_label_row_gap">
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
@@ -189,6 +182,34 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<categoryname>assets_label</categoryname>
 				<optiontype>float</optiontype>
 				<defaultvalue>0.0</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_title_margin_start">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.1</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_title_margin_end">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.15</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_text_margin_start">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.1</defaultvalue>
+				<minvalue>0</minvalue>
+				<suffix>cm</suffix>
+			</option>
+			<option name="assets_label_text_margin_end">
+				<categoryname>assets_label</categoryname>
+				<optiontype>float</optiontype>
+				<defaultvalue>0.1</defaultvalue>
 				<minvalue>0</minvalue>
 				<suffix>cm</suffix>
 			</option>

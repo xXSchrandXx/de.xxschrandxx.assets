@@ -24,7 +24,6 @@
 .label {
     width: {ASSETS_LABEL_WIDTH}cm;
     height: {ASSETS_LABEL_HEIGHT}cm;
-    padding: {ASSETS_LABEL_PADDING}cm;
     display: inline-block;
     overflow: hidden;
     position: relative;
@@ -37,6 +36,21 @@ img.AssetQRCode {
     display: inline-flex;
     padding-right: {ASSETS_LABEL_QR_PADDING_RIGHT}cm;
     padding-top: {ASSETS_LABEL_QR_PADDING_TOP}cm;
+}
+.qr_text h2 {
+	font-size: 1.5em;
+    margin-block-start: {ASSETS_LABEL_TITLE_MARGIN_START}cm;
+    margin-block-end: {ASSETS_LABEL_TITLE_MARGIN_END}cm;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.qr_text p {
+    display: block;
+	margin-block-start: {ASSETS_LABEL_TEXT_MARGIN_START}cm;
+    margin-block-end: {ASSETS_LABEL_TEXT_MARGIN_END}cm;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
 }
 .qr_text {
     padding-top: {ASSETS_LABEL_TEXT_PADDING_TOP}cm;
@@ -74,11 +88,12 @@ img.label_logo {
 						{if !$object|is_string}
 							{@$object->getQRCode()}
 							<div class="qr_text">
-								<p><strong>{ASSETS_LABEL_HEADER}</strong></p>
+								<h2>{ASSETS_LABEL_HEADER}</h2>
 								<p>{lang}wcf.label.asset.title{/lang}</p>
 								<p>{lang}wcf.label.asset.category{/lang}</p>
 								<p>{lang}wcf.label.asset.location{/lang}</p>
 								<p>{lang}wcf.label.asset.objectID{/lang}</p>
+								{event name='LabelExportValues'}
 							</div>
 							<img class="label_logo" src="{ASSETS_LABEL_LOGO}"/>
 						{/if}
