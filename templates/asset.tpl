@@ -89,10 +89,10 @@
 >
 	<nav class="tabMenu">
 		<ul>
-			<li><a href="#overview">{lang}wcf.page.asset.overview{/lang}</a></li>
+			<li><a href="#overview">{lang}assets.page.asset.overview{/lang}</a></li>
 			<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
-			<li><a href="#audits">{lang}wcf.page.asset.audits{/lang} <span class="badge">{#$auditLogs|count}</span></a></li>
-			<li><a href="#history">{lang}wcf.page.asset.history{/lang} <span class="badge">{#$modificationLogs|count}</span></a></li>
+			<li><a href="#audits">{lang}assets.page.asset.audits{/lang} <span class="badge">{#$auditLogs|count}</span></a></li>
+			<li><a href="#history">{lang}assets.page.asset.history{/lang} <span class="badge">{#$modificationLogs|count}</span></a></li>
 
 			{event name='tabMenuTabs'}
 		</ul>

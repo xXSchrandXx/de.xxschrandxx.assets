@@ -15,19 +15,19 @@
 {if $skipped|isset && !$skipped|empty}
 	<div class="section">
 		<h2 class="sectionTitle">
-			{lang}wcf.acp.form.import.skip.header{/lang}
+			{lang}assets.acp.form.import.skip.header{/lang}
 		</h2>
 		<table class="table">
 			<thead>
 				<tr>
 					<th class="columnID">
-						{lang}wcf.acp.form.import.skip.rowID{/lang}
+						{lang}assets.acp.form.import.skip.rowID{/lang}
 					</th>
 					<th class="columnTitle">
 						{lang}wcf.global.title{/lang}
 					</th>
 					<th class="columnText">
-						{lang}wcf.acp.form.import.skip.reason{/lang}
+						{lang}assets.acp.form.import.skip.reason{/lang}
 					</th>
 				</tr>
 			</thead>
@@ -41,7 +41,7 @@
 							{$item[$columnTitle]}
 						</td>
 						<td class="columnText">
-							{lang}wcf.acp.form.import.skip.error.{$item['reason']}{/lang}
+							{lang}assets.acp.form.import.skip.error.{$item['reason']}{/lang}
 						</td>
 					</tr>
 				{/foreach}
@@ -49,12 +49,12 @@
 		</table>
 	</div>
 {else}
-	<p class="info">{lang}wcf.acp.form.import.skip.noSkip{/lang}</p>
+	<p class="info">{lang}assets.acp.form.import.skip.noSkip{/lang}</p>
 {/if}
 
 <div class="section">
 	<h2 class="sectionTitle">
-		{lang}wcf.acp.form.import.example.header{/lang}
+		{lang}assets.acp.form.import.example.header{/lang}
 	</h2>
 	<table class="table">
 		<thead>
@@ -66,31 +66,31 @@
 					{lang}wcf.global.title{/lang}
 				</th>
 				<th class="columnInt">
-					{lang}wcf.acp.export.categoryID{/lang}
+					{lang}assets.acp.export.categoryID{/lang}
 				</th>
 				<th>
-					{lang}wcf.acp.export.category{/lang}
+					{lang}assets.acp.export.category{/lang}
 				</th>
 				<th class="columnInt">
-					{lang}wcf.acp.export.amount{/lang}
+					{lang}assets.acp.export.amount{/lang}
 				</th>
 				<th class="columnInt">
-					{lang}wcf.acp.export.locationID{/lang}
+					{lang}assets.acp.export.locationID{/lang}
 				</th>
 				<th>
-					{lang}wcf.acp.export.location{/lang}
+					{lang}assets.acp.export.location{/lang}
 				</th>
 				<th class="columnDate">
-					{lang}wcf.acp.export.nextAudit{/lang}
+					{lang}assets.acp.export.nextAudit{/lang}
 				</th>
 				<th class="columnDate">
-					{lang}wcf.acp.export.lastAudit{/lang}
+					{lang}assets.acp.export.lastAudit{/lang}
 				</th>
 				<th class="columnDate">
-					{lang}wcf.acp.export.lastModification{/lang}
+					{lang}assets.acp.export.lastModification{/lang}
 				</th>
 				<th class="columnDate">
-					{lang}wcf.acp.export.time{/lang}
+					{lang}assets.acp.export.time{/lang}
 				</th>
 				<th>
 					{lang}wcf.global.description{/lang}
@@ -100,21 +100,21 @@
 		<tbody>
 			<tr>
 				{if ASSETS_LEGACYID_ENABLED}
-					<td>{lang}wcf.acp.form.import.example.required{/lang}</td>
+					<td>{lang}assets.acp.form.import.example.required{/lang}</td>
 				{else}
-					<td>{lang}wcf.acp.form.import.example.optional{/lang}</td>
+					<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
 				{/if}
-				<td>{lang}wcf.acp.form.import.example.required{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.required{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optionalID{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.required{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.required{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optionalID{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optional{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optional{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optional{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optional{/lang}</td>
-				<td>{lang}wcf.acp.form.import.example.optional{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.required{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.required{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optionalID{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.required{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.required{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optionalID{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
+				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
 			</tr>
 		</tbody>
 	</table>

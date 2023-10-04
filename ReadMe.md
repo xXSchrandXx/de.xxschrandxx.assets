@@ -4,6 +4,5 @@
 
 # ToDo
 - Lending (Extra plugin)
-- Rename variables etc. (wcf to assets)
 - Use caching
 - Add per category label logo

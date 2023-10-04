@@ -74,7 +74,7 @@ class AssetAddForm extends AbstractFormBuilderForm
         // Read Categories
         $categories = [
             0 => [
-                'label' => WCF::getLanguage()->get('wcf.label.none'),
+                'label' => WCF::getLanguage()->get('assets.label.none'),
                 'value' => 0,
                 'depth' => 0,
                 'isSelectable' => 1
@@ -97,7 +97,7 @@ class AssetAddForm extends AbstractFormBuilderForm
         // Read Locations
         $locations = [
             0 => [
-                'label' => WCF::getLanguage()->get('wcf.label.none'),
+                'label' => WCF::getLanguage()->get('assets.label.none'),
                 'value' => 0,
                 'depth' => 0,
                 'isSelectable' => 1
@@ -121,8 +121,8 @@ class AssetAddForm extends AbstractFormBuilderForm
             FormContainer::create('data')
                 ->appendChildren([
                     TextFormField::create('legacyID')
-                        ->label('wcf.form.asset.field.legacyID')
-                        ->description('wcf.form.asset.field.legacyID.description')
+                        ->label('assets.form.asset.field.legacyID')
+                        ->description('assets.form.asset.field.legacyID.description')
                         ->minimumLength(1)
                         ->available(ASSETS_LEGACYID_ENABLED)
                         ->addValidator(
@@ -143,7 +143,7 @@ class AssetAddForm extends AbstractFormBuilderForm
                                         $field->addValidationError(
                                             new FormFieldValidationError(
                                                 'duplicate',
-                                                'wcf.form.asset.field.legacyID.error.duplicate'
+                                                'assets.form.asset.field.legacyID.error.duplicate'
                                             )
                                         );
                                     }
@@ -155,7 +155,7 @@ class AssetAddForm extends AbstractFormBuilderForm
                         ->maximumLength(20)
                         ->required(),
                     SingleSelectionFormField::create('categoryID')
-                        ->label('wcf.form.asset.field.categoryID')
+                        ->label('assets.form.asset.field.categoryID')
                         ->options($categories, true, false)
                         ->addValidator(
                             new FormFieldValidator(
@@ -174,12 +174,12 @@ class AssetAddForm extends AbstractFormBuilderForm
                         )
                         ->required(),
                     IntegerFormField::create('amount')
-                        ->label('wcf.form.asset.field.amount')
+                        ->label('assets.form.asset.field.amount')
                         ->minimum(1)
                         ->required(),
                     SingleSelectionFormField::create('locationID')
-                        ->label('wcf.form.asset.field.locationID')
-                        ->description('wcf.form.asset.field.locationID.description')
+                        ->label('assets.form.asset.field.locationID')
+                        ->description('assets.form.asset.field.locationID.description')
                         ->options($locations, true, false)
                         ->addValidator(
                             new FormFieldValidator(
@@ -198,14 +198,14 @@ class AssetAddForm extends AbstractFormBuilderForm
                         )
                         ->required(),
                     DateFormField::create('nextAudit')
-                        ->label('wcf.form.asset.field.nextAudit')
+                        ->label('assets.form.asset.field.nextAudit')
                         ->available($this->formAction === 'edit')
                         ->saveValueFormat(AssetUtil::NEXT_AUDIT_FORMAT)
                         ->earliestDate((new DateTime("now", isset($this->formObject) ? $this->formObject->getDateTimeZone() : null))->format(AssetUtil::NEXT_AUDIT_FORMAT))
                         ->required()
                 ]),
             WysiwygFormContainer::create('description')
-                ->label('wcf.form.asset.field.description')
+                ->label('assets.form.asset.field.description')
                 ->messageObjectType('de.xxschrandxx.assets.asset')
                 ->attachmentData(
                     'de.xxschrandxx.assets.asset.attachment',

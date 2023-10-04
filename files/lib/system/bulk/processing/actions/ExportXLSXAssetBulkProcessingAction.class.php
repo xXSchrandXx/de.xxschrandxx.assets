@@ -40,15 +40,15 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
 
         $activeWorksheet->setCellValue('A2', $lang->get('wcf.global.objectID'));
         $activeWorksheet->setCellValue('B2', $lang->get('wcf.global.title'));
-        $activeWorksheet->setCellValue('C2', $lang->get('wcf.acp.export.categoryID'));
-        $activeWorksheet->setCellValue('D2', $lang->get('wcf.acp.export.category'));
-        $activeWorksheet->setCellValue('E2', $lang->get('wcf.acp.export.amount'));
-        $activeWorksheet->setCellValue('F2', $lang->get('wcf.acp.export.locationID'));
-        $activeWorksheet->setCellValue('G2', $lang->get('wcf.acp.export.location'));
-        $activeWorksheet->setCellValue('H2', $lang->get('wcf.acp.export.nextAudit'));
-        $activeWorksheet->setCellValue('I2', $lang->get('wcf.acp.export.lastAudit'));
-        $activeWorksheet->setCellValue('J2', $lang->get('wcf.acp.export.lastModification'));
-        $activeWorksheet->setCellValue('K2', $lang->get('wcf.acp.export.time'));
+        $activeWorksheet->setCellValue('C2', $lang->get('assets.acp.export.categoryID'));
+        $activeWorksheet->setCellValue('D2', $lang->get('assets.acp.export.category'));
+        $activeWorksheet->setCellValue('E2', $lang->get('assets.acp.export.amount'));
+        $activeWorksheet->setCellValue('F2', $lang->get('assets.acp.export.locationID'));
+        $activeWorksheet->setCellValue('G2', $lang->get('assets.acp.export.location'));
+        $activeWorksheet->setCellValue('H2', $lang->get('assets.acp.export.nextAudit'));
+        $activeWorksheet->setCellValue('I2', $lang->get('assets.acp.export.lastAudit'));
+        $activeWorksheet->setCellValue('J2', $lang->get('assets.acp.export.lastModification'));
+        $activeWorksheet->setCellValue('K2', $lang->get('assets.acp.export.time'));
         $activeWorksheet->setCellValue('L2', $lang->get('wcf.global.description'));
 
         $row = 3;

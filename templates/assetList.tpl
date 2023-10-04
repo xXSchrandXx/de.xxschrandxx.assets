@@ -2,17 +2,17 @@
 	<header class="contentHeader">
 		<div class="contentHeaderTitle">
 			<h1 class="contentTitle">
-				{lang}wcf.page.assetList.title{/lang}
+				{lang}assets.page.assetList.title{/lang}
 			</h1>
 			{hascontent}
 				<h2 class="contentSubTitle">
 					<ul>
 						{content}
 							{if $categoryName|isset}
-								<li>{lang}wcf.page.assetList.subtitle.category{/lang}</li>
+								<li>{lang}assets.page.assetList.subtitle.category{/lang}</li>
 							{/if}
 							{if $locationName|isset}
-								<li>{lang}wcf.page.assetList.subtitle.location{/lang}</li>
+								<li>{lang}assets.page.assetList.subtitle.location{/lang}</li>
 							{/if}
 						{/content}
 					</ul>
@@ -25,7 +25,7 @@
 				<li>
 					<a href="{link controller='AssetAdd' application='assets'}{/link}" class="button">
 						<fa-icon size="16" name="plus"></fa-icon>
-						<span>{lang}wcf.form.asset.title.add{/lang}</span>
+						<span>{lang}assets.form.asset.title.add{/lang}</span>
 					</a>
 				</li>
 
@@ -70,31 +70,31 @@
 							{lang}wcf.global.title{/lang}
 						</a>
 					</th>
-					<th>{lang}wcf.page.assetList.category{/lang}</th>
+					<th>{lang}assets.page.assetList.category{/lang}</th>
 					<th class="columnInt{if $sortField == 'amount'} active {@$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=amount&sortOrder={if $sortField == 'amount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}wcf.page.assetList.amount{/lang}
+							{lang}assets.page.assetList.amount{/lang}
 						</a>
 					</th>
-					<th>{lang}wcf.page.assetList.location{/lang}</th>
+					<th>{lang}assets.page.assetList.location{/lang}</th>
 					<th class="columnDate{if $sortField == 'nextAudit'} active {@$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=nextAudit&sortOrder={if $sortField == 'nextAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}wcf.page.assetList.nextAudit{/lang}
+							{lang}assets.page.assetList.nextAudit{/lang}
 						</a>
 					</th>
 					<th class="columnDate{if $sortField == 'lastAudit'} active {@$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=lastAudit&sortOrder={if $sortField == 'lastAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}wcf.page.assetList.lastAudit{/lang}
+							{lang}assets.page.assetList.lastAudit{/lang}
 						</a>
 					</th>
 					<th class="columnDate{if $sortField == 'lastModification'} active {@$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=lastModification&sortOrder={if $sortField == 'lastModification' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}wcf.page.assetList.lastModification{/lang}
+							{lang}assets.page.assetList.lastModification{/lang}
 						</a>
 					</th>
 					<th class="columnDate{if $sortField == 'time'} active {@$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}wcf.page.assetList.time{/lang}
+							{lang}assets.page.assetList.time{/lang}
 						</a>
 					</th>
 
@@ -205,10 +205,10 @@
 	</div>
 {hascontentelse}
 	{if $assetCategoryNodeTreeIDs|isset && $assetCategoryNodeTreeIDs|empty && $__wcf->getSession()->getPermission('admin.assets.canManageCategories')}
-		<p class="warning">{lang}wcf.page.assetList.noCategories{/lang}</p>
+		<p class="warning">{lang}assets.page.assetList.noCategories{/lang}</p>
 	{/if}
 	{if $assetLocationNodeTreeIDs|isset && $assetLocationNodeTreeIDs|empty &&  $__wcf->getSession()->getPermission('admin.assets.canManageLocations')}
-		<p class="warning">{lang}wcf.page.assetList.noLocations{/lang}</p>
+		<p class="warning">{lang}assets.page.assetList.noLocations{/lang}</p>
 	{/if}
 	<p class="info">{lang}wcf.global.noItems{/lang}</p>
 {/hascontent}

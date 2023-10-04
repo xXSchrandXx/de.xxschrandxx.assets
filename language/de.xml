@@ -3,11 +3,75 @@
 	xmlns="https://www.woltlab.com"
 	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/language.xsd">
 	<import>
+		<category name="assets.acp.asset">
+			<item name="assets.acp.asset.bulkProcessing"><![CDATA[Vermögenswert-Massenbearbeitung]]></item>
+			<item name="assets.acp.asset.bulkProcessing.log"><![CDATA[Administrative Massenbearbeitung.]]></item>
+			<!-- Actions -->
+			<item name="assets.acp.asset.bulkProcessing.action"><![CDATA[Aktionen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Prüfung]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.right"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportxlsx"><![CDATA[XLSX (Excel) Export]]></item>
+			<item name="assets.acp.asset.bulkProcessing.exportxlsx.header"><![CDATA[Stand: {$now}]]></item>
+			<!-- Conditions -->
+			<item name="assets.acp.asset.bulkProcessing.conditions"><![CDATA[Bedingungen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general"><![CDATA[Allgemein]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.category"><![CDATA[Kategorie]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.location"><![CDATA[Standort]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.trashed"><![CDATA[Ist entfernt]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit"><![CDATA[Prüfung]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.needsAudit"><![CDATA[Prüfung überfällig]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditBefore"><![CDATA[Letzte Prüfung vor Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditAfter"><![CDATA[Letzte Prüfung nach Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditBefore"><![CDATA[Nächste Prüfung vor Datum]]></item>
+			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditAfter"><![CDATA[Nächste Prüfung nach Datum]]></item>
+		</category>
+		<category name="assets.acp.export">
+			<item name="assets.acp.export.categoryID"><![CDATA[Kategorie ID]]></item>
+			<item name="assets.acp.export.category"><![CDATA[Kategorie]]></item>
+			<item name="assets.acp.export.amount"><![CDATA[Stückzahl]]></item>
+			<item name="assets.acp.export.locationID"><![CDATA[Standort ID]]></item>
+			<item name="assets.acp.export.location"><![CDATA[Standort]]></item>
+			<item name="assets.acp.export.nextAudit"><![CDATA[Nächste Prüfung]]></item>
+			<item name="assets.acp.export.lastAudit"><![CDATA[Letzte Prüfung]]></item>
+			<item name="assets.acp.export.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
+			<item name="assets.acp.export.time"><![CDATA[Erstellt]]></item>
+		</category>
+		<category name="assets.acp.form">
+			<item name="assets.acp.form.import.field.file"><![CDATA[Datei]]></item>
+			<item name="assets.acp.form.import.field.file.description"><![CDATA[Es sind nur Dateien mit der Endung <kbd>.xlsx</kbd> erlaubt.]]></item>
+			<item name="assets.acp.form.import.example.header"><![CDATA[Tabellen-Aufbau]]></item>
+			<item name="assets.acp.form.import.example.required"><![CDATA[Benötigte Angabe]]></item>
+			<item name="assets.acp.form.import.example.optional"><![CDATA[Optionale Angabe]]></item>
+			<item name="assets.acp.form.import.example.optionalID"><![CDATA[Optionale Angabe, wenn ID gegeben]]></item>
+			<item name="assets.acp.form.import.file.error.columnID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.global.objectID{/lang}</kbd> gefunden.]]></item>
+			<item name="assets.acp.form.import.file.error.columnTitle"><![CDATA[Keine Spalte für <kbd>{lang}wcf.global.title{/lang}</kbd> gefunden.]]></item>
+			<item name="assets.acp.form.import.file.error.columnCategoryID"><![CDATA[Keine Spalte für <kbd>{lang}assets.acp.export.categoryID{/lang}</kbd> oder <kbd>{lang}assets.acp.export.category{/lang}</kbd> gefunden.]]></item>
+			<item name="assets.acp.form.import.file.error.columnLocationID"><![CDATA[Keine Spalte für <kbd>{lang}assets.acp.export.locationID{/lang}</kbd> oder <kbd>{lang}assets.acp.export.location{/lang}</kbd> gefunden.]]></item>
+			<item name="assets.acp.form.import.skip.error.noTitle"><![CDATA[Kein Titel angegeben.]]></item>
+			<item name="assets.acp.form.import.skip.error.unknownCategory"><![CDATA[Keine Kategorie gefunden.]]></item>
+			<item name="assets.acp.form.import.skip.error.unknownLocation"><![CDATA[Keinen Standort gefunden.]]></item>
+			<item name="assets.acp.form.import.skip.header"><![CDATA[Übersprungene Vermögenswerte]]></item>
+			<item name="assets.acp.form.import.skip.rowID"><![CDATA[Zeile]]></item>
+			<item name="assets.acp.form.import.skip.reason"><![CDATA[Begründung]]></item>
+			<item name="assets.acp.form.import.skip.noSkip"><![CDATA[Keine Vermögenswerte übersprungen.]]></item>
+		</category>
 		<category name="assets.asset">
 			<item name="assets.asset.audit"><![CDATA[Prüfung]]></item>
 			<item name="assets.asset.audit.comment.optional"><![CDATA[Kommentar (Optional)]]></item>
 			<item name="assets.asset.trash"><![CDATA[Vermögenswert entfernen]]></item>
 			<item name="assets.asset.restore"><![CDATA[Vermögenswert wiederherstellen]]></item>
+		</category>
+		<category name="assets.asset.action">
+			<item name="assets.asset.action.delete"><![CDATA[Gelöscht]]></item>
+			<item name="assets.asset.action.edit"><![CDATA[Bearbeitet]]></item>
+			<item name="assets.asset.action.restore"><![CDATA[Wiederhergestellt]]></item>
+			<item name="assets.asset.action.trash"><![CDATA[Entfernt]]></item>
+			<item name="assets.asset.action.audit"><![CDATA[Prüfung]]></item>
 		</category>
 		<category name="assets.asset.reventActivity">
 			<item name="assets.asset.reventActivity.create"><![CDATA[Hat den Vermögenswert <a href="{$asset->getLink()}">{$asset->getTitle()}</a> erstellt.]]></item>
@@ -18,6 +82,79 @@
 
 			<item name="assets.asset.reventActivity.comment"><![CDATA[Hat einen Kommentar zum Vermögenswert <a href="{$asset->getLink()}#comments/comment{$commentID}">{$asset->getTitle()}</a> geschrieben.]]></item>
 			<item name="assets.asset.reventActivity.commentResponse"><![CDATA[Hat auf einen Kommentar von <a href="{link controller='User' object=$commentAuthor}{/link}">{$commentAuthor->username}</a> zum Vermögenswert <a href="{$asset->getLink()}#comments/comment{@$commentID}/response{@$responseID}">{$asset->getTitle()}</a> geantwortet.]]></item>
+		</category>
+		<!-- Edit -->
+		<category name="assets.edit">
+			<item name="assets.edit.comment"><![CDATA[Kommentar]]></item>
+		</category>
+		<!-- /Edit -->
+		<category name="assets.form">
+			<!-- AssetsAdd/-Edit -->
+			<item name="assets.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
+			<item name="assets.form.asset.title.edit"><![CDATA[Vermögenswert bearbeiten]]></item>
+			<item name="assets.form.asset.view"><![CDATA[Vermögenswert anzeigen]]></item>
+			<item name="assets.form.asset.field.legacyID"><![CDATA[ID]]></item>
+			<item name="assets.form.asset.field.legacyID.description"><![CDATA[Identifikationswert des Vermögenswertes.]]></item>
+			<item name="assets.form.asset.field.legacyID.error.duplicate"><![CDATA[Diese ID wird schon verwendet.]]></item>
+			<item name="assets.form.asset.field.categoryID"><![CDATA[Kategorie]]></item>
+			<item name="assets.form.asset.field.amount"><![CDATA[Stückzahl]]></item>
+			<item name="assets.form.asset.field.locationID"><![CDATA[Standort]]></item>
+			<item name="assets.form.asset.field.locationID.description"><![CDATA[Standort des Vermögenswertes, wenn er nicht ausgeliehen ist.]]></item>
+			<item name="assets.form.asset.field.nextAudit"><![CDATA[Nächste Prüfung]]></item>
+			<item name="assets.form.asset.field.description"><![CDATA[Beschreibung]]></item>
+
+			<!-- AssetBorrow -->
+			<item name="assets.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
+		</category>
+		<!-- AssetLabel -->
+		<category name="assets.label">
+			<item name="assets.label.title"><![CDATA[Label]]></item>
+			<item name="assets.label.asset.title"><![CDATA[T: {$object->getTitle()}]]></item>
+			<item name="assets.label.asset.category"><![CDATA[K: {$object->getCategory()->getTitle()}]]></item>
+			<item name="assets.label.asset.location"><![CDATA[S: {$object->getLocation()->getTitle()}]]></item>
+			<item name="assets.label.asset.objectID"><![CDATA[ID: {#$object->getObjectID()}]]></item>
+		</category>
+		<!-- /AssetLabel -->
+		<category name="assets.page">
+			<!-- AssetList -->
+			<item name="assets.page.assetList.title"><![CDATA[Vermögenswerte]]></item>
+			<item name="assets.page.assetList.subtitle.category"><![CDATA[Kategorie: {@$categoryName}]]></item>
+			<item name="assets.page.assetList.subtitle.location"><![CDATA[Standort: {@$locationName}]]></item>
+			<item name="assets.page.assetList.category"><![CDATA[Kategorie]]></item>
+			<item name="assets.page.assetList.amount"><![CDATA[Stückzahl]]></item>
+			<item name="assets.page.assetList.location"><![CDATA[Standort]]></item>
+			<item name="assets.page.assetList.lastAudit"><![CDATA[Letzte Prüfung]]></item>
+			<item name="assets.page.assetList.nextAudit"><![CDATA[Nächste Prüfung]]></item>
+			<item name="assets.page.assetList.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
+			<item name="assets.page.assetList.time"><![CDATA[Erstellt]]></item>
+			<item name="assets.page.assetList.noCategories"><![CDATA[Keine Kategorien gefunden. <a href="{link controller='CategoryAdd' application='assets' isACP=1}{/link}">Füge eine neue Kategorie hinzu.</a>]]></item>
+			<item name="assets.page.assetList.noLocations"><![CDATA[Keine Standorte gefunden. <a href="{link controller='LocationAdd' application='assets' isACP=1}{/link}">Füge einen neuen Standort hinzu.</a>]]></item>
+
+
+			<!-- Asset -->
+			<!-- General -->
+
+			<!-- Overview -->
+			<item name="assets.page.asset.overview"><![CDATA[Übersicht]]></item>
+			<item name="assets.page.asset.overview.id"><![CDATA[ID]]></item>
+			<item name="assets.page.asset.overview.amount"><![CDATA[Anzahl]]></item>
+			<item name="assets.page.asset.overview.category"><![CDATA[Kategorie]]></item>
+			<item name="assets.page.asset.overview.location"><![CDATA[Standort]]></item>
+			<item name="assets.page.asset.overview.nextAudit"><![CDATA[Nächste Prüfung]]></item>
+			<item name="assets.page.asset.overview.lastAudit"><![CDATA[Letzte Prüfung]]></item>
+			<item name="assets.page.asset.overview.created"><![CDATA[Erstellt]]></item>
+			<item name="assets.page.asset.overview.description"><![CDATA[{lang}wcf.global.description{/lang}]]></item>
+
+			<!-- Comments -->
+			<item name="assets.page.asset.comment"><![CDATA[Kommentar]]></item>
+			<item name="assets.page.asset.comment.response"><![CDATA[Antwort]]></item>
+
+			<!-- Audits -->
+			<item name="assets.page.asset.audits"><![CDATA[Prüfungen]]></item>
+
+			<!-- History -->
+			<item name="assets.page.asset.history"><![CDATA[Historie]]></item>
+			<item name="assets.page.asset.history.action"><![CDATA[Aktion]]></item>
 		</category>
 		<category name="wcf.acl.option">
 			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.user.assets.category"><![CDATA[Allgemeine Rechte]]></item>
@@ -37,36 +174,6 @@
 		<category name="wcf.acp.box">
 			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetListFilter"><![CDATA[Vermögenswerte-Filter]]></item>
 			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetStatistics"><![CDATA[Vermögenswerte-Stitistiken]]></item>
-		</category>
-		<category name="wcf.acp.export">
-			<item name="wcf.acp.export.categoryID"><![CDATA[Kategorie ID]]></item>
-			<item name="wcf.acp.export.category"><![CDATA[Kategorie]]></item>
-			<item name="wcf.acp.export.amount"><![CDATA[Stückzahl]]></item>
-			<item name="wcf.acp.export.locationID"><![CDATA[Standort ID]]></item>
-			<item name="wcf.acp.export.location"><![CDATA[Standort]]></item>
-			<item name="wcf.acp.export.nextAudit"><![CDATA[Nächste Prüfung]]></item>
-			<item name="wcf.acp.export.lastAudit"><![CDATA[Letzte Prüfung]]></item>
-			<item name="wcf.acp.export.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
-			<item name="wcf.acp.export.time"><![CDATA[Erstellt]]></item>
-		</category>
-		<category name="wcf.acp.form">
-			<item name="wcf.acp.form.import.field.file"><![CDATA[Datei]]></item>
-			<item name="wcf.acp.form.import.field.file.description"><![CDATA[Es sind nur Dateien mit der Endung <kbd>.xlsx</kbd> erlaubt.]]></item>
-			<item name="wcf.acp.form.import.example.header"><![CDATA[Tabellen-Aufbau]]></item>
-			<item name="wcf.acp.form.import.example.required"><![CDATA[Benötigte Angabe]]></item>
-			<item name="wcf.acp.form.import.example.optional"><![CDATA[Optionale Angabe]]></item>
-			<item name="wcf.acp.form.import.example.optionalID"><![CDATA[Optionale Angabe, wenn ID gegeben]]></item>
-			<item name="wcf.acp.form.import.file.error.columnID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.global.objectID{/lang}</kbd> gefunden.]]></item>
-			<item name="wcf.acp.form.import.file.error.columnTitle"><![CDATA[Keine Spalte für <kbd>{lang}wcf.global.title{/lang}</kbd> gefunden.]]></item>
-			<item name="wcf.acp.form.import.file.error.columnCategoryID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.acp.export.categoryID{/lang}</kbd> oder <kbd>{lang}wcf.acp.export.category{/lang}</kbd> gefunden.]]></item>
-			<item name="wcf.acp.form.import.file.error.columnLocationID"><![CDATA[Keine Spalte für <kbd>{lang}wcf.acp.export.locationID{/lang}</kbd> oder <kbd>{lang}wcf.acp.export.location{/lang}</kbd> gefunden.]]></item>
-			<item name="wcf.acp.form.import.skip.error.noTitle"><![CDATA[Kein Titel angegeben.]]></item>
-			<item name="wcf.acp.form.import.skip.error.unknownCategory"><![CDATA[Keine Kategorie gefunden.]]></item>
-			<item name="wcf.acp.form.import.skip.error.unknownLocation"><![CDATA[Keinen Standort gefunden.]]></item>
-			<item name="wcf.acp.form.import.skip.header"><![CDATA[Übersprungene Vermögenswerte]]></item>
-			<item name="wcf.acp.form.import.skip.rowID"><![CDATA[Zeile]]></item>
-			<item name="wcf.acp.form.import.skip.reason"><![CDATA[Begründung]]></item>
-			<item name="wcf.acp.form.import.skip.noSkip"><![CDATA[Keine Vermögenswerte übersprungen.]]></item>
 		</category>
 		<category name="wcf.acp.option">
 			<item name="wcf.acp.option.category.assets"><![CDATA[Vermögenswerte]]></item>
@@ -149,13 +256,6 @@
 			<!-- Import -->
 			<item name="wcf.acp.menu.link.application.assets.import"><![CDATA[Import]]></item>
 		</category>
-		<category name="wcf.asset.action">
-			<item name="wcf.asset.action.delete"><![CDATA[Gelöscht]]></item>
-			<item name="wcf.asset.action.edit"><![CDATA[Bearbeitet]]></item>
-			<item name="wcf.asset.action.restore"><![CDATA[Wiederhergestellt]]></item>
-			<item name="wcf.asset.action.trash"><![CDATA[Entfernt]]></item>
-			<item name="wcf.asset.action.audit"><![CDATA[Prüfung]]></item>
-		</category>
 		<category name="wcf.box">
 			<!-- Filter box -->
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.category"><![CDATA[Kategorien]]></item>
@@ -186,111 +286,15 @@
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich die Label für {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} erstellen?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.skipFields"><![CDATA[Anzahl leerer Etiketten am Anfang]]></item>
 		</category>
-		<category name="wcf.edit">
-			<item name="wcf.edit.comment"><![CDATA[Kommentar]]></item>
-		</category>
-		<category name="wcf.page">
-			<!-- AssetList -->
-			<item name="wcf.page.assetList.title"><![CDATA[Vermögenswerte]]></item>
-			<item name="wcf.page.assetList.subtitle.category"><![CDATA[Kategorie: {@$categoryName}]]></item>
-			<item name="wcf.page.assetList.subtitle.location"><![CDATA[Standort: {@$locationName}]]></item>
-			<item name="wcf.page.assetList.category"><![CDATA[Kategorie]]></item>
-			<item name="wcf.page.assetList.amount"><![CDATA[Stückzahl]]></item>
-			<item name="wcf.page.assetList.location"><![CDATA[Standort]]></item>
-			<item name="wcf.page.assetList.lastAudit"><![CDATA[Letzte Prüfung]]></item>
-			<item name="wcf.page.assetList.nextAudit"><![CDATA[Nächste Prüfung]]></item>
-			<item name="wcf.page.assetList.lastModification"><![CDATA[Zuletzt bearbeitet]]></item>
-			<item name="wcf.page.assetList.time"><![CDATA[Erstellt]]></item>
-			<item name="wcf.page.assetList.noCategories"><![CDATA[Keine Kategorien gefunden. <a href="{link controller='CategoryAdd' application='assets' isACP=1}{/link}">Füge eine neue Kategorie hinzu.</a>]]></item>
-			<item name="wcf.page.assetList.noLocations"><![CDATA[Keine Standorte gefunden. <a href="{link controller='LocationAdd' application='assets' isACP=1}{/link}">Füge einen neuen Standort hinzu.</a>]]></item>
-
-
-			<!-- Asset -->
-			<!-- General -->
-
-			<!-- Overview -->
-			<item name="wcf.page.asset.overview"><![CDATA[Übersicht]]></item>
-			<item name="wcf.page.asset.overview.id"><![CDATA[ID]]></item>
-			<item name="wcf.page.asset.overview.amount"><![CDATA[Anzahl]]></item>
-			<item name="wcf.page.asset.overview.category"><![CDATA[Kategorie]]></item>
-			<item name="wcf.page.asset.overview.location"><![CDATA[Standort]]></item>
-			<item name="wcf.page.asset.overview.nextAudit"><![CDATA[Nächste Prüfung]]></item>
-			<item name="wcf.page.asset.overview.lastAudit"><![CDATA[Letzte Prüfung]]></item>
-			<item name="wcf.page.asset.overview.created"><![CDATA[Erstellt]]></item>
-			<item name="wcf.page.asset.overview.description"><![CDATA[{lang}wcf.global.description{/lang}]]></item>
-
-			<!-- Comments -->
-			<item name="wcf.page.asset.comment"><![CDATA[Kommentar]]></item>
-			<item name="wcf.page.asset.comment.response"><![CDATA[Antwort]]></item>
-
-			<!-- Audits -->
-			<item name="wcf.page.asset.audits"><![CDATA[Prüfungen]]></item>
-
-			<!-- History -->
-			<item name="wcf.page.asset.history"><![CDATA[Historie]]></item>
-			<item name="wcf.page.asset.history.action"><![CDATA[Aktion]]></item>
-		</category>
-		<category name="wcf.form">
-			<!-- AssetsAdd/-Edit -->
-			<item name="wcf.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
-			<item name="wcf.form.asset.title.edit"><![CDATA[Vermögenswert bearbeiten]]></item>
-			<item name="wcf.form.asset.view"><![CDATA[Vermögenswert anzeigen]]></item>
-			<item name="wcf.form.asset.field.legacyID"><![CDATA[ID]]></item>
-			<item name="wcf.form.asset.field.legacyID.description"><![CDATA[Identifikationswert des Vermögenswertes.]]></item>
-			<item name="wcf.form.asset.field.legacyID.error.duplicate"><![CDATA[Diese ID wird schon verwendet.]]></item>
-			<item name="wcf.form.asset.field.categoryID"><![CDATA[Kategorie]]></item>
-			<item name="wcf.form.asset.field.amount"><![CDATA[Stückzahl]]></item>
-			<item name="wcf.form.asset.field.locationID"><![CDATA[Standort]]></item>
-			<item name="wcf.form.asset.field.locationID.description"><![CDATA[Standort des Vermögenswertes, wenn er nicht ausgeliehen ist.]]></item>
-			<item name="wcf.form.asset.field.nextAudit"><![CDATA[Nächste Prüfung]]></item>
-			<item name="wcf.form.asset.field.description"><![CDATA[Beschreibung]]></item>
-
-			<!-- AssetBorrow -->
-			<item name="wcf.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
-		</category>
 		<category name="wcf.search">
 			<item name="wcf.search.type.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.search.object.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.search.searchInLocations"><![CDATA[Folgende Standorte durchsuchen]]></item>
 		</category>
-		<category name="wcf.label">
-			<item name="wcf.label.title"><![CDATA[Label]]></item>
-			<item name="wcf.label.asset.title"><![CDATA[T: {$object->getTitle()}]]></item>
-			<item name="wcf.label.asset.category"><![CDATA[K: {$object->getCategory()->getTitle()}]]></item>
-			<item name="wcf.label.asset.location"><![CDATA[S: {$object->getLocation()->getTitle()}]]></item>
-			<item name="wcf.label.asset.objectID"><![CDATA[ID: {#$object->getObjectID()}]]></item>
-		</category>
 		<category name="wcf.user.recentActivity">
 			<item name="wcf.user.recentActivity.de.xxschrandxx.assets.asset.recentActivityEvent"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.user.recentActivity.de.xxschrandxx.assets.asset.comment.recentActivityEvent"><![CDATA[Kommentar (Vermögenswert)]]></item>
 			<item name="wcf.user.recentActivity.de.xxschrandxx.assets.asset.comment.response.recentActivityEvent"><![CDATA[Antwort (Vermögenswert)]]></item>
-		</category>
-		<category name="assets.acp.asset">
-			<item name="assets.acp.asset.bulkProcessing"><![CDATA[Vermögenswert-Massenbearbeitung]]></item>
-			<item name="assets.acp.asset.bulkProcessing.log"><![CDATA[Administrative Massenbearbeitung.]]></item>
-			<!-- Actions -->
-			<item name="assets.acp.asset.bulkProcessing.action"><![CDATA[Aktionen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Prüfung]]></item>
-			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
-			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>
-			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.right"><![CDATA[Seite {$pageNumber} von {$pageCount}]]></item>
-			<item name="assets.acp.asset.bulkProcessing.exportxlsx"><![CDATA[XLSX (Excel) Export]]></item>
-			<item name="assets.acp.asset.bulkProcessing.exportxlsx.header"><![CDATA[Stand: {$now}]]></item>
-			<!-- Conditions -->
-			<item name="assets.acp.asset.bulkProcessing.conditions"><![CDATA[Bedingungen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general"><![CDATA[Allgemein]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.category"><![CDATA[Kategorie]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.location"><![CDATA[Standort]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.general.trashed"><![CDATA[Ist entfernt]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit"><![CDATA[Prüfung]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.needsAudit"><![CDATA[Prüfung überfällig]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditBefore"><![CDATA[Letzte Prüfung vor Datum]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.lastAuditAfter"><![CDATA[Letzte Prüfung nach Datum]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditBefore"><![CDATA[Nächste Prüfung vor Datum]]></item>
-			<item name="assets.acp.asset.bulkProcessing.conditionGroup.audit.nextAuditAfter"><![CDATA[Nächste Prüfung nach Datum]]></item>
 		</category>
 		<category name="wcf.acp.stat">
 			<item name="wcf.acp.stat.category.de.xxschrandxx.assets"><![CDATA[Vermögenswerte]]></item>

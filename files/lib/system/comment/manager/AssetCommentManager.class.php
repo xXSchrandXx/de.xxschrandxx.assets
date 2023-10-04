@@ -96,10 +96,10 @@ class AssetCommentManager extends AbstractCommentManager
      */
     public function getTitle($objectTypeID, $objectID, $isResponse = false) {
         if ($isResponse) {
-            return WCF::getLanguage()->get('wcf.page.asset.comment.response');
+            return WCF::getLanguage()->get('assets.page.asset.comment.response');
         }
 
-        return WCF::getLanguage()->getDynamicVariable('wcf.page.asset.comment');
+        return WCF::getLanguage()->getDynamicVariable('assets.page.asset.comment');
     }
 
     /**

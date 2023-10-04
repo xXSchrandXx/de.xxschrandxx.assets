@@ -37,8 +37,8 @@ class ImportForm extends AbstractFormBuilderForm
 
         $this->form->appendChild(
             UploadFormField::create('file')
-                ->label('wcf.acp.form.import.field.file')
-                ->description('wcf.acp.form.import.field.file.description')
+                ->label('assets.acp.form.import.field.file')
+                ->description('assets.acp.form.import.field.file.description')
                 ->setAcceptableFiles(['.xlsx', 'application/vnd.openxmlformats-officedocument. spreadsheetml.sheet'])
                 ->minimum(1)
                 ->maximum(1)
@@ -49,7 +49,7 @@ class ImportForm extends AbstractFormBuilderForm
                             $field->addValidationError(
                                 new FormFieldValidationError(
                                     'fileExtension',
-                                    'wcf.acp.form.import.file.error.fileExtension'
+                                    'assets.acp.form.import.file.error.fileExtension'
                                 )
                             );
                         }
@@ -88,7 +88,7 @@ class ImportForm extends AbstractFormBuilderForm
             if (ASSETS_LEGACYID_ENABLED && !$columnID) {
                 throw new UserInputException(
                     'file',
-                    'wcf.acp.form.import.file.error.columnID'
+                    'assets.acp.form.import.file.error.columnID'
                 );
             }
 
@@ -96,15 +96,15 @@ class ImportForm extends AbstractFormBuilderForm
             if (!$columnTitle) {
                 throw new UserInputException(
                     'file',
-                    'wcf.acp.form.import.file.error.columnTitle'
+                    'assets.acp.form.import.file.error.columnTitle'
                 );
             }
-            $columnCategoryID = array_search($lang->get('wcf.acp.export.categoryID'), $header);
-            $columnCategory = array_search($lang->get('wcf.acp.export.category'), $header);
+            $columnCategoryID = array_search($lang->get('assets.acp.export.categoryID'), $header);
+            $columnCategory = array_search($lang->get('assets.acp.export.category'), $header);
             if (!$columnCategoryID && !$columnCategory) {
                 throw new UserInputException(
                     'file',
-                    'wcf.acp.form.import.file.error.columnCategoryID'
+                    'assets.acp.form.import.file.error.columnCategoryID'
                 );
             }
             $categoryObjectType = $categoryHandler->getObjectTypeByName('de.xxschrandxx.assets.category');
@@ -113,12 +113,12 @@ class ImportForm extends AbstractFormBuilderForm
             $categoryList->readObjects();
             $categories = $categoryList->getObjects();
 
-            $columnLocationID = array_search($lang->get('wcf.acp.export.locationID'), $header);
-            $columnLocation = array_search($lang->get('wcf.acp.export.location'), $header);
+            $columnLocationID = array_search($lang->get('assets.acp.export.locationID'), $header);
+            $columnLocation = array_search($lang->get('assets.acp.export.location'), $header);
             if (!$columnLocationID && !$columnLocation) {
                 throw new UserInputException(
                     'file',
-                    'wcf.acp.form.import.file.error.columnLocationID'
+                    'assets.acp.form.import.file.error.columnLocationID'
                 );
             }
             $locationObjectType = $categoryHandler->getObjectTypeByName('de.xxschrandxx.assets.location');
@@ -127,11 +127,11 @@ class ImportForm extends AbstractFormBuilderForm
             $locationList->readObjects();
             $locations = $locationList->getObjects();
     
-            $columnAmount = array_search($lang->get('wcf.acp.export.amount'), $header);
-            $columnNextAudit = array_search($lang->get('wcf.acp.export.nextAudit'), $header);
-            $columnLastAudit = array_search($lang->get('wcf.acp.export.lastAudit'), $header);
-            $columnLastModification = array_search($lang->get('wcf.acp.export.lastModification'), $header);
-            $columnTime = array_search($lang->get('wcf.acp.export.time'), $header);
+            $columnAmount = array_search($lang->get('assets.acp.export.amount'), $header);
+            $columnNextAudit = array_search($lang->get('assets.acp.export.nextAudit'), $header);
+            $columnLastAudit = array_search($lang->get('assets.acp.export.lastAudit'), $header);
+            $columnLastModification = array_search($lang->get('assets.acp.export.lastModification'), $header);
+            $columnTime = array_search($lang->get('assets.acp.export.time'), $header);
             $columnDescription = array_search($lang->get('wcf.global.description'), $header);
         } catch (UserInputException $e) {
             $this->errorField = $e->getField();

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>{lang}wcf.label.title{/lang}</title>
+		<title>{lang}assets.label.title{/lang}</title>
 		<style>
 .page {
     font-family: arial, helvetica, sans-serif;
@@ -86,10 +86,10 @@ img.label_logo {
 							{@$object->getQRCode()}
 							<div class="qr_text">
 								<h2>{ASSETS_LABEL_HEADER}</h2>
-								<p>{lang}wcf.label.asset.title{/lang}</p>
-								<p>{lang}wcf.label.asset.category{/lang}</p>
-								<p>{lang}wcf.label.asset.location{/lang}</p>
-								<p>{lang}wcf.label.asset.objectID{/lang}</p>
+								<p>{lang}assets.label.asset.title{/lang}</p>
+								<p>{lang}assets.label.asset.category{/lang}</p>
+								<p>{lang}assets.label.asset.location{/lang}</p>
+								<p>{lang}assets.label.asset.objectID{/lang}</p>
 								{event name='LabelExportValues'}
 							</div>
 							<img class="label_logo" src="{ASSETS_LABEL_LOGO}"/>

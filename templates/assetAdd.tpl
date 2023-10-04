@@ -2,7 +2,7 @@
 	<header class="contentHeader">
 		<div class="contentHeaderTitle">
 			<h1 class="contentTitle">
-				{lang}wcf.form.asset.title.{$action}{/lang}
+				{lang}assets.form.asset.title.{$action}{/lang}
 			</h1>
 		</div>
 
@@ -14,7 +14,7 @@
 							<li>
 								<a href="{$formObject->getLink()}" class="button">
 									<fa-icon size="16" name="magnifying-glass"></fa-icon>
-									<span>{lang}wcf.form.asset.view{/lang}</span>
+									<span>{lang}assets.form.asset.view{/lang}</span>
 								</a>
 							</li>
 						{/if}
