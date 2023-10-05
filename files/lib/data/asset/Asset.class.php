@@ -22,6 +22,7 @@ use wcf\data\ITitledLinkObject;
 use wcf\data\object\type\ObjectTypeCache;
 use wcf\data\search\ISearchResultObject;
 use wcf\data\user\UserProfile;
+use wcf\system\benchmark\Benchmark;
 use wcf\system\html\output\HtmlOutputProcessor;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\request\LinkHandler;
@@ -489,23 +490,31 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     }
 
     /**
-     * @param string $color
-     * @param string $backgroundColor
      * @return string
      */
-    public function getQRCode($color = '#000000', $backgroundColor = '#FFFFFF')
+    public function getQRCode()
     {
-        // load php-qrcode library
-        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+        $path = ASSETS_DIR.'images/qr/'.$this->getObjectID().'.svg';
+        if (!file_exists($path)) {
+            if (WCF::benchmarkIsEnabled()) {
+                $benchmarkIndex = Benchmark::getInstance()->start('AssetQRCode', Benchmark::TYPE_OTHER);
+            }
 
-        $options = new QROptions([
-            'outputType' => QRCode::OUTPUT_MARKUP_SVG,
-            'eccLevel'   => QRCode::ECC_L,
-            'markupDark' => $color,
-            'markupLight' => $backgroundColor,
-        ]);
+            // load php-qrcode library
+            require_once(ASSETS_DIR.'lib/system/api/autoload.php');
 
-        return '<img src="' . (new QRCode($options))->render($this->getLink()) . '" class="AssetQRCode" title="QRCode">';
+            $options = new QROptions();
+            $options->outputType = QRCode::OUTPUT_MARKUP_SVG;
+            $options->eccLevel = QRCode::ECC_L;
+
+            $qrCode = new QRCode($options);
+            $qrCode->render($this->getLink(), $path);
+            if (isset($benchmarkIndex)) {
+                Benchmark::getInstance()->stop($benchmarkIndex);
+            }
+        }
+
+        return WCF::getPath('assets').'images/qr/'.$this->getObjectID().'.svg';
     }
 
     /* Permissions */

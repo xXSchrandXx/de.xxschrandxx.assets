@@ -2,9 +2,9 @@
 
 namespace assets\data\category;
 
-use wcf\data\category\UncachedCategoryNodeTree;
+use wcf\data\category\CategoryNodeTree;
 
-class AssetCategoryNodeTree extends UncachedCategoryNodeTree
+class AssetCategoryNodeTree extends CategoryNodeTree
 {
     /**
      * @inheritDoc

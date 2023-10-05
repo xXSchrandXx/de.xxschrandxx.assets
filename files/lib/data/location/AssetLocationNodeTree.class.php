@@ -2,9 +2,9 @@
 
 namespace assets\data\location;
 
-use wcf\data\category\UncachedCategoryNodeTree;
+use wcf\data\category\CategoryNodeTree;
 
-class AssetLocationNodeTree extends UncachedCategoryNodeTree
+class AssetLocationNodeTree extends CategoryNodeTree
 {
     /**
      * @inheritDoc

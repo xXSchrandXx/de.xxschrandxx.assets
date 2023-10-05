@@ -5,4 +5,5 @@
 # ToDo
 - Lending (Extra plugin)
 - Use caching
+- Reset QR images
 - Add per category label logo

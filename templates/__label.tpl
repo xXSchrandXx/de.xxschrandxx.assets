@@ -83,7 +83,7 @@ img.label_logo {
 				{foreach from=$chunk item=object}
 					<div class="label">
 						{if !$object|is_string}
-							{@$object->getQRCode()}
+							<img src="{@$object->getQRCode()}" class="AssetQRCode" title="QRCode">
 							<div class="qr_text">
 								<h2>{ASSETS_LABEL_HEADER}</h2>
 								<p>{lang}assets.label.asset.title{/lang}</p>
