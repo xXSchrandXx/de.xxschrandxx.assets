@@ -1,0 +1,1 @@
+{if $__assets->isActiveApplication() && ( !'ASSETS_BRANDING'|defined || ASSETS_BRANDING )}<div class="copyright">{lang}assets.page.branding{/lang}</div>{/if}

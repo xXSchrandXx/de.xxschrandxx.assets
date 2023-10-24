@@ -170,6 +170,9 @@
 			<!-- History -->
 			<item name="assets.page.asset.history"><![CDATA[Historie]]></item>
 			<item name="assets.page.asset.history.action"><![CDATA[Aktion]]></item>
+
+			<!-- Branding -->
+			<item name="assets.page.branding"><![CDATA[<a href="https://github.com/xXSchrandXx/de.xxschrandxx.assets" rel="nofollow"{if EXTERNAL_LINK_TARGET_BLANK} target="_blank"{/if}>Software: <strong>Vermögenswerte</strong></a>]]></item>
 		</category>
 		<category name="wcf.acl.option">
 			<item name="wcf.acl.option.category.de.xxschrandxx.assets.category.user.assets.category"><![CDATA[Allgemeine Rechte]]></item>
