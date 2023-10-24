@@ -127,10 +127,10 @@
 			<permissions>admin.assets.canDelete</permissions>
 		</type>
 		<type>
-			<name>de.xxschrandxx.assets.asset.getlabel</name>
+			<name>de.xxschrandxx.assets.asset.getLabel</name>
 			<definitionname>de.xxschrandxx.assets.asset.action</definitionname>
 			<classname>assets\system\bulk\processing\actions\GetLabelBulkProcessingAction</classname>
-			<action>getlabel</action>
+			<action>getLabel</action>
 			<permissions>user.assets.canView</permissions>
 		</type>
 		<type>

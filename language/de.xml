@@ -11,6 +11,7 @@
 			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.getLabel"><![CDATA[Label erstellen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Prüfung]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>

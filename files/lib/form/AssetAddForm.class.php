@@ -74,7 +74,7 @@ class AssetAddForm extends AbstractFormBuilderForm
         // Read Categories
         $categories = [
             0 => [
-                'label' => WCF::getLanguage()->get('assets.label.none'),
+                'label' => WCF::getLanguage()->get('wcf.label.none'),
                 'value' => 0,
                 'depth' => 0,
                 'isSelectable' => 1
@@ -97,7 +97,7 @@ class AssetAddForm extends AbstractFormBuilderForm
         // Read Locations
         $locations = [
             0 => [
-                'label' => WCF::getLanguage()->get('assets.label.none'),
+                'label' => WCF::getLanguage()->get('wcf.label.none'),
                 'value' => 0,
                 'depth' => 0,
                 'isSelectable' => 1
