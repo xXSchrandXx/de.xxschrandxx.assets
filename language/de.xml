@@ -116,6 +116,20 @@
 			<item name="assets.label.asset.objectID"><![CDATA[ID: {#$object->getObjectID()}]]></item>
 		</category>
 		<!-- /AssetLabel -->
+		<!-- AssetLocation-->
+		<category name="assets.location">
+			<item name="assets.location.add"><![CDATA[Standort hinzufügen]]></item>
+			<item name="assets.location.button.choose"><![CDATA[Standort wählen]]></item>
+			<item name="assets.location.button.list"><![CDATA[Standorte auflisten]]></item>
+			<item name="assets.location.delete.sure"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} diesen Stnadort wirklich löschen? Alle sich in diesem Standort befindlichen Unterstandorte werden in den Elternstandort dieses Standortes verschoben.]]></item>
+			<item name="assets.location.edit"><![CDATA[Standort bearbeiten]]></item>
+			<item name="assets.location.isDisabled"><![CDATA[Standort deaktivieren]]></item>
+			<item name="assets.location.list"><![CDATA[Standorte]]></item>
+			<item name="assets.location.noneAvailable"><![CDATA[Es wurde noch kein Standort hinzugefügt.]]></item>
+			<item name="assets.location.parentCategoryID"><![CDATA[Übergeordneter Standort]]></item>
+			<item name="assets.location.parentCategoryID.error.invalid"><![CDATA[Der ausgewählte Standort existiert nicht.]]></item>
+		</category>
+		<!-- /AssetLocation-->
 		<category name="assets.page">
 			<!-- AssetList -->
 			<item name="assets.page.assetList.title"><![CDATA[Vermögenswerte]]></item>
@@ -252,6 +266,7 @@
 			<!-- Location -->
 			<item name="wcf.acp.menu.link.application.assets.location.list"><![CDATA[Standorte]]></item>
 			<item name="wcf.acp.menu.link.application.assets.location.add"><![CDATA[Standort hinzufügen]]></item>
+			<item name="wcf.acp.menu.link.application.assets.location.edit"><![CDATA[Standort bearbeiten]]></item>
 			<!-- Bulk Edit -->
 			<item name="wcf.acp.menu.link.application.assets.bulkprocess"><![CDATA[Massenbearbeitung]]></item>
 			<!-- Import -->
