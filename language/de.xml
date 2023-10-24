@@ -6,6 +6,7 @@
 		<category name="assets.acp.asset">
 			<item name="assets.acp.asset.bulkProcessing"><![CDATA[Vermögenswert-Massenbearbeitung]]></item>
 			<item name="assets.acp.asset.bulkProcessing.log"><![CDATA[Administrative Massenbearbeitung.]]></item>
+			<item name="assets.acp.asset.bulkProcessing.success"><![CDATA[Aktion erfolgreich ausgeführt.]]></item>
 			<!-- Actions -->
 			<item name="assets.acp.asset.bulkProcessing.action"><![CDATA[Aktionen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
