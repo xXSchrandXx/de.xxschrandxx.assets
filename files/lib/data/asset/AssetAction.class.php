@@ -13,6 +13,7 @@ use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
 use wcf\system\search\SearchIndexManager;
+use wcf\system\template\ACPTemplateEngine;
 use wcf\system\template\TemplateEngine;
 use wcf\system\user\activity\event\UserActivityEventHandler;
 use wcf\system\WCF;
@@ -451,6 +452,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         $tplEngine = TemplateEngine::getInstance();
         // support acp bulk processing
         if (\class_exists(\wcf\system\WCFACP::class, false) || !PACKAGE_ID) {
+            $tplEngine = ACPTemplateEngine::getInstance();
             $tplEngine->addApplication('assets', ASSETS_DIR.'templates/');
         }
         $chunks = array_chunk(array_merge($dummys, $this->getObjects()), ASSETS_LABEL_PER_PAGE);
