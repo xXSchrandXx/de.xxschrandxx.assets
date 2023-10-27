@@ -1,5 +1,5 @@
 {hascontent}
-	<section>
+	<section class="tabularBox">
 		<table class="table">
 			<thead>
 				<tr>

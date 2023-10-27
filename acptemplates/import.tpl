@@ -13,7 +13,7 @@
 {@$form->getHtml()}
 
 {if $skipped|isset && !$skipped|empty}
-	<div class="section">
+	<div class="section tabularBox">
 		<h2 class="sectionTitle">
 			{lang}assets.acp.form.import.skip.header{/lang}
 		</h2>
@@ -52,7 +52,7 @@
 	<p class="info">{lang}assets.acp.form.import.skip.noSkip{/lang}</p>
 {/if}
 
-<div class="section">
+<div class="section tabularBox">
 	<h2 class="sectionTitle">
 		{lang}assets.acp.form.import.example.header{/lang}
 	</h2>
