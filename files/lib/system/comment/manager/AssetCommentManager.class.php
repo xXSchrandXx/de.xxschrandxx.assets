@@ -1,4 +1,5 @@
 <?php
+
 namespace assets\system\comment\manager;
 
 use assets\data\asset\Asset;
@@ -57,7 +58,8 @@ class AssetCommentManager extends AbstractCommentManager
     /**
      * @inheritDoc
      */
-    public function isAccessible($objectID, $validateWritePermission = false) {
+    public function isAccessible($objectID, $validateWritePermission = false)
+    {
         $asset = new Asset($objectID);
         if ($asset === null || !$asset->canView()) {
             return false;
@@ -72,7 +74,8 @@ class AssetCommentManager extends AbstractCommentManager
     public function canAdd($objectID)
     {
         $asset = new Asset($objectID);
-        if ($asset === null || $asset->isTrashed()) {
+        if ($asset === null || $asset->isTrashed())
+        {
             return false;
         }
 
@@ -82,7 +85,8 @@ class AssetCommentManager extends AbstractCommentManager
     /**
      * @inheritDoc
      */
-    public function getLink($objectTypeID, $objectID) {
+    public function getLink($objectTypeID, $objectID)
+    {
         $asset = new Asset($objectID);
         if ($asset === null) {
             return '';
@@ -94,7 +98,8 @@ class AssetCommentManager extends AbstractCommentManager
     /**
      * @inheritDoc
      */
-    public function getTitle($objectTypeID, $objectID, $isResponse = false) {
+    public function getTitle($objectTypeID, $objectID, $isResponse = false)
+    {
         if ($isResponse) {
             return WCF::getLanguage()->get('assets.page.asset.comment.response');
         }
@@ -105,7 +110,8 @@ class AssetCommentManager extends AbstractCommentManager
     /**
      * @inheritDoc
      */
-    public function updateCounter($objectID, $value) {
+    public function updateCounter($objectID, $value)
+    {
         $editor = new AssetEditor(new Asset($objectID));
         $editor->updateCounters([
             'comments' => $value

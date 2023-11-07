@@ -26,7 +26,7 @@ class AssetQrCodeRebuildDataWorker extends AbstractRebuildDataWorker
 
         /** @var \assets\data\asset\Asset $asset */
         foreach ($this->objectList as $asset) {
-            $path = ASSETS_DIR.'images/qr/'.$asset->getObjectID().'.svg';
+            $path = ASSETS_DIR . 'images/qr/' . $asset->getObjectID() . '.svg';
             if (file_exists($path)) {
                 @unlink($path);
             }

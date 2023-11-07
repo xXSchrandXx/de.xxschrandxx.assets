@@ -6,7 +6,6 @@ use assets\data\asset\Asset;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 
-
 /**
  * @property   Asset|null    $formObject
  * @property   AssetAction   $objectAction
