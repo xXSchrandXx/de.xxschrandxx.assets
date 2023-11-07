@@ -494,14 +494,14 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
      */
     public function getQRCode()
     {
-        $path = ASSETS_DIR.'images/qr/'.$this->getObjectID().'.svg';
+        $path = ASSETS_DIR . 'images/qr/' . $this->getObjectID() . '.svg';
         if (!file_exists($path)) {
             if (WCF::benchmarkIsEnabled()) {
                 $benchmarkIndex = Benchmark::getInstance()->start('AssetQRCode', Benchmark::TYPE_OTHER);
             }
 
             // load php-qrcode library
-            require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+            require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
             $options = new QROptions();
             $options->outputType = QRCode::OUTPUT_MARKUP_SVG;
@@ -514,7 +514,7 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
             }
         }
 
-        return WCF::getPath('assets').'images/qr/'.$this->getObjectID().'.svg';
+        return WCF::getPath('assets') . 'images/qr/' . $this->getObjectID() . '.svg';
     }
 
     /* Permissions */
