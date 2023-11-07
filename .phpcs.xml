@@ -4,6 +4,7 @@
 	xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/master/phpcs.xsd"
 >
 	<file>files/</file>
+	<file>files_wcf/</file>
 	<exclude-pattern>lib/system/api/*</exclude-pattern>
 	<arg name="extensions" value="php" />
 	<arg value="p"/>
