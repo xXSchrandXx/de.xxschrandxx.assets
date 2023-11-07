@@ -6,6 +6,10 @@
 	</div>
 </header>
 
+{if $zip|isset && !$zip}
+	<p class="error" role="alert">{lang}assets.acp.form.import.ziperror{/lang}</p>
+{/if}
+
 {if $importError|isset && $importError}
 	<p class="error" role="alert">{lang}{$errorType}{/lang}</p>
 {/if}
@@ -48,7 +52,7 @@
 			</tbody>
 		</table>
 	</div>
-{else}
+{elseif $success|isset && $success}
 	<p class="info">{lang}assets.acp.form.import.skip.noSkip{/lang}</p>
 {/if}
 

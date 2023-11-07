@@ -31,7 +31,22 @@ class ImportForm extends AbstractFormBuilderForm
     /**
      * @inheritDoc
      */
-    protected function createForm()
+    public $zip = false;
+
+    /**
+     * @inheritDoc
+     */
+    public function readParameters()
+    {
+        parent::readParameters();
+
+        $this->zip = extension_loaded('zip');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function createForm()
     {
         parent::createForm();
 
@@ -40,6 +55,7 @@ class ImportForm extends AbstractFormBuilderForm
                 ->label('assets.acp.form.import.field.file')
                 ->description('assets.acp.form.import.field.file.description')
                 ->setAcceptableFiles(['.xlsx', 'application/vnd.openxmlformats-officedocument. spreadsheetml.sheet'])
+                ->available($this->zip)
                 ->minimum(1)
                 ->maximum(1)
                 ->required()
@@ -56,6 +72,8 @@ class ImportForm extends AbstractFormBuilderForm
                     }
                 }))
         );
+
+        $this->form->addDefaultButton($this->zip);
     }
 
     /**
@@ -65,9 +83,12 @@ class ImportForm extends AbstractFormBuilderForm
     {
         AbstractForm::save();
 
+        if (!$this->zip) {
+            return;
+        }
+
         // load phpoffice library
         require_once(ASSETS_DIR.'lib/system/api/autoload.php');
-
 
         $upload = $this->form->getData()['file'][0];
 
@@ -242,5 +263,15 @@ class ImportForm extends AbstractFormBuilderForm
             'skipped' => $skipped,
             'columnTitle' => $columnTitle
         ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function assignVariables()
+    {
+        parent::assignVariables();
+
+        WCF::getTPL()->assign('zip', $this->zip);
     }
 }

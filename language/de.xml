@@ -44,6 +44,7 @@
 			<item name="assets.acp.export.time"><![CDATA[Erstellt]]></item>
 		</category>
 		<category name="assets.acp.form">
+			<item name="assets.acp.form.import.ziperror"><![CDATA[<a href="https://www.php.net/manual/de/book.zip.php" rel="nofollow">Zip-Erweiterung</a> nicht gefunden.]]></item>
 			<item name="assets.acp.form.import.field.file"><![CDATA[Datei]]></item>
 			<item name="assets.acp.form.import.field.file.description"><![CDATA[Es sind nur Dateien mit der Endung <kbd>.xlsx</kbd> erlaubt.]]></item>
 			<item name="assets.acp.form.import.example.header"><![CDATA[Tabellen-Aufbau]]></item>
