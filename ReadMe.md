@@ -4,5 +4,5 @@
 
 # ToDo
 - Lending (Extra plugin)
-- Use caching
 - Add per category label logo
+- Add export clipboard function
