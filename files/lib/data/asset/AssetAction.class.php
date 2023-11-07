@@ -71,7 +71,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         }
 
         // save embedded objects
-        if (!empty($this->parameters['description_htmlInputProcessor'])) { 
+        if (!empty($this->parameters['description_htmlInputProcessor'])) {
             /** @noinspection PhpUndefinedMethodInspection */
             $this->parameters['description_htmlInputProcessor']->setObjectID($asset->getObjectID());
             if (MessageEmbeddedObjectManager::getInstance()->registerObjects($this->parameters['description_htmlInputProcessor'])) {
@@ -171,7 +171,7 @@ class AssetAction extends AbstractDatabaseObjectAction
                 $asset->getTime(),
                 0,
                 ''
-           );
+            );
 
            // save embedded objects
             if (!empty($this->parameters['description_htmlInputProcessor'])) {
@@ -428,7 +428,7 @@ class AssetAction extends AbstractDatabaseObjectAction
     public function getLabel()
     {
         // load dompdf library
-        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+        require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
         // generate page size
         $size = CPDF::$PAPER_SIZES[ASSETS_LABEL_FORMAT];
@@ -453,7 +453,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         // support acp bulk processing
         if (\class_exists(\wcf\system\WCFACP::class, false) || !PACKAGE_ID) {
             $tplEngine = ACPTemplateEngine::getInstance();
-            $tplEngine->addApplication('assets', ASSETS_DIR.'templates/');
+            $tplEngine->addApplication('assets', ASSETS_DIR . 'templates/');
         }
         $chunks = array_chunk(array_merge($dummys, $this->getObjects()), ASSETS_LABEL_PER_PAGE);
 

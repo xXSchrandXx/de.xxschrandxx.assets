@@ -581,7 +581,8 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
      * @param User $user
      * @return bool
      */
-    public function canAudit($user = null) {
+    public function canAudit($user = null)
+    {
         return $this->canModify($user);
     }
 
@@ -590,7 +591,8 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
      * @param User $user
      * @return bool
      */
-    public function canRestore($user = null) {
+    public function canRestore($user = null)
+    {
         return $this->canDelete($user);
     }
 
