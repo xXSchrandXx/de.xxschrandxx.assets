@@ -34,7 +34,8 @@ class NeedsAuditCondition extends AbstractCheckboxCondition implements IObjectLi
         if ($conditionData[$this->fieldName]) {
             $now = new DateTimeImmutable("now", AssetUtil::getDateTimeZone());
             $dateString = $now->format(AssetUtil::NEXT_AUDIT_FORMAT);
-            $objectList->getConditionBuilder()->add("asset.nextAudit <= '$dateString'");
+            $objectList->getConditionBuilder()->add("asset.nextAudit <= '$dateString'"
+        );
         }
     }
 }

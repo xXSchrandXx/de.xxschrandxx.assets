@@ -27,7 +27,7 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
         $objectList->readObjects();
 
         // load phpoffice library
-        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+        require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
         $spreadsheet = new Spreadsheet();
         $activeWorksheet = $spreadsheet->getActiveSheet();
@@ -53,18 +53,18 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
 
         $row = 3;
         foreach ($objectList->getObjects() as $object) {
-            $activeWorksheet->setCellValue('A'.$row, ASSETS_LEGACYID_ENABLED ? $object->getLegacyID() : $object->getObjectID());
-            $activeWorksheet->setCellValue('B'.$row, $object->getTitle());
-            $activeWorksheet->setCellValue('C'.$row, $object->getCategoryID());
-            $activeWorksheet->setCellValue('D'.$row, $object->getCategory()->getTitle());
-            $activeWorksheet->setCellValue('E'.$row, $object->getAmount());
-            $activeWorksheet->setCellValue('F'.$row, $object->getLocationID());
-            $activeWorksheet->setCellValue('G'.$row, $object->getLocation()->getTitle());
-            $activeWorksheet->setCellValue('H'.$row, $object->getNextAuditDateTime()->format(AssetUtil::NEXT_AUDIT_FORMAT));
-            $activeWorksheet->setCellValue('I'.$row, $object->getLastAuditDateTime()->format(AssetUtil::LAST_AUDIT_FORMAT));
-            $activeWorksheet->setCellValue('J'.$row, $object->getLastModificationDateTime()->format(AssetUtil::LAST_MODIFICATION_FORMAT));
-            $activeWorksheet->setCellValue('K'.$row, $object->getCreatedDateTime()->format(AssetUtil::TIME_FORMAT));
-            $activeWorksheet->setCellValue('L'.$row, $object->getRawDescription());
+            $activeWorksheet->setCellValue('A' . $row, ASSETS_LEGACYID_ENABLED ? $object->getLegacyID() : $object->getObjectID());
+            $activeWorksheet->setCellValue('B' . $row, $object->getTitle());
+            $activeWorksheet->setCellValue('C' . $row, $object->getCategoryID());
+            $activeWorksheet->setCellValue('D' . $row, $object->getCategory()->getTitle());
+            $activeWorksheet->setCellValue('E' . $row, $object->getAmount());
+            $activeWorksheet->setCellValue('F' . $row, $object->getLocationID());
+            $activeWorksheet->setCellValue('G' . $row, $object->getLocation()->getTitle());
+            $activeWorksheet->setCellValue('H' . $row, $object->getNextAuditDateTime()->format(AssetUtil::NEXT_AUDIT_FORMAT));
+            $activeWorksheet->setCellValue('I' . $row, $object->getLastAuditDateTime()->format(AssetUtil::LAST_AUDIT_FORMAT));
+            $activeWorksheet->setCellValue('J' . $row, $object->getLastModificationDateTime()->format(AssetUtil::LAST_MODIFICATION_FORMAT));
+            $activeWorksheet->setCellValue('K' . $row, $object->getCreatedDateTime()->format(AssetUtil::TIME_FORMAT));
+            $activeWorksheet->setCellValue('L' . $row, $object->getRawDescription());
 
             $row++;
         }
