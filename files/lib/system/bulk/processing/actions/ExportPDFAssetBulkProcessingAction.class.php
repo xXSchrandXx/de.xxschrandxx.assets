@@ -29,13 +29,13 @@ class ExportPDFAssetBulkProcessingAction extends AbstractAssetBulkProcessingActi
         $objects = $objectList->getObjects();
 
         // load dompdf library
-        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+        require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
         $options = new Options();
-        $options->setTempDir(WCF_DIR.'tmp/');
-        $options->setLogOutputFile(WCF_DIR.'tmp/dompdf.log');
+        $options->setTempDir(WCF_DIR . 'tmp/');
+        $options->setLogOutputFile(WCF_DIR . 'tmp/dompdf.log');
         $options->setIsRemoteEnabled(true);
-        $options->setFontDir(WCF_DIR.'font/families');
+        $options->setFontDir(WCF_DIR . 'font/families');
         $options->setDefaultPaperSize(ASSETS_EXPORT_FORMAT);
         $options->setDefaultPaperOrientation(ASSETS_EXPORT_ORIENTATION);
 
