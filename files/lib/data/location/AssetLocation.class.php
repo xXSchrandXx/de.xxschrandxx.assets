@@ -27,7 +27,8 @@ class AssetLocation extends AbstractDecoratedCategory implements ILinkableObject
         return $this->getPermission('canViewLocation', 'user', $user);
     }
 
-    public function canAudit($user = null) {
+    public function canAudit($user = null)
+    {
         return $this->canModify($user);
     }
 

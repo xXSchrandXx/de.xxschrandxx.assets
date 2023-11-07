@@ -26,7 +26,7 @@ class AssetUserActivityEvent extends SingletonFactory implements IUserActivityEv
             $event->setIsAccessible();
 
             $text = WCF::getLanguage()->getDynamicVariable(
-                'assets.asset.reventActivity.'.$event->action,
+                'assets.asset.reventActivity.' . $event->action,
                 ['asset' => $asset]
             );
             $event->setTitle($text);

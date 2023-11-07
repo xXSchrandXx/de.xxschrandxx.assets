@@ -34,11 +34,13 @@ class AssetCategory extends AbstractDecoratedCategory implements ILinkableObject
         return $this->getPermission('canModifyCategory', 'mod', $user);
     }
 
-    public function canAudit($user = null) {
+    public function canAudit($user = null)
+    {
         return $this->canModify($user);
     }
 
-    public function canRestore($user = null) {
+    public function canRestore($user = null)
+    {
         return $this->canDelete($user);
     }
 
