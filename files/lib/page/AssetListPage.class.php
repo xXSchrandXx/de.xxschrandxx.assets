@@ -256,7 +256,6 @@ class AssetListPage extends SortablePage
             }
             $this->objectList->getConditionBuilder()->add('locationID IN (?)', [$locatioNIDs]);
         }
-
     }
 
     /**

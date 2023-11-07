@@ -15,7 +15,7 @@ class AssetsExportPaperSizeOptionType extends AbstractOptionType
     {
         if (!isset($this->valideFormats)) {
             // load dompdf library
-            require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+            require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
             $this->valideFormats = array_keys(CPDF::$PAPER_SIZES);
         }
         return $this->valideFormats;
@@ -44,7 +44,7 @@ class AssetsExportPaperSizeOptionType extends AbstractOptionType
         if (in_array($newValue, $this->getValideFormats())) {
             return;
         }
-        
+
         throw new UserInputException($option->optionName);
     }
 }

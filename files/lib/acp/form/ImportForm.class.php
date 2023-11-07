@@ -88,7 +88,7 @@ class ImportForm extends AbstractFormBuilderForm
         }
 
         // load phpoffice library
-        require_once(ASSETS_DIR.'lib/system/api/autoload.php');
+        require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
         $upload = $this->form->getData()['file'][0];
 
@@ -147,7 +147,7 @@ class ImportForm extends AbstractFormBuilderForm
             $locationList->getConditionBuilder()->add('objectTypeID = ?', [$locationObjectType->getObjectID()]);
             $locationList->readObjects();
             $locations = $locationList->getObjects();
-    
+
             $columnAmount = array_search($lang->get('assets.acp.export.amount'), $header);
             $columnNextAudit = array_search($lang->get('assets.acp.export.nextAudit'), $header);
             $columnLastAudit = array_search($lang->get('assets.acp.export.lastAudit'), $header);
