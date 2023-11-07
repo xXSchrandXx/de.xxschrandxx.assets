@@ -76,7 +76,6 @@ class AssetSearch extends AbstractSearchProvider
         return $this->getTableName() . '.title';
     }
 
-    
     /**
      * @inheritDoc
      */
@@ -200,7 +199,6 @@ class AssetSearch extends AbstractSearchProvider
         ]);
     }
 
-    
     /**
      * @inheritDoc
      */

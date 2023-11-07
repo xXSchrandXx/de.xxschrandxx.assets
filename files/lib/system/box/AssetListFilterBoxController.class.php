@@ -34,7 +34,8 @@ class AssetListFilterBoxController extends AbstractBoxController
             'de.xxschrandxx.assets.category',
             ($activeCategory === null) ? 0 : $activeCategory->getObjectID(),
             false,
-            $this->getForbittenCategoryIDs($activeRequest));
+            $this->getForbittenCategoryIDs($activeRequest)
+        );
         $categoryList = $categoryTree->getIterator();
 
         // read locations
@@ -43,7 +44,8 @@ class AssetListFilterBoxController extends AbstractBoxController
             'de.xxschrandxx.assets.location',
             ($activeLocation === null) ? 0 : $activeLocation->getObjectID(),
             false,
-            $this->getForbittenLocationIDs($activeRequest));
+            $this->getForbittenLocationIDs($activeRequest)
+        );
         $locationList = $locationTree->getIterator();
 
         $this->content = WCF::getTPL()->fetch(

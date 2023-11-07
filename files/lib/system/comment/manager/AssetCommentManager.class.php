@@ -74,8 +74,7 @@ class AssetCommentManager extends AbstractCommentManager
     public function canAdd($objectID)
     {
         $asset = new Asset($objectID);
-        if ($asset === null || $asset->isTrashed())
-        {
+        if ($asset === null || $asset->isTrashed()) {
             return false;
         }
 
