@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<data xmlns="https://www.woltlab.com"
-	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/5.5/box.xsd">
+<data
+	xmlns="https://www.woltlab.com"
+	xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/6.0/box.xsd"
+>
 	<import>
 		<box identifier="de.xxschrandxx.assets.AssetListFilter">
 			<name language="de">Vermögenswerte filtern</name>
