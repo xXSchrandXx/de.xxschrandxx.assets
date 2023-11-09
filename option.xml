@@ -41,8 +41,7 @@
 				<optiontype>select</optiontype>
 				<defaultvalue>portrait</defaultvalue>
 				<selectoptions>landscape:wcf.acp.option.assets_export_orientation.landscape
-portrait:wcf.acp.option.assets_export_orientation.portrait
-				</selectoptions>
+portrait:wcf.acp.option.assets_export_orientation.portrait</selectoptions>
 			</option>
 			<option name="assets_label_header">
 				<categoryname>assets_label</categoryname>
@@ -94,8 +93,7 @@ webp</fileExtensions>
 				<optiontype>select</optiontype>
 				<defaultvalue>landscape</defaultvalue>
 				<selectoptions>landscape:wcf.acp.option.assets_export_orientation.landscape
-portrait:wcf.acp.option.assets_export_orientation.portrait
-				</selectoptions>
+portrait:wcf.acp.option.assets_export_orientation.portrait</selectoptions>
 			</option>
 			<option name="assets_label_page_margin_top">
 				<categoryname>assets_label</categoryname>
@@ -259,12 +257,10 @@ portrait:wcf.acp.option.assets_export_orientation.portrait
 				<categoryname>assets_audit</categoryname>
 				<optiontype>select</optiontype>
 				<defaultvalue>Y</defaultvalue>
-				<selectoptions>
-					Y:wcf.acp.option.assets_auditinterval_unit.year
-					M:wcf.acp.option.assets_auditinterval_unit.month
-					W:wcf.acp.option.assets_auditinterval_unit.week
-					D:wcf.acp.option.assets_auditinterval_unit.day
-				</selectoptions>
+				<selectoptions>Y:wcf.acp.option.assets_auditinterval_unit.year
+M:wcf.acp.option.assets_auditinterval_unit.month
+W:wcf.acp.option.assets_auditinterval_unit.week
+D:wcf.acp.option.assets_auditinterval_unit.day</selectoptions>
 			</option>
 			<option name="assets_audit_date">
 				<categoryname>assets_audit</categoryname>
