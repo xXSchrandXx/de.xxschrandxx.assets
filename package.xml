@@ -6,13 +6,13 @@
 	xsi:schemaLocation="https://www.woltlab.com https://www.woltlab.com/XSD/6.0/package.xsd"
 >
 	<packageinformation>
-		<packagename><![CDATA[Assets]]></packagename>
-		<packagename language="de"><![CDATA[Vermögenswerte]]></packagename>
-		<packagedescription><![CDATA[Asset management plugin.]]></packagedescription>
-		<packagedescription language="de"><![CDATA[Plugin zum Managen von Vermögenswerten.]]></packagedescription>
+		<packagename><![CDATA[Asset Management]]></packagename>
+		<packagename language="de"><![CDATA[Vermögensverwaltung]]></packagename>
+		<packagedescription><![CDATA[Simple asset management app.]]></packagedescription>
+		<packagedescription language="de"><![CDATA[Einfache App zur Vermögensverwaltung.]]></packagedescription>
 		<isapplication>1</isapplication>
 		<version>1.0.0</version>
-		<date>2023-06-15</date>
+		<date>2023-11-09</date>
 	</packageinformation>
 
 	<authorinformation>

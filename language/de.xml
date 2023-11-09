@@ -15,7 +15,7 @@
 			<item name="assets.acp.asset.bulkProcessing.delete"><![CDATA[Löschen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.trash"><![CDATA[Entfernen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.restore"><![CDATA[Wiederherstellen]]></item>
-			<item name="assets.acp.asset.bulkProcessing.getLabel"><![CDATA[Label erstellen]]></item>
+			<item name="assets.acp.asset.bulkProcessing.getLabel"><![CDATA[Etikett erstellen]]></item>
 			<item name="assets.acp.asset.bulkProcessing.audit"><![CDATA[Prüfung]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf"><![CDATA[PDF Export]]></item>
 			<item name="assets.acp.asset.bulkProcessing.exportpdf.footer.left"><![CDATA[Stand: {$now}]]></item>
@@ -110,7 +110,7 @@
 		</category>
 		<!-- AssetLabel -->
 		<category name="assets.label">
-			<item name="assets.label.title"><![CDATA[Label]]></item>
+			<item name="assets.label.title"><![CDATA[Etikett]]></item>
 			<item name="assets.label.asset.title"><![CDATA[T: {$object->getTitle()}]]></item>
 			<item name="assets.label.asset.category"><![CDATA[K: {$object->getCategory()->getTitle()}]]></item>
 			<item name="assets.label.asset.location"><![CDATA[S: {$object->getLocation()->getTitle()}]]></item>
@@ -244,14 +244,14 @@
 			<item name="wcf.acp.option.assets_export_orientation.landscape"><![CDATA[Querformat]]></item>
 			<item name="wcf.acp.option.assets_export_orientation.portrait"><![CDATA[Hochformat]]></item>
 			<!-- label -->
-			<item name="wcf.acp.option.category.assets_label"><![CDATA[Label export]]></item>
+			<item name="wcf.acp.option.category.assets_label"><![CDATA[Etiketten export]]></item>
 			<item name="wcf.acp.option.assets_label_header"><![CDATA[Firma]]></item>
 			<item name="wcf.acp.option.assets_label_logo"><![CDATA[Logo]]></item>
 			<item name="wcf.acp.option.assets_label_logo.removeFile"><![CDATA[Bild entfernen]]></item>
 			<item name="wcf.acp.option.assets_label_logo_height"><![CDATA[Logo größe]]></item>
 			<item name="wcf.acp.option.assets_label_logo_margin_top"><![CDATA[Obere Abstand]]></item>
 			<item name="wcf.acp.option.assets_label_logo_margin_right"><![CDATA[Rechte Abstand]]></item>
-			<item name="wcf.acp.option.assets_label_per_page"><![CDATA[Label je Seite]]></item>
+			<item name="wcf.acp.option.assets_label_per_page"><![CDATA[Etiketten je Seite]]></item>
 			<item name="wcf.acp.option.assets_label_format"><![CDATA[Seitenformat]]></item>
 			<item name="wcf.acp.option.assets_label_orientation"><![CDATA[Seitenausrichtung]]></item>
 			<item name="wcf.acp.option.assets_label_page_margin_top"><![CDATA[Obere Seitenrand]]></item>
@@ -306,8 +306,8 @@
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich {if $count == 1}einen{else}{#$count}{/if} Vermögenswerte löschen?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit"><![CDATA[Prüfen ({#$count})]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich den Prüfstatus von {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} aktuallisieren?]]></item>
-			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel"><![CDATA[Label generieren ({#$count})]]></item>
-			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich die Label für {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} erstellen?]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel"><![CDATA[Etiketten generieren ({#$count})]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich die Etiketten für {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} erstellen?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.skipFields"><![CDATA[Anzahl leerer Etiketten am Anfang]]></item>
 		</category>
 		<category name="wcf.search">
