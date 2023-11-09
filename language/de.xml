@@ -105,12 +105,8 @@
 			<item name="assets.form.asset.field.categoryID"><![CDATA[Kategorie]]></item>
 			<item name="assets.form.asset.field.amount"><![CDATA[Stückzahl]]></item>
 			<item name="assets.form.asset.field.locationID"><![CDATA[Standort]]></item>
-			<item name="assets.form.asset.field.locationID.description"><![CDATA[Standort des Vermögenswertes, wenn er nicht ausgeliehen ist.]]></item>
 			<item name="assets.form.asset.field.nextAudit"><![CDATA[Nächste Prüfung]]></item>
 			<item name="assets.form.asset.field.description"><![CDATA[Beschreibung]]></item>
-
-			<!-- AssetBorrow -->
-			<item name="assets.form.asset.title.add"><![CDATA[Vermögenswert hinzufügen]]></item>
 		</category>
 		<!-- AssetLabel -->
 		<category name="assets.label">
@@ -192,11 +188,11 @@
 			<item name="wcf.acl.option.category.de.xxschrandxx.assets.location.mod.assets.location"><![CDATA[Moderative Rechte]]></item>
 			<item name="wcf.acl.option.category.de.xxschrandxx.assets.location.admin.assets.location"><![CDATA[Administrative Rechte]]></item>
 			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canViewLocation"><![CDATA[Kann Vermögenswerte sehen.]]></item>
-			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canModifyLocation"><![CDATA[Kann Standortzugehörigkeit bearbeiten.]]></item>
+			<item name="wcf.acl.option.de.xxschrandxx.assets.location.canModifyLocation"><![CDATA[Kann Standort Zugehörigkeit bearbeiten.]]></item>
 		</category>
 		<category name="wcf.acp.box">
 			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetListFilter"><![CDATA[Vermögenswerte-Filter]]></item>
-			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetStatistics"><![CDATA[Vermögenswerte-Stitistiken]]></item>
+			<item name="wcf.acp.box.boxController.de.xxschrandxx.assets.assetStatistics"><![CDATA[Vermögenswerte-Statistiken]]></item>
 		</category>
 		<category name="wcf.acp.group">
 			<item name="wcf.acp.group.option.category.user.assets"><![CDATA[Vermögenswerte]]></item>
