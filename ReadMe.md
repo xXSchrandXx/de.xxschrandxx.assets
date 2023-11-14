@@ -8,4 +8,4 @@
 - Lending (Extra plugin)
 - Add per category label logo (WSC 6.1)
 - Add export clipboard function
-- 
+- Switch to new API https://docs.woltlab.com/6.0/javascript/components_confirmation/ and https://docs.woltlab.com/6.0/javascript/components_dialog/
