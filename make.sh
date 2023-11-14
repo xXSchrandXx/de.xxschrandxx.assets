@@ -21,3 +21,5 @@ for i in "${PACKAGE_TYPES[@]}"
 do
     rm -rf ${i}.tar
 done
+
+rm -rf ./files_wcf/js/

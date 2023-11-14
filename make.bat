@@ -19,3 +19,5 @@ del ".\%PACKAGE_NAME%.tar"
 for %%i in %PACKAGE_TYPES% do (
     del .\%%i.tar
 )
+
+del .\files_wcf\js\
