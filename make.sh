@@ -2,9 +2,9 @@
 PACKAGE_NAME=de.xxschrandxx.wsc.assets
 PACKAGE_TYPES=(acptemplates files files_wcf templates)
 
-tsc
-
 composer install
+
+tsc
 
 for i in "${PACKAGE_TYPES[@]}"
 do
