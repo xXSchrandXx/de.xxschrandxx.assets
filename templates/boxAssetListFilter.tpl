@@ -12,17 +12,17 @@
 			<h2 class="messageSectionTitle">{lang}wcf.box.de.xxschrandxx.assets.assetListFilter.trash{/lang}</h2>
 			<ol class="boxMenu">
 				<li class="boxMenuItem boxMenuItemDepth1{if $trash|isset && $trash == 0} active{/if}">
-					<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash=0{/link}" class="boxMenuLink">
+					<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash=0{/link}" class="boxMenuLink">
 						<span class="boxMenuLinkTitle">{lang}wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both{/lang}</span>
 					</a>
 				</li>
 				<li class="boxMenuItem boxMenuItemDepth1{if $trash|isset && $trash == 1} active{/if}">
-					<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash=1{/link}" class="boxMenuLink">
+					<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash=1{/link}" class="boxMenuLink">
 						<span class="boxMenuLinkTitle">{lang}wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes{/lang}</span>
 					</a>
 				</li>
 				<li class="boxMenuItem boxMenuItemDepth1{if $trash|isset && $trash == 2} active{/if}">
-					<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash=2{/link}" class="boxMenuLink">
+					<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash=2{/link}" class="boxMenuLink">
 						<span class="boxMenuLinkTitle">{lang}wcf.box.de.xxschrandxx.assets.assetListFilter.trash.no{/lang}</span>
 					</a>
 				</li>

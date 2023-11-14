@@ -1,5 +1,5 @@
 <section class="section general">
-	<img src="{@$object->getQRCode()}" class="AssetQRCode" title="QRCode">
+	<img src="{$object->getQRCode()}" class="AssetQRCode" title="QRCode">
 	<dl>
 		<dt>{lang}assets.page.asset.overview.id{/lang}</dt>
 		<dd>

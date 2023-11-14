@@ -52,48 +52,48 @@
 				<tr>
 					<th class="columnMark"><label><input type="checkbox" class="jsClipboardMarkAll"></label></th>
 					{if ASSETS_LEGACYID_ENABLED}
-						<th class="columnID{if $sortField == 'legacyID'} active {@$sortOrder}{/if}">
-							<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+						<th class="columnID{if $sortField == 'legacyID'} active {$sortOrder}{/if}">
+							<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 								{lang}wcf.global.objectID{/lang}
 							</a>
 						</th>
 					{else}
-						<th class="columnID{if $sortField == 'assetID'} active {@$sortOrder}{/if}">
-							<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=assetID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+						<th class="columnID{if $sortField == 'assetID'} active {$sortOrder}{/if}">
+							<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=assetID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 								{lang}wcf.global.objectID{/lang}
 							</a>
 						</th>
 					{/if}
 					<th></th>
-					<th class="columnTitle{if $sortField == 'title'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+					<th class="columnTitle{if $sortField == 'title'} active {$sortOrder}{/if}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.global.title{/lang}
 						</a>
 					</th>
 					<th>{lang}assets.page.assetList.category{/lang}</th>
-					<th class="columnInt{if $sortField == 'amount'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=amount&sortOrder={if $sortField == 'amount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+					<th class="columnInt{if $sortField == 'amount'} active {$sortOrder}{/if}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=amount&sortOrder={if $sortField == 'amount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}assets.page.assetList.amount{/lang}
 						</a>
 					</th>
 					<th>{lang}assets.page.assetList.location{/lang}</th>
-					<th class="columnDate{if $sortField == 'nextAudit'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=nextAudit&sortOrder={if $sortField == 'nextAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+					<th class="columnDate{if $sortField == 'nextAudit'} active {$sortOrder}{/if}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=nextAudit&sortOrder={if $sortField == 'nextAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}assets.page.assetList.nextAudit{/lang}
 						</a>
 					</th>
-					<th class="columnDate{if $sortField == 'lastAudit'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=lastAudit&sortOrder={if $sortField == 'lastAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+					<th class="columnDate{if $sortField == 'lastAudit'} active {$sortOrder}{/if}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=lastAudit&sortOrder={if $sortField == 'lastAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}assets.page.assetList.lastAudit{/lang}
 						</a>
 					</th>
-					<th class="columnDate{if $sortField == 'lastModification'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=lastModification&sortOrder={if $sortField == 'lastModification' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+					<th class="columnDate{if $sortField == 'lastModification'} active {$sortOrder}{/if}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=lastModification&sortOrder={if $sortField == 'lastModification' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}assets.page.assetList.lastModification{/lang}
 						</a>
 					</th>
-					<th class="columnDate{if $sortField == 'time'} active {@$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={@$categoryID}&locationID={@$locationID}&trash={@$trash}&pageNo={@$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
+					<th class="columnDate{if $sortField == 'time'} active {$sortOrder}{/if}">
+						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}assets.page.assetList.time{/lang}
 						</a>
 					</th>
@@ -106,8 +106,8 @@
 					{foreach from=$objects item=object}
 						<tr 
 							class="jsAssetRow jsClipboardObject" 
-							data-object-id="{@$object->getObjectID()}" 
-							data-name="{@$object->getTitle()}" 
+							data-object-id="{$object->getObjectID()}" 
+							data-name="{$object->getTitle()}" 
 							data-trashed="{if $object->isTrashed()}true{else}false{/if}" 
 							data-can-audit="{if $object->canAudit()}true{else}false{/if}" 
 							data-can-trash="{if $object->canTrash()}true{else}false{/if}" 
@@ -115,14 +115,14 @@
 							data-can-delete="{if $object->canDelete()}true{else}false{/if}" 
 							data-can-modify="{if $object->canModify()}true{else}false{/if}"
 						>
-							<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{@$object->getObjectID()}"></td>
+							<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{$object->getObjectID()}"></td>
 							{if ASSETS_LEGACYID_ENABLED}
 								<td class="columnID">{$object->getLegacyID()}</td>
 							{else}
 								<td class="columnID">{#$object->getObjectID()}</td>
 							{/if}
 							<td class="columnIcon">
-								<div class="dropdown" id="assetListDropdown{@$object->getObjectID()}">
+								<div class="dropdown" id="assetListDropdown{$object->getObjectID()}">
 									<a href="#" class="dropdownToggle button small">{icon name='pencil'} <span>{lang}wcf.global.button.edit{/lang}</span></a>
 
 									<ul class="dropdownMenu">

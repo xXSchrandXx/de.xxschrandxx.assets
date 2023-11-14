@@ -134,8 +134,8 @@
 		<category name="assets.page">
 			<!-- AssetList -->
 			<item name="assets.page.assetList.title"><![CDATA[Assets]]></item>
-			<item name="assets.page.assetList.subtitle.category"><![CDATA[Category: {@$categoryName}]]></item>
-			<item name="assets.page.assetList.subtitle.location"><![CDATA[Location: {@$locationName}]]></item>
+			<item name="assets.page.assetList.subtitle.category"><![CDATA[Category: {$categoryName}]]></item>
+			<item name="assets.page.assetList.subtitle.location"><![CDATA[Location: {$locationName}]]></item>
 			<item name="assets.page.assetList.category"><![CDATA[Category]]></item>
 			<item name="assets.page.assetList.amount"><![CDATA[Amount]]></item>
 			<item name="assets.page.assetList.location"><![CDATA[Location]]></item>

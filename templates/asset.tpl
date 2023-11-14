@@ -78,8 +78,8 @@
 
 <div 
 	class="section tabMenuContainer jsAsset"
-	data-object-id="{@$object->getObjectID()}" 
-	data-name="{@$object->getTitle()}" 
+	data-object-id="{$object->getObjectID()}" 
+	data-name="{$object->getTitle()}" 
 	data-trashed="{if $object->isTrashed()}true{else}false{/if}" 
 	data-can-audit="{if $object->canAudit()}true{else}false{/if}" 
 	data-can-trash="{if $object->canTrash()}true{else}false{/if}" 
