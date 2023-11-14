@@ -24,7 +24,7 @@
 	</requiredpackages>
 
 	<excludedpackages>
-		<excludedpackage version="7.0.0 dev 1">com.woltlab.wcf</excludedpackage>
+		<excludedpackage version="7.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
 
 	<instructions type="install">
