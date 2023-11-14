@@ -1,25 +1,16 @@
-import DomUtil from "@woltlab/d.ts/WoltLabSuite/Core/Dom/Util";
-import { ClipboardActionData } from "WoltLabSuite/Core/Controller/Clipboard/Data";
 import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
-
-interface EventData {
-    data: ClipboardActionData;
-    listItem: HTMLLIElement;
-    responseData: {
-        returnValues: string
-    }
-}
+import IClipboardEventData from "./DataInterfaces/IClipboardEventData";
 
 class ClipboardListener {
     /**
      * Initializes the event listener.
      */
     constructor() {
-        EventHandler.add("com.woltlab.wcf.clipboard", "de.xxschrandxx.assets.asset", (data: EventData) => this.listen(data));
+        EventHandler.add("com.woltlab.wcf.clipboard", "de.xxschrandxx.assets.asset", (data: IClipboardEventData) => this.listen(data));
     }
 
     
-    private listen(data: EventData): void {
+    private listen(data: IClipboardEventData): void {
         if (data.responseData === null) {
             return;
         }
