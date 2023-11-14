@@ -9,16 +9,16 @@ use wcf\system\template\ACPTemplateEngine;
 
 class AssetsExportPaperSizeOptionType extends AbstractOptionType
 {
-    private $valideFormats;
+    private $validFormats;
 
-    private function getValideFormats()
+    private function getValidFormats()
     {
-        if (!isset($this->valideFormats)) {
+        if (!isset($this->validFormats)) {
             // load dompdf library
             require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
-            $this->valideFormats = array_keys(CPDF::$PAPER_SIZES);
+            $this->validFormats = array_keys(CPDF::$PAPER_SIZES);
         }
-        return $this->valideFormats;
+        return $this->validFormats;
     }
 
     /**
@@ -27,7 +27,7 @@ class AssetsExportPaperSizeOptionType extends AbstractOptionType
     public function getFormElement(Option $option, $value)
     {
         return ACPTemplateEngine::getInstance()->fetch('assetsExportPaperSizeOptionType', 'assets', [
-            'valideFormats' => $this->getValideFormats(),
+            'validFormats' => $this->getValidFormats(),
             'option' => $option,
             'value' => $value
         ]);
@@ -41,7 +41,7 @@ class AssetsExportPaperSizeOptionType extends AbstractOptionType
         if (empty($newValue)) {
             return;
         }
-        if (in_array($newValue, $this->getValideFormats())) {
+        if (in_array($newValue, $this->getValidFormats())) {
             return;
         }
 
