@@ -1,5 +1,5 @@
 #/bin/bash
-PACKAGE_NAME=de.xxschrandxx.wsc.assets
+PACKAGE_NAME=de.xxschrandxx.assets
 PACKAGE_TYPES=(acptemplates files files_wcf templates)
 
 composer install

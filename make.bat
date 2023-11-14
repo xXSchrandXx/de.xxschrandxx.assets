@@ -1,4 +1,4 @@
-set PACKAGE_NAME=de.xxschrandxx.wsc.assets
+set PACKAGE_NAME=de.xxschrandxx.assets
 set PACKAGE_TYPES=(acptemplates files files_wcf templates)
 
 call composer install
