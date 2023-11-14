@@ -8,3 +8,4 @@
 - Lending (Extra plugin)
 - Add per category label logo (WSC 6.1)
 - Add export clipboard function
+- 
