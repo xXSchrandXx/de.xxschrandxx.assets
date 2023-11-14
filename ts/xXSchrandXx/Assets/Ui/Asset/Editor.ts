@@ -16,7 +16,7 @@ class UiAssetEditor {
         }
         this.initAsset(asset);
 
-        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: RefreshAssetsData) => this.refreshAsset(data));
+        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: IRefreshAssetsData) => this.refreshAsset(data));
     }
 
     /**
@@ -46,7 +46,7 @@ class UiAssetEditor {
         }
     }
 
-    private refreshAsset(data: RefreshAssetsData): void {
+    private refreshAsset(data: IRefreshAssetsData): void {
         const asset = document.querySelector(".jsAsset") as HTMLElement;
         if (asset === null) {
             return;

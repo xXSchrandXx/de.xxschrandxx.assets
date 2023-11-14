@@ -13,7 +13,7 @@ class UiAssetListEditor {
     constructor() {
         document.querySelectorAll(".jsAssetRow").forEach((assetRow: HTMLTableRowElement) => this.initAsset(assetRow));
 
-        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: RefreshAssetsData) => this.refreshAssets(data));
+        EventHandler.add("de.xxschrandxx.assets.asset", "refresh", (data: IRefreshAssetsData) => this.refreshAssets(data));
     }
 
     /**
@@ -62,7 +62,7 @@ class UiAssetListEditor {
         }
     }
 
-    private refreshAssets(data: RefreshAssetsData): void {
+    private refreshAssets(data: IRefreshAssetsData): void {
         document.querySelectorAll(".jsAssetRow").forEach((assetRow: HTMLTableRowElement) => {
             const assetId = ~~assetRow.dataset.objectId!;
             if (!data.assetIds.includes(assetId)) {

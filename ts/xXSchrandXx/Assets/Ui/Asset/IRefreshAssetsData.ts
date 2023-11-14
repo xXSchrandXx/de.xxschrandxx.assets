@@ -1,0 +1,3 @@
+interface IRefreshAssetsData {
+    assetIds: number[];
+}
