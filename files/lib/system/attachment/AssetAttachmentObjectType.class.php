@@ -5,10 +5,11 @@ namespace assets\system\attachment;
 use assets\data\asset\Asset;
 use assets\data\asset\AssetList;
 use wcf\system\attachment\AbstractAttachmentObjectType;
+use wcf\system\WCF;
 
 /**
  * @var Asset[] $cachedObjects
- * @method Asset getObject($objectID)
+ * @method ?Asset getObject($objectID)
  */
 class AssetAttachmentObjectType extends AbstractAttachmentObjectType
 {
@@ -28,7 +29,11 @@ class AssetAttachmentObjectType extends AbstractAttachmentObjectType
      */
     public function canDownload($objectID)
     {
-        return $this->getObject($objectID)->canView();
+        $object = $this->getObject($objectID);
+        if (isset($object)) {
+            return $object->canView();
+        }
+        return WCF::getSession()->getPermission('user.assets.canView');
     }
 
     /**
@@ -36,7 +41,11 @@ class AssetAttachmentObjectType extends AbstractAttachmentObjectType
      */
     public function canUpload($objectID, $parentObjectID = 0)
     {
-        return $this->getObject($objectID)->canModify();
+        $object = $this->getObject($objectID);
+        if (isset($object)) {
+            return $object->canAdd();
+        }
+        return WCF::getSession()->getPermission('mod.assets.canAdd');
     }
 
     /**
@@ -44,6 +53,10 @@ class AssetAttachmentObjectType extends AbstractAttachmentObjectType
      */
     public function canDelete($objectID)
     {
-        return $this->canUpload($objectID);
+        $object = $this->getObject($objectID);
+        if (isset($object)) {
+            return $object->canDelete();
+        }
+        return WCF::getSession()->getPermission('admin.assets.canDelete');
     }
 }
