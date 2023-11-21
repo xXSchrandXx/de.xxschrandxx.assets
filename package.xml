@@ -11,7 +11,7 @@
 		<packagedescription><![CDATA[Simple asset management app.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Einfache App zur Vermögensverwaltung.]]></packagedescription>
 		<isapplication>1</isapplication>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 		<date>2023-11-09</date>
 	</packageinformation>
 
@@ -26,6 +26,10 @@
 	<excludedpackages>
 		<excludedpackage version="7.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
+
+	<instructions type="update" fromversion="1.0.0">
+		<instruction type="file"/>
+	</instructions>
 
 	<instructions type="install">
 		<instruction type="acpTemplate"/>
