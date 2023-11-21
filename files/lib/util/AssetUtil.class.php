@@ -8,10 +8,10 @@ use DateTimeZone;
 
 class AssetUtil
 {
-    public const LAST_COMMENT_FORMAT = DateTimeImmutable::ATOM;
-    public const LAST_MODIFICATION_FORMAT = DateTimeImmutable::ATOM;
-    public const LAST_AUDIT_FORMAT = DateTimeImmutable::ATOM;
-    public const TIME_FORMAT = DateTimeImmutable::ATOM;
+    public const LAST_COMMENT_FORMAT = 'Y-m-d H:i:s'; //DateTimeImmutable::ATOM;
+    public const LAST_MODIFICATION_FORMAT = self::LAST_COMMENT_FORMAT;
+    public const LAST_AUDIT_FORMAT = self::LAST_COMMENT_FORMAT;
+    public const TIME_FORMAT = self::LAST_COMMENT_FORMAT;
 
     public const NEXT_AUDIT_FORMAT = 'Y-m-d';
 
