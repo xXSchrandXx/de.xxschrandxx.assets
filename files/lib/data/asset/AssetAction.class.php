@@ -84,7 +84,7 @@ class AssetAction extends AbstractDatabaseObjectAction
             'de.xxschrandxx.assets.asset.recentActivityEvent',
             $asset->getObjectID(),
             null,
-            null,
+            $this->parameters['data']['userID'] ?? WCF::getUser()->getUserID(),
             TIME_NOW,
             [
                 'action' => 'create'
@@ -154,8 +154,8 @@ class AssetAction extends AbstractDatabaseObjectAction
             UserActivityEventHandler::getInstance()->fireEvent(
                 'de.xxschrandxx.assets.asset.recentActivityEvent',
                 $asset->getObjectID(),
-                $this->parameters['data']['userID'] ?? $asset->userID,
-                $this->parameters['data']['time'] ?? $asset->time,
+                null,
+                $this->parameters['data']['userID'] ?? WCF::getUser()->getUserID(),
                 TIME_NOW,
                 [
                     'action' => 'update'
@@ -237,7 +237,7 @@ class AssetAction extends AbstractDatabaseObjectAction
                 'de.xxschrandxx.assets.asset.recentActivityEvent',
                 $asset->getObjectID(),
                 null,
-                null,
+                $this->parameters['data']['userID'] ?? WCF::getUser()->getUserID(),
                 TIME_NOW,
                 [
                     'action' => 'audit'
@@ -295,7 +295,7 @@ class AssetAction extends AbstractDatabaseObjectAction
                 'de.xxschrandxx.assets.asset.recentActivityEvent',
                 $asset->getObjectID(),
                 null,
-                null,
+                $this->parameters['data']['userID'] ?? WCF::getUser()->getUserID(),
                 TIME_NOW,
                 [
                     'action' => 'trash'
@@ -353,7 +353,7 @@ class AssetAction extends AbstractDatabaseObjectAction
                 'de.xxschrandxx.assets.asset.recentActivityEvent',
                 $asset->getObjectID(),
                 null,
-                null,
+                $this->parameters['data']['userID'] ?? WCF::getUser()->getUserID(),
                 TIME_NOW,
                 [
                     'action' => 'restore'
