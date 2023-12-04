@@ -179,7 +179,6 @@ class AssetAddForm extends AbstractFormBuilderForm
                         ->required(),
                     SingleSelectionFormField::create('locationID')
                         ->label('assets.form.asset.field.locationID')
-                        ->description('assets.form.asset.field.locationID.description')
                         ->options($locations, true, false)
                         ->addValidator(
                             new FormFieldValidator(
