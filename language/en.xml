@@ -199,6 +199,7 @@
 			<item name="wcf.acp.group.option.category.mod.assets"><![CDATA[Assets]]></item>
 			<item name="wcf.acp.group.option.category.admin.assets"><![CDATA[Assets]]></item>
 			<item name="wcf.acp.group.option.user.assets.canView"><![CDATA[Can see assets.]]></item>
+			<item name="wcf.acp.group.option.user.assets.canComment"><![CDATA[Can comment on assets.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canAdd"><![CDATA[Can add assets.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canModify"><![CDATA[Can edit assets.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canTrash"><![CDATA[Can trash assets.]]></item>
