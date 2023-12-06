@@ -231,13 +231,7 @@
 		new ClipboardListener();
 	});
 
-	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(Language, UiAssetListEditor) {
-		Language.addObject({
-			'assets.asset.audit': '{jslang}assets.asset.audit{/jslang}',
-			'assets.asset.audit.comment.optional': '{jslang}assets.asset.audit.comment.optional{/jslang}',
-			'assets.asset.trash': '{jslang}assets.asset.trash{/jslang}',
-			'assets.asset.restore': '{jslang}assets.asset.restore{/jslang}'
-		});
+	require(['xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(UiAssetListEditor) {
 		new UiAssetListEditor();
 	});
 
