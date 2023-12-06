@@ -1,7 +1,15 @@
 {capture assign='__contentHeader'}
 	<header
-		class="contentHeader"
+		class="contentHeader jsAsset"
 		data-object-id="{$object->getObjectID()}"
+		data-title="{$object->getTitle()}" 
+		data-trashed="{if $object->isTrashed()}true{else}false{/if}" 
+		data-can-audit="{if $object->canAudit()}true{else}false{/if}" 
+		data-can-trash="{if $object->canTrash()}true{else}false{/if}" 
+		data-can-restore="{if $object->canRestore()}true{else}false{/if}" 
+		data-can-delete="{if $object->canDelete()}true{else}false{/if}" 
+		data-can-modify="{if $object->canModify()}true{else}false{/if}"
+		{event name='jsAssetDataset'}
 	>
 		<div class="contentHeaderTitle{if $object->isTrashed()} trashed{/if}">
 			<h1 class="contentTitle">
@@ -64,7 +72,6 @@
 	<button 
 		type="button" 
 		class="button small contentInteractionButton jsDelete" 
-		data-confirm-message="{lang __encode=true objectTitle=$object->getTitle()}wcf.button.delete.confirmMessage{/lang}" 
 		{if !$object->canDelete() || !$object->isTrashed()}hidden{/if}
 	>
 		{icon name='x'}
@@ -77,15 +84,7 @@
 {include file='header' contentHeader=$__contentHeader contentInteraction=$contentInteractionButtons}
 
 <div 
-	class="section tabMenuContainer jsAsset"
-	data-object-id="{$object->getObjectID()}" 
-	data-name="{$object->getTitle()}" 
-	data-trashed="{if $object->isTrashed()}true{else}false{/if}" 
-	data-can-audit="{if $object->canAudit()}true{else}false{/if}" 
-	data-can-trash="{if $object->canTrash()}true{else}false{/if}" 
-	data-can-restore="{if $object->canRestore()}true{else}false{/if}" 
-	data-can-delete="{if $object->canDelete()}true{else}false{/if}" 
-	data-can-modify="{if $object->canModify()}true{else}false{/if}"
+	class="section tabMenuContainer"
 >
 	<nav class="tabMenu">
 		<ul>

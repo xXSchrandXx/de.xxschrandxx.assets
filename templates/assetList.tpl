@@ -107,13 +107,14 @@
 						<tr 
 							class="jsAssetRow jsClipboardObject" 
 							data-object-id="{$object->getObjectID()}" 
-							data-name="{$object->getTitle()}" 
+							data-title="{$object->getTitle()}" 
 							data-trashed="{if $object->isTrashed()}true{else}false{/if}" 
 							data-can-audit="{if $object->canAudit()}true{else}false{/if}" 
 							data-can-trash="{if $object->canTrash()}true{else}false{/if}" 
 							data-can-restore="{if $object->canRestore()}true{else}false{/if}" 
 							data-can-delete="{if $object->canDelete()}true{else}false{/if}" 
 							data-can-modify="{if $object->canModify()}true{else}false{/if}"
+							{event name='jsAssetRowDataset'}
 						>
 							<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{$object->getObjectID()}"></td>
 							{if ASSETS_LEGACYID_ENABLED}
