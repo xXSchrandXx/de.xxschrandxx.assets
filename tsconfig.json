@@ -21,7 +21,8 @@
         "baseUrl": ".",
         "paths": {
             "*": [
-                "node_modules/@woltlab/d.ts/*"
+                "node_modules/@woltlab/d.ts/*",
+                "./ts/*"
             ]
         },
         "importHelpers": true,
