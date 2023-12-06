@@ -311,6 +311,9 @@
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Willst du{else}Wollen Sie{/if} wirklich die Etiketten für {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} erstellen?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.skipFields"><![CDATA[Anzahl leerer Etiketten am Anfang]]></item>
 		</category>
+		<category name="wcf.dialog">
+			<item name="wcf.dialog.confirmation.audit"><![CDATA[{if LANGUAGE_USE_INFORMAL_VARIANT}Möchtest du{else}Möchten Sie{/if} den Prüfstatus von „{$title}“ aktuallisieren?]]></item>
+		</category>
 		<category name="wcf.search">
 			<item name="wcf.search.type.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>
 			<item name="wcf.search.object.de.xxschrandxx.assets.asset"><![CDATA[Vermögenswert]]></item>

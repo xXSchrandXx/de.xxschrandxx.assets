@@ -306,10 +306,13 @@
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete"><![CDATA[Delete ({#$count})]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.delete.confirmMessage"><![CDATA[Do you really want to delete {if $count == 1}an{else}{#$count}{/if} assets?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit"><![CDATA[Audit ({#$count})]]></item>
-			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage"><![CDATA[Willst du wirklich den Prüfstatus von {if $count == 1}einem Vermögenswert{else}{#$count} Vermögenswerte{/if} aktuallisieren?]]></item>
+			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.audit.confirmMessage"><![CDATA[Do you really want to audit {if $count == 1}an asset{else}{#$count} assets{/if}?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel"><![CDATA[Generate label ({#$count})]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.confirmMessage"><![CDATA[Do you really want to create the labels for {if $count == 1}an asset{else}{#$count} asset{/if}?]]></item>
 			<item name="wcf.clipboard.item.de.xxschrandxx.assets.asset.getLabel.skipFields"><![CDATA[Number of blank labels at the beginning]]></item>
+		</category>
+		<category name="wcf.dialog">
+			<item name="wcf.dialog.confirmation.audit"><![CDATA[Do you want to audit “{$title}”?]]></item>
 		</category>
 		<category name="wcf.search">
 			<item name="wcf.search.type.de.xxschrandxx.assets.asset"><![CDATA[Asset]]></item>
