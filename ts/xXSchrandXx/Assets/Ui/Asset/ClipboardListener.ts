@@ -1,5 +1,5 @@
 import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
-import IClipboardEventData from "./DataInterfaces/IClipboardEventData";
+import IClipboardEventData from "xXSchrandXx/Assets/Ui/Asset/DataInterfaces/IClipboardEventData";
 
 class ClipboardListener {
     /**

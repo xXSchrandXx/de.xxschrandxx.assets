@@ -1,10 +1,10 @@
 import * as Core from "WoltLabSuite/Core/Core";
 import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
-import AuditAction from "./Action/AuditAction";
-import TrashAction from "./Action/TrashAction";
-import RestoreAction from "./Action/RestoreAction";
-import DeleteAction from "./Action/DeleteAction";
-import IRefreshAssetsData from "./DataInterfaces/IRefreshAssetsData";
+import AuditAction from "xXSchrandXx/Assets/Ui/Asset/Action/AuditAction";
+import TrashAction from "xXSchrandXx/Assets/Ui/Asset/Action/TrashAction";
+import RestoreAction from "xXSchrandXx/Assets/Ui/Asset/Action/RestoreAction";
+import DeleteAction from "xXSchrandXx/Assets/Ui/Asset/Action/DeleteAction";
+import IRefreshAssetsData from "xXSchrandXx/Assets/Ui/Asset/DataInterfaces/IRefreshAssetsData";
 
 class UiAssetEditor {
     /**
