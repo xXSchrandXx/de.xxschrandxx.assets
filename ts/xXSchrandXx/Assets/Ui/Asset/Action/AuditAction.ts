@@ -1,60 +1,23 @@
-import * as Ajax from "WoltLabSuite/Core/Ajax";
+import AbstractAction from "./AbstractAction";
 import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
-import * as Core from "WoltLabSuite/Core/Core";
-import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
 import { getPhrase } from "WoltLabSuite/Core/Language";
-import * as UiNotification from "WoltLabSuite/Core/Ui/Notification";
+import { RequestPayload } from "@woltlab/d.ts/WoltLabSuite/Core/Ajax/Data";
 
-export class AuditAction {
-    public constructor(button: HTMLElement, assetId: number, assetDataElement: HTMLElement) {
-        button.addEventListener("click", async (event) => {
-            event.preventDefault();
+export class AuditAction extends AbstractAction {
+    protected actionName = 'audit';
+    protected shouldBeTrashed = false;
 
-            // check if action is available
-            if (button.hidden) {
-                throw Error("No permission!");
+    public getResult(assetDataElement: HTMLElement): boolean|any {
+        return confirmationFactory()
+            .withReason(getPhrase("wcf.dialog.confirmation.audit", {title: assetDataElement.dataset.title}), true);
+    }
+
+    public generatePayload(reason: string): RequestPayload {
+        return {
+            data: {
+                comment: reason
             }
-            if (button.classList.contains("disabled")) {
-                return;
-            }
-            button.classList.add("disabled");
-
-            // check weather the asset is trashed
-            const isTrashed = Core.stringToBool(assetDataElement.dataset.trashed!);
-            if (isTrashed) {
-                throw Error("Asset is trashed!");
-            }
-
-            const result = await confirmationFactory()
-                .withReason(getPhrase("wcf.dialog.confirmation.audit", {title: assetDataElement.dataset.title}), true);
-            if (!result.result) {
-                // make action available again
-                button.classList.remove("disabled");
-                return;
-            }
-
-            // User has confirmed the dialog.
-            try {
-                Ajax.dboAction("audit", "assets\\data\\asset\\AssetAction")
-                    .objectIds([assetId])
-                    .payload({
-                        data: {
-                            comment: result.reason
-                        }
-                    })
-                    .dispatch();
-            } finally {
-                // make action available again
-                button.classList.remove("disabled");
-
-                // show notification
-                UiNotification.show();
-
-                EventHandler.fire("de.xxschrandxx.assets.asset", "refresh", {
-                    assetIds: [assetId],
-                });
-            }
-        });
+        };
     }
 }
 

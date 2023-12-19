@@ -9,6 +9,7 @@
 		data-can-restore="{if $object->canRestore()}true{else}false{/if}" 
 		data-can-delete="{if $object->canDelete()}true{else}false{/if}" 
 		data-can-modify="{if $object->canModify()}true{else}false{/if}"
+		data-list-url="{link controller='AssetList' application='assets'}{/link}"
 		{event name='jsAssetDataset'}
 	>
 		<div class="contentHeaderTitle{if $object->isTrashed()} trashed{/if}">
