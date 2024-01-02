@@ -46,7 +46,7 @@
 {/capture}
 
 {capture assign='contentInteractionButtons'}
-	{if $__wcf->session->getPermission('mod.assets.canEdit')}
+	{if $__wcf->session->getPermission('mod.assets.canModify')}
 		<button 
 			type="button" 
 			class="button small contentInteractionButton jsAudit" 
@@ -131,7 +131,7 @@
 	{event name='tabMenuContents'}
 </div>
 
-{if $__wcf->session->getPermission('mod.assets.canEdit')}
+{if $__wcf->session->getPermission('mod.assets.canModify')}
 	<script data-relocate="true">
 		require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
 			new UiAssetEditor();

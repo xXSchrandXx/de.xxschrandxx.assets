@@ -52,7 +52,7 @@
 		<table data-type="de.xxschrandxx.assets.asset" class="table jsClipboardContainer jsObjectActionContainer" data-object-action-class-name="assets\data\asset\AssetAction">
 			<thead>
 				<tr>
-					{if $__wcf->session->getPermission('mod.assets.canEdit')}
+					{if $__wcf->session->getPermission('mod.assets.canModify')}
 						<th class="columnMark"><label><input type="checkbox" class="jsClipboardMarkAll"></label></th>
 					{/if}
 					{if ASSETS_LEGACYID_ENABLED}
@@ -68,7 +68,7 @@
 							</a>
 						</th>
 					{/if}
-					{if $__wcf->session->getPermission('mod.assets.canEdit')}
+					{if $__wcf->session->getPermission('mod.assets.canModify')}
 						<th></th>
 					{/if}
 					<th class="columnTitle{if $sortField == 'title'} active {$sortOrder}{/if}">
@@ -122,7 +122,7 @@
 							data-can-modify="{if $object->canModify()}true{else}false{/if}"
 							{event name='jsAssetRowDataset'}
 						>
-							{if $__wcf->session->getPermission('mod.assets.canEdit')}
+							{if $__wcf->session->getPermission('mod.assets.canModify')}
 								<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{$object->getObjectID()}"></td>
 							{/if}
 							{if ASSETS_LEGACYID_ENABLED}
@@ -130,7 +130,7 @@
 							{else}
 								<td class="columnID">{#$object->getObjectID()}</td>
 							{/if}
-							{if $__wcf->session->getPermission('mod.assets.canEdit')}
+							{if $__wcf->session->getPermission('mod.assets.canModify')}
 								<td class="columnIcon">
 									<div class="dropdown" id="assetListDropdown{$object->getObjectID()}">
 										<a href="#" class="dropdownToggle button small">{icon name='pencil'} <span>{lang}wcf.global.button.edit{/lang}</span></a>
@@ -232,7 +232,7 @@
 	</div>
 {/hascontent}
 
-{if $__wcf->session->getPermission('mod.assets.canEdit')}
+{if $__wcf->session->getPermission('mod.assets.canModify')}
 	<script data-relocate="true">
 		require(['WoltLabSuite/Core/Controller/Clipboard', 'xXSchrandXx/Assets/Ui/Asset/ClipboardListener'], (ControllerClipboard, ClipboardListener) => {
 			ControllerClipboard.setup({
