@@ -33,6 +33,7 @@
 		<instruction type="file"/>
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
 		<instruction type="language"/>
+		<instruction type="userGroupOption"/>
 	</instructions>
 
 	<instructions type="install">

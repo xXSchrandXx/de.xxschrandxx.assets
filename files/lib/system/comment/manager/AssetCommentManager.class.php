@@ -60,6 +60,9 @@ class AssetCommentManager extends AbstractCommentManager
      */
     public function isAccessible($objectID, $validateWritePermission = false)
     {
+        if (!WCF::getSession()->getPermission('user.assets.canViewCommentsTab')) {
+            return false;
+        }
         $asset = new Asset($objectID);
         if ($asset === null || !$asset->canView()) {
             return false;

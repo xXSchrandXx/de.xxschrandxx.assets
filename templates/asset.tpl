@@ -46,38 +46,40 @@
 {/capture}
 
 {capture assign='contentInteractionButtons'}
-	<button 
-		type="button" 
-		class="button small contentInteractionButton jsAudit" 
-		{if !$object->canAudit() || $object->isTrashed()}hidden{/if}
-	>
-		{icon name='rotate-left'}
-		<span>{lang}assets.asset.audit{/lang}</span>
-	</button>
-	<button 
-		type="button" 
-		class="button small contentInteractionButton jsTrash" 
-		{if !$object->canTrash() || $object->isTrashed()}hidden{/if}
-	>
-		{icon name='trash-can'}
-		{lang}assets.asset.trash{/lang}
-	</button>
-	<button 
-		type="button" 
-		class="button small contentInteractionButton jsRestore" 
-		{if !$object->canRestore() || !$object->isTrashed()}hidden{/if}
-	>
-		{icon name='trash-arrow-up'}
-		{lang}assets.asset.restore{/lang}
-	</button>
-	<button 
-		type="button" 
-		class="button small contentInteractionButton jsDelete" 
-		{if !$object->canDelete() || !$object->isTrashed()}hidden{/if}
-	>
-		{icon name='x'}
-		{lang}wcf.global.button.delete{/lang}
-	</button>
+	{if $__wcf->session->getPermission('mod.assets.canEdit')}
+		<button 
+			type="button" 
+			class="button small contentInteractionButton jsAudit" 
+			{if !$object->canAudit() || $object->isTrashed()}hidden{/if}
+		>
+			{icon name='rotate-left'}
+			<span>{lang}assets.asset.audit{/lang}</span>
+		</button>
+		<button 
+			type="button" 
+			class="button small contentInteractionButton jsTrash" 
+			{if !$object->canTrash() || $object->isTrashed()}hidden{/if}
+		>
+			{icon name='trash-can'}
+			{lang}assets.asset.trash{/lang}
+		</button>
+		<button 
+			type="button" 
+			class="button small contentInteractionButton jsRestore" 
+			{if !$object->canRestore() || !$object->isTrashed()}hidden{/if}
+		>
+			{icon name='trash-arrow-up'}
+			{lang}assets.asset.restore{/lang}
+		</button>
+		<button 
+			type="button" 
+			class="button small contentInteractionButton jsDelete" 
+			{if !$object->canDelete() || !$object->isTrashed()}hidden{/if}
+		>
+			{icon name='x'}
+			{lang}wcf.global.button.delete{/lang}
+		</button>
+	{/if}
 
 	{event name='contentInteractionButtons'}
 {/capture}
@@ -90,9 +92,15 @@
 	<nav class="tabMenu">
 		<ul>
 			<li><a href="#overview">{lang}assets.page.asset.overview{/lang}</a></li>
-			<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
-			<li><a href="#audits">{lang}assets.page.asset.audits{/lang} <span class="badge">{#$auditLogs|count}</span></a></li>
+			{if $__wcf->session->getPermission('user.assets.canViewCommentsTab')}
+				<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
+			{/if}
+			{if $__wcf->session->getPermission('user.assets.canViewAuditsTab')}
+				<li><a href="#audits">{lang}assets.page.asset.audits{/lang} <span class="badge">{#$auditLogs|count}</span></a></li>
+			{/if}
+			{if $__wcf->session->getPermission('user.assets.canViewHistoryTab')}
 			<li><a href="#history">{lang}assets.page.asset.history{/lang} <span class="badge">{#$modificationLogs|count}</span></a></li>
+			{/if}
 
 			{event name='tabMenuTabs'}
 		</ul>
@@ -101,28 +109,36 @@
 	<div id="overview" class="tabMenuContent">
 		{include file='__overview' application='assets'}
 	</div>
-	<div id="comments" class="tabMenuContent">
-		{if $object->getLastCommentDateTime() !== null}
-			{assign var=lastCommentTime value=$object->getLastCommentDateTime()->format('U')}
-		{/if}
-		{include file='comments'}
-	</div>
-	<div id="audits" class="tabMenuContent">
-		{include file='__audits' application='assets'}
-	</div>
-	<div id="history" class="tabMenuContent">
-		{include file='__history' application='assets'}
-	</div>
+	{if $__wcf->session->getPermission('user.assets.canViewComments')}
+		<div id="comments" class="tabMenuContent">
+			{if $object->getLastCommentDateTime() !== null}
+				{assign var=lastCommentTime value=$object->getLastCommentDateTime()->format('U')}
+			{/if}
+			{include file='comments'}
+		</div>
+	{/if}
+	{if $__wcf->session->getPermission('user.assets.canViewAuditsTab')}
+		<div id="audits" class="tabMenuContent">
+			{include file='__audits' application='assets'}
+		</div>
+	{/if}
+	{if $__wcf->session->getPermission('user.assets.canViewHistoryTab')}
+		<div id="history" class="tabMenuContent">
+			{include file='__history' application='assets'}
+		</div>
+	{/if}
 
 	{event name='tabMenuContents'}
 </div>
 
-<script data-relocate="true">
-	require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
-		new UiAssetEditor();
-	});
+{if $__wcf->session->getPermission('mod.assets.canEdit')}
+	<script data-relocate="true">
+		require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
+			new UiAssetEditor();
+		});
 
-	{event name='javascriptInit'}
-</script>
+		{event name='javascriptInit'}
+	</script>
+{/if}
 
 {include file='footer'}

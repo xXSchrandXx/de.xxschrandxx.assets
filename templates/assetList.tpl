@@ -22,12 +22,14 @@
 
 		<nav class="contentHeaderNavigation">
 			<ul>
-				<li>
-					<a href="{link controller='AssetAdd' application='assets'}{/link}" class="button">
-						<fa-icon size="16" name="plus"></fa-icon>
-						<span>{lang}assets.form.asset.title.add{/lang}</span>
-					</a>
-				</li>
+				{if $__wcf->session->getPermission('mod.assets.canAdd')}
+					<li>
+						<a href="{link controller='AssetAdd' application='assets'}{/link}" class="button">
+							<fa-icon size="16" name="plus"></fa-icon>
+							<span>{lang}assets.form.asset.title.add{/lang}</span>
+						</a>
+					</li>
+				{/if}
 
 				{event name='contentHeaderNavigation'}
 			</ul>
@@ -50,7 +52,9 @@
 		<table data-type="de.xxschrandxx.assets.asset" class="table jsClipboardContainer jsObjectActionContainer" data-object-action-class-name="assets\data\asset\AssetAction">
 			<thead>
 				<tr>
-					<th class="columnMark"><label><input type="checkbox" class="jsClipboardMarkAll"></label></th>
+					{if $__wcf->session->getPermission('mod.assets.canEdit')}
+						<th class="columnMark"><label><input type="checkbox" class="jsClipboardMarkAll"></label></th>
+					{/if}
 					{if ASSETS_LEGACYID_ENABLED}
 						<th class="columnID{if $sortField == 'legacyID'} active {$sortOrder}{/if}">
 							<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
@@ -64,7 +68,9 @@
 							</a>
 						</th>
 					{/if}
-					<th></th>
+					{if $__wcf->session->getPermission('mod.assets.canEdit')}
+						<th></th>
+					{/if}
 					<th class="columnTitle{if $sortField == 'title'} active {$sortOrder}{/if}">
 						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
 							{lang}wcf.global.title{/lang}
@@ -116,70 +122,74 @@
 							data-can-modify="{if $object->canModify()}true{else}false{/if}"
 							{event name='jsAssetRowDataset'}
 						>
-							<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{$object->getObjectID()}"></td>
+							{if $__wcf->session->getPermission('mod.assets.canEdit')}
+								<td class="columnMark"><input type="checkbox" class="jsClipboardItem" data-object-id="{$object->getObjectID()}"></td>
+							{/if}
 							{if ASSETS_LEGACYID_ENABLED}
 								<td class="columnID">{$object->getLegacyID()}</td>
 							{else}
 								<td class="columnID">{#$object->getObjectID()}</td>
 							{/if}
-							<td class="columnIcon">
-								<div class="dropdown" id="assetListDropdown{$object->getObjectID()}">
-									<a href="#" class="dropdownToggle button small">{icon name='pencil'} <span>{lang}wcf.global.button.edit{/lang}</span></a>
+							{if $__wcf->session->getPermission('mod.assets.canEdit')}
+								<td class="columnIcon">
+									<div class="dropdown" id="assetListDropdown{$object->getObjectID()}">
+										<a href="#" class="dropdownToggle button small">{icon name='pencil'} <span>{lang}wcf.global.button.edit{/lang}</span></a>
 
-									<ul class="dropdownMenu">
-										{event name='dropdownItems'}
+										<ul class="dropdownMenu">
+											{event name='dropdownItems'}
 
-										<li>
-											<a 
-												href="#" 
-												class="jsAudit" 
-												{if !$object->canAudit() || $object->isTrashed()}hidden{/if}
-											>
-												{lang}assets.asset.audit{/lang}
-											</a>
-										</li>
-										<li>
-											<a 
-												href="#" 
-												class="jsTrash" 
-												{if !$object->canTrash() || $object->isTrashed()}hidden{/if}
-											>
-												{lang}assets.asset.trash{/lang}
-											</a>
-										</li>
-										<li>
-											<a 
-												href="#" 
-												class="jsRestore" 
-												{if !$object->canRestore() || !$object->isTrashed()}hidden{/if}
-											>
-												{lang}assets.asset.restore{/lang}
-											</a>
-										</li>
-										<li>
-											<a 
-												href="#" 
-												class="jsDelete" 
-												data-confirm-message="{lang __encode=true objectTitle=$object->getTitle()}wcf.button.delete.confirmMessage{/lang}" 
-												{if !$object->canDelete() || !$object->isTrashed()}hidden{/if}
-											>
-												{lang}wcf.global.button.delete{/lang}
-											</a>
-										</li>
-										{if $object->canModify()}
-											<li class="dropdownDivider"></li>
 											<li>
 												<a 
-													href="{link controller='AssetEdit' application='assets' id=$object->getObjectID()}{/link}" 
-													class="jsEditLink"
+													href="#" 
+													class="jsAudit" 
+													{if !$object->canAudit() || $object->isTrashed()}hidden{/if}
 												>
-													{lang}wcf.global.button.edit{/lang}
+													{lang}assets.asset.audit{/lang}
 												</a>
 											</li>
-										{/if}
-									</ul>
-								</div>
-							</td>
+											<li>
+												<a 
+													href="#" 
+													class="jsTrash" 
+													{if !$object->canTrash() || $object->isTrashed()}hidden{/if}
+												>
+													{lang}assets.asset.trash{/lang}
+												</a>
+											</li>
+											<li>
+												<a 
+													href="#" 
+													class="jsRestore" 
+													{if !$object->canRestore() || !$object->isTrashed()}hidden{/if}
+												>
+													{lang}assets.asset.restore{/lang}
+												</a>
+											</li>
+											<li>
+												<a 
+													href="#" 
+													class="jsDelete" 
+													data-confirm-message="{lang __encode=true objectTitle=$object->getTitle()}wcf.button.delete.confirmMessage{/lang}" 
+													{if !$object->canDelete() || !$object->isTrashed()}hidden{/if}
+												>
+													{lang}wcf.global.button.delete{/lang}
+												</a>
+											</li>
+											{if $object->canModify()}
+												<li class="dropdownDivider"></li>
+												<li>
+													<a 
+														href="{link controller='AssetEdit' application='assets' id=$object->getObjectID()}{/link}" 
+														class="jsEditLink"
+													>
+														{lang}wcf.global.button.edit{/lang}
+													</a>
+												</li>
+											{/if}
+										</ul>
+									</div>
+								</td>
+							{/if}
 							<td class="columnTitle">
 								{if $object->canView()}
 									<a href="{link controller='Asset' application='assets' id=$object->getObjectID()}{/link}">
@@ -222,20 +232,22 @@
 	</div>
 {/hascontent}
 
-<script data-relocate="true">
-	require(['WoltLabSuite/Core/Controller/Clipboard', 'xXSchrandXx/Assets/Ui/Asset/ClipboardListener'], (ControllerClipboard, ClipboardListener) => {
-		ControllerClipboard.setup({
-			pageClassName: 'assets\\page\\AssetListPage',
-			hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
+{if $__wcf->session->getPermission('mod.assets.canEdit')}
+	<script data-relocate="true">
+		require(['WoltLabSuite/Core/Controller/Clipboard', 'xXSchrandXx/Assets/Ui/Asset/ClipboardListener'], (ControllerClipboard, ClipboardListener) => {
+			ControllerClipboard.setup({
+				pageClassName: 'assets\\page\\AssetListPage',
+				hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
+			});
+			new ClipboardListener();
 		});
-		new ClipboardListener();
-	});
 
-	require(['xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(UiAssetListEditor) {
-		new UiAssetListEditor();
-	});
+		require(['xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(UiAssetListEditor) {
+			new UiAssetListEditor();
+		});
 
-	{event name='javascriptInit'}
-</script>
+		{event name='javascriptInit'}
+	</script>
+{/if}
 
 {include file='footer'}

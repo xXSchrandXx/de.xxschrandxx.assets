@@ -22,9 +22,7 @@ export abstract class AbstractAction {
             if (button.classList.contains("disabled")) {
                 return;
             }
-            /* Pressing escape will not remove class
             button.classList.add("disabled");
-            */
 
             this.validate(assetDataElement);
 
@@ -34,17 +32,13 @@ export abstract class AbstractAction {
             if (typeof result == 'boolean') {
                 if (!result) {
                     // make action available again
-                    /* Pressing escape will not remove class
                     button.classList.remove("disabled");
-                    */
                     return;
                 }
             } else {
                 if (!result.result) {
                     // make action available again
-                    /* Pressing escape will not remove class
                     button.classList.remove("disabled");
-                    */
                     return;
                 }
                 reason = result.reason;
@@ -58,9 +52,7 @@ export abstract class AbstractAction {
                 this.afterAction(assetDataElement, result2);
             } finally {
                 // make action available again
-                /* Pressing escape will not remove class
                 button.classList.remove("disabled");
-                */
 
                 // show notification
                 if (this.showUiNotification) {

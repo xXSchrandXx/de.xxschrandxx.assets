@@ -199,7 +199,10 @@
 			<item name="wcf.acp.group.option.category.mod.assets"><![CDATA[Vermögenswerte]]></item>
 			<item name="wcf.acp.group.option.category.admin.assets"><![CDATA[Vermögenswerte]]></item>
 			<item name="wcf.acp.group.option.user.assets.canView"><![CDATA[Kann Vermögenswerte sehen.]]></item>
+			<item name="wcf.acp.group.option.user.assets.canViewComments"><![CDATA[Kann Kommentare von Vermögenswerten sehen.]]></item>
 			<item name="wcf.acp.group.option.user.assets.canComment"><![CDATA[Kann Vermögenswerte kommentieren.]]></item>
+			<item name="wcf.acp.group.option.user.assets.canViewAuditsTab"><![CDATA[Kann Prüfungen sehen.]]></item>
+			<item name="wcf.acp.group.option.user.assets.canViewHistoryTab"><![CDATA[Kann Historie sehen.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canAdd"><![CDATA[Kann Vermögenswerte hinzufügen.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canModify"><![CDATA[Kann Vermögenswerte bearbeiten.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canTrash"><![CDATA[Kann Vermögenswerte entfernen.]]></item>
