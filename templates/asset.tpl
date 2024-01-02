@@ -92,7 +92,7 @@
 	<nav class="tabMenu">
 		<ul>
 			<li><a href="#overview">{lang}assets.page.asset.overview{/lang}</a></li>
-			{if $__wcf->session->getPermission('user.assets.canViewCommentsTab')}
+			{if $__wcf->session->getPermission('user.assets.canViewComments')}
 				<li><a href="#comments">{lang}wcf.global.comments{/lang} <span class="badge">{#$object->getCommentCount()}</span></a></li>
 			{/if}
 			{if $__wcf->session->getPermission('user.assets.canViewAuditsTab')}
