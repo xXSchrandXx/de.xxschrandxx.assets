@@ -31,6 +31,7 @@
 				<categoryname>user.assets</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
+				<usersonly>1</usersonly>
 			</option>
 			<option name="user.assets.canViewAuditsTab">
 				<categoryname>user.assets</categoryname>
