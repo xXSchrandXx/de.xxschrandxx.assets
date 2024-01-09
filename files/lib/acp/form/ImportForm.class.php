@@ -5,11 +5,14 @@ namespace assets\acp\form;
 use assets\data\asset\AssetAction;
 use assets\data\category\AssetCategory;
 use assets\data\location\AssetLocation;
+use assets\util\AssetUtil;
+use DateTimeImmutable;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use wcf\data\category\CategoryList;
 use wcf\form\AbstractForm;
 use wcf\form\AbstractFormBuilderForm;
 use wcf\system\category\CategoryHandler;
+use wcf\system\event\EventHandler;
 use wcf\system\exception\UserInputException;
 use wcf\system\form\builder\field\UploadFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
@@ -154,6 +157,9 @@ class ImportForm extends AbstractFormBuilderForm
             $columnLastModification = array_search($lang->get('assets.acp.export.lastModification'), $header);
             $columnTime = array_search($lang->get('assets.acp.export.time'), $header);
             $columnDescription = array_search($lang->get('wcf.global.description'), $header);
+
+            EventHandler::getInstance()->fireAction($this, 'checkColumns', $header);
+
         } catch (UserInputException $e) {
             $this->errorField = $e->getField();
             $this->errorType = $e->getType();
@@ -221,36 +227,38 @@ class ImportForm extends AbstractFormBuilderForm
             }
 
             // Set amount
-            if ($columnAmount) {
+            if ($columnAmount && $rowData[$columnAmount] !== null) {
                 $parameters['amount'] = $rowData[$columnAmount];
             } else {
                 $parameters['amount'] = 1;
             }
 
             // Set nextAudit
-            if ($columnNextAudit) {
+            if ($columnNextAudit && $rowData[$columnNextAudit] !== null) {
                 $parameters['nextAudit'] = $rowData[$columnNextAudit];
             }
 
             // Set lastAudit
-            if ($columnLastAudit) {
+            if ($columnLastAudit && $rowData[$columnLastAudit] !== null) {
                 $parameters['lastAudit'] = $rowData[$columnLastAudit];
             }
 
             // Set lastModification
-            if ($columnLastModification) {
+            if ($columnLastModification && $rowData[$columnLastModification] !== null) {
                 $parameters['lastModification'] = $rowData[$columnLastModification];
             }
 
             // Set time
-            if ($columnTime) {
+            if ($columnTime && $rowData[$columnTime] !== null) {
                 $parameters['time'] = $rowData[$columnTime];
             }
 
             // Set description
-            if ($columnDescription) {
+            if ($columnDescription && $rowData[$columnDescription] !== null) {
                 $parameters['description'] = $rowData[$columnDescription];
             }
+
+            EventHandler::getInstance()->fireAction($this, 'finalizeParameters', $parameters);
 
             $action = new AssetAction([], 'create', ['data' => $parameters]);
             $action->executeAction();
