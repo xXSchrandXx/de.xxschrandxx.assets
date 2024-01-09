@@ -2,7 +2,7 @@ import AbstractAction from "./AbstractAction";
 import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 import { RequestPayload } from "WoltLabSuite/Core/Ajax/Data";
 
-export class DeleteAction extends AbstractAction {
+class DeleteAction extends AbstractAction {
     protected actionName = 'delete';
     protected shouldBeTrashed = true;
 
@@ -25,4 +25,4 @@ export class DeleteAction extends AbstractAction {
     }
 }
 
-export default DeleteAction;
+export = DeleteAction;

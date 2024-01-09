@@ -3,7 +3,7 @@ import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 import { getPhrase } from "WoltLabSuite/Core/Language";
 import { RequestPayload } from "WoltLabSuite/Core/Ajax/Data";
 
-export class RestoreAction extends AbstractAction {
+class RestoreAction extends AbstractAction {
     protected actionName = 'restore';
     protected shouldBeTrashed = true;
 
@@ -26,4 +26,4 @@ export class RestoreAction extends AbstractAction {
     }
 }
 
-export default RestoreAction;
+export = RestoreAction;

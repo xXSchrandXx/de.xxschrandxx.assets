@@ -8,4 +8,4 @@ interface IClipboardEventData {
     }
 }
 
-export = IClipboardEventData;
+export default IClipboardEventData;

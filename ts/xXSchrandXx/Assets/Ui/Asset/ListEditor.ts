@@ -7,7 +7,7 @@ import RestoreAction from "xXSchrandXx/Assets/Ui/Asset/Action/RestoreAction";
 import DeleteAction from "xXSchrandXx/Assets/Ui/Asset/Action/DeleteAction";
 import IRefreshAssetsData from "xXSchrandXx/Assets/Ui/Asset/DataInterfaces/IRefreshAssetsData";
 
-class UiAssetListEditor {
+class ListEditor {
     /**
      * Initializes the edit dropdown for each asset.
      */
@@ -120,4 +120,4 @@ class UiAssetListEditor {
     }
 }
 
-export = UiAssetListEditor;
+export = ListEditor;

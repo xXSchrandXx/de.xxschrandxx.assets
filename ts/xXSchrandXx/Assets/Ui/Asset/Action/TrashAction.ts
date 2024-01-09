@@ -2,7 +2,7 @@ import AbstractAction from "./AbstractAction";
 import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 import { RequestPayload } from "WoltLabSuite/Core/Ajax/Data";
 
-export class TrashAction extends AbstractAction {
+class TrashAction extends AbstractAction {
     protected actionName = 'trash';
     protected shouldBeTrashed = false;
 
@@ -25,4 +25,4 @@ export class TrashAction extends AbstractAction {
     }
 }
 
-export default TrashAction;
+export = TrashAction;

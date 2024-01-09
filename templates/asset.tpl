@@ -133,11 +133,10 @@
 
 {if $__wcf->session->getPermission('mod.assets.canModify')}
 	<script data-relocate="true">
-		require(['Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
+		require(['WoltLabSuite/Core/Language', 'xXSchrandXx/Assets/Ui/Asset/Editor'], function(Language, UiAssetEditor) {
+			Language.registerPhrase('wcf.dialog.confirmation.audit', '{jslang __literal=true}wcf.dialog.confirmation.audit{/jslang}');
 			new UiAssetEditor();
 		});
-
-		{event name='javascriptInit'}
 	</script>
 {/if}
 

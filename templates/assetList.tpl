@@ -234,19 +234,15 @@
 
 {if $__wcf->session->getPermission('mod.assets.canModify')}
 	<script data-relocate="true">
-		require(['WoltLabSuite/Core/Controller/Clipboard', 'xXSchrandXx/Assets/Ui/Asset/ClipboardListener'], (ControllerClipboard, ClipboardListener) => {
+		require(['WoltLabSuite/Core/Language', 'WoltLabSuite/Core/Controller/Clipboard', 'xXSchrandXx/Assets/Ui/Asset/ClipboardListener', 'xXSchrandXx/Assets/Ui/Asset/ListEditor'], (Language, ControllerClipboard, ClipboardListener, UiAssetListEditor) => {
+			Language.registerPhrase('wcf.dialog.confirmation.audit', '{jslang __literal=true}wcf.dialog.confirmation.audit{/jslang}');
 			ControllerClipboard.setup({
 				pageClassName: 'assets\\page\\AssetListPage',
 				hasMarkedItems: {if $hasMarkedItems}true{else}false{/if},
 			});
 			new ClipboardListener();
-		});
-
-		require(['xXSchrandXx/Assets/Ui/Asset/ListEditor'], function(UiAssetListEditor) {
 			new UiAssetListEditor();
 		});
-
-		{event name='javascriptInit'}
 	</script>
 {/if}
 

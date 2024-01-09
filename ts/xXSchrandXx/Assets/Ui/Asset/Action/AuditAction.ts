@@ -3,7 +3,7 @@ import { confirmationFactory } from "WoltLabSuite/Core/Component/Confirmation";
 import { getPhrase } from "WoltLabSuite/Core/Language";
 import { RequestPayload } from "@woltlab/d.ts/WoltLabSuite/Core/Ajax/Data";
 
-export class AuditAction extends AbstractAction {
+class AuditAction extends AbstractAction {
     protected actionName = 'audit';
     protected shouldBeTrashed = false;
 
@@ -21,4 +21,4 @@ export class AuditAction extends AbstractAction {
     }
 }
 
-export default AuditAction;
+export = AuditAction;

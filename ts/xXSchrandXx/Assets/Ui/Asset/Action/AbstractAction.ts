@@ -5,7 +5,7 @@ import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
 import * as UiNotification from "WoltLabSuite/Core/Ui/Notification";
 import { RequestPayload } from "WoltLabSuite/Core/Ajax/Data";
 
-export abstract class AbstractAction {
+abstract class AbstractAction {
     protected abstract actionName: string;
     protected shouldBeTrashed: boolean = false;
     protected showUiNotification: boolean = true;
@@ -97,4 +97,4 @@ export abstract class AbstractAction {
     }
 }
 
-export default AbstractAction;
+export = AbstractAction;
