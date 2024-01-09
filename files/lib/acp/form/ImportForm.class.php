@@ -5,8 +5,6 @@ namespace assets\acp\form;
 use assets\data\asset\AssetAction;
 use assets\data\category\AssetCategory;
 use assets\data\location\AssetLocation;
-use assets\util\AssetUtil;
-use DateTimeImmutable;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use wcf\data\category\CategoryList;
 use wcf\form\AbstractForm;

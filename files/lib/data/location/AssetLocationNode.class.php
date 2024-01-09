@@ -3,7 +3,6 @@
 namespace assets\data\location;
 
 use assets\data\asset\AssetList;
-use assets\data\category\AssetCategory;
 use wcf\data\category\CategoryNode;
 
 /**
