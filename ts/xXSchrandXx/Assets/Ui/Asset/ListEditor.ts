@@ -1,3 +1,4 @@
+import * as ClipboardColtroller from "WoltLabSuite/Core/Controller/Clipboard";
 import * as Core from "WoltLabSuite/Core/Core";
 import UiDropdownSimple from "WoltLabSuite/Core/Ui/Dropdown/Simple";
 import * as EventHandler from "WoltLabSuite/Core/Event/Handler";
@@ -64,11 +65,21 @@ class ListEditor {
     }
 
     private refreshAssets(data: IRefreshAssetsData): void {
+        // Reload Clipboard Elements
+        if (data.action == 'delete') {
+            ClipboardColtroller.unmark("de.xxschrandxx.assets.asset", data.assetIds);
+            return;
+        } else {
+            ClipboardColtroller.reload();
+        }
+
+        // Update buttons
         document.querySelectorAll(".jsAssetRow").forEach((assetRow: HTMLTableRowElement) => {
             const assetId = ~~assetRow.dataset.objectId!;
             if (!data.assetIds.includes(assetId)) {
                 return;
             }
+
             const dropdownId = `assetListDropdown${assetId}`;
             const dropdownMenu = UiDropdownSimple.getDropdownMenu(dropdownId)!;
 

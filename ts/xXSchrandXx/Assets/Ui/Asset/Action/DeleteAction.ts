@@ -18,7 +18,6 @@ class DeleteAction extends AbstractAction {
     public afterAction(assetDataElement: HTMLElement, result: unknown): void {
         if (assetDataElement instanceof HTMLTableRowElement) {
             assetDataElement.remove();
-            // TODO update ClipboardActions
         } else {
             window.location.href = assetDataElement.dataset.listUrl as string;
         }
