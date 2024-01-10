@@ -13,5 +13,6 @@
 		<file application="wcf">js/xXSchrandXx/Assets/Ui/Asset/Action/Handler/Restore/Dialog.js</file>
 		<file application="wcf">js/xXSchrandXx/Assets/Ui/Asset/Action/Handler/Trash.js</file>
 		<file application="wcf">js/xXSchrandXx/Assets/Ui/Asset/Action/Handler/Trash/Dialog.js</file>
+		<file application="wcf">js/xXSchrandXx/Assets/Ui/Asset/RefreshAssetsData</file>
 	</delete>
 </data>
