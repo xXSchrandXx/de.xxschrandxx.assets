@@ -157,7 +157,6 @@ class ImportForm extends AbstractFormBuilderForm
             $columnDescription = array_search($lang->get('wcf.global.description'), $header);
 
             EventHandler::getInstance()->fireAction($this, 'checkColumns', $header);
-
         } catch (UserInputException $e) {
             $this->errorField = $e->getField();
             $this->errorType = $e->getType();
