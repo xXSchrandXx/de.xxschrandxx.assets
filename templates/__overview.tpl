@@ -2,7 +2,7 @@
 	<img src="{$object->getQRCode()}" class="AssetQRCode" title="QRCode">
 	<dl>
 		<dt>{lang}assets.page.asset.overview.id{/lang}</dt>
-		<dd>
+		<dd itemprop="productId" itemtype="Text">
 			{if ASSETS_LEGACYID_ENABLED}
 				{$object->getLegacyID()}
 			{else}
@@ -12,15 +12,15 @@
 	</dl>
 	<dl>
 		<dt>{lang}assets.page.asset.overview.amount{/lang}</dt>
-		<dd>{#$object->getAmount()}</dd>
+		<dd itemprop="amount">{#$object->getAmount()}</dd>
 	</dl>
 	<dl>
 		<dt>{lang}assets.page.asset.overview.category{/lang}</dt>
-		<dd>{$object->getCategory()->getTitle()}</dd>
+		<dd itemprop="category">{$object->getCategory()->getTitle()}</dd>
 	</dl>
 	<dl>
 		<dt>{lang}assets.page.asset.overview.location{/lang}</dt>
-		<dd>{$object->getLocation()->getTitle()}</dd>
+		<dd itemprop="location">{$object->getLocation()->getTitle()}</dd>
 	</dl>
 	<dl>
 		<dt>{lang}assets.page.asset.overview.nextAudit{/lang}</dt>
@@ -32,8 +32,9 @@
 	</dl>
 	<dl>
 		<dt>{lang}assets.page.asset.overview.created{/lang}<dt>
-		<dd>{time time=$object->getCreatedDateTime()}</dd>
+		<dd itemprop="datePublished">{time time=$object->getCreatedDateTime()}</dd>
 	</dl>
+	{event name='assetOverview'}
 </section>
 <section class="section description">
 	<h2 class="messageSectionTitle">{lang}assets.page.asset.overview.description{/lang}</h2>

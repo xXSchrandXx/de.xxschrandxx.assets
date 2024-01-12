@@ -6,10 +6,12 @@ use assets\data\asset\Asset;
 use assets\data\asset\modification\AssetModificationLogList;
 use assets\data\asset\modification\ViewableAssetModificationLog;
 use assets\system\comment\manager\AssetCommentManager;
+use wcf\data\attachment\AttachmentList;
 use wcf\page\AbstractPage;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\MetaTagHandler;
+use wcf\system\style\StyleHandler;
 use wcf\system\WCF;
 use wcf\util\StringUtil;
 
@@ -105,13 +107,63 @@ class AssetPage extends AbstractPage
         MetaTagHandler::getInstance()->addTag(
             'og:type',
             'og:type',
-            'article',
+            'thing',
             true
+        );
+        MetaTagHandler::getInstance()->addTag(
+            'og:identifier',
+            'og:identifier',
+            StringUtil::decodeHTML(StringUtil::stripHTML(ASSETS_LEGACYID_ENABLED ? $this->object->getLegacyID() : $this->object->getObjectID()))
         );
         MetaTagHandler::getInstance()->addTag(
             'og:description',
             'og:description',
             StringUtil::decodeHTML(StringUtil::stripHTML($this->object->getExcerpt())),
+            true
+        );
+
+        $attachmentList = new AttachmentList('de.xxschrandxx.assets.asset.attachment');
+        $attachmentList->getConditionBuilder()->add('objectID = ?', [$this->object->getObjectID()]);
+        if ($attachmentList->countObjects() !== 0) {
+            $attachmentList->readObjects();
+            /** @var \wcf\data\attachment\Attachment */
+            $firstImageAttachment = null;
+            foreach ($attachmentList->getObjects() as $attachment) {
+                if ($attachment->isImage) {
+                    $firstImageAttachment = $attachment;
+                    break;
+                }
+            }
+            if ($firstImageAttachment !== null) {
+                $link = $firstImageAttachment->getLink();
+                $height = $firstImageAttachment->height;
+                $width = $firstImageAttachment->width;
+            }
+        } else {
+            $style = StyleHandler::getInstance()->getStyle();
+            if ($style === null) {
+                // No image to link
+                return;
+            }
+            $link = $style->getCoverPhotoUrl();
+            $height = $style->getCoverPhotoHeight();
+            $width = $style->getCoverPhotoWidth();
+        }
+        MetaTagHandler::getInstance()->addTag(
+            'og:image',
+            'og:image',
+            StringUtil::decodeHTML(StringUtil::stripHTML($link)),
+            true
+        );
+        MetaTagHandler::getInstance()->addTag(
+            'og:image:height',
+            'og:image:height',
+            StringUtil::decodeHTML(StringUtil::stripHTML($height)),
+            true
+        );        MetaTagHandler::getInstance()->addTag(
+            'og:image:width',
+            'og:image:width',
+            StringUtil::decodeHTML(StringUtil::stripHTML($width)),
             true
         );
     }

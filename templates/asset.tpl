@@ -1,4 +1,6 @@
-{capture assign='__contentHeader'}
+{assign var='__mainItemScope' value='itemprop="mainEntity" itemscope itemtype="https://schema.org/Thing"'}
+
+{capture assign='contentHeader'}
 	<header
 		class="contentHeader jsAsset"
 		data-object-id="{$object->getObjectID()}"
@@ -13,7 +15,7 @@
 		{event name='jsAssetDataset'}
 	>
 		<div class="contentHeaderTitle{if $object->isTrashed()} trashed{/if}">
-			<h1 class="contentTitle">
+			<h1 class="contentTitle" itemprop="name">
 				{if $highlightTitle}
 					<span class="highlight">
 				{/if}
@@ -84,7 +86,7 @@
 	{event name='contentInteractionButtons'}
 {/capture}
 
-{include file='header' contentHeader=$__contentHeader contentInteraction=$contentInteractionButtons}
+{include file='header'}
 
 <div 
 	class="section tabMenuContainer"
