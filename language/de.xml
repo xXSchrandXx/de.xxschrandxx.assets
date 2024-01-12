@@ -204,8 +204,11 @@
 			<item name="wcf.acp.group.option.user.assets.canViewAuditsTab"><![CDATA[Kann Prüfungen sehen.]]></item>
 			<item name="wcf.acp.group.option.user.assets.canViewHistoryTab"><![CDATA[Kann Historie sehen.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canAdd"><![CDATA[Kann Vermögenswerte hinzufügen.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canCommentWithoutModeration"><![CDATA[Kann ohne Moderation kommentieren.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canModerateComments"><![CDATA[Kann Kommentare moderieren.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canModify"><![CDATA[Kann Vermögenswerte bearbeiten.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canTrash"><![CDATA[Kann Vermögenswerte entfernen.]]></item>
+			<item name="wcf.acp.group.option.admin.assets.canBulkProcess"><![CDATA[Kann Massenbearbeitung verwenden.]]></item>
 			<item name="wcf.acp.group.option.admin.assets.canDelete"><![CDATA[Kann Vermögenswerte löschen.]]></item>
 			<item name="wcf.acp.group.option.admin.assets.canManageCategories"><![CDATA[Kann Kategorien verwalten.]]></item>
 			<item name="wcf.acp.group.option.admin.assets.canManageLocations"><![CDATA[Kann Standorte verwalten.]]></item>

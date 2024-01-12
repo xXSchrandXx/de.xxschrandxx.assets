@@ -204,8 +204,11 @@
 			<item name="wcf.acp.group.option.user.assets.canViewAuditsTab"><![CDATA[Can see audits.]]></item>
 			<item name="wcf.acp.group.option.user.assets.canViewHistoryTab"><![CDATA[Can see history.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canAdd"><![CDATA[Can add assets.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canCommentWithoutModeration"><![CDATA[Can comment without moderation.]]></item>
+			<item name="wcf.acp.group.option.mod.assets.canModerateComments"><![CDATA[Can moderate comments.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canModify"><![CDATA[Can edit assets.]]></item>
 			<item name="wcf.acp.group.option.mod.assets.canTrash"><![CDATA[Can trash assets.]]></item>
+			<item name="wcf.acp.group.option.admin.assets.canBulkProcess"><![CDATA[Can use bulk editing.]]></item>
 			<item name="wcf.acp.group.option.admin.assets.canDelete"><![CDATA[Can delete assets.]]></item>
 			<item name="wcf.acp.group.option.admin.assets.canManageCategories"><![CDATA[Can manage categories.]]></item>
 			<item name="wcf.acp.group.option.admin.assets.canManageLocations"><![CDATA[Can manage locations.]]></item>
