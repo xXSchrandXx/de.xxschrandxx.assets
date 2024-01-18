@@ -7,6 +7,7 @@ use assets\util\AssetUtil;
 use DateTimeImmutable;
 use Dompdf\Adapter\CPDF;
 use wcf\data\AbstractDatabaseObjectAction;
+use wcf\system\application\ApplicationHandler;
 use wcf\system\attachment\AttachmentHandler;
 use wcf\system\comment\CommentHandler;
 use wcf\system\exception\PermissionDeniedException;
@@ -465,6 +466,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         }
 
         return $tplEngine->fetch('__label', 'assets', [
+            'logo' => ApplicationHandler::getInstance()->getApplication("assets")->getPageURL() . "/" . ASSETS_LABEL_LOGO,
             'chunks' => $chunks,
             'pageWidth' => $pageWidth,
             'pageHeight' => $pageHeight,

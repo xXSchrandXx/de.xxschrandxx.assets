@@ -92,7 +92,7 @@ img.label_logo {
 								<p>{lang}assets.label.asset.objectID{/lang}</p>
 								{event name='LabelExportValues'}
 							</div>
-							<img class="label_logo" src="{ASSETS_LABEL_LOGO}"/>
+							<img class="label_logo" src="{WCF_URL}/{ASSETS_LABEL_LOGO}"/>
 						{/if}
 					</div>
 				{/foreach}
