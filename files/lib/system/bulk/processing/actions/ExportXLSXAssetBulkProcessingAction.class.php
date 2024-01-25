@@ -41,7 +41,7 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
         $lang = WCF::getLanguage();
 
         $data = [];
-        
+
         // set header
         $data[] = [
             $lang->getDynamicVariable('assets.acp.asset.bulkProcessing.exportxlsx.header', [
