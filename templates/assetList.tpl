@@ -104,7 +104,7 @@
 						</a>
 					</th>
 					{foreach from=$options item=option key=optionName}
-						<th class="column{$option->optionType|ucfirst}{if $sortField == $optionName} active {$sortOrder}{/if}">
+						<th class="column{$option->optionType|ucfirst}">
 							{$option->getTitle()}
 						</th>
 					{/foreach}
@@ -211,7 +211,7 @@
 							<td class="columnDate">{time time=$object->getLastAuditDateTime()}</td>
 							<td class="columnDate">{time time=$object->getLastModificationDateTime()}</td>
 							<td class="columnDate">{time time=$object->getCreatedDateTime()}</td>
-							{foreach from=$options item=option key=optionName}
+							{foreach from=$options item=option}
 								<td class="column{$option->optionType|ucfirst}">{$object->getFormattedOptionValue($option, true)}</td>
 							{/foreach}
 
