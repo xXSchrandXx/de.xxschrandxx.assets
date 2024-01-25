@@ -10,6 +10,7 @@ use DateTime;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use wcf\data\DatabaseObjectList;
+use wcf\system\event\EventHandler;
 use wcf\system\exception\InvalidObjectArgument;
 use wcf\system\WCF;
 use wcf\util\FileReader;
@@ -67,6 +68,7 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
         foreach ($optionHandler->options as $option) {
             array_push($topRow, $option->getTitle());
         }
+        EventHandler::getInstance()->fireAction($this, 'topRow', $topRow);
         $data[] = $topRow;
 
         // set data rows
@@ -89,7 +91,9 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
             foreach ($optionHandler->options as $option) {
                 array_push($row, $object->getOptionValue($option->getObjectID()));
             }
-            $data[] = $row;
+            $eventData = [$object, $row];
+            EventHandler::getInstance()->fireAction($this, 'row', $eventData);
+            $data[] = $eventData['row'];
         }
 
         $activeWorksheet->fromArray($data);
