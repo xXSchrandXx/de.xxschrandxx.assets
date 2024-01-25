@@ -51,7 +51,6 @@ class AssetOptionAction extends CustomOptionAction implements ISortableAction
 
         return $option;
     }
-    
 
     /**
      * @inheritDoc

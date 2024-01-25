@@ -237,7 +237,8 @@ class AssetAddForm extends AbstractFormBuilderForm
                 ]),
             FormContainer::create('options')
                 ->label('assets.form.asset.field.options')
-                ->appendChild(TemplateFormNode::create('custom_option')
+                ->appendChild(
+                    TemplateFormNode::create('custom_option')
                         ->templateName('customOptionFieldList')
                         ->variables([
                             'errorType' => $this->errorType,

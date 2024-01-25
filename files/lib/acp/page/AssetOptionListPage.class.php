@@ -36,5 +36,4 @@ class AssetOptionListPage extends SortablePage
      * @inheritDoc
      */
     public $validSortFields = ['optionID', 'optionTitle', 'optionType', 'showOrder'];
-
 }
