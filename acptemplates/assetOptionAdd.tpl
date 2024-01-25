@@ -1,8 +1,8 @@
-{include file='header' pageTitle='assets.acp.asset.option.'|concat:$action}
+{include file='header' pageTitle='wcf.acp.customOption.'|concat:$action}
 
 <header class="contentHeader">
 	<div class="contentHeaderTitle">
-		<h1 class="contentTitle">{lang}assets.acp.asset.option.{@$action}{/lang}</h1>
+		<h1 class="contentTitle">{lang}wcf.acp.customOption.{@$action}{/lang}</h1>
 	</div>
 </header>
 

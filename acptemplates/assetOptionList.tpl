@@ -1,8 +1,8 @@
-{include file='header' pageTitle='assets.acp.asset.option.list'}
+{include file='header' pageTitle='wcf.acp.customOption.list'}
 
 <header class="contentHeader">
 	<div class="contentHeaderTitle">
-		<h1 class="contentTitle">{lang}assets.acp.asset.option.list{/lang}</h1>
+		<h1 class="contentTitle">{lang}wcf.acp.customOption.list{/lang}</h1>
 	</div>
 </header>
 
