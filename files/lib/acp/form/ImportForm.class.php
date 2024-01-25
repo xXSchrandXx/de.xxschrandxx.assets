@@ -5,6 +5,8 @@ namespace assets\acp\form;
 use assets\data\asset\AssetAction;
 use assets\data\category\AssetCategory;
 use assets\data\location\AssetLocation;
+use assets\data\option\AssetOption;
+use assets\system\option\AssetOptionHandler;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use wcf\data\category\CategoryList;
 use wcf\form\AbstractForm;
@@ -30,9 +32,14 @@ class ImportForm extends AbstractFormBuilderForm
     public $activeMenuItem = 'wcf.acp.menu.link.application.assets.import';
 
     /**
-     * @inheritDoc
+     * Weather zip module is installed
      */
     public $zip = false;
+
+    /**
+     * @var ?AssetOptionHandler
+     */
+    public $optionHandler;
 
     /**
      * @inheritDoc
@@ -42,6 +49,9 @@ class ImportForm extends AbstractFormBuilderForm
         parent::readParameters();
 
         $this->zip = extension_loaded('zip');
+
+        $this->optionHandler = new AssetOptionHandler(false);
+        $this->optionHandler->init();
     }
 
     /**
@@ -156,6 +166,12 @@ class ImportForm extends AbstractFormBuilderForm
             $columnTime = array_search($lang->get('assets.acp.export.time'), $header);
             $columnDescription = array_search($lang->get('wcf.global.description'), $header);
 
+            $customColumns = [];
+            /** @var AssetOption $option */
+            foreach ($this->optionHandler->options as $option) {
+                $customColumns[$option->getObjectID()] = array_search($option->getTitle(), $header);
+            }
+
             EventHandler::getInstance()->fireAction($this, 'checkColumns', $header);
         } catch (UserInputException $e) {
             $this->errorField = $e->getField();
@@ -255,6 +271,16 @@ class ImportForm extends AbstractFormBuilderForm
                 $parameters['description'] = $rowData[$columnDescription];
             }
 
+            // Set customOptions
+            if (!empty($customColumns)) {
+                $parameters['options'] = [];
+            }
+            foreach ($customColumns as $optionID => $customColumn) {
+                if ($customColumn && $rowData[$customColumn] !== null) {
+                    $parameters['options'][$optionID] = $rowData[$customColumn];
+                }
+            }
+
             EventHandler::getInstance()->fireAction($this, 'finalizeParameters', $parameters);
 
             $action = new AssetAction([], 'create', ['data' => $parameters]);
@@ -277,6 +303,9 @@ class ImportForm extends AbstractFormBuilderForm
     {
         parent::assignVariables();
 
-        WCF::getTPL()->assign('zip', $this->zip);
+        WCF::getTPL()->assign([
+            'zip' => $this->zip,
+            'options' => $this->optionHandler->options
+        ]);
     }
 }

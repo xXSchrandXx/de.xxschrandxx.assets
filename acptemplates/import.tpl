@@ -99,6 +99,9 @@
 				<th>
 					{lang}wcf.global.description{/lang}
 				</th>
+				{foreach from=$options item=option}
+					<th>{$option->getTitle()}</th>
+				{/foreach}
 			</tr>
 		</thead>
 		<tbody>
@@ -119,6 +122,9 @@
 				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
 				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
 				<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
+				{foreach from=$options item=option}
+					<td>{lang}assets.acp.form.import.example.optional{/lang}</td>
+				{/foreach}
 			</tr>
 		</tbody>
 	</table>
