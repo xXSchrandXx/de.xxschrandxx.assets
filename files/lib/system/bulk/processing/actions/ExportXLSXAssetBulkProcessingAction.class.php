@@ -3,6 +3,8 @@
 namespace assets\system\bulk\processing\actions;
 
 use assets\data\asset\AssetList;
+use assets\data\option\AssetOption;
+use assets\system\option\AssetOptionHandler;
 use assets\util\AssetUtil;
 use DateTime;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -26,6 +28,9 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
 
         $objectList->readObjects();
 
+        $optionHandler = new AssetOptionHandler(false);
+        $optionHandler->init();
+
         // load phpoffice library
         require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
@@ -34,40 +39,60 @@ class ExportXLSXAssetBulkProcessingAction extends AbstractAssetBulkProcessingAct
 
         $lang = WCF::getLanguage();
 
-        $activeWorksheet->setCellValue('A1', $lang->getDynamicVariable('assets.acp.asset.bulkProcessing.exportxlsx.header', [
-            'now' => (new DateTime('now', AssetUtil::getDateTimeZone()))->format(WCF::getLanguage()->get('wcf.date.dateFormat')),
-        ]));
+        $data = [];
+        
+        // set header
+        $data[] = [
+            $lang->getDynamicVariable('assets.acp.asset.bulkProcessing.exportxlsx.header', [
+                'now' => (new DateTime('now', AssetUtil::getDateTimeZone()))->format(WCF::getLanguage()->get('wcf.date.dateFormat')),
+            ])
+        ];
 
-        $activeWorksheet->setCellValue('A2', $lang->get('wcf.global.objectID'));
-        $activeWorksheet->setCellValue('B2', $lang->get('wcf.global.title'));
-        $activeWorksheet->setCellValue('C2', $lang->get('assets.acp.export.categoryID'));
-        $activeWorksheet->setCellValue('D2', $lang->get('assets.acp.export.category'));
-        $activeWorksheet->setCellValue('E2', $lang->get('assets.acp.export.amount'));
-        $activeWorksheet->setCellValue('F2', $lang->get('assets.acp.export.locationID'));
-        $activeWorksheet->setCellValue('G2', $lang->get('assets.acp.export.location'));
-        $activeWorksheet->setCellValue('H2', $lang->get('assets.acp.export.nextAudit'));
-        $activeWorksheet->setCellValue('I2', $lang->get('assets.acp.export.lastAudit'));
-        $activeWorksheet->setCellValue('J2', $lang->get('assets.acp.export.lastModification'));
-        $activeWorksheet->setCellValue('K2', $lang->get('assets.acp.export.time'));
-        $activeWorksheet->setCellValue('L2', $lang->get('wcf.global.description'));
-
-        $row = 3;
-        foreach ($objectList->getObjects() as $object) {
-            $activeWorksheet->setCellValue('A' . $row, ASSETS_LEGACYID_ENABLED ? $object->getLegacyID() : $object->getObjectID());
-            $activeWorksheet->setCellValue('B' . $row, $object->getTitle());
-            $activeWorksheet->setCellValue('C' . $row, $object->getCategoryID());
-            $activeWorksheet->setCellValue('D' . $row, $object->getCategory()->getTitle());
-            $activeWorksheet->setCellValue('E' . $row, $object->getAmount());
-            $activeWorksheet->setCellValue('F' . $row, $object->getLocationID());
-            $activeWorksheet->setCellValue('G' . $row, $object->getLocation()->getTitle());
-            $activeWorksheet->setCellValue('H' . $row, $object->getNextAuditDateTime()->format(AssetUtil::NEXT_AUDIT_FORMAT));
-            $activeWorksheet->setCellValue('I' . $row, $object->getLastAuditDateTime()->format(AssetUtil::LAST_AUDIT_FORMAT));
-            $activeWorksheet->setCellValue('J' . $row, $object->getLastModificationDateTime()->format(AssetUtil::LAST_MODIFICATION_FORMAT));
-            $activeWorksheet->setCellValue('K' . $row, $object->getCreatedDateTime()->format(AssetUtil::TIME_FORMAT));
-            $activeWorksheet->setCellValue('L' . $row, $object->getRawDescription());
-
-            $row++;
+        // set top row
+        $topRow = [
+            $lang->get('wcf.global.objectID'),
+            $lang->get('wcf.global.title'),
+            $lang->get('assets.acp.export.categoryID'),
+            $lang->get('assets.acp.export.category'),
+            $lang->get('assets.acp.export.amount'),
+            $lang->get('assets.acp.export.locationID'),
+            $lang->get('assets.acp.export.location'),
+            $lang->get('assets.acp.export.nextAudit'),
+            $lang->get('assets.acp.export.lastAudit'),
+            $lang->get('assets.acp.export.lastModification'),
+            $lang->get('assets.acp.export.time'),
+            $lang->get('wcf.global.description')
+        ];
+        /** @var AssetOption $option */
+        foreach ($optionHandler->options as $option) {
+            array_push($topRow, $option->getTitle());
         }
+        $data[] = $topRow;
+
+        // set data rows
+        foreach ($objectList->getObjects() as $object) {
+            $row = [
+                ASSETS_LEGACYID_ENABLED ? $object->getLegacyID() : $object->getObjectID(),
+                $object->getTitle(),
+                $object->getCategoryID(),
+                $object->getCategory()->getTitle(),
+                $object->getAmount(),
+                $object->getLocationID(),
+                $object->getLocation()->getTitle(),
+                $object->getNextAuditDateTime()->format(AssetUtil::NEXT_AUDIT_FORMAT),
+                $object->getLastAuditDateTime()->format(AssetUtil::LAST_AUDIT_FORMAT),
+                $object->getLastModificationDateTime()->format(AssetUtil::LAST_MODIFICATION_FORMAT),
+                $object->getCreatedDateTime()->format(AssetUtil::TIME_FORMAT),
+                $object->getRawDescription()
+            ];
+            /** @var AssetOption $option */
+            foreach ($optionHandler->options as $option) {
+                array_push($row, $object->getOptionValue($option->getObjectID()));
+            }
+            $data[] = $row;
+        }
+
+        $activeWorksheet->fromArray($data);
 
         $writer = new Xlsx($spreadsheet);
         $tempFile = FileUtil::getTemporaryFilename();

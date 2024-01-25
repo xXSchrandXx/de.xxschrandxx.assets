@@ -30,6 +30,11 @@
 					<th class="columnDate">
 						{lang}assets.acp.export.time{/lang}
 					</th>
+					{foreach from=$options item=option key=optionName}
+						<th class="column{$option->optionType|ucfirst}">
+							{$option->getTitle()}
+						</th>
+					{/foreach}
 
 					{event name='columnHeads'}
 				</tr>
@@ -51,6 +56,9 @@
 							<td class="columnDate">{time time=$object->getLastAuditDateTime()}</td>
 							<td class="columnDate">{time time=$object->getLastModificationDateTime()}</td>
 							<td class="columnDate">{time time=$object->getCreatedDateTime()}</td>
+							{foreach from=$options item=option}
+								<td class="column{$option->optionType|ucfirst}">{$object->getFormattedOptionValue($option, true)}</td>
+							{/foreach}
 
 							{event name='columns'}
 						</tr>

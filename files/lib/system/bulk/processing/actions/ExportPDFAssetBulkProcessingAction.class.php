@@ -3,6 +3,7 @@
 namespace assets\system\bulk\processing\actions;
 
 use assets\data\asset\AssetList;
+use assets\system\option\AssetOptionHandler;
 use assets\util\AssetUtil;
 use DateTime;
 use Dompdf\Dompdf;
@@ -28,6 +29,9 @@ class ExportPDFAssetBulkProcessingAction extends AbstractAssetBulkProcessingActi
         $objectList->readObjects();
         $objects = $objectList->getObjects();
 
+        $optionHandler = new AssetOptionHandler(false);
+        $optionHandler->init();
+
         // load dompdf library
         require_once(ASSETS_DIR . 'lib/system/api/autoload.php');
 
@@ -42,7 +46,8 @@ class ExportPDFAssetBulkProcessingAction extends AbstractAssetBulkProcessingActi
         $dompdf = new Dompdf($options);
 
         $dompdf->loadHtml(ACPTemplateEngine::getInstance()->fetch('__bulkProcessingAssetListExport', 'assets', [
-            'objects' => $objects
+            'objects' => $objects,
+            'options' => $optionHandler->options
         ], true));
 
         $dompdf->render();
