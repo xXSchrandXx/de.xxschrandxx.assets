@@ -65,6 +65,27 @@ class AssetAction extends AbstractDatabaseObjectAction
         /** @var \assets\data\asset\Asset */
         $asset = parent::create();
 
+        // update options
+        if (!empty($this->parameters) && array_key_exists('data', $this->parameters) && array_key_exists('options', $this->parameters['data'])) {
+            $sql = "INSERT INTO     assets" . WCF_N . "_option_value
+                                    (assetID, optionID, optionValue)
+                    VALUES          (?, ?, ?)";
+            $statement = WCF::getDB()->prepareStatement($sql);
+
+            WCF::getDB()->beginTransaction();
+            foreach ($this->parameters['data']['options'] as $optionID => $optionValue) {
+                if ($optionValue !== null) {
+                    $statement->execute([
+                        $asset->getObjectID(),
+                        $optionID,
+                        $optionValue,
+                    ]);
+                }
+            }
+            WCF::getDB()->commitTransaction();
+            unset($this->parameters['data']['options']);
+        }
+
         // update attachments
         if (isset($this->parameters['description_attachmentHandler']) && $this->parameters['description_attachmentHandler'] !== null) {
             /** @noinspection PhpUndefinedMethodInspection */
@@ -148,6 +169,35 @@ class AssetAction extends AbstractDatabaseObjectAction
             }
         }
 
+        // update option values
+        if (!empty($this->parameters) && array_key_exists('data', $this->parameters) && array_key_exists('options', $this->parameters['data'])) {
+            WCF::getDB()->beginTransaction();
+
+            $sql = "DELETE FROM     assets" . WCF_N . "_option_value
+                    WHERE           assetID = ?";
+            $statement = WCF::getDB()->prepareStatement($sql);
+            foreach ($this->getObjects() as $object) {
+                $statement->execute([$object->getObjectID()]);
+            }
+
+            $sql = "INSERT INTO     assets" . WCF_N . "_option_value
+                                    (assetID, optionID, optionValue)
+                    VALUES          (?, ?, ?)";
+            $statement = WCF::getDB()->prepareStatement($sql);
+            foreach ($this->parameters['data']['options'] as $optionID => $optionValue) {
+                foreach ($this->getObjects() as $object) {
+                    $statement->execute([
+                        $object->getObjectID(),
+                        $optionID,
+                        $optionValue,
+                    ]);
+                }
+            }
+
+            WCF::getDB()->commitTransaction();
+            unset($this->parameters['data']['options']);
+        }
+
         parent::update();
 
         foreach ($this->getObjects() as $asset) {
@@ -184,6 +234,7 @@ class AssetAction extends AbstractDatabaseObjectAction
                     ]);
                 }
             }
+
         }
     }
 

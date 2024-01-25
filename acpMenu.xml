@@ -30,6 +30,17 @@
 			<permissions>admin.assets.canManageLocations</permissions>
 			<icon>plus</icon>
 		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.option.list">
+			<controller>assets\acp\page\AssetOptionListPage</controller>
+			<parent>wcf.acp.menu.link.application.assets</parent>
+			<permissions>admin.assets.canManageOption</permissions>
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.application.assets.option.add">
+			<controller>assets\acp\form\AssetOptionAddForm</controller>
+			<parent>wcf.acp.menu.link.application.assets.option.list</parent>
+			<permissions>admin.assets.canManageOption</permissions>
+			<icon>plus</icon>
+		</acpmenuitem>
 		<acpmenuitem name="wcf.acp.menu.link.application.assets.bulkprocess">
 			<controller>assets\acp\form\BulkProcessForm</controller>
 			<parent>wcf.acp.menu.link.application.assets</parent>

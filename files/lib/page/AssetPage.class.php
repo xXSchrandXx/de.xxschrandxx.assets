@@ -6,6 +6,7 @@ use assets\data\asset\Asset;
 use assets\data\asset\modification\AssetModificationLogList;
 use assets\data\asset\modification\ViewableAssetModificationLog;
 use assets\system\comment\manager\AssetCommentManager;
+use assets\system\option\AssetOptionHandler;
 use wcf\data\attachment\AttachmentList;
 use wcf\page\AbstractPage;
 use wcf\system\exception\IllegalLinkException;
@@ -175,8 +176,11 @@ class AssetPage extends AbstractPage
     {
         $assetCommentManager = AssetCommentManager::getInstance();
         $commentCanAdd = $assetCommentManager->canAdd($this->object->getObjectID());
+        $optionHandler = new AssetOptionHandler(false);
+        $optionHandler->setAsset($this->object);
         WCF::getTPL()->assign([
             'object' => $this->object,
+            'options' => $optionHandler->options,
             'commentCanAdd' => $commentCanAdd,
             'commentManager' => $assetCommentManager,
             'commentObjectTypeID' => $this->object->getCommentObjectTypeID(),

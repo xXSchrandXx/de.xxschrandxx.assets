@@ -7,11 +7,14 @@ use assets\data\asset\AssetAction;
 use assets\data\asset\AssetList;
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocationNodeTree;
+use assets\system\option\AssetOptionHandler;
 use assets\util\AssetUtil;
 use DateTime;
 use wcf\form\AbstractFormBuilderForm;
+use wcf\system\exception\UserInputException;
 use wcf\system\form\builder\container\FormContainer;
 use wcf\system\form\builder\container\wysiwyg\WysiwygFormContainer;
+use wcf\system\form\builder\CustomFormNode;
 use wcf\system\form\builder\field\DateFormField;
 use wcf\system\form\builder\field\IntegerFormField;
 use wcf\system\form\builder\field\SingleSelectionFormField;
@@ -19,6 +22,7 @@ use wcf\system\form\builder\field\TextFormField;
 use wcf\system\form\builder\field\TitleFormField;
 use wcf\system\form\builder\field\validation\FormFieldValidationError;
 use wcf\system\form\builder\field\validation\FormFieldValidator;
+use wcf\system\form\builder\TemplateFormNode;
 use wcf\system\WCF;
 
 /**
@@ -53,6 +57,11 @@ class AssetAddForm extends AbstractFormBuilderForm
     public $objectEditLinkApplication = 'assets';
 
     /**
+     * @var ?AssetOptionHandler
+     */
+    public $optionHandler;
+
+    /**
      * category list
      * @var \RecursiveIteratorIterator
      */
@@ -65,14 +74,24 @@ class AssetAddForm extends AbstractFormBuilderForm
     public $locationList;
 
     /**
+     * @var array
+     */
+    public $categories;
+
+    /**
+     * @var array
+     */
+    public $locations;
+
+    /**
      * @inheritDoc
      */
-    protected function createForm()
+    public function readParameters()
     {
-        parent::createForm();
+        parent::readParameters();
 
-        // Read Categories
-        $categories = [
+        // set categories
+        $this->categories = [
             0 => [
                 'label' => WCF::getLanguage()->get('wcf.label.none'),
                 'value' => 0,
@@ -80,13 +99,11 @@ class AssetAddForm extends AbstractFormBuilderForm
                 'isSelectable' => 1
             ]
         ];
-
-        // get categories
         $categoryTree = new AssetCategoryNodeTree();
         $this->categoryList = $categoryTree->getIterator();
         foreach ($this->categoryList as $category) {
             /** @var \assets\data\category\AssetCategoryNode $category **/
-            \array_push($categories, [
+            \array_push($this->categories, [
                 'label' => $category->getDecoratedObject()->getTitle(),
                 'value' => $category->getObjectID(),
                 'depth' => ($category->getDepth() - 1),
@@ -94,8 +111,8 @@ class AssetAddForm extends AbstractFormBuilderForm
             ]);
         }
 
-        // Read Locations
-        $locations = [
+        // set locations
+        $this->locations = [
             0 => [
                 'label' => WCF::getLanguage()->get('wcf.label.none'),
                 'value' => 0,
@@ -103,19 +120,34 @@ class AssetAddForm extends AbstractFormBuilderForm
                 'isSelectable' => 1
             ],
         ];
-
-        // get locations
         $locationTree = new AssetLocationNodeTree();
         $this->locationList = $locationTree->getIterator();
         foreach ($this->locationList as $location) {
             /** @var \assets\data\location\AssetLocationNode $location **/
-            \array_push($locations, [
+            \array_push($this->locations, [
                 'label' => $location->getDecoratedObject()->getTitle(),
                 'value' => $location->getObjectID(),
                 'depth' => ($location->getDepth() - 1),
                 'isSelectable' => $location->getDecoratedObject()->canModify() ? 1 : 0
             ]);
         }
+
+        // set optionhandler
+        $this->optionHandler = new AssetOptionHandler(false);
+        $this->initOptionHandler();
+    }
+
+    protected function initOptionHandler()
+    {
+        $this->optionHandler->init();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function createForm()
+    {
+        parent::createForm();
 
         $this->form->appendChildren([
             FormContainer::create('data')
@@ -156,7 +188,7 @@ class AssetAddForm extends AbstractFormBuilderForm
                         ->required(),
                     SingleSelectionFormField::create('categoryID')
                         ->label('assets.form.asset.field.categoryID')
-                        ->options($categories, true, false)
+                        ->options($this->categories, true, false)
                         ->addValidator(
                             new FormFieldValidator(
                                 'checkCategoryID',
@@ -179,7 +211,7 @@ class AssetAddForm extends AbstractFormBuilderForm
                         ->required(),
                     SingleSelectionFormField::create('locationID')
                         ->label('assets.form.asset.field.locationID')
-                        ->options($locations, true, false)
+                        ->options($this->locations, true, false)
                         ->addValidator(
                             new FormFieldValidator(
                                 'checkLocationID',
@@ -203,6 +235,16 @@ class AssetAddForm extends AbstractFormBuilderForm
                         ->earliestDate((new DateTime("now", isset($this->formObject) ? $this->formObject->getDateTimeZone() : null))->format(AssetUtil::NEXT_AUDIT_FORMAT))
                         ->required()
                 ]),
+            FormContainer::create('options')
+                ->label('assets.form.asset.field.options')
+                ->appendChild(TemplateFormNode::create('custom_option')
+                        ->templateName('customOptionFieldList')
+                        ->variables([
+                            'errorType' => $this->errorType,
+                            'errorField' => $this->errorField,
+                            'options' => $this->optionHandler->getOptions()
+                        ])
+                ),
             WysiwygFormContainer::create('description')
                 ->label('assets.form.asset.field.description')
                 ->messageObjectType('de.xxschrandxx.assets.asset')
@@ -218,5 +260,37 @@ class AssetAddForm extends AbstractFormBuilderForm
                 )
                 ->available($this->formAction === 'edit')
         ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function readFormParameters()
+    {
+        parent::readFormParameters();
+
+        $this->optionHandler->readUserInput($_POST);
+    }
+
+    public function validate()
+    {
+        parent::validate();
+
+        $optionErrors = $this->optionHandler->validate();
+        if (!empty($optionErrors)) {
+            foreach ($optionErrors as $field => $type) {
+                throw new UserInputException($field, $type);
+            }
+        }
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function save()
+    {
+        $this->additionalFields['options'] = $this->optionHandler->save();
+
+        parent::save();
     }
 }

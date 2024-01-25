@@ -4,6 +4,7 @@ namespace assets\data\asset;
 
 use assets\data\category\AssetCategory;
 use assets\data\location\AssetLocation;
+use assets\data\option\AssetOption;
 use assets\page\AssetPage;
 use assets\system\comment\manager\AssetCommentManager;
 use assets\util\AssetUtil;
@@ -52,6 +53,8 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     protected ?AssetLocation $location;
 
     protected ?AssetCategory $category;
+
+    protected ?array $optionValues = null;
 
     /* ITitledLinkObject */
     /**
@@ -659,4 +662,61 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
         }
     }
     /* /Permissions */
+
+    /* AssetOptions */
+    /**
+     * Sets the value of the option with the given id
+     * @throws InvalidArgumentException
+     */
+    public function setOptionValue(int $optionID, $optionValue): void
+    {
+        if ($optionValue === null) {
+            throw new InvalidArgumentException("optionValue cannot be null");
+        }
+        $sql = "INSERT INTO     assets" . WCF_N . "_option_value
+                                (assetID, optionID, optionValue)
+                VALUES          (?, ?, ?)";
+        $statement = WCF::getDB()->prepareStatement($sql);
+
+        WCF::getDB()->beginTransaction();
+        $statement->execute([
+            $this->getObjectID(),
+            $optionID,
+            $optionValue,
+        ]);
+        WCF::getDB()->commitTransaction();
+    }
+
+    /**
+     * Returns the value of the option with the given id or an empty string if no value has been set.
+     */
+    public function getOptionValue(int $optionID): string
+    {
+        if ($this->optionValues === null) {
+            $this->optionValues = [];
+            $sql = "SELECT  optionID, optionValue
+                    FROM    assets" . WCF_N . "_option_value
+                    WHERE   assetID = ?";
+            $statement = WCF::getDB()->prepareStatement($sql);
+            $statement->execute([$this->assetID]);
+
+            $this->optionValues = $statement->fetchMap('optionID', 'optionValue');
+        }
+
+        if (isset($this->optionValues[$optionID])) {
+            return $this->optionValues[$optionID];
+        }
+
+        return '';
+    }
+
+    /**
+     * Returns the formatted value of the option with the given id or an empty string if no value has been set.
+     */
+    public function getFormattedOptionValue(AssetOption $option, bool $forcePlaintext = false): string
+    {
+        $option->setOptionValue($this->getOptionValue($option->getObjectID()));
+        return $option->getFormattedOptionValue($forcePlaintext);
+    }
+    /* /AssetOptions */
 }

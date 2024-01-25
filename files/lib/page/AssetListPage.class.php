@@ -7,6 +7,7 @@ use assets\data\category\AssetCategory;
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocation;
 use assets\data\location\AssetLocationNodeTree;
+use assets\system\option\AssetOptionHandler;
 use wcf\page\SortablePage;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\request\LinkHandler;
@@ -265,6 +266,9 @@ class AssetListPage extends SortablePage
     {
         parent::assignVariables();
 
+        $optionHandler = new AssetOptionHandler(false);
+        $optionHandler->init();
+
         WCF::getTPL()->assign([
             'categoryID' => isset($this->category) ? $this->category->getObjectID() : 0,
             'categoryName' => isset($this->category) ? $this->category->getTitle() : null,
@@ -274,7 +278,8 @@ class AssetListPage extends SortablePage
             'assetCategoryNodeTreeIDs' => $this->assetCategoryNodeTreeIDs,
             'assetLocationNodeTreeIDs' => $this->assetLocationNodeTreeIDs,
             'canSeeTrashed' => $this->canSeeTrashed,
-            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset'))
+            'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset')),
+            'options' => $optionHandler->options
         ]);
     }
 }

@@ -28,8 +28,13 @@
 	</excludedpackages>
 
 	<instructions type="update" fromversion="1.1.0">
+		<instruction type="acpTemplate"/>
 		<instruction type="file"/>
+		<instruction type="database">acp/database/update_de.xxschrandxx.assets.php</instruction>
 		<instruction type="template"/>
+		<instruction type="language"/>
+		<instruction type="userGroupOption"/>
+		<instruction type="acpMenu"/>
 	</instructions>
 
 	<instructions type="install">

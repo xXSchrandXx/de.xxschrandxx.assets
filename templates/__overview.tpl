@@ -31,9 +31,15 @@
 		<dd>{time time=$object->getLastAuditDateTime()}</dd>
 	</dl>
 	<dl>
-		<dt>{lang}assets.page.asset.overview.created{/lang}<dt>
+		<dt>{lang}assets.page.asset.overview.created{/lang}</dt>
 		<dd itemprop="datePublished">{time time=$object->getCreatedDateTime()}</dd>
 	</dl>
+	{foreach from=$options key=optionID item=option}
+		<dl>
+			<dt>{$option->getTitle()}</dt>
+			<dd>{$option->getFormattedOptionValue(true)}</dd>
+		</dl>
+	{/foreach}
 	{event name='assetOverview'}
 </section>
 <section class="section description">

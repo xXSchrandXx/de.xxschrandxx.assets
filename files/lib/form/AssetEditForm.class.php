@@ -3,6 +3,7 @@
 namespace assets\form;
 
 use assets\data\asset\Asset;
+use assets\system\option\AssetOptionHandler;
 use wcf\system\exception\IllegalLinkException;
 use wcf\system\exception\PermissionDeniedException;
 
@@ -27,8 +28,6 @@ class AssetEditForm extends AssetAddForm
      */
     public function readParameters()
     {
-        parent::readParameters();
-
         if (isset($_REQUEST['id']) && \is_numeric($_REQUEST['id'])) {
             $this->formObject = new Asset((int)$_REQUEST['id']);
         }
@@ -36,6 +35,16 @@ class AssetEditForm extends AssetAddForm
         if (!$this->formObject->getObjectID()) {
             throw new IllegalLinkException();
         }
+
+        parent::readParameters();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    protected function initOptionHandler()
+    {
+        $this->optionHandler->setAsset($this->formObject);
     }
 
     /**
@@ -48,5 +57,21 @@ class AssetEditForm extends AssetAddForm
         }
 
         parent::checkPermissions();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function saved()
+    {
+        parent::saved();
+
+        /** @var TemplateFormNode */
+        $node = $this->form->getNodeById('custom_option');
+        $node->variables([
+            'errorType' => $this->errorType,
+            'errorField' => $this->errorField,
+            'options' => $this->optionHandler->getOptions()
+        ]);
     }
 }
