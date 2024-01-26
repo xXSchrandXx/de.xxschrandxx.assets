@@ -223,6 +223,9 @@
 			<item name="wcf.acp.menu.link.application.assets.location.list"><![CDATA[Standorte]]></item>
 			<item name="wcf.acp.menu.link.application.assets.location.add"><![CDATA[Standort hinzufügen]]></item>
 			<item name="wcf.acp.menu.link.application.assets.location.edit"><![CDATA[Standort bearbeiten]]></item>
+			<!-- Custom Options-->
+			<item name="wcf.acp.menu.link.application.assets.option.add"><![CDATA[Eingabefeld hinzufügen]]></item>
+			<item name="wcf.acp.menu.link.application.assets.option.list"><![CDATA[Eingabefelder]]></item>
 			<!-- Bulk Edit -->
 			<item name="wcf.acp.menu.link.application.assets.bulkprocess"><![CDATA[Massenbearbeitung]]></item>
 			<!-- Import -->
