@@ -62,18 +62,25 @@ class AssetAction extends AbstractDatabaseObjectAction
             $data['attachments'] = \count($this->parameters['description_attachmentHandler']);
         }
 
-        /** @var \assets\data\asset\Asset */
-        $asset = parent::create();
+        $options = null;
 
         // update options
         if (!empty($this->parameters) && array_key_exists('data', $this->parameters) && array_key_exists('options', $this->parameters['data'])) {
+            $options = $this->parameters['data']['options'];
+            unset($this->parameters['data']['options']);
+        }
+
+        /** @var \assets\data\asset\Asset */
+        $asset = parent::create();
+
+        if ($options !== null) {
             $sql = "INSERT INTO     assets" . WCF_N . "_option_value
                                     (assetID, optionID, optionValue)
                     VALUES          (?, ?, ?)";
             $statement = WCF::getDB()->prepareStatement($sql);
 
             WCF::getDB()->beginTransaction();
-            foreach ($this->parameters['data']['options'] as $optionID => $optionValue) {
+            foreach ($options as $optionID => $optionValue) {
                 if ($optionValue !== null) {
                     $statement->execute([
                         $asset->getObjectID(),
@@ -83,7 +90,6 @@ class AssetAction extends AbstractDatabaseObjectAction
                 }
             }
             WCF::getDB()->commitTransaction();
-            unset($this->parameters['data']['options']);
         }
 
         // update attachments
