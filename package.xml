@@ -11,7 +11,7 @@
 		<packagedescription><![CDATA[Simple asset management app.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Einfache App zur Vermögensverwaltung.]]></packagedescription>
 		<isapplication>1</isapplication>
-		<version>1.1.1</version>
+		<version>1.2.0</version>
 		<date>2023-11-21</date>
 	</packageinformation>
 
