@@ -107,6 +107,7 @@
 			<item name="assets.form.asset.field.locationID"><![CDATA[Location]]></item>
 			<item name="assets.form.asset.field.nextAudit"><![CDATA[Next audit]]></item>
 			<item name="assets.form.asset.field.description"><![CDATA[Description]]></item>
+			<item name="assets.form.asset.field.options"><![CDATA[Option Fields]]></item>
 		</category>
 		<!-- AssetLabel -->
 		<category name="assets.label">
