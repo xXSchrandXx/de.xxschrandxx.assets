@@ -2,7 +2,7 @@
 	<button type="button" class="button small assetsFilterButton jsStaticDialog" data-dialog-id="assetsSortFilter">
 		{icon name='filter'} {lang}wcf.global.filter{/lang}
 	</button>
-	<div id="assetsSortFilter" class="jsStaticDialogContent" data-title="{lang}wcf.box.de.xxschrandxx.assets.assetListFilter.title{/lang}">
+	<div id="assetsSortFilter" class="jsStaticDialogContent" data-title="{lang}wcf.global.filter{/lang}">
 		<form method="get">
 			<section>
 				{content}
