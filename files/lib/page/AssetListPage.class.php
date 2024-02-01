@@ -7,7 +7,6 @@ use assets\data\category\AssetCategory;
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocation;
 use assets\data\location\AssetLocationNodeTree;
-use assets\data\option\AssetOption;
 use assets\system\option\AssetOptionHandler;
 use wcf\page\SortablePage;
 use wcf\system\clipboard\ClipboardHandler;
@@ -212,9 +211,9 @@ class AssetListPage extends SortablePage
                 case 'message':
                 case 'URL':
                 default:
-                if (empty($_REQUEST[$optionName])) {
-                    continue 2;
-                }
+                    if (empty($_REQUEST[$optionName])) {
+                        continue 2;
+                    }
             }
             $this->canonicalURLParameters[$optionName] = StringUtil::encodeHTML($_REQUEST[$optionName]);
             $this->filterCustomOptions[$option->getObjectID()] = $_REQUEST[$optionName];
