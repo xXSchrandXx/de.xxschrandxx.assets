@@ -7,11 +7,13 @@ use assets\data\category\AssetCategory;
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocation;
 use assets\data\location\AssetLocationNodeTree;
+use assets\data\option\AssetOption;
 use assets\system\option\AssetOptionHandler;
 use wcf\page\SortablePage;
 use wcf\system\clipboard\ClipboardHandler;
 use wcf\system\request\LinkHandler;
 use wcf\system\WCF;
+use wcf\util\StringUtil;
 
 class AssetListPage extends SortablePage
 {
@@ -134,6 +136,16 @@ class AssetListPage extends SortablePage
     public $canSeeTrashed = false;
 
     /**
+     * filters for custom options
+     */
+    public $filterCustomOptions = [];
+
+    /**
+     * @var ?AssetOptionHandler
+     */
+    public $optionHandler;
+
+    /**
      * @inheritDoc
      */
     public function readParameters()
@@ -172,8 +184,41 @@ class AssetListPage extends SortablePage
             ) {
                 $this->filterTrash = $tmpFilterTrash;
             }
+            $this->canonicalURLParameters['trash'] = $this->filterTrash;
         }
-        $this->canonicalURLParameters['trash'] = $this->filterTrash;
+
+        // filter customOptions
+        $this->optionHandler = new AssetOptionHandler(false);
+        $this->optionHandler->init();
+        foreach ($this->optionHandler->options as $optionName => $option) {
+            if (!isset($_REQUEST[$optionName])) {
+                continue;
+            }
+            switch ($option->optionType) {
+                case 'multiSelect':
+                case 'checkboxes':
+                    continue 2;
+                case 'boolean':
+                    if (!($_REQUEST[$optionName] == "0" || $_REQUEST[$optionName] == "1")) {
+                        continue 2;
+                    }
+                    break;
+                case 'date':
+                case 'float':
+                case 'integer':
+                case 'radioButton':
+                case 'select':
+                case 'textarea':
+                case 'message':
+                case 'URL':
+                default:
+                if (empty($_REQUEST[$optionName])) {
+                    continue 2;
+                }
+            }
+            $this->canonicalURLParameters[$optionName] = StringUtil::encodeHTML($_REQUEST[$optionName]);
+            $this->filterCustomOptions[$option->getObjectID()] = $_REQUEST[$optionName];
+        }
 
         $this->canonicalURL = LinkHandler::getInstance()->getControllerLink($this::class, $this->canonicalURLParameters);
     }
@@ -185,6 +230,7 @@ class AssetListPage extends SortablePage
     {
         parent::initObjectList();
 
+        // get trash is trashed
         if ($this->canSeeTrashed) {
             switch ($this->filterTrash) {
                 case self::FILTER_TRASH_Y:
@@ -246,16 +292,34 @@ class AssetListPage extends SortablePage
             $this->objectList->getConditionBuilder()->add('locationID NOT IN (?)', [$this->forbiddenLocationIDs]);
         }
         if (isset($this->location) && !in_array($this->location->getObjectID(), $this->forbiddenLocationIDs)) {
-            $locatioNIDs = [];
-            array_push($locatioNIDs, $this->location->getObjectID());
+            $locationIDs = [];
+            array_push($locationIDs, $this->location->getObjectID());
             /** @var AssetLocation $location */
             foreach ($this->location->getAllChildCategories() as $location) {
                 if (in_array($location->getObjectID(), $this->forbiddenLocationIDs)) {
                     continue;
                 }
-                array_push($locatioNIDs, $location->getObjectID());
+                array_push($locationIDs, $location->getObjectID());
             }
-            $this->objectList->getConditionBuilder()->add('locationID IN (?)', [$locatioNIDs]);
+            $this->objectList->getConditionBuilder()->add('locationID IN (?)', [$locationIDs]);
+        }
+
+        // get custom options
+        if (!empty($this->filterCustomOptions)) {
+            $sql = "SELECT  assetID
+                    FROM    assets" . WCF_N . "_option_value
+                    WHERE   optionID = ?
+                    AND     optionValue = ?";
+            $statement = WCF::getDB()->prepareStatement($sql);
+            foreach ($this->filterCustomOptions as $optionID => $value) {
+                $statement->execute([$optionID, $value]);
+            }
+            $assetIDs = $statement->fetchAll(\PDO::FETCH_COLUMN);
+            if (empty($assetIDs)) {
+                $this->objectList->getConditionBuilder()->add('assetID = ?', [0]);
+            } else {
+                $this->objectList->getConditionBuilder()->add('assetID IN (?)', [$assetIDs]);
+            }
         }
     }
 
@@ -265,9 +329,6 @@ class AssetListPage extends SortablePage
     public function assignVariables()
     {
         parent::assignVariables();
-
-        $optionHandler = new AssetOptionHandler(false);
-        $optionHandler->init();
 
         WCF::getTPL()->assign([
             'categoryID' => isset($this->category) ? $this->category->getObjectID() : 0,
@@ -279,7 +340,7 @@ class AssetListPage extends SortablePage
             'assetLocationNodeTreeIDs' => $this->assetLocationNodeTreeIDs,
             'canSeeTrashed' => $this->canSeeTrashed,
             'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset')),
-            'options' => $optionHandler->options
+            'options' => $this->optionHandler->options
         ]);
     }
 }

@@ -19,6 +19,25 @@
     height: 150px;
 }
 
+@include screen-md-up {
+    .assetsFilterButton {
+        position: absolute;
+        top: 40px;
+        right: 5px;
+    }
+	#assetsSortFilter:not(.jsAssetsSortFilterSingleSection) {
+		> form {
+			columns: 2;
+
+			> .section {
+				break-inside: avoid;
+				overflow: hidden;
+				page-break-inside: avoid;
+			}
+		}
+	}
+}
+
 @include screen-sm-down {
     .AssetQRCode {
         display: none;

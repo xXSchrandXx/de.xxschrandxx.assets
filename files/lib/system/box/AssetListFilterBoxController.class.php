@@ -4,6 +4,7 @@ namespace assets\system\box;
 
 use assets\data\category\AssetCategoryNodeTree;
 use assets\data\location\AssetLocationNodeTree;
+use assets\data\option\AssetOption;
 use assets\page\AssetListPage;
 use wcf\data\category\AbstractDecoratedCategory;
 use wcf\system\box\AbstractBoxController;
@@ -48,6 +49,7 @@ class AssetListFilterBoxController extends AbstractBoxController
         );
         $locationList = $locationTree->getIterator();
 
+        $lang = WCF::getLanguage();
         $this->content = WCF::getTPL()->fetch(
             'boxAssetListFilter',
             'assets',
@@ -59,7 +61,14 @@ class AssetListFilterBoxController extends AbstractBoxController
                 'locationActiveCategory' => $activeLocation,
                 'locationResetFilterLink' => $this->getLocationResetFilterLink($activeRequest),
                 'showChildCategories' => true,
-                'canSeeTrashed' => $this->canSeeTrashed($activeRequest)
+                'canSeeTrashed' => $this->canSeeTrashed($activeRequest),
+                'trashOptions' => [
+                    0 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both'),
+                    1 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes'),
+                    2 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.no')
+                ],
+                'options' => $this->getOptions($activeRequest),
+                'optionsResetFilterLink' => $this->getOptionsResetFilterLink($activeRequest),
             ],
             true
         );
@@ -158,5 +167,44 @@ class AssetListFilterBoxController extends AbstractBoxController
             }
         }
         return $canSeeTrashed;
+    }
+
+    protected function getOptions($activeRequest)
+    {
+        $optionHandler = $activeRequest->getRequestObject()->optionHandler;
+        foreach ($optionHandler->options as $optionName => $option) {
+            switch ($option->optionType) {
+                case 'multiSelect':
+                case 'checkboxes':
+                    unset($optionHandler->options[$optionName]);
+                    break;
+                default:
+            }
+        }
+        $filterCustomOptions = $activeRequest->getRequestObject()->filterCustomOptions;
+        $values = [];
+        foreach ($filterCustomOptions as $optionID => $value) {
+            $values['customOption' . $optionID] = $value;
+        }
+        $optionHandler->setOptionValues($values);
+        return $optionHandler->getOptions();
+    }
+
+    protected function getOptionsResetFilterLink($activeRequest): string
+    {
+        $parameters = [];
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->canonicalURLParameters !== null) {
+                    $parameters = $activeRequest->getRequestObject()->canonicalURLParameters;
+                }
+            }
+            $optionHandler = $activeRequest->getRequestObject()->optionHandler;
+            /** @var AssetOption $option */
+            foreach ($optionHandler->options as $optionName => $option) {
+                unset($parameters[$optionName]);
+            }
+        }
+        return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
     }
 }
