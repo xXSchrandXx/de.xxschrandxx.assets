@@ -30,6 +30,7 @@
 	<instructions type="update" fromversion="1.2.0">
 		<instruction type="file"/>
 		<instruction type="template"/>
+		<instruction type="language"/>
 	</instructions>
 
 	<instructions type="install">
