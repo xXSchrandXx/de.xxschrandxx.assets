@@ -522,7 +522,7 @@ class AssetAction extends AbstractDatabaseObjectAction
         }
 
         return $tplEngine->fetch('__label', 'assets', [
-            'logo' => ApplicationHandler::getInstance()->getApplication("assets")->getPageURL() . "/" . ASSETS_LABEL_LOGO,
+            'logo' => ApplicationHandler::getInstance()->getApplication("assets")->getPageURL() . ASSETS_LABEL_LOGO,
             'chunks' => $chunks,
             'pageWidth' => $pageWidth,
             'pageHeight' => $pageHeight,
