@@ -115,7 +115,7 @@
 			<item name="assets.label.asset.title"><![CDATA[T: {$object->getTitle()}]]></item>
 			<item name="assets.label.asset.category"><![CDATA[C: {$object->getCategory()->getTitle()}]]></item>
 			<item name="assets.label.asset.location"><![CDATA[L: {$object->getLocation()->getTitle()}]]></item>
-			<item name="assets.label.asset.objectID"><![CDATA[ID: {#$object->getObjectID()}]]></item>
+			<item name="assets.label.asset.objectID"><![CDATA[ID: {if ASSETS_LEGACYID_ENABLED}{$object->getLegacyID()}{else}{#$object->getObjectID()}{/if}]]></item>
 		</category>
 		<!-- /AssetLabel -->
 		<!-- AssetLocation-->
