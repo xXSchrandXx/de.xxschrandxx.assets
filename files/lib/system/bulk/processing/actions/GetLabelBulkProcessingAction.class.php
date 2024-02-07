@@ -37,5 +37,6 @@ class GetLabelBulkProcessingAction extends AbstractAssetBulkProcessingAction
         $fileReader->send();
 
         @unlink($tempFile);
+        exit;
     }
 }
