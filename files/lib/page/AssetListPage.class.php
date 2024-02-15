@@ -330,14 +330,10 @@ class AssetListPage extends SortablePage
         parent::assignVariables();
 
         WCF::getTPL()->assign([
-            'categoryID' => isset($this->category) ? $this->category->getObjectID() : 0,
             'categoryName' => isset($this->category) ? $this->category->getTitle() : null,
-            'locationID' => isset($this->location) ? $this->location->getObjectID() : 0,
             'locationName' => isset($this->location) ? $this->location->getTitle() : null,
-            'trash' => $this->filterTrash,
             'assetCategoryNodeTreeIDs' => $this->assetCategoryNodeTreeIDs,
             'assetLocationNodeTreeIDs' => $this->assetLocationNodeTreeIDs,
-            'canSeeTrashed' => $this->canSeeTrashed,
             'hasMarkedItems' => ClipboardHandler::getInstance()->hasMarkedItems(ClipboardHandler::getInstance()->getObjectTypeID('de.xxschrandxx.assets.asset')),
             'options' => $this->optionHandler->options
         ]);
