@@ -37,7 +37,7 @@ img.AssetQRCode {
     padding-right: {ASSETS_LABEL_QR_PADDING_RIGHT}cm;
     padding-top: {ASSETS_LABEL_QR_PADDING_TOP}cm;
 }
-h2.qr_text {
+.qr_text h2 {
 	font-size: 1.5em;
     margin-block-start: {ASSETS_LABEL_TITLE_MARGIN_START}cm;
     margin-block-end: {ASSETS_LABEL_TITLE_MARGIN_END}cm;
@@ -45,7 +45,7 @@ h2.qr_text {
     margin-inline-end: 0px;
     font-weight: bold;
 }
-p.qr_text {
+.qr_text p {
     display: block;
 	margin-block-start: {ASSETS_LABEL_TEXT_MARGIN_START}cm;
     margin-block-end: {ASSETS_LABEL_TEXT_MARGIN_END}cm;
