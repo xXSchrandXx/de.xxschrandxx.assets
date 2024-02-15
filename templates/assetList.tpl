@@ -42,7 +42,11 @@
 {hascontent}
 	<div class="paginationTop">
 		{content}
-			{pages print=true assign=pagesLinks controller="AssetList" application="assets" link="categoryID=$categoryID&locationID=$locationID&trash=$trash&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"}
+			<woltlab-core-pagination 
+				page="{$pageNo}" 
+				count="{$pages}" 
+				url="{$canonicalURL}"
+			></woltlab-core-pagination>
 		{/content}
 	</div>
 {/hascontent}
@@ -57,51 +61,35 @@
 					{/if}
 					{if ASSETS_LEGACYID_ENABLED}
 						<th class="columnID{if $sortField == 'legacyID'} active {$sortOrder}{/if}">
-							<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=legacyID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-								{lang}wcf.global.objectID{/lang}
-							</a>
+							{lang}wcf.global.objectID{/lang}
 						</th>
 					{else}
 						<th class="columnID{if $sortField == 'assetID'} active {$sortOrder}{/if}">
-							<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=assetID&sortOrder={if $sortField == 'assetID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-								{lang}wcf.global.objectID{/lang}
-							</a>
+							{lang}wcf.global.objectID{/lang}
 						</th>
 					{/if}
 					{if $__wcf->session->getPermission('mod.assets.canModify')}
 						<th></th>
 					{/if}
 					<th class="columnTitle{if $sortField == 'title'} active {$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=title&sortOrder={if $sortField == 'title' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}wcf.global.title{/lang}
-						</a>
+						{lang}wcf.global.title{/lang}
 					</th>
 					<th>{lang}assets.page.assetList.category{/lang}</th>
 					<th class="columnInt{if $sortField == 'amount'} active {$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=amount&sortOrder={if $sortField == 'amount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}assets.page.assetList.amount{/lang}
-						</a>
+						{lang}assets.page.assetList.amount{/lang}
 					</th>
 					<th>{lang}assets.page.assetList.location{/lang}</th>
 					<th class="columnDate{if $sortField == 'nextAudit'} active {$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=nextAudit&sortOrder={if $sortField == 'nextAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}assets.page.assetList.nextAudit{/lang}
-						</a>
+						{lang}assets.page.assetList.nextAudit{/lang}
 					</th>
 					<th class="columnDate{if $sortField == 'lastAudit'} active {$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=lastAudit&sortOrder={if $sortField == 'lastAudit' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}assets.page.assetList.lastAudit{/lang}
-						</a>
+						{lang}assets.page.assetList.lastAudit{/lang}
 					</th>
 					<th class="columnDate{if $sortField == 'lastModification'} active {$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=lastModification&sortOrder={if $sortField == 'lastModification' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}assets.page.assetList.lastModification{/lang}
-						</a>
+						{lang}assets.page.assetList.lastModification{/lang}
 					</th>
 					<th class="columnDate{if $sortField == 'time'} active {$sortOrder}{/if}">
-						<a href="{link controller='AssetList' application="assets"}&categoryID={$categoryID}&locationID={$locationID}&trash={$trash}&pageNo={$pageNo}&sortField=time&sortOrder={if $sortField == 'time' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{/link}">
-							{lang}assets.page.assetList.time{/lang}
-						</a>
+						{lang}assets.page.assetList.time{/lang}
 					</th>
 					{foreach from=$options item=option key=optionName}
 						<th class="column{$option->optionType|ucfirst}">
@@ -235,7 +223,11 @@
 {hascontent}
 	<div class="paginationBottom">
 		{content}
-			{@$pagesLinks}
+			<woltlab-core-pagination 
+				page="{$pageNo}" 
+				count="{$pages}" 
+				url="{$canonicalURL}"
+			></woltlab-core-pagination>
 		{/content}
 	</div>
 {/hascontent}
