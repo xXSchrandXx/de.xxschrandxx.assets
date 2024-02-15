@@ -6,11 +6,11 @@ use wcf\data\option\Option;
 use wcf\data\option\OptionEditor;
 use wcf\system\WCF;
 
-// add default category
 $sql = "SELECT  objectTypeID
         FROM    wcf" . WCF_N . "_object_type
         WHERE   definitionID = ?
             AND objectType = ?";
+// add default category
 $statementCategory = WCF::getDB()->prepareStatement($sql, 1);
 $statementCategory->execute([
     ObjectTypeCache::getInstance()->getDefinitionByName('com.woltlab.wcf.category')->definitionID,
@@ -22,6 +22,7 @@ CategoryEditor::create([
     'time' => TIME_NOW,
 ]);
 
+// add default category
 $statementLocation = WCF::getDB()->prepareStatement($sql, 1);
 $statementLocation->execute([
     ObjectTypeCache::getInstance()->getDefinitionByName('com.woltlab.wcf.category')->definitionID,
@@ -33,6 +34,7 @@ CategoryEditor::create([
     'time' => TIME_NOW,
 ]);
 
+// set install time
 $option = Option::getOptionByName('assets_install_time');
 $editor = new OptionEditor($option);
 $editor->update([
