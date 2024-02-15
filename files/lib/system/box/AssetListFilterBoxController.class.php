@@ -77,7 +77,7 @@ class AssetListFilterBoxController extends AbstractBoxController
             'optionsResetFilterLink' => $this->getOptionsResetFilterLink($activeRequest),
             'items' => $this->getItemsPerPage($activeRequest)
         ];
-        EventHandler::getInstance()->fireAction($this, 'templateParameters', $parameters);
+        EventHandler::getInstance()->fireAction($this, 'templateVariables', $parameters);
         $this->content = WCF::getTPL()->fetch(
             'boxAssetListFilter',
             'assets',

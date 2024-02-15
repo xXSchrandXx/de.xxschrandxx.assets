@@ -10,6 +10,7 @@ use wcf\data\AbstractDatabaseObjectAction;
 use wcf\system\application\ApplicationHandler;
 use wcf\system\attachment\AttachmentHandler;
 use wcf\system\comment\CommentHandler;
+use wcf\system\event\EventHandler;
 use wcf\system\exception\PermissionDeniedException;
 use wcf\system\exception\UserInputException;
 use wcf\system\message\embedded\object\MessageEmbeddedObjectManager;
@@ -521,12 +522,16 @@ class AssetAction extends AbstractDatabaseObjectAction
             }
         }
 
-        return $tplEngine->fetch('__label', 'assets', [
+        $parameters = [
             'logo' => ApplicationHandler::getInstance()->getApplication("assets")->getPageURL() . ASSETS_LABEL_LOGO,
             'chunks' => $chunks,
             'pageWidth' => $pageWidth,
             'pageHeight' => $pageHeight,
             'fontFamily' => ''
-        ], true);
+        ];
+
+        EventHandler::getInstance()->fireAction($this, 'templateVariables', $parameters);
+
+        return $tplEngine->fetch('__label', 'assets', $parameters, true);
     }
 }
