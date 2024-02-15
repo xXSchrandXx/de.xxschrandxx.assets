@@ -151,6 +151,12 @@ class AssetListPage extends SortablePage
     {
         parent::readParameters();
 
+        // read itemsPerPage
+        if (isset($_REQUEST['items'])) {
+            $this->itemsPerPage = \intval($_REQUEST['items']);
+        }
+        $this->canonicalURLParameters['items'] = $this->itemsPerPage;
+
         // read category
         $categoryID = 0;
         if (isset($_REQUEST['categoryID'])) {

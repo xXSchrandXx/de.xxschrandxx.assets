@@ -8,6 +8,7 @@ use assets\data\option\AssetOption;
 use assets\page\AssetListPage;
 use wcf\data\category\AbstractDecoratedCategory;
 use wcf\system\box\AbstractBoxController;
+use wcf\system\event\EventHandler;
 use wcf\system\request\LinkHandler;
 use wcf\system\request\RequestHandler;
 use wcf\system\WCF;
@@ -50,26 +51,37 @@ class AssetListFilterBoxController extends AbstractBoxController
         $locationList = $locationTree->getIterator();
 
         $lang = WCF::getLanguage();
+        $parameters = [
+            'categoryCategoryList' => $categoryList,
+            'categoryActiveCategory' => $activeCategory,
+            'categoryResetFilterLink' => $this->getCategoryResetFilterLink($activeRequest),
+            'locationCategoryList' => $locationList,
+            'locationActiveCategory' => $activeLocation,
+            'locationResetFilterLink' => $this->getLocationResetFilterLink($activeRequest),
+            'showChildCategories' => true,
+            'validSortFields' => $this->getValidSortFields($lang),
+            'sortField' => $this->getActiveSortField($activeRequest),
+            'validSortOrders' => [
+                'ASC' => $lang->get('wcf.global.sortOrder.ascending'),
+                'DESC' => $lang->get('wcf.global.sortOrder.descending')
+            ],
+            'sortOrder' => $this->getActiveSortOrder($activeRequest),
+            'trash' => $this->getTrashValue($activeRequest),
+            'canSeeTrashed' => $this->canSeeTrashed($activeRequest),
+            'trashOptions' => [
+                0 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both'),
+                1 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes'),
+                2 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.no')
+            ],
+            'options' => $this->getOptions($activeRequest),
+            'optionsResetFilterLink' => $this->getOptionsResetFilterLink($activeRequest),
+            'items' => $this->getItemsPerPage($activeRequest)
+        ];
+        EventHandler::getInstance()->fireAction($this, 'templateParameters', $parameters);
         $this->content = WCF::getTPL()->fetch(
             'boxAssetListFilter',
             'assets',
-            [
-                'categoryCategoryList' => $categoryList,
-                'categoryActiveCategory' => $activeCategory,
-                'categoryResetFilterLink' => $this->getCategoryResetFilterLink($activeRequest),
-                'locationCategoryList' => $locationList,
-                'locationActiveCategory' => $activeLocation,
-                'locationResetFilterLink' => $this->getLocationResetFilterLink($activeRequest),
-                'showChildCategories' => true,
-                'canSeeTrashed' => $this->canSeeTrashed($activeRequest),
-                'trashOptions' => [
-                    0 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both'),
-                    1 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes'),
-                    2 => $lang->get('wcf.box.de.xxschrandxx.assets.assetListFilter.trash.no')
-                ],
-                'options' => $this->getOptions($activeRequest),
-                'optionsResetFilterLink' => $this->getOptionsResetFilterLink($activeRequest),
-            ],
+            $parameters,
             true
         );
     }
@@ -156,6 +168,58 @@ class AssetListFilterBoxController extends AbstractBoxController
         return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
     }
 
+    protected function getValidSortFields($lang): array {
+        $validSortFields = [
+            ASSETS_LEGACYID_ENABLED ? 'legacyID' : 'assetUD' => $lang->get('wcf.global.objectID'),
+            'title' => $lang->get('wcf.global.title'),
+            'amount' => $lang->get('assets.page.assetList.amount'),
+            'nextAudit' => $lang->get('assets.page.assetList.nextAudit'),
+            'lastAudit' => $lang->get('assets.page.assetList.lastAudit'),
+            'lastModification' => $lang->get('assets.page.assetList.lastModification'),
+            'time' => $lang->get('assets.page.assetList.time'),
+        ];
+
+        EventHandler::getInstance()->fireAction($this, 'getValidSortFields', $validSortFields);
+
+        return $validSortFields;
+    }
+
+    protected function getActiveSortField($activeRequest): string {
+        $sortField = ASSETS_LEGACYID_ENABLED ? 'legacyID' : 'assetID';
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->sortField !== null) {
+                    $sortField = $activeRequest->getRequestObject()->sortField;
+                }
+            }
+        }
+        return $sortField;
+    }
+
+    protected function getActiveSortOrder($activeRequest): string {
+        $sortOrder = 'ASC';
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->sortOrder !== null) {
+                    $sortOrder = $activeRequest->getRequestObject()->sortOrder;
+                }
+            }
+        }
+        return $sortOrder;
+    }
+
+    protected function getTrashValue($activeRequest): int {
+        $trash = AssetListPage::FILTER_TRASH_BOTH;
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->filterTrash !== null) {
+                    $trash = $activeRequest->getRequestObject()->filterTrash;
+                }
+            }
+        }
+        return $trash;
+    }
+
     protected function canSeeTrashed($activeRequest): bool
     {
         $canSeeTrashed = false;
@@ -206,5 +270,17 @@ class AssetListFilterBoxController extends AbstractBoxController
             }
         }
         return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
+    }
+
+    protected function getItemsPerPage($activeRequest): int {
+        $items = 20;
+        if ($activeRequest !== null) {
+            if ($activeRequest->getRequestObject() instanceof AssetListPage) {
+                if ($activeRequest->getRequestObject()->itemsPerPage !== null) {
+                    $items = $activeRequest->getRequestObject()->itemsPerPage;
+                }
+            }
+        }
+        return $items;
     }
 }

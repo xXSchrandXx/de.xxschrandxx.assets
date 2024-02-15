@@ -295,6 +295,8 @@
 			<!-- Filter box -->
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.category"><![CDATA[Kategorien]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.location"><![CDATA[Standorte]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.items"><![CDATA[Ergebnisse pro Seite]]></item>
+			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.sortField"><![CDATA[Sortierung nach]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash"><![CDATA[Entfernt]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.both"><![CDATA[Alle]]></item>
 			<item name="wcf.box.de.xxschrandxx.assets.assetListFilter.trash.yes"><![CDATA[Entfernt]]></item>
