@@ -168,7 +168,8 @@ class AssetListFilterBoxController extends AbstractBoxController
         return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
     }
 
-    protected function getValidSortFields($lang): array {
+    protected function getValidSortFields($lang): array
+    {
         $validSortFields = [
             ASSETS_LEGACYID_ENABLED ? 'legacyID' : 'assetUD' => $lang->get('wcf.global.objectID'),
             'title' => $lang->get('wcf.global.title'),
@@ -184,7 +185,8 @@ class AssetListFilterBoxController extends AbstractBoxController
         return $validSortFields;
     }
 
-    protected function getActiveSortField($activeRequest): string {
+    protected function getActiveSortField($activeRequest): string
+    {
         $sortField = ASSETS_LEGACYID_ENABLED ? 'legacyID' : 'assetID';
         if ($activeRequest !== null) {
             if ($activeRequest->getRequestObject() instanceof AssetListPage) {
@@ -196,7 +198,8 @@ class AssetListFilterBoxController extends AbstractBoxController
         return $sortField;
     }
 
-    protected function getActiveSortOrder($activeRequest): string {
+    protected function getActiveSortOrder($activeRequest): string
+    {
         $sortOrder = 'ASC';
         if ($activeRequest !== null) {
             if ($activeRequest->getRequestObject() instanceof AssetListPage) {
@@ -208,7 +211,8 @@ class AssetListFilterBoxController extends AbstractBoxController
         return $sortOrder;
     }
 
-    protected function getTrashValue($activeRequest): int {
+    protected function getTrashValue($activeRequest): int
+    {
         $trash = AssetListPage::FILTER_TRASH_BOTH;
         if ($activeRequest !== null) {
             if ($activeRequest->getRequestObject() instanceof AssetListPage) {
@@ -272,7 +276,8 @@ class AssetListFilterBoxController extends AbstractBoxController
         return LinkHandler::getInstance()->getControllerLink(AssetListPage::class, $parameters);
     }
 
-    protected function getItemsPerPage($activeRequest): int {
+    protected function getItemsPerPage($activeRequest): int
+    {
         $items = 20;
         if ($activeRequest !== null) {
             if ($activeRequest->getRequestObject() instanceof AssetListPage) {
