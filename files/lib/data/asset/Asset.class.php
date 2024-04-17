@@ -388,14 +388,6 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     /**
      * @inheritDoc
      */
-    public function __toString()
-    {
-        return $this->getFormattedMessage();
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getExcerpt($maxLength = 255)
     {
         return StringUtil::truncateHTML($this->getSimplifiedFormattedMessage(), $maxLength);
