@@ -1,6 +1,6 @@
 {
     "config": {
-        "vendor-dir": "files/lib/system/api/",
+        "vendor-dir": "files_assets/lib/system/api/",
         "prepend-autoloader": false,
         "optimize-autoloader": true,
         "sort-packages": true,

@@ -11,7 +11,7 @@
 		<packagedescription><![CDATA[Simple asset management app.]]></packagedescription>
 		<packagedescription language="de"><![CDATA[Einfache App zur Vermögensverwaltung.]]></packagedescription>
 		<isapplication>1</isapplication>
-		<version>1.2.2</version>
+		<version>1.2.3</version>
 		<date>2023-11-21</date>
 	</packageinformation>
 
@@ -27,7 +27,7 @@
 		<excludedpackage version="7.0.0 Alpha 1">com.woltlab.wcf</excludedpackage>
 	</excludedpackages>
 
-	<instructions type="update" fromversion="1.2.1">
+	<instructions type="update" fromversion="1.2.2">
 		<instruction type="file"/>
 		<instruction type="template"/>
 		<instruction type="language"/>
@@ -36,7 +36,7 @@
 	<instructions type="install">
 		<instruction type="acpTemplate"/>
 		<instruction type="template"/>
-		<instruction type="file"/>
+		<instruction type="file">files_assets.tar</instruction>
 		<instruction type="file" application="wcf">files_wcf.tar</instruction>
 		<instruction type="database">acp/database/install_de.xxschrandxx.assets.php</instruction>
 		<instruction type="language"/>
