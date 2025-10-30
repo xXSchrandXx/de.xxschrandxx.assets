@@ -28,7 +28,7 @@
 	</excludedpackages>
 
 	<instructions type="update" fromversion="1.2.2">
-		<instruction type="file"/>
+		<instruction type="file">files_assets.tar</instruction>
 		<instruction type="template"/>
 		<instruction type="language"/>
 	</instructions>
