@@ -368,7 +368,7 @@ class Asset extends DatabaseObject implements ITitledLinkObject, IAccessibleObje
     public function getCommentList()
     {
         return new StructuredCommentList(
-            AssetCommentManager::getInstance(),
+            new AssetCommentManager(),
             $this->getCommentObjectTypeID(),
             $this->getObjectID()
         );

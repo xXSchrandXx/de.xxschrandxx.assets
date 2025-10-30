@@ -174,7 +174,7 @@ class AssetPage extends AbstractPage
      */
     public function assignVariables()
     {
-        $assetCommentManager = AssetCommentManager::getInstance();
+        $assetCommentManager = new AssetCommentManager();
         $commentCanAdd = $assetCommentManager->canAdd($this->object->getObjectID());
         $optionHandler = new AssetOptionHandler(false);
         $optionHandler->setAsset($this->object);
